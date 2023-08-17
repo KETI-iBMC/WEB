@@ -1,0 +1,24 @@
+[
+    {
+        "Name" : "Fan1",
+        "Algorithm" : "BFC",
+        "RelatedItem" : [
+            {
+                "SensorName" : "CPUTemperature",
+                "SensornNumber" : 4,
+                "DesiredTemperature" : 80
+            }
+        ]
+    },
+    {
+        "Name" : "Fan2",
+        "Algorithm" : "LFC",
+        "RelatedItem" : [
+            {
+                "SensorName" : "MemoryTemperature",
+                "SensornNumber" : 5,
+                "DesiredTemperature" : 80
+            }
+        ]
+    }
+]

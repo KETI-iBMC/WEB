@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Myapp.dir/src/main.cpp.o CMakeFiles/Myapp.dir/src/PolicyManager.cpp.o CMakeFiles/Myapp.dir/src/ProcessorPolicy.cpp.o CMakeFiles/Myapp.dir/src/Policy.cpp.o -o Myapp 

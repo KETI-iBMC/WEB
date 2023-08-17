@@ -1,0 +1,3 @@
+/home/keti/KETI_BMC/KETI-APP/hj/app/IBMC-APP/test/SSP/CMakeFiles/rebuild_cache.dir
+/home/keti/KETI_BMC/KETI-APP/hj/app/IBMC-APP/test/SSP/CMakeFiles/edit_cache.dir
+/home/keti/KETI_BMC/KETI-APP/hj/app/IBMC-APP/test/SSP/CMakeFiles/KETI-SSP.dir

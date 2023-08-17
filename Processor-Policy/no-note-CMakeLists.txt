@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.25.3)
+project(Myapp)
+
+set(INCLUDE_DIRECTORIES "/home/keti/KETI_BMC/KETI-APP/hj/c++_example/include/")
+
+set(SOURCES_DIR "/home/keti/KETI_BMC/KETI-APP/hj/c++_example/src/")
+set(SOURCES
+    ${SOURCES_DIR}main.cpp
+    ${SOURCES_DIR}PolicyManager.cpp
+    ${SOURCES_DIR}ProcessorPolicy.cpp
+    ${SOURCES_DIR}Policy.cpp
+)
+add_executable(Myapp ${SOURCES})
+
+include_directories(${INCLUDE_DIRECTORIES})

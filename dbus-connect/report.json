@@ -1,0 +1,10 @@
+{
+    "TotalInfomation" : {
+        "Activation" : true,
+        "NumberOfAlarms" : 2,
+        "AlramTime" : [
+            "10:00",
+            "19:00"
+        ]
+    }
+}

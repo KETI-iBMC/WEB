@@ -1,0 +1,95 @@
+{
+    
+    "EnergySaving" :[
+        {
+            "Name" : "HostProcessor1",
+            "Mode" : "UnderClock",
+            "MaxSpeedMHz" : 1200 
+        }   
+    ]
+}
+
+{
+    "Fan" : [
+        {
+            "Name" : "Fan1",
+            "Algorithm" : "BFC",
+            "RelatedItem" : [
+                {
+                    "SensorName" : "CPUTemperature",
+                    "SensornNumber" : 4,
+                    "DesiredTemperature" : 80
+                }
+            ]
+        }
+    ]   
+}
+
+{
+    "Feedback" : [
+        {
+            "Name" : "CPUTemperature",
+            "Level" : {
+                "Green" : {
+                    "State" : "enable",
+                    "LowerThresholeUser" : 0,
+                    "Destination" : "*"
+                },
+                "Yellow" : {
+                    "State" : "enable",
+                    "TargetTemperatureEstimatedTimeRefreshCycleSeconds" : 60,
+                    "LowerThresholdUserRange" : {
+                            "Lower" : 0,
+                            "Upper" : -10
+                    },
+                    "UpperThresholdUserRange" : {
+                        "Lower" : 70,
+                        "Upper" : 80
+                    },
+                    "Destination" : "*"        
+                },
+                "Orange" : {
+                    "State" : "enable",
+                    "TargetTemperatureEstimatedTimeRefreshCycleSeconds" : 60,
+                    "LowerThresholdUserRange" : {
+                            "Lower" : -10,
+                            "Upper" : -15
+                    },
+                    "UpperThresholdUserRange" : {
+                        "Lower" : 80,
+                        "Upper" : 95
+                    },
+                    "Destination" : "*"        
+                },             
+                "Red" : {
+                    "State" : "enable",
+                    "TargetTemperature
+                    EstimatedTimeRefreshCycleSeconds" : 60,
+                    "LowerThresholdUser" : -15,
+                    "UpperThresholdUser" : 95,
+                    "Destination" : "*",
+                    "CompulsoryControl" : true,
+                    "CauseAnalysis" : true
+                }   
+            }
+        }
+    ]
+}
+
+{
+    "Report" : {
+        "TotalInfomation" : {
+            "Activation" : true,
+            "NumberOfAlarms" : 2,
+            "AlramTime" : [
+                "10:00",
+                "19:00"
+            ]
+        }
+    }
+}
+
+
+{
+    "BiosRestart" : true
+}
