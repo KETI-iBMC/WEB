@@ -87,7 +87,8 @@
                 "UpperThresholdUser" : 98,
                 "Destination" : "*",
                 "CompulsoryControl" : true,
-                "CauseAnalysis" : true
+                "CauseAnalysis" : true,
+                "a" : false
             }   
         }
     }
