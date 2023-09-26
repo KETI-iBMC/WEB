@@ -1,3 +1,5 @@
+#ifndef POLICY_H
+#define POLICY_H
 #pragma once
 #include <common/keti_std.hpp>
 #include <sqlite3.h>
@@ -9,14 +11,14 @@ static int CPUPolicyCallback(void *data, int argc, char **argv,
                               char **colNames);
 static int FeedbackPolicyCallback(void *data, int argc, char **argv,
                              char **colNames);                             
-enum class POLICY_TYPE { TYPE_FAN, TYPE_CPU, TYPE_FEEDBACK, ALL };
-std::unordered_map<std::string, POLICY_TYPE> colorMap = {
+enum class POLICY_TYPE { TYPE_FAN, TYPE_CPU, TYPE_FEEDBACK, ALLPOLICYTYPE };
+static std::unordered_map<std::string, POLICY_TYPE> colorMap = {
     {"FAN", POLICY_TYPE::TYPE_FAN},
     {"CPU", POLICY_TYPE::TYPE_CPU},
     {"FEEDBACK", POLICY_TYPE::TYPE_FEEDBACK},
-    {"ALL", POLICY_TYPE::ALL}};
+    {"ALL", POLICY_TYPE::ALLPOLICYTYPE}};
 
-std::string PolicyoString(POLICY_TYPE policy) {
+static std::string PolicyoString(POLICY_TYPE policy) {
   for (const auto &pair : colorMap) {
     if (pair.second == policy) {
       return pair.first;
@@ -25,7 +27,7 @@ std::string PolicyoString(POLICY_TYPE policy) {
   return "unknown";
 }
 
-class Fan {
+class DBFan {
 private:
   int fanID;
   string fan_name;
@@ -42,12 +44,12 @@ private:
     int columnNumber;
     std::string chassisName;
   } pos;
-  Fan(){};
+  DBFan(){};
 
 public:
   string fanPolicyName;
 
-  Fan(int _fanID, const std::string &_fan_name, int _PWM, int _max_PWM,
+  DBFan(int _fanID, const std::string &_fan_name, int _PWM, int _max_PWM,
       int _max_RPM, int _RPM, const std::string &_model,
       const std::string &_manufacture, const std::string &_FanController,
       int _slotNumber, int _columnNumber, const std::string &_chassisName,
@@ -136,7 +138,7 @@ public:
     }
     return true;
   }
-  ~Fan(){};
+  ~DBFan(){};
 };
 class Policy {
 private:
@@ -164,7 +166,7 @@ public:
 class Fan_Policy : public Policy {
 private:
 public:
-  unordered_map<int, Fan *> Target_Fans;
+  unordered_map<int, DBFan *> Target_Fans;
   string temperatureSource;
   int desiredTemperature;
   Fan_Policy(sqlite3 *db, int policyID) {
@@ -374,340 +376,28 @@ static int CPUPolicyCallback(void *data, int argc, char **argv,
 
   return 0;
 }
-class Green{
-private:
-  bool isActive;
-  int lowerThresholdUser;
-  int upperThresholdUser;
-  std::string destination;
-  int feedbackid;
-public:
-  std::string greenName;
 
-  Green(std::string _greenName, bool _isActive, int _lowerThresholdUser, int _upperThresholdUser, std::string _destination, int _feedbackid) : 
-        greenName(_greenName), isActive(_isActive), lowerThresholdUser(_lowerThresholdUser), upperThresholdUser(_upperThresholdUser), destination(_destination), feedbackid(_feedbackid){}
-       
-  //feedbackid가 외래키라 매개변수로 받음
-  bool Insert_Green_Level(sqlite3 *db){
-    char query[500];
-    sprintf(
-        query,
-        "INSERT INTO Green (Name, IsActive, LowerThresholdUser, UpperThresholdUser, Destination, FeedbackID) "
-        "VALUES ('%s', '%d', '%d', '%d', '%s', '%d');",
-        greenName.c_str(), isActive, lowerThresholdUser, upperThresholdUser, destination.c_str(), feedbackid);
-    char *errMsg = nullptr;
-    int rc = sqlite3_exec(db, query, nullptr, nullptr, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Insert Green SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return false;
-    } else {
-      std::cout << "[Green] Insert" << std::endl;
-    }
-    return true;
-  }
-  bool Update_Green_Level_Int(sqlite3 *db, std::string greenName, std::string attribute_name, int attribute_value){
-    char query[500];
-    char *errMsg = nullptr;
-    int rc;
-    //여기에 attribute 확인해서 그에 맞게 값을 넣어야함
-    sprintf(query,
-          "UPDATE Green "
-          "SET '%s' = '%d' "
-          "WHERE Name = '%s';", attribute_name.c_str(), attribute_value, greenName.c_str());
-    rc = sqlite3_exec(db, query, 0, 0, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Update Green SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return -1;
-    }
-    else{
-      std:: cout << "[Green] Update" << std::endl;
-      return 0;
-    }    
-  }
-  
-  bool Update_Green_Level_String(sqlite3 *db, std::string greenName, std::string attribute_name, std::string attribute_value){
-    char query[500];
-    char *errMsg = nullptr;
-    int rc;
-    //여기에 attribute 확인해서 그에 맞게 값을 넣어야함
-    sprintf(query,
-          "UPDATE Green "
-          "SET '%s' = '%s' "
-          "WHERE Name = '%s';", attribute_name.c_str(), attribute_value.c_str(), greenName.c_str());
-    rc = sqlite3_exec(db, query, 0, 0, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Update Green SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return -1;
-    }
-    else{
-      std:: cout << "[Green] Update" << std::endl;
-      return 0;
-    }
-  }  
-  ~Green(){}   
-
-};
-class Yellow{
-private:
-  bool isActive;
-  int targetTemperatureEstimatedTimeRefreshCycleSeconds;
-  int lowerThresholdUser;
-  int upperThresholdUser;
-  std::string destination;
-  int feedbackid;
-public:
-  std::string yellowName;  
-  Yellow(std::string _yellowName, bool _isActive, int _targetTemperatureEstimatedTimeRefreshCycleSeconds,
-        int _lowerThresholdUser, int _upperThresholdUser, std::string _destination, int _feedbackid) : 
-        yellowName(_yellowName), isActive(_isActive), targetTemperatureEstimatedTimeRefreshCycleSeconds(_targetTemperatureEstimatedTimeRefreshCycleSeconds), 
-        lowerThresholdUser(_lowerThresholdUser), upperThresholdUser(_upperThresholdUser), destination(_destination), feedbackid(_feedbackid){} 
-  bool Insert_Yellow_Level(sqlite3 *db){
-    char query[500];
-    sprintf(
-        query,
-        "INSERT INTO Yellow (Name, IsActive, TargetTemperatureEstimatedTimeRefreshCycleSeconds,"
-        "LowerThresholdUser, UpperThresholdUser, Destination, FeedbackID) "
-        "VALUES ('%s', '%d', '%d', '%d', '%d', '%s', '%d');",
-        yellowName.c_str(), isActive, targetTemperatureEstimatedTimeRefreshCycleSeconds,
-        lowerThresholdUser, upperThresholdUser, destination.c_str(), feedbackid); 
-    char *errMsg = nullptr;
-    int rc = sqlite3_exec(db, query, nullptr, nullptr, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Insert Yellow SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return false;
-    } else {
-      std::cout << "[Yellow] Insert" << std::endl;
-    }
-    return true;
-  }
-  bool Update_Yellow_Level_Int(sqlite3 *db, std::string yellowName, std::string attribute_name, int attribute_value){
-    char query[500];
-    char *errMsg = nullptr;
-    int rc;
-    //여기에 attribute 확인해서 그에 맞게 값을 넣어야함
-    sprintf(query,
-          "UPDATE Yellow "
-          "SET '%s' = '%d' "
-          "WHERE Name = '%s';", attribute_name.c_str(), attribute_value, yellowName.c_str());
-    rc = sqlite3_exec(db, query, 0, 0, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Update Yellow SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return -1;
-    }
-    else{
-      std:: cout << "[Yellow] Update" << std::endl;
-      return 0;
-    }    
-  }
-  
-  bool Update_Yellow_Level_String(sqlite3 *db, std::string yellowName, std::string attribute_name, std::string attribute_value){
-    char query[500];
-    char *errMsg = nullptr;
-    int rc;
-    //여기에 attribute 확인해서 그에 맞게 값을 넣어야함
-    sprintf(query,
-          "UPDATE Yellow "
-          "SET '%s' = '%s' "
-          "WHERE Name = '%s';", attribute_name.c_str(), attribute_value.c_str(), yellowName.c_str());
-    rc = sqlite3_exec(db, query, 0, 0, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Update Yellow SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return -1;
-    }
-    else{
-      std:: cout << "[Yellow] Update" << std::endl;
-      return 0;
-    }
-  }  
-  ~Yellow(){}
-  
-};
-
-class Orange{
-private:
-  bool isActive;
-  int targetTemperatureEstimatedTimeRefreshCycleSeconds;
-  int lowerThresholdUser;
-  int upperThresholdUser;
-  std::string destination;
-  int feedbackid;
-public:
-  std::string orangeName;  
-  Orange(std::string _orangeName, bool _isActive, int _targetTemperatureEstimatedTimeRefreshCycleSeconds,
-   int _lowerThresholdUser, int _upperThresholdUser, std::string _destination, int _feedbackid) : 
-        orangeName(_orangeName), isActive(_isActive), targetTemperatureEstimatedTimeRefreshCycleSeconds(_targetTemperatureEstimatedTimeRefreshCycleSeconds), 
-        lowerThresholdUser(_lowerThresholdUser), upperThresholdUser(_upperThresholdUser), destination(_destination), feedbackid(_feedbackid){} 
-  bool Insert_Orange_Level(sqlite3 *db){
-    char query[500];
-    sprintf(
-        query,
-        "INSERT INTO Orange (Name, IsActive, TargetTemperatureEstimatedTimeRefreshCycleSeconds, "
-        "LowerThresholdUser, UpperThresholdUser, Destination, FeedbackID) "
-        "VALUES ('%s', '%d', '%d', '%d', '%d', '%s', '%d');",
-        orangeName.c_str(), isActive, targetTemperatureEstimatedTimeRefreshCycleSeconds,
-         lowerThresholdUser, upperThresholdUser, destination.c_str(), feedbackid); 
-    char *errMsg = nullptr;
-    int rc = sqlite3_exec(db, query, nullptr, nullptr, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Insert Orange SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return false;
-    } else {
-      std::cout << "[Orange] Insert" << std::endl;
-    }
-    return true;
-  }
-  bool Update_Orange_Level_Int(sqlite3 *db, std::string orangeName, std::string attribute_name, int attribute_value){
-    char query[500];
-    char *errMsg = nullptr;
-    int rc;
-    //여기에 attribute 확인해서 그에 맞게 값을 넣어야함
-    sprintf(query,
-          "UPDATE Orange "
-          "SET '%s' = '%d' "
-          "WHERE Name = '%s';", attribute_name.c_str(), attribute_value, orangeName.c_str());
-    rc = sqlite3_exec(db, query, 0, 0, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Update Orange SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return -1;
-    }
-    else{
-      std:: cout << "[Orange] Update" << std::endl;
-      return 0;
-    }    
-  }
-  
-  bool Update_Orange_Level_String(sqlite3 *db, std::string orangeName, std::string attribute_name, std::string attribute_value){
-    char query[500];
-    char *errMsg = nullptr;
-    int rc;
-    //여기에 attribute 확인해서 그에 맞게 값을 넣어야함
-    sprintf(query,
-          "UPDATE Orange "
-          "SET '%s' = '%s' "
-          "WHERE Name = '%s';", attribute_name.c_str(), attribute_value.c_str(), orangeName.c_str());
-    rc = sqlite3_exec(db, query, 0, 0, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Update Orange SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return -1;
-    }
-    else{
-      std:: cout << "[Orange] Update" << std::endl;
-      return 0;
-    }
-  }  
-  ~Orange(){}
-  
-};
-class Red{
-private:
-  bool isActive;
-  int targetTemperatureEstimatedTimeRefreshCycleSeconds;
-  int lowerThresholdUser;
-  int upperThresholdUser;
-  std::string destination;
-  bool compulsoryControl;
-  bool causeAnalysis;
-  int feedbackid;
-public:
-  std::string redName;
-  Red(std::string _redName, bool _isActive, int _targetTemperatureEstimatedTimeRefreshCycleSeconds,
-      int _lowerThresholdUser, int _upperThresholdUser, std::string _destination,
-      bool _compulsoryControl, bool _causeAnalysis , int _feedbackid): 
-      redName(_redName), isActive(_isActive), targetTemperatureEstimatedTimeRefreshCycleSeconds(_targetTemperatureEstimatedTimeRefreshCycleSeconds), 
-      lowerThresholdUser(_lowerThresholdUser), upperThresholdUser(_upperThresholdUser), destination(_destination), 
-      compulsoryControl(_compulsoryControl), causeAnalysis(_causeAnalysis), feedbackid(_feedbackid){}
-  bool Insert_Red_Level(sqlite3 *db){
-    char query[500];
-    sprintf(
-        query,
-        "INSERT INTO Red (Name, IsActive, TargetTemperatureEstimatedTimeRefreshCycleSeconds, LowerThresholdUser, UpperThresholdUser,"
-        "Destination, CompulsoryControl, CauseAnalysis, FeedbackID) "
-        "VALUES ('%s','%d', '%d', '%d', '%d', '%s', '%d', '%d', '%d');",
-        redName.c_str(), isActive, targetTemperatureEstimatedTimeRefreshCycleSeconds, lowerThresholdUser, upperThresholdUser, destination.c_str(),
-        compulsoryControl, causeAnalysis, feedbackid); 
-    char *errMsg = nullptr;
-    int rc = sqlite3_exec(db, query, nullptr, nullptr, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Insert RedSQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return false;
-    } else {
-      std::cout << "[Red] Insert" << std::endl;
-    }
-    return true;       
-  }
-  bool Update_Red_Level_Int(sqlite3 *db, std::string redName, std::string attribute_name, int attribute_value){
-    char query[500];
-    char *errMsg = nullptr;
-    int rc;
-    //여기에 attribute 확인해서 그에 맞게 값을 넣어야함
-    sprintf(query,
-          "UPDATE Red "
-          "SET '%s' = '%d' "
-          "WHERE Name = '%s';", attribute_name.c_str(), attribute_value, redName.c_str());
-    rc = sqlite3_exec(db, query, 0, 0, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Update Red SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return -1;
-    }
-    else{
-      std:: cout << "[Red] Update" << std::endl;
-      return 0;
-    }    
-  }
-  
-  bool Update_Red_Level_String(sqlite3 *db, std::string redName, std::string attribute_name, std::string attribute_value){
-    char query[500];
-    char *errMsg = nullptr;
-    int rc;
-    //여기에 attribute 확인해서 그에 맞게 값을 넣어야함
-    sprintf(query,
-          "UPDATE Red "
-          "SET '%s' = '%s' "
-          "WHERE RedName = '%s';", attribute_name.c_str(), attribute_value.c_str(), redName.c_str());
-    rc = sqlite3_exec(db, query, 0, 0, &errMsg);
-    if (rc != SQLITE_OK) {
-      std::cerr << "Update Red SQL error: " << errMsg << std::endl;
-      sqlite3_free(errMsg);
-      return -1;
-    }
-    else{
-      std:: cout << "[Red] Update" << std::endl;
-      return 0;
-    }
-  }    
-};
 class Feedback_Policy : public Policy {
 private:
 public:
-  Green* g;
-  Yellow* y;
-  Orange* o;
-  Red *r;
+  int yellowTemperature;
+  int orangeTemperature;
+  int redTemperature;
+  bool greenActive;
+  bool yellowActive;
+  bool orangeActive;
+  bool redActive;
 
-  Feedback_Policy(const std::string& _description, const std::string& _policyName,
-            const Green* _green, const Yellow* _yellow, const Orange* _orange, const Red* _red) : 
-            Policy(), g(_green), y(_yellow), o(_orange), r(_red){
+  Feedback_Policy(const std::string& _policyName, bool _greenActive , bool _yellowActive, 
+            int _yellowTemperature, bool _orangeActive, int _orangeTemperature, bool _redActive, int _redTemperature) : 
+            greenActive(_greenActive), yellowActive(_yellowActive), yellowTemperature(_yellowTemperature),
+            orangeActive(_orangeActive), orangeTemperature(_orangeTemperature),
+            redActive(_redActive), redTemperature(_redTemperature) {
+      policyName =  _policyName;        
       this->policy_type = (POLICY_TYPE::TYPE_FEEDBACK);      
-      policyFieldID = 0; // Initialize policyFieldID to some default value
-      description = _description;
-      policyName = _policyName;
-  }
+      policyFieldID = 3; // Initialize policyFieldID to some default value
 
-  Green getGreen(){return *g;}
-  Yellow getYellow(){return *y;}
-  Orange getOrange(){return *o;}
-  Red getRed(){return *r;}
+  }
 
   bool Enable_Policy(bool status) override { this->status = true; }
 
@@ -716,13 +406,16 @@ public:
     int rc;
     char *errMsg = 0;
     sprintf(query,
-            "INSERT INTO FeedbackPolicy (PolicyFieldID, PolicyName, Description, "
-            "GreenName, YellowName, OrangeName, RedName, DATETIME) "
-            "VALUES ('%d', '%s', '%s', " 
-            "'%s', '%s', '%s' , '%s' ,'%s');",
-            policyFieldID, policyName.c_str(), description.c_str(),
-            getGreen().greenName.c_str(), getYellow().yellowName.c_str(), getOrange().orangeName.c_str(),getRed().redName.c_str(),
-            DB_currentDateTime().c_str() );
+            "INSERT INTO FeedbackPolicy (PolicyFieldID, PolicyName, GreenIsActive, "
+            "YellowIsActive, YellowTemperature, "
+            "OrangeIsActive, OrangeTemperature, "
+            "RedIsActive, RedTemperature) "            
+            "VALUES ('%d', '%s', '%d', " 
+            "'%d', '%d', "
+            "'%d', '%d', " 
+            "'%d', '%d');",
+            policyFieldID, policyName.c_str(), greenActive,
+            yellowActive, yellowTemperature, orangeActive, orangeTemperature, redActive, redTemperature);
     rc = sqlite3_exec(db, query, 0, 0, &errMsg);
     if (rc != SQLITE_OK) {
       std::cerr << "Insert FeedbackPolicy SQL error: " << errMsg << std::endl;
@@ -734,5 +427,5 @@ public:
     }
   }  
 
-
 };
+#endif //POLICY_H
