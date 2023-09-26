@@ -1,1 +1,0 @@
-/home/keti/BMC_SDK/output/host/usr/bin/arm-linux-g++ --sysroot=/home/keti/KETI_BMC/KETI-APP/sysroots/armv7ahf-vfpv4d16-openbmc-linux-gnueabi CMakeFiles/KETI-SSP.dir/ssp.cpp.o -o KETI-SSP   -L/home/keti/BMC_SDK/output/host/build/dbus-cpp-0.9.0/src/libs  -Wl,-rpath,/home/keti/BMC_SDK/output/host/build/dbus-cpp-0.9.0/src/libs -ldbus-c++-1 

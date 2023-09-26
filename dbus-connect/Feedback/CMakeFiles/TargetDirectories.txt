@@ -1,3 +1,0 @@
-/home/keti/KETI_BMC/KETI-APP/hj/app/IBMC-APP/test/Feedback/CMakeFiles/rebuild_cache.dir
-/home/keti/KETI_BMC/KETI-APP/hj/app/IBMC-APP/test/Feedback/CMakeFiles/edit_cache.dir
-/home/keti/KETI_BMC/KETI-APP/hj/app/IBMC-APP/test/Feedback/CMakeFiles/KETI-Feedback.dir
