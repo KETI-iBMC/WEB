@@ -1,5 +1,4 @@
 #include <policy_proxy.h>
-#include <random>
 #include <stdint.h>
 #include <iostream>
 #include <string>
@@ -22,16 +21,11 @@ public:
     
 };
 
-struct Test {
-    string rr
-    int std::fisher_f_distribution<>
-    int
-}
-
 int main() {
     ::DBus::Struct< std::string, int32_t, int32_t, int32_t, int32_t, std::string > Fan;
     ::DBus::Struct< std::string, std::string, std::string, int32_t, std::string, std::string > FanPolicy;
     ::DBus::Struct< int32_t, std::string > TargetFan;
+    ::DBus::Struct< std::string, bool, bool, int32_t, bool, int32_t, bool, int32_t > FeedbackPolicy;
     ::DBus::BusDispatcher dispatcher;
     ::DBus::default_dispatcher = &dispatcher;
     ::DBus::Connection conn_n = DBus::Connection::SystemBus();
@@ -44,6 +38,9 @@ int main() {
     std::cout << "getFan, getFanTargetPolicy, getFanPolicy" << std::endl; 
     std::cout << "setFan, setFanPolicyString, setFanPolicyInt" << std::endl;
     std::cout << "createFanPolicy, deleteFanPolicy" << std::endl;
+    std::cout << "getFeedbackPolicy, setFeedbckPolicyString, setFeedbckPolicyInt" << std::endl;
+    std::cout << "createFeedbackPolicy, deleteFeedbackPolicy" << std::endl;
+
     while (1) {
         std::cin >> input ;
         if (input == "getFan") {
@@ -148,7 +145,7 @@ int main() {
             if (result == 1) {
                 std::cout << "Fan Policy created successfully" << std::endl;
             } else {
-                std::cout << "Failed to create" << std::endl;
+                std::cout << "Failed to create Fan Policy" << std::endl;
             }
         } else if (input == "deleteFanPolicy") {
             std::string policyName;
@@ -160,7 +157,90 @@ int main() {
             } else {
                 std::cout << "Failed to delete fan policy" << std::endl;
             }
-        } else {
+        } else if(input == "getFeedbackPolicy") {
+            int policyID;
+            std::cout << "Policy ID : ";
+            std::cin >> policyID;
+            FeedbackPolicy = dbus_adap_test.getFeedbackPolicy(policyID);
+            if (FeedbackPolicy._1.empty()) {
+                std::cout << "Does not exist" << std::endl;
+            }
+            else{
+                std::cout << FeedbackPolicy._1 << std::endl;
+                std::cout << FeedbackPolicy._2 << std::endl;
+                std::cout << FeedbackPolicy._3 << std::endl;
+                std::cout << FeedbackPolicy._4 << std::endl;
+                std::cout << FeedbackPolicy._5 << std::endl;
+                std::cout << FeedbackPolicy._6 << std::endl;
+                std::cout << FeedbackPolicy._7 << std::endl;
+                std::cout << FeedbackPolicy._8 << std::endl;
+            }
+
+        } else if(input == "setFeedbackPolicyString"){
+            std::string policy_name;
+            std::string attribute;
+            std::string attribute_value;
+            std::cout << "Policy Name : ";
+            std::cin >> policy_name;
+            std::cout << "Attribute : ";
+            std::cin >> attribute;        
+            std::cout << "Name of the attribute to change : ";
+            std::cin >> attribute_value;
+            result = dbus_adap_test.setFeedbackPolicyString(policy_name, attribute, attribute_value);
+            if (result == 0) {
+                std::cout << "Feedback Policy updated successfully" << std::endl;
+            } else {
+                std::cout << "Does not exist" << std::endl;
+            }               
+        }
+        else if(input == "setFeedbackPolicyInt"){
+            std::string policy_name;
+            std::string attribute;
+            int32_t attribute_value;
+            std::cout << "Policy Name : ";
+            std::cin >> policy_name;
+            std::cout << "Attribute : ";
+            std::cin >> attribute;        
+            std::cout << "Value of the attribute to change : ";
+            std::cin >> attribute_value;
+            result = dbus_adap_test.setFeedbackPolicyInt(policy_name, attribute, attribute_value);
+            if (result == 0) {
+                std::cout << "Feedback Policy updated successfully" << std::endl;
+            } else {
+                std::cout << "Does not exist" << std::endl;
+            }             
+        }
+        else if(input == "createFeedbackPolicy"){
+            std::string policyName;
+            int y, o, r;
+            std::cout << "policy Name : " << std::endl;
+            std::cin >> policyName;
+                        
+            std::cout << "YellowTemperature : " << std::endl; 
+            std::cin >> y;
+            std::cout << "OrangeTemperature : " << std::endl; 
+            std::cin >> o;
+            std::cout << "RedTemperature : " << std::endl; 
+            std::cin >> r;   
+            result = dbus_adap_test.createFeedbackPolicy(policyName, y,o,r);
+            if (result == 1) {
+                std::cout << "Feedback Policy created successfully" << std::endl;
+            } else {
+                std::cout << "Failed to create Feedback Policy" << std::endl;
+            }                                          
+        }
+        else if(input == "deleteFeedbackPolicy"){
+            std::string policyName;
+            std::cout << "Policy Name : ";
+            std::cin >> policyName;
+            result = dbus_adap_test.deleteFeedbackPolicy(policyName);
+            if (result == 1) {
+                std::cout << "Feedback Policy deleted successfully" << std::endl;
+            } else {
+                std::cout << "Failed to delete feedback policy" << std::endl;
+            }            
+        }
+        else {
             std::cout << "Invalid Input" << std::endl;
         }
     }
