@@ -1,5 +1,5 @@
 #include <cstdint>
-#include <policy/KETI_Policy.hpp>
+#include <ibmc/KETI_Policy.hpp>
 
 KETI_Policy *KETI_Policy::phoenixInstance = NULL;
 bool KETI_Policy::only_one = true;
@@ -31,13 +31,13 @@ static int print_callback(void *data, int argc, char **argv, char **azColName) {
   }
   return 0;
 }
-Fan fan1(1, "Fan1", 50, 100, 2000, 1800, "ModelA", "ManufacturerA", "pid",
+DBFan fan1(1, "Fan1", 50, 100, 2000, 1800, "ModelA", "ManufacturerA", "pid",
           1, 2, "KETI_CHASSIS", "FanPolicy1");
-Fan fan2(2, "Fan2", 50, 100, 2000, 1800, "ModelA", "ManufacturerA", "pid",
+DBFan fan2(2, "Fan2", 50, 100, 2000, 1800, "ModelA", "ManufacturerA", "pid",
           1, 2, "KETI_CHASSIS", "FanPolicy1");
-Fan fan3(1, "Fan3", 50, 100, 2000, 1800, "ModelA", "ManufacturerA", "pid",
+DBFan fan3(1, "Fan3", 50, 100, 2000, 1800, "ModelA", "ManufacturerA", "pid",
           1, 2, "KETI_CHASSIS", "FanPolicy2");
-Fan fan4(2, "Fan4", 50, 100, 2000, 1800, "ModelA", "ManufacturerA", "pid",
+DBFan fan4(2, "Fan4", 50, 100, 2000, 1800, "ModelA", "ManufacturerA", "pid",
           1, 2, "KETI_CHASSIS", "FanPolicy2");       
 KETI_Policy::KETI_Policy() {
   cout << "KETI_Policy Init " << endl;
@@ -143,91 +143,7 @@ KETI_Policy::KETI_Policy() {
 //   }
 // //---------------------------------------CPUPolicy---------------------------------------  
 
-//   callback_value = 0;
-//   sprintf(query,
-//           "SELECT COUNT(*) FROM sqlite_master where name=\"Green\";");
-//   rc = sqlite3_exec(db, query, check_table_db_callback, &callback_value,
-//                     &err_msg);
-//   sqlite3_exec(db, query, 0, 0, &err_msg);
-//   if (callback_value == 0) {
 
-//     sprintf(query, createGreenQuery);
-//     rc = sqlite3_exec(db, query, 0, 0, &err_msg);
-                   
-//     if (rc != SQLITE_OK) {
-//       std::cerr << "Create Green SQL error: " << err_msg << std::endl;
-//       sqlite3_free(err_msg);
-//     }
-//     else{
-//       cout << "[Green] Create" << endl;
-//     }
-
-//   }
-// //---------------------------------------Green---------------------------------------  
-//   callback_value = 0;
-//   sprintf(query,
-//           "SELECT COUNT(*) FROM sqlite_master where name=\"Yellow\";");
-//   rc = sqlite3_exec(db, query, check_table_db_callback, &callback_value,
-//                     &err_msg);
-//   sqlite3_exec(db, query, 0, 0, &err_msg);
-//   if (callback_value == 0) {
-
-//     sprintf(query, createYellowQuery);
-//     rc = sqlite3_exec(db, query, 0, 0, &err_msg);
-                   
-//     if (rc != SQLITE_OK) {
-//       std::cerr << "Create Yellow SQL error: " << err_msg << std::endl;
-//       sqlite3_free(err_msg);
-//     }
-//     else{
-//       cout << "[Yellow] Create" << endl;
-//     }
-
-//   }
-// //---------------------------------------Yellow---------------------------------------  
-//   callback_value = 0;
-//   sprintf(query,
-//           "SELECT COUNT(*) FROM sqlite_master where name=\"Orange\";");
-//   rc = sqlite3_exec(db, query, check_table_db_callback, &callback_value,
-//                     &err_msg);
-//   sqlite3_exec(db, query, 0, 0, &err_msg);
-//   if (callback_value == 0) {
-
-//     sprintf(query, createOrangeQuery);
-//     rc = sqlite3_exec(db, query, 0, 0, &err_msg);
-                   
-//     if (rc != SQLITE_OK) {
-//       std::cerr << "Create Orange SQL error: " << err_msg << std::endl;
-//       sqlite3_free(err_msg);
-//     }
-//     else{
-//       cout << "[Orange] Create" << endl;
-//     }
-
-//   }
-// //---------------------------------------Orange---------------------------------------
-//   callback_value = 0;
-//   sprintf(query,
-//           "SELECT COUNT(*) FROM sqlite_master where name=\"Red\";");
-//   rc = sqlite3_exec(db, query, check_table_db_callback, &callback_value,
-//                     &err_msg);
-//   sqlite3_exec(db, query, 0, 0, &err_msg);
-//   if (callback_value == 0) {
-
-//     sprintf(query, createRedQuery);
-//     rc = sqlite3_exec(db, query, 0, 0, &err_msg);
-                   
-//     if (rc != SQLITE_OK) {
-//       std::cerr << "Create Red SQL error: " << err_msg << std::endl;
-//       sqlite3_free(err_msg);
-//     }
-//     else{
-//       cout << "[Red] Create" << endl;
-//     }
-
-
-//   }
-//---------------------------------------Red---------------------------------------
   callback_value = 0;
   sprintf(query, "SELECT COUNT(*) FROM sqlite_master where name=\"Fan\";");
   rc = sqlite3_exec(db, query, check_table_db_callback, &callback_value,
@@ -253,54 +169,39 @@ KETI_Policy::KETI_Policy() {
 //---------------------------------------Fan---------------------------------------  
 
 
-  // callback_value = 0;
-  // sprintf(query,
-  //         "SELECT COUNT(*) FROM sqlite_master where name=\"FeedbackPolicy\";");
-  // rc = sqlite3_exec(db, query, check_table_db_callback, &callback_value,
-  //                   &err_msg);
-  // sqlite3_exec(db, query, 0, 0, &err_msg);
-  // if (callback_value == 0) {
+  callback_value = 0;
+  sprintf(query,
+          "SELECT COUNT(*) FROM sqlite_master where name=\"FeedbackPolicy\";");
+  rc = sqlite3_exec(db, query, check_table_db_callback, &callback_value,
+                    &err_msg);
+  sqlite3_exec(db, query, 0, 0, &err_msg);
+  if (callback_value == 0) {
 
-  //   sprintf(query, createFeedbackPolicyQuery);
-  //   rc = sqlite3_exec(db, query, 0, 0, &err_msg);
+    sprintf(query, createFeedbackPolicyQuery);
+    rc = sqlite3_exec(db, query, 0, 0, &err_msg);
                    
-  //   if (rc != SQLITE_OK) {
-  //     std::cerr << "Create Feedback SQL error: " << err_msg << std::endl;
-  //     sqlite3_free(err_msg);
-  //   }
-  //   else{
-  //     cout << "[FeedbackPolicy] Create" << endl;
-  //   }
-  //   Green green1("CPUTemperature", true, 0, 70, "*", 1);
-  //   Insert_Green(green1);
+    if (rc != SQLITE_OK) {
+      std::cerr << "Create Feedback SQL error: " << err_msg << std::endl;
+      sqlite3_free(err_msg);
+    }
+    else{
+      cout << "[FeedbackPolicy] Create" << endl;
+    }
+    
+    Feedback_Policy* feedback1 = new Feedback_Policy("CPUTemperature", true , true, 70, true , 80, true ,90);
+    Insert_Policy(3, feedback1);
+    Feedback_Policy* feedback2 = new Feedback_Policy("DIMMTemperature", true , true, 73, true , 83, true ,93);
+    Insert_Policy(3, feedback2);
+    Feedback_Policy* feedback3 = new Feedback_Policy("CabinetTemperature", true , true, 75, true , 85, true ,95);
+    Insert_Policy(3, feedback3);
+    Feedback_Policy* feedback4 = new Feedback_Policy("LM75Temperature", true , true, 77, true , 87, true ,97);
+    Insert_Policy(3, feedback4);
 
-  //   Yellow yellow1("CPUTemperature", true, 60 , -10, 80, "*", 1);
-  //   Insert_Yellow(yellow1);
-
-  //   Orange orange1("CPUTemperature", true, 60 , -15, 90, "*", 1);
-  //   Insert_Orange(orange1);
-
-  //   Red red1("CPUTemperature", true, 60 , -15, 90, "*", true, true, 1);
-  //   Insert_Red(red1);  
-
-  //   Feedback_Policy feedback1("Create FeedbackPolicy", "CPUTemperature",  &green1, &yellow1, &orange1, &red1);
-  //   Insert_Policy(3, &feedback1);
-
-  //   Green green2("MemoryTemperature", true, 0, 70, "*", 2);
-  //   Insert_Green(green2);
-
-  //   Yellow yellow2("MemoryTemperature", true, 60 , -10, 80, "*", 2);
-  //   Insert_Yellow(yellow2);
-
-  //   Orange orange2("MemoryTemperature", true, 60 , -15, 90, "*", 2);
-  //   Insert_Orange(orange2);
-
-  //   Red red2("MemoryTemperature", true, 60 , -15, 90, "*", true, true, 2);
-  //   Insert_Red(red2);  
-
-  //   Feedback_Policy feedback2("Create FeedbackPolicy", "MemoryTemperature",  &green2, &yellow2, &orange2, &red2);
-  //   Insert_Policy(3, &feedback2);    
-  // }
+    delete feedback1;
+    delete feedback2;
+    delete feedback3;
+    delete feedback4;
+  }
 //---------------------------------------FeedbackPolicy---------------------------------------
 
   Update_Fan(fan1, "Fan1", "FanPolicy2");
@@ -326,30 +227,10 @@ void KETI_Policy::DB_print() {
   cout << "---------------------Fan---------------------" << endl;
   rc = sqlite3_exec(db, query, print_callback, &print_callback,
                     &err_msg);                    
-  // sprintf(query, "SELECT * FROM CPUPolicy;");
-  // cout << "---------------------CPU Policy---------------------" << endl;
-  // rc = sqlite3_exec(db, query, print_callback, &print_callback,
-  //                   &err_msg);
-  // cout << "---------------------Feedback Policy---------------------" << endl;                  
-  // sprintf(query, "SELECT * FROM FeedbackPolicy;");
-  // rc = sqlite3_exec(db, query, print_callback, &print_callback,
-  //                   &err_msg);
-  // cout << "---------------------Green---------------------" << endl;                                                            
-  // sprintf(query, "SELECT * FROM Green;");
-  // rc = sqlite3_exec(db, query, print_callback, &print_callback,
-  //                   &err_msg);   
-  // cout << "---------------------Yellow---------------------" << endl;                                                            
-  // sprintf(query, "SELECT * FROM Yellow;");
-  // rc = sqlite3_exec(db, query, print_callback, &print_callback,
-  //                   &err_msg);   
-  // cout << "---------------------Orange---------------------" << endl;                                                            
-  // sprintf(query, "SELECT * FROM Orange;");
-  // rc = sqlite3_exec(db, query, print_callback, &print_callback,
-  //                   &err_msg);   
-  // cout << "---------------------Red---------------------" << endl;                                                            
-  // sprintf(query, "SELECT * FROM Red;");
-  // rc = sqlite3_exec(db, query, print_callback, &print_callback,
-  //                   &err_msg);                       
+  cout << "---------------------Feedback Policy---------------------" << endl;                  
+  sprintf(query, "SELECT * FROM FeedbackPolicy;");
+  rc = sqlite3_exec(db, query, print_callback, &print_callback,
+                    &err_msg);
 
 }
 /**
@@ -461,18 +342,15 @@ Policy *KETI_Policy::Get_Policy(POLICY_TYPE type, int policyID) {
     return_pol = new Fan_Policy(db, policyID);
     return return_pol;
   }
+
   else {
     return nullptr;
   }
 }
-bool KETI_Policy::Insert_Fans(Fan fan) { fan.Insert_Fan(db); }
+bool KETI_Policy::Insert_Fans(DBFan fan) { fan.Insert_Fan(db); }
 //feedback Level 이거 외래키라서 고정시키면 안됨..
-bool KETI_Policy::Insert_Green(Green green) {green.Insert_Green_Level(db); }
-bool KETI_Policy::Insert_Yellow(Yellow yellow) { yellow.Insert_Yellow_Level(db); }
-bool KETI_Policy::Insert_Orange(Orange orange) { orange.Insert_Orange_Level(db); }
-bool KETI_Policy::Insert_Red(Red red) { red.Insert_Red_Level(db); }
 
-bool KETI_Policy::Update_Fan(Fan fan, std::string fanName, std::string fanPolicyName){ 
+bool KETI_Policy::Update_Fan(DBFan fan, std::string fanName, std::string fanPolicyName){ 
   fan.fanPolicyName = fanPolicyName;
   fan.Update_Fan(db, fanName, fanPolicyName); 
 }
@@ -650,7 +528,7 @@ int32_t Policy_Adaptor::setFan(const std::string& FanName, const std::string& Fa
     std::cerr << "Get FanTargerPolicy SQL error: " << errMsg << std::endl;
     sqlite3_free(errMsg);
   }  
-  cout << "feedback에서 요청해서 fan_policy구조체 return" << endl;
+  cout << "Fan Policy구조체 return" << endl;
   fan_policy_struct._6 = fans;
   return fan_policy_struct;      
 }
@@ -840,168 +718,118 @@ int32_t Policy_Adaptor::setCPUPolicyInt(const std::string& policyName, const std
 dbus FeedbackPolicy
 
 */
-/* 입력 Green , CPUTemperature 
-  'Green' 에 있는 Name의 값이 'CPUTemperature' 라는 값을 가지고 있는 구조체 return  
-*/
-::DBus::Struct< std::string, bool, int32_t, int32_t, std::string > Policy_Adaptor::getFeedbackPolicyGreen(const std::string& tableName, const std::string& policyName) {  
-  ::DBus::Struct< std::string, bool, int32_t, int32_t, std::string> feedback_policy_green_struct;
+
+::DBus::Struct< std::string, bool, bool, int32_t, bool, int32_t, bool, int32_t > Policy_Adaptor::getFeedbackPolicy(const int32_t& policyID) {
+  ::DBus::Struct< std::string, bool, bool, int32_t, bool, int32_t, bool, int32_t > feedback_policy_struct;
+  //db연결해서 policyName있나 확인 
   char query[500];
   char *errMsg = nullptr;
-  int rc;
+  int rc;  
   sprintf(query,
         "SELECT *"
-        "FROM '%s' "
-        "WHERE Name = '%s';",tableName.c_str(), policyName.c_str());
-  rc = sqlite3_exec(KETI_Policy::Get_Instance().db, query, FeedbackPolicyStructCallback, &feedback_policy_green_struct, &errMsg);
+        "FROM FeedbackPolicy "
+        "WHERE FeedbackID = '%d';", policyID);
+  rc = sqlite3_exec(KETI_Policy::Get_Instance().db, query, FeedbackPolicyStructCallback, &feedback_policy_struct, &errMsg);
   if (rc != SQLITE_OK) {
     std::cerr << "SQL error: " << errMsg << std::endl;
     sqlite3_free(errMsg);
   }
-  cout << "feedback에서 요청해서 policy return" << endl;
-  return feedback_policy_green_struct;               
-}
-::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string > Policy_Adaptor::getFeedbackPolicyYellow(const std::string& tableName, const std::string& policyName) {  
-  ::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string > feedback_policy_yo_struct;
-  char query[500];
-  char *errMsg = nullptr;
-  int rc;
-  sprintf(query,
-        "SELECT *"
-        "FROM '%s' "
-        "WHERE Name = '%s';",tableName.c_str(), policyName.c_str());
-  rc = sqlite3_exec(KETI_Policy::Get_Instance().db, query, FeedbackPolicyStructCallback, &feedback_policy_yo_struct, &errMsg);
-  if (rc != SQLITE_OK) {
-    std::cerr << "SQL error: " << errMsg << std::endl;
-    sqlite3_free(errMsg);
-  }
-  cout << "feedback에서 요청해서 policy return" << endl;
-  return feedback_policy_yo_struct;               
-}
-::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string > Policy_Adaptor::getFeedbackPolicyOrange(const std::string& tableName, const std::string& policyName) {  
-  ::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string > feedback_policy_yo_struct;
-  char query[500];
-  char *errMsg = nullptr;
-  int rc;
-  sprintf(query,
-        "SELECT *"
-        "FROM '%s' "
-        "WHERE Name = '%s';",tableName.c_str(), policyName.c_str());
-  rc = sqlite3_exec(KETI_Policy::Get_Instance().db, query, FeedbackPolicyStructCallback, &feedback_policy_yo_struct, &errMsg);
-  if (rc != SQLITE_OK) {
-    std::cerr << "SQL error: " << errMsg << std::endl;
-    sqlite3_free(errMsg);
-  }
-  cout << "feedback에서 요청해서 policy return" << endl;
-  return feedback_policy_yo_struct;               
-}
-::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string, bool, bool > Policy_Adaptor::getFeedbackPolicyRed(const std::string& tableName, const std::string& policyName) {
-  ::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string, bool, bool > feedback_policy_red_struct;
-  char query[500];
-  char *errMsg = nullptr;
-  int rc;
-  sprintf(query,
-        "SELECT *"
-        "FROM '%s' "
-        "WHERE Name = '%s';",tableName.c_str(), policyName.c_str());
-  rc = sqlite3_exec(KETI_Policy::Get_Instance().db, query, FeedbackPolicyStructCallback, &feedback_policy_red_struct, &errMsg);
-  if (rc != SQLITE_OK) {
-    std::cerr << "SQL error: " << errMsg << std::endl;
-    sqlite3_free(errMsg);
-  }
-  cout << "feedback에서 요청해서 policy return" << endl;
-  return feedback_policy_red_struct;               
+  cout << "Get Feedback Policy" << endl;
+
+  return feedback_policy_struct;     
 }
 static int FeedbackPolicyStructCallback(void *data, int argc, char **argv,
-                            char **colNames){
+                                char **colNames){
   if(!data){
     std::cerr << "FeedbackPolicyStruct : Invalid data pointer" << std::endl;
     return -1;
   }
+  if(argc != 10){
+    std::cerr << "FeedbackPolicyStruct : Invalid number of colums" << std::endl;
+    return -1;
+  }//*Feedback_policy_struct가 직접적으로 생기는거지 
+  ::DBus::Struct< std::string, bool, bool, int32_t, bool, int32_t, bool, int32_t > *feedback_policy_struct =
+  static_cast<::DBus::Struct< std::string, bool, bool, int32_t, bool, int32_t, bool, int32_t > *> (data);
+  feedback_policy_struct->_1 = argv[1];  //policyName
+  feedback_policy_struct->_2 = argv[2]; //green active
+  feedback_policy_struct->_3 = argv[3]; //yellow active
+  feedback_policy_struct->_4 = std::stoi(argv[4]); //yellow temperature int
+  feedback_policy_struct->_5 = argv[5]; //orange active
+  feedback_policy_struct->_6 = std::stoi(argv[6]);//orange temperature
+  feedback_policy_struct->_7 = argv[7]; //red active
+  feedback_policy_struct->_8 = std::stoi(argv[8]);//red temperature  
 
-  //green
-  if(argc == 7){
-    ::DBus::Struct<std::string, bool, int32_t, int32_t, std::string> *feedback_policy_green_struct =
-    static_cast<::DBus::Struct<std::string, bool, int32_t, int32_t, std::string> *> (data);
-    feedback_policy_green_struct->_1 = argv[1];  //policyName
-    feedback_policy_green_struct->_2 = std::stoi(argv[2]); //active, bool
-    feedback_policy_green_struct->_3 = std::stoi(argv[3]); //temperature1
-    feedback_policy_green_struct->_4 = std::stoi(argv[4]); //temperature2
-    feedback_policy_green_struct->_5 = argv[5]; //destination    
-  }
-  //yellow, orange
-  else if(argc == 8){
-   ::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string > *feedback_policy_yo_struct =
-    static_cast<::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string > *> (data);
-    feedback_policy_yo_struct->_1 = argv[1];  //policyName
-    feedback_policy_yo_struct->_2 = std::stoi(argv[2]); //active, bool
-    feedback_policy_yo_struct->_3 = std::stoi(argv[3]); //second
-    feedback_policy_yo_struct->_4 = std::stoi(argv[4]); //temperature1
-    feedback_policy_yo_struct->_5 = std::stoi(argv[5]); //temperature2
-    feedback_policy_yo_struct->_6 = argv[6]; //destination
-  } //red
-  else if(argc == 10){
-    ::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string, bool, bool > *feedback_policy_red_struct =
-    static_cast<::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string, bool, bool > *> (data);
-    feedback_policy_red_struct->_1 = argv[1];  //policyName
-    feedback_policy_red_struct->_2 = std::stoi(argv[2]); //active, bool
-    feedback_policy_red_struct->_3 = std::stoi(argv[3]); //second
-    feedback_policy_red_struct->_4 = std::stoi(argv[4]); //temperature1
-    feedback_policy_red_struct->_5 = std::stoi(argv[5]); //temperature2
-    feedback_policy_red_struct->_6 = argv[6]; //destination
-    feedback_policy_red_struct->_7 = std::stoi(argv[7]); //compulsory active bool
-    feedback_policy_red_struct->_8 = std::stoi(argv[8]); //cause active bool
-  }  
-  else{
-    std::cerr << "FeedbackPolicyStruct : Invalid number of colums" << std::endl;        
-    return -1;      
-  }
   return 0;
-}
-/*ex) 입력 Green, CPUTemerature, Destination, "*"
-      결과 'Green' 테이블에  Name이 'CPUTemperature' 라고 되어있는 행에 'Destination' 속성값을 '*'으로 update
-*/
-int32_t Policy_Adaptor::setFeedbackPolicyString(const std::string& tableName, const std::string& policyName, const std::string& attribute, const std::string& attributeName) {
+
+}    
+int32_t Policy_Adaptor::setFeedbackPolicyString(const std::string& policyName, const std::string& attribute, const std::string& attributeName) {
   char query[500];
   char *errMsg = nullptr;
   int rc;
   //여기에 attribute 확인해서 그에 맞게 값을 넣어야함
   sprintf(query,
-        "UPDATE '%s' "
+        "UPDATE FeedbackPolicy "
         "SET '%s' = '%s' "
-        "WHERE Name = '%s';", tableName.c_str(), attribute.c_str(), attributeName.c_str(), policyName.c_str());
+        "WHERE PolicyName = '%s';", attribute.c_str(), attributeName.c_str(), policyName.c_str());
   rc = sqlite3_exec(KETI_Policy::Get_Instance().db, query, 0, 0, &errMsg);
   if (rc != SQLITE_OK) {
-    std::cerr << "SQL error: " << errMsg << std::endl;
+    std::cerr << "Set FeedbackPolicySting SQL error: " << errMsg << std::endl;
     sqlite3_free(errMsg);
     return -1;
   }
   else{
-    std:: cout << "Feedback_Policy updated succesfully" << std::endl;
+    std:: cout << "Feedback Policy updated succesfully" << std::endl;
     return 0;
   }      
 }
-/*ex) 입력 CPUTemerature, Green, UpperThresholdUser, 80
-      결과 'Green' 테이블에  Name이 'CPUTemperature' 라고 되어있는 행에 'UpperThreshold' 속성값을 '80'으로 update
-*/
-int32_t Policy_Adaptor::setFeedbackPolicyInt(const std::string& tableName, const std::string& policyName, const std::string& attribute, const int32_t& attributeValue) {
+int32_t Policy_Adaptor::setFeedbackPolicyInt(const std::string& policyName, const std::string& attribute, const int32_t& attributeValue) {
   char query[500];
   char *errMsg = nullptr;
   int rc;
-  //여기에 attribute 확인해서 그에 맞게 값을 넣어야함
   sprintf(query,
-        "UPDATE '%s' "
-        "SET '%s' = '%s' "
-        "WHERE Name = '%s';", tableName.c_str(), attribute.c_str(), attributeValue, policyName.c_str());
+        "UPDATE FeedbackPolicy "
+        "SET '%s' = '%d' "
+        "WHERE PolicyName = '%s';", attribute.c_str() ,attributeValue, policyName.c_str());
   rc = sqlite3_exec(KETI_Policy::Get_Instance().db, query, 0, 0, &errMsg);
   if (rc != SQLITE_OK) {
-    std::cerr << "SQL error: " << errMsg << std::endl;
+    std::cerr << "Set FeedbackPolicyInt SQL error: " << errMsg << std::endl;
     sqlite3_free(errMsg);
     return -1;
   }
   else{
-    std:: cout << "Feedback_Policy updated succesfully" << std::endl;
+    std:: cout << "Feedback Policy updated succesfully" << std::endl;
     return 0;
-  }      
+  }    
+}
+int32_t Policy_Adaptor::createFeedbackPolicy(const std::string& policyName, const int32_t& yellowTemperature, const int32_t& orangeTemperature, const int32_t& redTemperature) {
+  int result;
+  Feedback_Policy* newFeedbackPolicy = new Feedback_Policy(policyName, true, true, yellowTemperature, true, orangeTemperature,true, redTemperature);
+  result = KETI_Policy::Get_Instance().Insert_Policy(3, newFeedbackPolicy);
+  delete newFeedbackPolicy;
+  std::cout << "[FeedbackPolicy] Create" << std::endl;
+  return result;
+}
+int32_t Policy_Adaptor::deleteFeedbackPolicy(const std::string& policyName) {
+  char query[500];
+  int rc;
+  char *errMsg = 0;
+  int result = 0;
+  sprintf(query,
+          "DELETE FROM FeedbackPolicy "
+          "WHERE PolicyName = '%s'", policyName.c_str());
+  rc = sqlite3_exec(KETI_Policy::Get_Instance().db, query, 0, 0, &errMsg);
+
+  if (rc != SQLITE_OK) {
+      std::cerr << "DELETE error: " << sqlite3_errmsg(KETI_Policy::Get_Instance().db) << std::endl;
+      sqlite3_exec(KETI_Policy::Get_Instance().db, "ROLLBACK;", 0, 0, 0); // 롤백
+      result = 0;
+      return result;
+  } else {
+      sqlite3_exec(KETI_Policy::Get_Instance().db, "COMMIT;", 0, 0, 0); // 커밋
+      std::cout << "[FeedbackPolicy] Delete" << std::endl;
+      result = 1;
+      return result;
+  }  
 }
 int32_t Policy_Adaptor::PolicyInitialize() {
   KETI_Policy::Get_Instance().only_one = false;
@@ -1017,18 +845,18 @@ int32_t Policy_Adaptor::PolicyInitialize() {
 
 }
 
-int main() {
-  KETI_Policy::Get_Instance().Factory_Info();
+// int main() {
+//   KETI_Policy::Get_Instance().Factory_Info();
   
-  std::cout << "  Server Start " << std::endl;
+//   std::cout << "  Server Start " << std::endl;
 
-  DBus::default_dispatcher = &dispatcher;
+//   DBus::default_dispatcher = &dispatcher;
 
-  DBus::Connection conn = DBus::Connection::SystemBus();
-  conn.request_name(POLICY_SERVER_NAME);
+//   DBus::Connection conn = DBus::Connection::SystemBus();
+//   conn.request_name(POLICY_SERVER_NAME);
 
-  Policy_Adaptor server(conn);
+//   Policy_Adaptor server(conn);
 
-  dispatcher.enter();
-  return 0;
-}
+//   dispatcher.enter();
+//   return 0;
+// }
