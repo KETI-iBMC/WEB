@@ -1,24 +1,10 @@
-#ifndef F511DF33_036E_452C_8A68_37279B70A447
-#define F511DF33_036E_452C_8A68_37279B70A447
-#pragma once
-#include <new>
-#include <policy/Policy.hpp>
-#include <unordered_map>
-#include <policy_adaptor.h>
-DBus::BusDispatcher dispatcher;
+#ifndef POLICY_ADAPTOR_H 
+#define POLICY_ADAPTOR_H
+#include <ibmc/Policy.hpp>
+#include <dbus/policy_adaptor.h>
 
 static const char *POLICY_SERVER_NAME = "org.freedesktop.keti.bmc.policy";
 static const char *POLICY_SERVER_PATH = "/org/freedesktop/keti/bmc/policy";
-static int FanNameStructCallback(void *data, int argc, char **argv,
-                                char **colNames); 
-static int FanStructCallback(void *data, int argc, char **argv,
-                                char **colNames); 
-static int FanPolicyStructCallback(void *data, int argc, char **argv,
-                                char **colNames);
-static int CPUPolicyStructCallback(void *data, int argc, char **argv,
-                                char **colNames);
-static int FeedbackPolicyStructCallback(void *data, int argc, char **argv,
-                                char **colNames);                                                                
 class Policy_Adaptor : public org::freedesktop::keti::bmc::policy_adaptor,
                        public DBus::IntrospectableAdaptor,
                        public DBus::ObjectAdaptor
@@ -46,23 +32,35 @@ class Policy_Adaptor : public org::freedesktop::keti::bmc::policy_adaptor,
     ::DBus::Struct< std::string, std::string, std::string, int32_t, int32_t > getCPUPolicy(const std::string& policyName) override;
     int32_t setCPUPolicyString(const std::string& policyName, const std::string& attribute, const std::string& attributeName) override;
     int32_t setCPUPolicyInt(const std::string& policyName, const std::string& attribute, const int32_t& attributeValue) override;
-//정책명, 활성화 여부, 온도 범위, 목적지
-    ::DBus::Struct< std::string, bool, int32_t, int32_t, std::string > getFeedbackPolicyGreen(const std::string& tableName, const std::string& policyName) override;
-    ::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string > getFeedbackPolicyYellow(const std::string& tableName, const std::string& policyName) override;
-    ::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string > getFeedbackPolicyOrange(const std::string& tableName, const std::string& policyName) override;
-    ::DBus::Struct< std::string, bool, int32_t, int32_t, int32_t, std::string, bool, bool > getFeedbackPolicyRed(const std::string& tableName, const std::string& policyName) override;
-    int32_t setFeedbackPolicyString(const std::string& tableName, const std::string& policyName, const std::string& attribute, const std::string& attributeName) override;
-    int32_t setFeedbackPolicyInt(const std::string& tableName, const std::string& policyName, const std::string& attribute, const int32_t& attributeValue) override;
+    ::DBus::Struct< std::string, bool, bool, int32_t, bool, int32_t, bool, int32_t > getFeedbackPolicy(const int32_t& policyID) override;
+    int32_t setFeedbackPolicyString(const std::string& policyName, const std::string& attribute, const std::string& attributeName) override;
+    int32_t setFeedbackPolicyInt(const std::string& policyName, const std::string& attribute, const int32_t& attributeValue) override;
+    int32_t createFeedbackPolicy(const std::string& policyName, const int32_t& yellowTemperature, const int32_t& orangeTemperature, const int32_t& redTemperature) override;
+    int32_t deleteFeedbackPolicy(const std::string& policyName) override;
     int32_t PolicyInitialize() override;
-
-
-
-    
+  
 };
+#endif //POLICY_ADAPTOR_H
+#ifndef F511DF33_036E_452C_8A68_37279B70A447
+#define F511DF33_036E_452C_8A68_37279B70A447
+#pragma once
+#include <new>
+#include <ibmc/Policy.hpp>
+#include <unordered_map>
 
+static int FanNameStructCallback(void *data, int argc, char **argv,
+                                char **colNames); 
+static int FanStructCallback(void *data, int argc, char **argv,
+                                char **colNames); 
+static int FanPolicyStructCallback(void *data, int argc, char **argv,
+                                char **colNames);
+static int CPUPolicyStructCallback(void *data, int argc, char **argv,
+                                char **colNames);
+static int FeedbackPolicyStructCallback(void *data, int argc, char **argv,
+                                char **colNames);                                                                
 
 // CREATE TABLE 쿼리문 - PolicyField
-const char *createPolicyFieldQuery =
+static const char *createPolicyFieldQuery =
     "CREATE TABLE PolicyField ("
     "    PolicyFieldID INTEGER PRIMARY KEY AUTOINCREMENT,"
     "    Description TEXT,"
@@ -71,7 +69,7 @@ const char *createPolicyFieldQuery =
     "    DATETIME TEXT"
     ");";
 // CREATE TABLE 쿼리문 - CPUPolicy
-const char *createCPUPolicyQuery =
+static const char *createCPUPolicyQuery =
     "CREATE TABLE CPUPolicy ("
     "    CPUPolicyID INTEGER PRIMARY KEY AUTOINCREMENT,"
     "    PolicyName TEXT,"
@@ -86,7 +84,7 @@ const char *createCPUPolicyQuery =
     "    ON DELETE CASCADE "
     ");";   
 // CREATE TABLE 쿼리문 - FanPolicy
-const char *createFanPolicyQuery =
+static const char *createFanPolicyQuery =
     "CREATE TABLE FanPolicy ("
     "    FanPolicyID INTEGER PRIMARY KEY AUTOINCREMENT, "
     "    PolicyName TEXT UNIQUE, "
@@ -100,7 +98,7 @@ const char *createFanPolicyQuery =
     "    PolicyField(PolicyFieldID) "
     ");";
 // CREATE TABLE 쿼리문 - Fan
-const char *createFanTableQuery =
+static const char *createFanTableQuery =
     "CREATE TABLE Fan ("
     "    FanID INTEGER PRIMARY KEY AUTOINCREMENT,"
     "    FanName TEXT, "
@@ -117,75 +115,22 @@ const char *createFanTableQuery =
     "    FanPolicyName TEXT, "
     "    FOREIGN KEY (FanPolicyName) REFERENCES FanPolicy(PolicyName) "
     ");";
-const char *createGreenQuery =
-    "CREATE TABLE Green ("
-    "    GreenID INTEGER PRIMARY KEY AUTOINCREMENT, "
-    "    Name TEXT,"
-    "    IsActive BOOLEAN, "
-    "    LowerThresholdUser INT, "
-    "    UpperThresholdUser INT, "
-    "    Destination TEXT,"
-    "    FeedbackID INTEGER,"
-    "    FOREIGN KEY (FeedbackID) REFERENCES "
-    "Feedback(FeedbackID)"   
-    ");";
-const char *createYellowQuery =
-    "CREATE TABLE Yellow ("
-    "    YellowID INTEGER PRIMARY KEY AUTOINCREMENT, "
-    "    Name TEXT,"
-    "    IsActive BOOLEAN, "
-    "    TargetTemperatureEstimatedTimeRefreshCycleSeconds INT, "
-    "    LowerThresholdUser INT, "
-    "    UpperThresholdUser INT, "
-    "    Destination TEXT,"
-    "    FeedbackID INTEGER,"
-    "    FOREIGN KEY (FeedbackID) REFERENCES "
-    "Feedback(FeedbackID)"   
-    ");";
-const char *createOrangeQuery =
-    "CREATE TABLE Orange ("
-    "    OrangeID INTEGER PRIMARY KEY AUTOINCREMENT, "
-    "    Name TEXT,"
-    "    IsActive BOOLEAN, "
-    "    TargetTemperatureEstimatedTimeRefreshCycleSeconds INT, "
-    "    LowerThresholdUser INT, "
-    "    UpperThresholdUser INT, "
-    "    Destination TEXT,"
-    "    FeedbackID INTEGER,"
-    "    FOREIGN KEY (FeedbackID) REFERENCES "
-    "Feedback(FeedbackID)"   
-    ");";
-const char *createRedQuery =
-    "CREATE TABLE Red ("
-    "    RedID INTEGER PRIMARY KEY AUTOINCREMENT, "
-    "    Name TEXT,"
-    "    IsActive BOOLEAN, "
-    "    TargetTemperatureEstimatedTimeRefreshCycleSeconds INT, "
-    "    LowerThresholdUser INT, "
-    "    UpperThresholdUser INT, "
-    "    Destination TEXT, "
-    "    CompulsoryControl BOOLEAN, "
-    "    CauseAnalysis BOOLEAN, "
-    "    FeedbackID INTEGER,"
-    "    FOREIGN KEY (FeedbackID) REFERENCES "
-    "Feedback(FeedbackID)"   
-    ");";            
+         
 // CREATE TABLE 쿼리문 - Feedback
-const char *createFeedbackPolicyQuery =
+static const char *createFeedbackPolicyQuery =
     "CREATE TABLE FeedbackPolicy ("
     "    FeedbackID INTEGER PRIMARY KEY AUTOINCREMENT, "
     "    PolicyName TEXT, "
-    "    Description TEXT, "
-    "    GreenName TEXT, "
-    "    YellowName TEXT, "
-    "    OrangeName TEXT, "
-    "    RedName TEXT, "
-    "    DATETIME TEXT,"
+    "    GreenIsActive BOOLEAN, "
+    "    YellowIsActive BOOLEAN, "
+    "    YellowTemperature INT, "
+    "    OrangeIsActive BOOLEAN, "    
+    "    OrangeTemperature INT, "
+    "    RedIsActive BOOLEAN, "
+    "    RedTemperature INT, "
     "    PolicyFieldID INTEGER,"
     "    FOREIGN KEY (PolicyFieldID) REFERENCES "
-    "PolicyField(PolicyFieldID), "
-    "    FOREIGN KEY (GreenName) REFERENCES "
-    "Green(GreenName) "
+    "PolicyField(PolicyFieldID) "
     ");";
 class KETI_Policy {
 private:
@@ -201,13 +146,8 @@ private:
   }
   static void Distory_KETI() { phoenixInstance->~KETI_Policy(); }
   bool Insert_Policy_Field(string des, POLICY_TYPE type, bool isActive);
-  bool Insert_Fans(Fan fan);
-  bool Insert_Green(Green green);
-  bool Insert_Yellow(Yellow yellow);
-  bool Insert_Orange(Orange orange);
-  bool Insert_Red(Red red);
-
-  bool Update_Fan(Fan fan, std::string fanName, string fanPolicyName);
+  bool Insert_Fans(DBFan fan);
+  bool Update_Fan(DBFan fan, std::string fanName, string fanPolicyName);
 
 public:
   static bool only_one;
