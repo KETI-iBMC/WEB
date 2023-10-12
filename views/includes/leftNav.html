@@ -1,0 +1,214 @@
+<div class="top-gnb">
+    <div class="top-gnb-logo">
+        <div class="logo-location">
+            <a href="{{ isLogin ? activeState === '/home' ? 'javascript:void(0)' : '#!/home' : 'javascript:void(0)' }}">
+                <img src="./images/logo.png">
+            </a>
+            <div class="location">
+                <div class="glyphicon glyphicon-home"></div>
+                
+                <span ng-if="mainName" class="arrow"></span>
+                <div>{{mainName}}</div>
+                <span ng-if="subName" class="arrow"></span>
+                <div>{{subName}}</div>
+                
+                <!-- <span class="arrow"></span>
+                <div>Dashboard</div> -->
+
+                <!--<div>Server Health</div>
+                <span class="arrow"></span>
+                <div>Sensor Readings</div>-->
+            </div>
+        </div>
+        <div class="top-right" >
+            <div class="logfile">
+                <ul class="top-txt" ng-controller="CommonController" data-ng-init="init()">
+                    <!--<li ng-if="isLogin">
+                        <a href="{{ isLogin ? activeState === '/home' ? 'javascript:void(0)' : '#!/home' : 'javascript:void(0)' }}">
+                            <span class="glyphicon glyphicon-home"></span> {{ "HOME.HOME" | translate }}
+                        </a>
+                    </li>-->
+                    <li ng-if="isLogin"><span class="glyphicon glyphicon-user"></span> {{userName + ' ( ' + userPrivilegeConverted + ' )'}}</li>
+                    <!--<li ng-if="isLogin"><span class="glyphicon glyphicon-refresh"></span> <a href="javascript:void(0)" ng-click="reloadRoute()">{{ "REFRESH" | translate }}</a></li>-->
+                    <li ng-if="isLogin"><span class="glyphicon glyphicon-log-in"></span> <a href="#" ng-click="logout()">{{ "LOGOUT" | translate }}</a></li>
+                    <li>
+                        <select class="form-control input-sm" ng-model="language" ng-change="changeLanguage()">
+                            <option value="en_US">{{ 'ENGLISH' | translate }}</option>
+                            <option value="ko_KR">{{ 'KOREAN' | translate }}</option>
+                        </select>
+                    </li>
+                    <div class="date-time" ng-controller="TimerController">
+                        <span class="icon_date">{{ clock | date:'yyyy-MM-dd'}}</span>
+                        <span class="icon_time">{{ clock | date:'HH:mm:ss'}}</span>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="top-gnb-menu">
+        <div ng-class="{ active: activeState === '/systemInformation' }">
+            <a href="{{ isLogin ? activeState === '/systemInformation' ? 'javascript:void(0)' : '#!/systemInformation' : 'javascript:void(0)' }}">
+                <span class="menu04">{{ "SYSTEM.SYSTEM_INFORMATION" | translate }}</span>
+            </a>
+        </div>
+
+        <div ng-class="{ active: activeState === '/fruInformation' }">
+            <a href="{{ isLogin ? activeState === '/fruInformation' ? 'javascript:void(0)' : '#!/fruInformation' : 'javascript:void(0)' }}">
+                <span class="menu04">{{ "FRU.FRU_INFORMATION" | translate }}</span>
+            </a>
+        </div>
+
+        <div ng-class="{ active: activeState.indexOf('/serverHealth') === 0 }">
+            <a href="{{ isLogin ? activeState.indexOf('/serverHealth') === 0 ? 'javascript:void(0)' : '#!/serverHealthSensorReadings' : 'javascript:void(0)' }}">
+                <span class="menu04">{{ "SERVER_HEALTH.SERVER_HEALTH" | translate }}</span>
+                <!--<i ng-class="activeState.indexOf('/serverHealth') === 0 ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'"></i>-->
+            </a>
+        </div>
+        <div class="dropdown-container" ng-style="activeState.indexOf('/serverHealth') === 0 ? {display: 'flex'} : {display: 'none'}">
+            <div>
+                <a href="#!/serverHealthSensorReadings" ng-class="{ active: activeState === '/serverHealthSensorReadings' }">{{ "SERVER_HEALTH.SENSOR_READING" | translate }}</a>
+            </div>
+            <div>
+                <a href="#!/serverHealthEventLogs" ng-class="{ active: activeState === '/serverHealthEventLogs' }">{{ "SERVER_HEALTH.EVENT_LOGS" | translate }}</a>
+            </div>
+            <div>
+                <a href="#!/serverHealthPowerUsage" ng-class="{ active: activeState === '/serverHealthPowerUsage' }">Power Usage<!--{{ "SERVER_HEALTH.POWER_USAGE" | translate }}--></a>
+            </div>
+        </div>
+
+        <div ng-class="{ active: activeState.indexOf('/config') === 0 }">
+            <a href="{{ isLogin ? activeState.indexOf('/config') === 0 ? 'javascript:void(0)' : '#!/configNtp' : 'javascript:void(0)' }}">
+                <span class="menu04">{{ "CONFIGURATION.CONFIGURATION" | translate }}</span>
+            </a>
+        </div>
+        <div class="dropdown-container" ng-style="activeState.indexOf('/config') === 0 ? {display: 'flex'} : {display: 'none'}">
+            <div>
+                <a href="#!/configNtp" ng-class="{ active: activeState === '/configNtp' }">NTP</a>
+            </div>
+            <div>
+                <a href="#!/configUsers" ng-class="{ active: activeState === '/configUsers' }">Users</a>
+            </div>
+        </div>
+        <!-- 
+            <div>
+                <a href="#!/configDns" ng-class="{ active: activeState === '/configDns' }">DNS</a>
+            </div>
+            <div>
+                <a href="#!/configNetwork" ng-class="{ active: activeState === '/configNetwork' }">Network</a>
+            </div>
+
+            <div>
+                <a href="#!/configSmtp" ng-class="{ active: activeState === '/configSmtp' }">SMTP</a>
+            </div>
+            <div>
+                <a href="#!/configGenerateSsl" ng-class="{ active: activeState === '/configGenerateSsl' || activeState === '/configViewSsl' }">SSL</a>
+            </div>
+            <div>
+                <a href="#!/configActiveDirectory" ng-class="{ active: activeState === '/configActiveDirectory' }">Active Directory</a>
+            </div>
+            <div>
+                <a href="#!/configLdap" ng-class="{ active: activeState === '/configLdap' }">LDAP</a>
+            </div>
+            <div>
+                <a href="#!/configRadius" ng-class="{ active: activeState === '/configRadius' }">RADIUS</a>
+            </div>
+        -->
+
+        <div ng-class="{ active: activeState.indexOf('/virtualMedia') === 0 }">
+            <a href="{{ isLogin ? activeState.indexOf('/virtualMedia') === 0 ? 'javascript:void(0)' : '#!/virtualMediaUsb' : 'javascript:void(0)' }}">
+                <span class="menu04">{{ "VIRTUAL_MEDIA.VIRTUAL_MEDIA" | translate }}</span>
+                <!--<i ng-class="activeState.indexOf('/virtualMedia') === 0 ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'"></i>-->
+            </a>
+        </div>
+        <div class="dropdown-container" ng-style="activeState.indexOf('/virtualMedia') === 0 ? {display: 'flex'} : {display: 'none'}">
+            <div>
+                <a href="#!/virtualMediaUsb" ng-class="{ active: activeState === '/virtualMediaUsb' }">{{ "VIRTUAL_MEDIA.USB_REDIRECTION" | translate }}</a>
+            </div>
+        </div>
+
+        <div ng-class="{ active: activeState.indexOf('/remoteControl') === 0 }">
+            <a href="{{ isLogin ? activeState.indexOf('/remoteControl') === 0 ? 'javascript:void(0)' : '#!/remoteControlConsoleRedirection' : 'javascript:void(0)' }}">
+                <span class="menu04">{{ "REMOTE_CONTROL.REMOTE_CONTROL" | translate }}</span>
+                <!--<i ng-class="activeState.indexOf('/remoteControl') === 0 ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'"></i>-->
+            </a>
+        </div>
+        <div class="dropdown-container" ng-style="activeState.indexOf('/remoteControl') === 0 ? {display: 'flex'} : {display: 'none'}">
+            <!-- <div>
+                <a href="#!/remoteControlSol" ng-class="{ active: activeState === '/remoteControlSol' }">{{ "REMOTE_CONTROL.SOL" | translate }}</a>
+            </div> -->
+            <div>
+                <a href="#!/remoteControlConsoleRedirection" ng-class="{ active: activeState === '/remoteControlConsoleRedirection' }">{{ "KVM" | translate }}</a>
+            </div>
+            <div>
+                <a href="#!/remoteControlServerPowerControl" ng-class="{ active: activeState === '/remoteControlServerPowerControl' }">{{ "REMOTE_CONTROL.SERVER_POWER_CONTROL" | translate }}</a>
+            </div>
+        </div>
+
+        <div ng-class="{ active: activeState.indexOf('/maintenance') === 0 }">
+            <a href="{{ isLogin ? activeState.indexOf('/maintenance') === 0 ? 'javascript:void(0)' : '#!/maintenanceFirmwareUpdate' : 'javascript:void(0)' }}">
+                <span class="menu04">{{ "MAINTENANCE.MAINTENANCE" | translate }}</span>
+                <!--<i ng-class="activeState.indexOf('/maintenance') === 0 ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'"></i>-->
+            </a>
+        </div>
+        <div class="dropdown-container" ng-style="activeState.indexOf('/maintenance') === 0 ? {display: 'flex'} : {display: 'none'}">
+            <div>
+                <a href="#!/maintenanceFirmwareUpdate" ng-class="{ active: activeState === '/maintenanceFirmwareUpdate' }">{{ "MAINTENANCE.FIRMWARE_UPDATE" | translate }}</a>
+            </div>
+            <div>
+                <a href="#!/maintenanceBmcReset" ng-class="{ active: activeState === '/maintenanceBmcReset' }">{{ "MAINTENANCE.BMC_RESET" | translate }}</a>
+            </div>
+            <div>
+                <a href="#!/maintenanceAiDataLoad" ng-class="{ active: activeState === '/maintenanceAiDataLoad' }">{{ "MAINTENANCE.AI_DATA_LOAD" | translate }}</a>
+            </div>
+        </div>
+
+        <div ng-class="{ active: activeState.indexOf('/faultAnalysis') === 0 }">
+            <a href="{{ isLogin ? activeState.indexOf('/faultAnalysis') === 0 ? 'javascript:void(0)' : '#!/faultAnalysisOverallMonitoring' : 'javascript:void(0)' }}">
+                <span class="menu04">{{ "FAULT_ANALYSIS.FAULT_ANALYSIS" | translate }}</span>
+                <!--<i ng-class="activeState.indexOf('/settings') === 0 ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'"></i>-->
+            </a>
+        </div>
+        <div class="dropdown-container" ng-style="activeState.indexOf('/faultAnalysis') === 0 ? {display: 'flex'} : {display: 'none'}">
+            <div>
+                <a href="#!/faultAnalysisOverallMonitoring" ng-class="{ active: activeState === '/faultAnalysisOverallMonitoring' }">{{ "FAULT_ANALYSIS.OVERALL_MONITORING" | translate }}</a>
+            </div>
+            <div>
+                <a href="#!/faultAnalysisFoflPolicy" ng-class="{ active: activeState === '/faultAnalysisFoflPolicy' }">{{ "FAULT_ANALYSIS.FOFL_POLICY" | translate }}</a>
+            </div>
+            <div>
+                <a href="#!/faultAnalysisDiskReport" ng-class="{ active: activeState === '/faultAnalysisDiskReport' }">{{ "FAULT_ANALYSIS.DISK_REPORT" | translate }}</a>
+            </div>
+            <div>
+                <a href="#!/faultAnalysisLogMonitoring" ng-class="{ active: activeState === '/faultAnalysisLogMonitoring' }">{{ "FAULT_ANALYSIS.LOG_MONITORING" | translate }}</a>
+            </div>
+        </div>
+
+        <div ng-class="{ active: activeState.indexOf('/energySaving') === 0 }">
+            <a href="{{ isLogin ? activeState.indexOf('/energySaving') === 0 ? 'javascript:void(0)' : '#!/energySavingSmartFanControl' : 'javascript:void(0)' }}">
+                <span class="menu04">{{ "ENERGY_SAVING.ENERGY_SAVING" | translate }}</span>
+                <!--<i ng-class="activeState.indexOf('/settings') === 0 ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'"></i>-->
+            </a>
+        </div>   
+        <div class="dropdown-container" ng-style="activeState.indexOf('/energySaving') === 0 ? {display: 'flex'} : {display: 'none'}">
+            <div>
+                <a href="#!/energySavingSmartFanControl" ng-class="{ active: activeState === '/energySavingSmartFanControl' }">{{ "ENERGY_SAVING.SMART_FAN_CONTROL" | translate }}</a>
+            </div>
+            <div>
+                <a href="#!/energycSavingCpuPowerCapping" ng-class="{ active: activeState === '/energySavingCpuPowerCapping' }">{{ "ENERGY_SAVING.CPU_POWER_CAPPING" | translate }}</a>
+            </div>
+        </div>
+
+        <div ng-class="{ active: activeState.indexOf('/settings') === 0 }">
+            <a href="{{ isLogin ? activeState.indexOf('/settings') === 0 ? 'javascript:void(0)' : '#!/settingsServices' : 'javascript:void(0)' }}">
+                <span class="menu04">{{ "SETTINGS" | translate }}</span>
+                <!--<i ng-class="activeState.indexOf('/settings') === 0 ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down'"></i>-->
+            </a>
+        </div>
+        
+        <div class="dropdown-container" ng-style="activeState.indexOf('/settings') === 0 ? {display: 'flex'} : {display: 'none'}">
+            <div>
+                <a href="#!/settingsServices" ng-class="{ active: activeState === '/settingsServices' }">{{ "MENU_SETTINGS.SERVICES" | translate }}</a>
+            </div>
+        </div>
+    </div>
+</div>

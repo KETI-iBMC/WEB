@@ -1,0 +1,53 @@
+<style>
+    .center {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+    }
+</style>
+
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide">
+            <div class="content-area">
+                <div class="title_line">
+                    <h4>{{ "KVM" | translate }}</h4>
+                    <div class="con-subtit">{{ "REMOTE_CONTROL.KVM_DESCRIPTION" | translate }}</div>
+                </div>
+
+                <div class="con-info">
+                    <button type="button" class="btn btn-blue" data-ng-click="onClick()">{{ "REMOTE_CONTROL.KVM_LAUNCHER" | translate }}
+                    </button>
+                </div>
+
+                <div class="kvm-imagebox" style="margin-top: 50px;">
+                    <video controls autoplay id="kvm-img">
+                        <source src="./images/keti.mp4" type="video/mp4">
+                    </video>
+                </div>
+                
+                <div style="margin-top: 20px; font-weight: bold; font-size: 15px;">
+                    <div class="center"> The host computer experienced a failure 10 seconds ago.</div>
+                    <div class="center" id="lastModified">Last recording time: Loading...</div>
+                </div>
+                <script>
+                    function fetchTextFromFile() {
+                        fetch('./images/time.txt')
+                            .then(response => response.text())
+                            .then(text => {
+                                const lastModifiedElement = document.getElementById('lastModified');
+                                if (lastModifiedElement) {
+                                    lastModifiedElement.textContent = 'Last recording time: ' + text;
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error fetching text from file:', error);
+                            });
+                    }
+                
+                    window.addEventListener('load', fetchTextFromFile);
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

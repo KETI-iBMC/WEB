@@ -1,0 +1,178 @@
+<style>
+    .smtp_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .smtp_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .smtp_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+
+<script>
+    const smtp_Arrow = document.querySelector(".smtp_arrow-icon");
+    const smtp_ctrlSplit = document.querySelector(".smtp_ctrl-split");
+    const smtp_titleline = document.querySelector(".smtp-line");
+    const smtp_boxGuide = document.querySelector(".smtpbox_guide");
+    const smtp_img1Path = "./images/arrow1_icon.png";
+    const smtp_img2Path = "./images/arrow2_icon.png";
+
+    let smtpVisible = false;
+
+    smtp_Arrow.addEventListener("click", function () {
+        if (smtpVisible) {
+            smtp_Arrow.src = smtp_img2Path;
+
+            smtp_ctrlSplit.style.display = "none";
+            smtp_titleline.style.borderBottom = "none";
+            smtp_boxGuide.style.minHeight = "100px";
+            smtp_boxGuide.style.paddingBottom = "20px";
+
+            smtpVisible = false;
+        } else {
+            smtp_Arrow.src = smtp_img1Path;
+
+            smtp_ctrlSplit.style.display = "flex";
+            smtp_titleline.style.borderBottom = "2px solid #0b4daf";
+            smtp_boxGuide.style.minHeight = "400px";
+            smtp_boxGuide.style.paddingBottom = "50px";
+
+            smtpVisible = true;
+        }
+    });
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide smtpbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line smtp-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.SMTP_SERVER_SETTING" | translate }}</h4>
+                    <div class="smtp_arrow_line">
+                        <div class="con-subtit">{{ "CONFIGURATION.SMTP_SERVER_SETTING_DESCRIPTION" | translate }}</div>
+                        <img src="./images/arrow2_icon.png" class="smtp_arrow-icon">
+                    </div>
+                    <div class="smtp_ctrl-split">
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "CONFIGURATION.MANAGE_SMTP_SETTING_BMC" | translate }}</div>
+
+                            <table class="table-data">
+                                <colgroup>
+                                    <col width="200px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.SENDER_EMAIL" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="senderAddress" class="form-control input-sm"
+                                                style="width:200px;">
+                                        </td>
+                                    </tr>
+                                    <tr class="down">
+                                        <th>{{ "CONFIGURATION.MACHINE_NAME" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="machineName" class="form-control input-sm"
+                                                style="width:200px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "CONFIGURATION.PRIMARY_SMTP_SERVER" | translate }}</div>
+                            <form class="form-inline">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.EMAIL_SERVER" | translate }}</th>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="text" ng-model="primaryServerAddress"
+                                                        class="form-control input-sm" style="width:200px;"> &nbsp;
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.USER_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="primaryUserName"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.PASSWORD" | translate }}</th>
+                                            <td>
+                                                <input type="password" ng-model="primaryUserPassword"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "CONFIGURATION.SECONDARY_SMTP_SERVER" | translate }}</div>
+                            <form class="form-inline">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.EMAIL_SERVER" | translate }}</th>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="text" ng-model="secondaryServerAddress"
+                                                        class="form-control input-sm" style="width:200px;"> &nbsp;
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.USER_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="secondaryUserName"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.PASSWORD" | translate }}</th>
+                                            <td>
+                                                <input type="password" ng-model="secondaryUserPassword"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div class="btn-style">
+                            <button type="button" class="btn btn-blue" ng-click="Smtsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-black" ng-click="Smtreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- row content -->
+        </div>
+    </div>
+</div>
