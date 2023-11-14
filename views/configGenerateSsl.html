@@ -1,0 +1,321 @@
+<style>
+    .generate_ssl_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .generate_ssl_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .generate_ssl_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+
+<script>
+    const generate_ssl_Arrow = document.querySelector(".generate_ssl_arrow-icon");
+    const generate_ssl_ctrlSplit = document.querySelector(".generate_ssl_ctrl-split");
+    const generate_ssl_titleline = document.querySelector(".generate_ssl-line");
+    const generate_ssl_boxGuide = document.querySelector(".generate_sslbox_guide");
+    const generate_ssl_img1Path = "./images/arrow1_icon.png";
+    const generate_ssl_img2Path = "./images/arrow2_icon.png";
+
+    let generate_sslVisible = false;
+
+    generate_ssl_Arrow.addEventListener("click", function () {
+        if (generate_sslVisible) {
+            generate_ssl_Arrow.src = generate_ssl_img2Path;
+
+            generate_ssl_ctrlSplit.style.display = "none";
+            generate_ssl_titleline.style.borderBottom = "none";
+            generate_ssl_boxGuide.style.minHeight = "100px";
+            generate_ssl_boxGuide.style.paddingBottom = "20px";
+
+            generate_sslVisible = false;
+        } else {
+            generate_ssl_Arrow.src = generate_ssl_img1Path;
+
+            generate_ssl_ctrlSplit.style.display = "flex";
+            generate_ssl_titleline.style.borderBottom = "2px solid #0b4daf";
+            generate_ssl_boxGuide.style.minHeight = "400px";
+            generate_ssl_boxGuide.style.paddingBottom = "50px";
+
+            generate_sslVisible = true;
+        }
+    });
+
+
+    document.querySelector('.menu-tab li:nth-child(1)').classList.add('active');
+
+    function handleGenViewClick() {
+        document.querySelector('.Gen_box').style.display = 'block';
+        document.querySelector('.View_box').style.display = 'none';
+        document.querySelector('.menu-tab li:nth-child(1)').classList.add('active');
+        document.querySelector('.menu-tab li:nth-child(2)').classList.remove('active');
+    }
+
+    function handleViewGenClick() {
+        document.querySelector('.Gen_box').style.display = 'none';
+        document.querySelector('.View_box').style.display = 'block';
+        document.querySelector('.menu-tab li:nth-child(1)').classList.remove('active');
+        document.querySelector('.menu-tab li:nth-child(2)').classList.add('active');
+    }
+
+    const genViewElement = document.getElementById('view_Gen');
+    genViewElement.addEventListener('click', handleGenViewClick);
+
+    const viewGenElement = document.getElementById('Gen_view');
+    viewGenElement.addEventListener('click', handleViewGenClick);
+</script>
+
+
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide generate_sslbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line generate_ssl-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.SSL_CERTIFICATION_CONFIGURATION" | translate }}</h4>
+                    <div class="generate_ssl_arrow_line">
+                        <div class="con-subtit">{{ "CONFIGURATION.SSL_CERTIFICATION_CONFIGURATION_DESCRIPTION" |
+                            translate }}</div>
+                        <img src="./images/arrow2_icon.png" class="generate_ssl_arrow-icon">
+                    </div>
+                    <div class="generate_ssl_ctrl-split">
+                        <div class="menu-tab">
+                            <ul class="nav nav-tabs" class="active">
+                                <li>
+                                    <a id="view_Gen">{{ "CONFIGURATION.GENERATE_SSL" | translate }}</a>
+                                </li>
+                                <li>
+                                    <a id="Gen_view">{{ "CONFIGURATION.VIEW_SSL" | translate }}</a>
+                                    <!-- <a ng-include="'views/configViewSsl.html'">{{ "CONFIGURATION.VIEW_SSL" | translate }}</a> -->
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="Gen_box" style="display: block;">
+                            <div class="con-info">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.COMMON_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="commonName" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="organization" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_UNIT_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="organizationUnit"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.CITY_OR_LOCALITY" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="cityOrLocality"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.STATE_OR_PROVINCE" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="stateOrProvince"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.COUNTRY_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="country" maxlength="2"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.EMAIL_ADDRESS" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="emailAddress" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <!-- [수정3] 입력 시에는 valid for / from 의 개념이 아닌 유효일수의 의미인 days로 하게끔 
+                            lang을 사용해서 en_US.json의 VALID_DAYS 값을 'Valid days' 로 추가함 
+                            ko_KR.json 에 VALID DAYS '유효 일수' 추가함 -->
+                                            <!-- <th>{{ "CONFIGURATION.VALID_FOR" | translate }}</th> -->
+                                            <th>{{ "CONFIGURATION.VALID_DAYS" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="validFor" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.KEY_LENGTH" | translate }}</th>
+                                            <td>
+                                                <select class="form-control input-sm" ng-model="keyLength"
+                                                    style="width:200px;">
+                                                    <option>Default</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <div class="View_box" style="display: none;">
+                            <div class="con-info">
+                                <div class="info-data">{{ "BASIC_INFORMATION" | translate }}</div>
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.VERSION" | translate }}</th>
+                                            <td>{{ version || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.SERIAL_NUMBER" | translate }}</th>
+                                            <td>{{ serialNumber || '-' }}</td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.DIGITAL_SIGNATURE_ALGORITHM" | translate }}</th>
+                                            <td>{{ signatureAlgorithm || '-' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="con-info">
+                                <div class="info-data">{{ "CONFIGURATION.ISSUED_FROM" | translate }}</div>
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.COMMON_NAME" | translate }}</th>
+                                            <td>{{ commonName || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_NAME" | translate }}</th>
+                                            <td>{{ organization || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_UNIT_NAME" | translate }}</th>
+                                            <td>{{ organizationUnit || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.CITY_OR_LOCALITY" | translate }}</th>
+                                            <td>{{ cityOrLocality || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.STATE_OR_PROVINCE" | translate }}</th>
+                                            <td>{{ stateOrProvince || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.COUNTRY_NAME" | translate }}</th>
+                                            <td>{{ country || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.EMAIL_ADDRESS" | translate }}</th>
+                                            <td>{{ emailAddress || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.VALID_FOR" | translate }}</th>
+                                            <td>{{ validFor || '-' }}</td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.KEY_LENGTH" | translate }}</th>
+                                            <td>{{ keyLength || '-' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="con-info">
+                                <div class="info-data">{{ "CONFIGURATION.VALIDITY_INFORMATION" | translate }}</div>
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.VALID_FROM" | translate }}</th>
+                                            <td>{{ validFrom || '-' }}</td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.VALID_FOR" | translate }}</th>
+                                            <td>{{ validFor || '-' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="con-info">
+                                <div class="info-data">{{ "CONFIGURATION.ISSUED_TO" | translate }}</div>
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.COMMON_NAME" | translate }}</th>
+                                            <td>{{ commonNameIssueedTo || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_NAME" | translate }}</th>
+                                            <td>{{ organizationIssueedTo || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_UNIT_NAME" | translate }}</th>
+                                            <td>{{ organizationUnitIssueedTo || '-' }}</td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.CITY_OR_LOCALITY" | translate }}</th>
+                                            <td>{{ cityOrLocalityIssuedTo || '-' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="btn-style">
+                            <button type="button" class="btn btn-blue" ng-click="Sslsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-black" ng-click="Sslreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

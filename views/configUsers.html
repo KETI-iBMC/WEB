@@ -1,0 +1,108 @@
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide">
+            <div class="content-area">
+                <div class="title_line">
+                    <h4>{{ "CONFIGURATION.USER_MANAGEMENT" | translate }}</h4>
+                    <div class="con-subtit">{{ "CONFIGURATION.USER_MANAGEMENT_DESCRIPTION" | translate }}</div>
+                </div>
+
+                <div class="con-info">
+                    <div class="info-data">{{ "CONFIGURATION.USER_MANAGEMENT" | translate }}</div>
+                    <table class="table-view">
+                        <colgroup>
+                            <col width="*">
+                            <col width="*">
+                            <col width="*">
+                            <col width="*">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>{{ "CONFIGURATION.USER_ID" | translate }}</th>
+                            <th>{{ "CONFIGURATION.USER_NAME" | translate }}</th>
+                            <th>{{ "CONFIGURATION.USER_ACCESS" | translate }}</th>
+                            <th>{{ "CONFIGURATION.PRIVILEGE" | translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="user in userInfo.INFO">
+                            <td><input type="checkbox" ng-model="user.SELECTED" ng-click="onCheckUser(user)"></td>
+                            <td>{{ user.INDEX }}</td>
+                            <td>{{ user.NAME }}</td>
+                            <td>{{ convertUserEnable(user.ENABLE_STATUS) }}</td>
+                            <td>{{ convertUserPrivilege(user.PRIVILEGE) }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="btn-style">
+                    <button type="button" class="btn btn-blue" data-toggle="modal" data-target="#userAddingModal">{{ "ADD" | translate }}</button>
+                    <button type="button" class="btn btn-black" ng-click="delete()">{{ "DELETE" | translate }}</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="userAddingModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="color: #000;">{{ "CONFIGURATION.USER_MANAGEMENT" | translate }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="info-data" style="color:#000">{{ "CONFIGURATION.ADD_USER" | translate }}</div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="200px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>{{ "CONFIGURATION.USER_NAME" | translate }}</th>
+                                <td>
+                                    <input type="text" id="userName" ng-model="addUserName" class="form-control input-sm" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.PASSWORD" | translate }}</th>
+                                <td>
+                                    <input type="password" id="userPassword" ng-model="addUserPassword" class="form-control input-sm" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.CONFIRM_PASSWORD" | translate }}</th>
+                                <td>
+                                    <input type="password" id="userPasswordConfirm" ng-model="addUserPasswordConfirm" class="form-control input-sm" style="width:200px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.PRIVILEGE" | translate }}</th>
+                                <td>
+                                    <select class="form-control input-sm" style="width:200px;" ng-model="addUserPrivilege">
+                                        <option label="User" value="3"></option>
+                                        <option label="Administrator" value="4"></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="enable">
+                            <label class="checkbox-inline"><input type="checkbox" ng-model="addUserEnableStatus" class="">{{ "CONFIGURATION.ENABLE_USER" | translate }}</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="modalAddButtonClick()">{{ "ADD" | translate }}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ "CLOSE" | translate }}</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

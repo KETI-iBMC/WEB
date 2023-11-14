@@ -1,0 +1,121 @@
+<style>
+    .radius_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .radius_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .radius_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+
+<script>
+    const radius_Arrow = document.querySelector(".radius_arrow-icon");
+    const radius_ctrlSplit = document.querySelector(".radius_ctrl-split");
+    const radius_titleline = document.querySelector(".radius-line");
+    const radius_boxGuide = document.querySelector(".radiusbox_guide");
+    const radius_img1Path = "./images/arrow1_icon.png";
+    const radius_img2Path = "./images/arrow2_icon.png";
+
+    let radiusVisible = false;
+
+    radius_Arrow.addEventListener("click", function () {
+        if (radiusVisible) {
+            radius_Arrow.src = radius_img2Path;
+
+            radius_ctrlSplit.style.display = "none";
+            radius_titleline.style.borderBottom = "none";
+            radius_boxGuide.style.minHeight = "100px";
+            radius_boxGuide.style.paddingBottom = "20px";
+
+            radiusVisible = false;
+        } else {
+            radius_Arrow.src = radius_img1Path;
+
+            radius_ctrlSplit.style.display = "flex";
+            radius_titleline.style.borderBottom = "2px solid #0b4daf";
+            radius_boxGuide.style.minHeight = "400px";
+            radius_boxGuide.style.paddingBottom = "50px";
+
+            radiusVisible = true;
+        }
+    });
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide radiusbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line radius-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.GENERAL_RADIUS_SETTINGS" | translate }}</h4>
+                    <div class="radius_arrow_line">
+                        <div class="con-subtit">{{ "CONFIGURATION.GENERAL_RADIUS_SETTINGS_DESCRIPTION" | translate }}
+                        </div>
+                        <img src="./images/arrow2_icon.png" class="radius_arrow-icon">
+
+                    </div>
+                    <div class="radius_ctrl-split">
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "SETTINGS" | translate }}</div>
+                            <form class="form-inline">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.AUTHENTICATION" | translate }}</th>
+                                            <td>
+                                                <label class="checkbox-inline"><input type="checkbox"
+                                                        ng-model="radiusEnable">{{
+                                                    "CONFIGURATION.ENABLE_RADIUS_AUTHENTICATION" | translate }}</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.SERVER_ADDRESS" | translate }}</th>
+                                            <td>
+                                                <input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="radiusIp">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "PORT" | translate }}</th>
+                                            <td>
+                                                <input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="radiusPort">
+                                            </td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.SECRET" | translate }}</th>
+                                            <td>
+                                                <input type="password" class="form-control input-sm"
+                                                    style="width:200px;" ng-model="radiusSecret">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div class="btn-style">
+                            <button type="button" class="btn btn-blue" ng-click="Radiussave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-black" ng-click="Radiusreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

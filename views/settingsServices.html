@@ -1,0 +1,1523 @@
+<style>
+    .services_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .services_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .services_ctrl-split {
+        flex-direction: column;
+    }
+</style>
+<script>
+    const services_Arrow = document.querySelector(".services_arrow-icon");
+    const services_ctrlSplit = document.querySelector(".services_ctrl-split");
+    const services_titleline = document.querySelector(".services-line");
+    const services_boxGuide = document.querySelector(".servicesbox_guide");
+    const services_img1Path = "./images/arrow1_icon.png";
+    const services_img2Path = "./images/arrow2_icon.png";
+
+    let servicesVisible = true;
+
+    services_Arrow.addEventListener("click", function () {
+        if (!servicesVisible) {
+            services_Arrow.src = services_img1Path;
+
+            services_ctrlSplit.style.display = "flex";
+            services_boxGuide.style.minHeight = "400px";
+            services_boxGuide.style.paddingBottom = "50px";
+            servicesVisible = true;
+
+        } else {
+            services_Arrow.src = services_img2Path;
+
+            services_ctrlSplit.style.display = "none";
+            services_boxGuide.style.minHeight = "100px";
+            services_boxGuide.style.paddingBottom = "20px";
+
+            servicesVisible = false;
+        }
+    });
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <!-- row content -->
+    <div class="content">
+        <div class="box_wrap box_guide servicesbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line services-line" style="border-bottom: none;">
+                    <h4>{{ "MENU_SETTINGS.SERVICES" | translate }}</h4>
+                    <div class="services_arrow_line">
+                        <div class="con-subtit" style="margin-right: auto;">{{ "MENU_SETTINGS.SERVICES" | translate }}
+                        </div>
+                        <img src="./images/arrow1_icon.png" class="services_arrow-icon">
+                    </div>
+                </div>
+                <div class="services_ctrl-split">
+
+                    <div class="con-info">
+                        <div class="info-data">{{ "MENU_SETTINGS.WEB_SERVER" | translate }}</div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="250px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                                <tr class="down">
+                                    <th>{{ "PORT" | translate }}</th>
+                                    <td>
+                                        <input type="text" ng-model="services.WEB_PORT" class="form-control input-sm"
+                                            style="width:200px;">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- <div class="con-info">
+                    <div class="info-data">{{ "KVM" | translate }}</div>
+                    <table class="table-data">
+                        <colgroup>
+                            <col width="250px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th>{{ "PORT" | translate }}</th>
+                            <td>
+                                <input type="text" ng-model="services.KVM_PORT" class="form-control input-sm" style="width:200px;">
+                            </td>
+                        </tr>
+                        <tr class="down">
+                            <th>{{ "MENU_SETTINGS.KVM_PROXY_PORT" | translate }}</th>
+                            <td>
+                                <input type="text" ng-model="services.KVM_PROXY_PORT" class="form-control input-sm" style="width:200px;">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div> -->
+
+                    <div class="con-info">
+                        <div class="info-data">{{ "MENU_SETTINGS.ALERT" | translate }}</div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="250px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>{{ "MENU_SETTINGS.ALERT_SETTINGS" | translate }}</th>
+                                    <td>
+                                        <label class="checkbox-inline"><input type="checkbox"
+                                                ng-model="services.ALERT_ENABLES">{{ "ENABLE" | translate }}</label>
+                                    </td>
+                                </tr>
+                                <tr class="down">
+                                    <th>{{ "MENU_SETTINGS.ALERT_PORT" | translate }}</th>
+                                    <td>
+                                        <input type="text" ng-model="services.ALERT_PORT" class="form-control input-sm"
+                                            style="width:200px;" ng-disabled="!services.ALERT_ENABLES">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="con-info">
+                        <div class="info-data">{{ "MENU_SETTINGS.SSH" | translate }}</div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="250px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>{{ "MENU_SETTINGS.SSH_SETTINGS" | translate }}</th>
+                                    <td>
+                                        <label class="checkbox-inline"><input type="checkbox"
+                                                ng-model="services.SSH_ENABLES">{{ "ENABLE" | translate }}</label>
+                                    </td>
+                                </tr>
+                                <tr class="down">
+                                    <th>{{ "PORT" | translate }}</th>
+                                    <td>
+                                        <input type="text" ng-model="services.SSH_PORT" class="form-control input-sm"
+                                            style="width:200px;" ng-disabled="!services.SSH_ENABLES">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="btn-style">
+                        <button type="button" class="btn btn-blue" ng-click="save()">{{ "SAVE" | translate }}</button>
+                        <button type="button" class="btn btn-black" ng-click="reset()">{{ "RESET" | translate
+                            }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- row content -->
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div ng-include="'views/configDns.html'" style="margin-top: -70px"></div> -->
+<style>
+    .dns_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .dns_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .dns_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+<script>
+    const dns_Arrow = document.querySelector(".dns_arrow-icon");
+    const dns_ctrlSplit = document.querySelector(".dns_ctrl-split");
+    const dns_titleline = document.querySelector(".dns-line");
+    const dns_boxGuide = document.querySelector(".dnsbox_guide");
+    const dns_img1Path = "./images/arrow1_icon.png";
+    const dns_img2Path = "./images/arrow2_icon.png";
+
+    let dnsVisible = false;
+
+    dns_Arrow.addEventListener("click", function () {
+        if (dnsVisible) {
+            dns_Arrow.src = dns_img2Path;
+            dns_ctrlSplit.style.display = "none";
+            dns_titleline.style.borderBottom = "none";
+            dns_boxGuide.style.minHeight = "100px";
+            dns_boxGuide.style.paddingBottom = "20px";
+
+            dnsVisible = false;
+        } else {
+            dns_Arrow.src = dns_img1Path;
+
+            dns_ctrlSplit.style.display = "flex";
+            dns_titleline.style.borderBottom = "2px solid #0b4daf";
+            dns_boxGuide.style.minHeight = "400px";
+            dns_boxGuide.style.paddingBottom = "50px";
+
+
+            dnsVisible = true;
+        }
+    });
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()" style="margin-top: -70px">
+    <div class="content">
+        <div class="box_wrap box_guide dnsbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line dns-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.DNS_SETTING" | translate }}</h4>
+                    <div class="dns_arrow_line">
+                        <div class="con-subtit" style="margin-right: auto;">{{ "CONFIGURATION.DNS_SETTING_DESCRIPTION" |
+                            translate }}</div>
+                        <img src="./images/arrow2_icon.png" class="dns_arrow-icon">
+                    </div>
+                </div>
+                <div class="dns_ctrl-split">
+
+                    <div class="con-info">
+                        <div class="info-data">{{ "CONFIGURATION.HOST_CONFIGURATION" | translate }}</div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="250px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                                <tr class="down">
+                                    <th>{{ "CONFIGURATION.HOST_NAME" | translate }}</th>
+                                    <td>
+                                        <input type="text" ng-model="hostName" class="form-control input-sm"
+                                            style="width:200px;">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="con-info">
+                        <div class="info-data">{{ "CONFIGURATION.REGISTER_BMC" | translate }}</div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="250px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th rowspan="2">{{ "CONFIGURATION.ETH_0" | translate }}</th>
+                                    <td>
+                                        <label class="checkbox-inline"><input type="checkbox" ng-model="registerBmc">{{
+                                            "CONFIGURATION.REGISTER_BMC" | translate }}</label>
+                                    </td>
+                                </tr>
+                                <tr class="down">
+                                    <td>
+                                        <label class="radio-inline"><input type="radio" name="optradio" value="DIRECT"
+                                                ng-model="registerBmcMethod">Direct Dynamic DNS</label>
+                                        <label class="radio-inline"><input type="radio" name="optradio" value="DHCP"
+                                                ng-model="registerBmcMethod">DHCP Client FQDN</label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="con-info">
+                        <div class="info-data">{{ "CONFIGURATION.DOMAIN_NAME_CONFIGURATION" | translate }}</div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="250px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                                <tr class="down">
+                                    <th>{{ "CONFIGURATION.DOMAIN_NAME" | translate }}</th>
+                                    <td>
+                                        <input type="text" ng-model="domainName" class="form-control input-sm"
+                                            style="width:200px;">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="con-info">
+                        <div class="info-data">{{ "CONFIGURATION.IP_V4_DOMAIN_NAME_SERVER_CONFIGURATION" | translate }}
+                        </div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="250px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>{{ "CONFIGURATION.PREFERRED_DNS_SERVER" | translate }}</th>
+                                    <td>
+                                        <input type="text" ng-model="ipv4PreferredDnsServer"
+                                            class="form-control input-sm" style="width:200px;">
+                                    </td>
+                                </tr>
+                                <tr class="down">
+                                    <th>{{ "CONFIGURATION.ALTERNATE_DNS_SERVER" | translate }}</th>
+                                    <td>
+                                        <input type="text" ng-model="ipv4AlternateDnsServer"
+                                            class="form-control input-sm" style="width:200px;">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="con-info">
+                        <!-- [수정3] en_US.json 에 IP_V6_DOMAIN_NAME_SERVER_CONFIGURATION Text 오류 수정 -->
+                        <div class="info-data">{{ "CONFIGURATION.IP_V6_DOMAIN_NAME_SERVER_CONFIGURATION" | translate }}
+                        </div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="250px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>{{ "CONFIGURATION.PREFERRED_DNS_SERVER" | translate }}</th>
+                                    <td>
+                                        <input type="text" ng-model="ipv6PreferredDnsServer"
+                                            class="form-control input-sm" style="width:200px;">
+                                    </td>
+                                </tr>
+                                <tr class="down">
+                                    <th>{{ "CONFIGURATION.ALTERNATE_DNS_SERVER" | translate }}</th>
+                                    <td>
+                                        <input type="text" ng-model="ipv6AlternateDnsServer"
+                                            class="form-control input-sm" style="width:200px;">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="btn-style">
+                        <button type="button" class="btn btn-blue"
+                            ng-click="Dnssave()">{{ "SAVE" | translate }}</button>
+                        <button type="button" class="btn btn-black" ng-click="Dnsreset()">{{ "RESET" | translate
+                            }}</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- row content -->
+    </div>
+</div>
+
+<!-- <div ng-include="'views/configNetwork.html'" style="margin-top: -70px"></div> -->
+<style>
+    .network_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .network_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .network_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+<script>
+    const network_Arrow = document.querySelector(".network_arrow-icon");
+    const network_ctrlSplit = document.querySelector(".network_ctrl-split");
+    const network_titleline = document.querySelector(".network-line");
+    const network_boxGuide = document.querySelector(".networkbox_guide");
+    const network_img1Path = "./images/arrow1_icon.png";
+    const network_img2Path = "./images/arrow2_icon.png";
+
+    let networkVisible = false;
+
+    network_Arrow.addEventListener("click", function () {
+        if (networkVisible) {
+            network_Arrow.src = network_img2Path;
+
+            network_ctrlSplit.style.display = "none";
+            network_titleline.style.borderBottom = "none";
+            network_boxGuide.style.minHeight = "100px";
+            network_boxGuide.style.paddingBottom = "20px";
+
+            networkVisible = false;
+        } else {
+            network_Arrow.src = network_img1Path;
+
+            network_ctrlSplit.style.display = "flex";
+            network_titleline.style.borderBottom = "2px solid #0b4daf";
+            network_boxGuide.style.minHeight = "400px";
+            network_boxGuide.style.paddingBottom = "50px";
+
+
+            networkVisible = true;
+        }
+    });
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()" style="margin-top: -70px">
+    <div class="content">
+        <div class="box_wrap box_guide networkbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line network-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.NETWORK_SETTING" | translate }}</h4>
+                    <div class="network_arrow_line">
+                        <div class="con-subtit">{{ "CONFIGURATION.NETWORK_SETTING_DESCRIPTION" | translate }}</div>
+                        <img src="./images/arrow2_icon.png" class="network_arrow-icon">
+                    </div>
+                    <div class="network_ctrl-split">
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "CONFIGURATION.NETWORK_INTERFACE_CONFIGURATION" | translate }}
+                            </div>
+                            <table class="table-data">
+                                <colgroup>
+                                    <col width="250px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.PRIORITY" | translate }}</th>
+                                        <td>
+                                            <!-- <label class="radio-inline"><input type="radio" name="priority" value="eth0"
+                                                    ng-model="priority">eth0-Shared</label> -->
+                                            <label class="radio-inline"><input type="radio" name="priority" value="eth1"
+                                                    ng-model="priority">eth1-Shared</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.INTERFACE_NAME" | translate }}</th>
+                                        <td>
+                                            <select class="form-control input-sm" style="width:200px;"
+                                                ng-model="networkInfo" ng-change="onChangeNetwork(networkInfo)">
+                                                <option ng-repeat="network in networkInfos" ng-value="network">{{
+                                                    network.LAN_INTERFACE }}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.ENABLE_DISABLE" | translate }}</th>
+                                        <td>
+                                            <label class="checkbox-inline"><input type="checkbox"
+                                                    ng-model="lanSettingEnable">{{
+                                                "ENABLE" | translate }}</label>
+                                        </td>
+                                    </tr>
+                                    <tr class="down">
+                                        <th>{{ "MAC_ADDRESS" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="macAddress" class="form-control input-sm"
+                                                style="width:200px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "CONFIGURATION.IP_V4_CONFIGURATION" | translate }}</div>
+                            <table class="table-data">
+                                <colgroup>
+                                    <col width="250px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.OBTAIN_AN_IP_ADDRESS_AUTOMATICALLY" | translate }}</th>
+                                        <td>
+                                            <label class="checkbox-inline"><input type="checkbox"
+                                                    ng-model="ipv4DhcpEnable" ng-change="ipv4UseDhcpChange()">{{
+                                                "CONFIGURATION.USE_DHCP" | translate
+                                                }}</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.IP_V4_ADDRESS" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="ipv4Address" id="ipv4Address"
+                                                class="form-control input-sm" style="width:200px;"
+                                                ng-readonly="ipv4DhcpEnable">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.SUBNET_MASK" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="ipv4Netmask" id="ipv4Netmask"
+                                                class="form-control input-sm" style="width:200px;"
+                                                ng-readonly="ipv4DhcpEnable">
+                                        </td>
+                                    </tr>
+                                    <tr class="down">
+                                        <th>{{ "CONFIGURATION.DEFAULT_GATEWAY" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="ipv4Gateway" id="ipv4Gateway"
+                                                class="form-control input-sm" style="width:200px;"
+                                                ng-readonly="ipv4DhcpEnable">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "CONFIGURATION.IP_V6_CONFIGURATION" | translate }}</div>
+                            <table class="table-data">
+                                <colgroup>
+                                    <col width="250px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.IP_V6_SETTINGS" | translate }}</th>
+                                        <td>
+                                            <label class="checkbox-inline"><input type="checkbox" ng-model="ipv6Enable">{{
+                                                "ENABLE" | translate }}</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.OBTAIN_AN_IP_ADDRESS_AUTOMATICALLY" | translate }}</th>
+                                        <td>
+                                            <label class="checkbox-inline"><input type="checkbox"
+                                                    ng-model="ipv6DhcpEnable" ng-change="ipv6UseDhcpChange()">{{
+                                                "CONFIGURATION.USE_DHCP" | translate
+                                                }}</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.IP_V6_ADDRESS" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="ipv6Address" class="form-control input-sm"
+                                                style="width:200px;" ng-readonly="ipv6DhcpEnable">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.SUBNET_PREFIX_LENGTH" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="ipv6SubnetPrefixLength"
+                                                class="form-control input-sm" style="width:200px;"
+                                                ng-readonly="ipv6DhcpEnable">
+                                        </td>
+                                    </tr>
+                                    <tr class="down">
+                                        <th>{{ "CONFIGURATION.DEFAULT_GATEWAY" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="ipv6Gateway" class="form-control input-sm"
+                                                style="width:200px;" ng-readonly="ipv6DhcpEnable">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- <div class="con-info">
+                            <div class="info-data">{{ "CONFIGURATION.VLAN_CONFIGURATION" | translate }}</div>
+                            <table class="table-data">
+                                <colgroup>
+                                    <col width="250px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.VLAN_SETTINGS" | translate }}</th>
+                                        <td>
+                                            <label class="checkbox-inline"><input type="checkbox"
+                                                    ng-model="vlanSettingsEnable">{{ "ENABLE" | translate }}</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.VLAN_ID" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="vlanId" class="form-control input-sm"
+                                                style="width:200px;">
+                                        </td>
+                                    </tr>
+                                    <tr class="down">
+                                        <th>{{ "CONFIGURATION.VLAN_PRIORITY" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="vlanPriority" class="form-control input-sm"
+                                                style="width:200px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+
+                        <div class="btn-style">
+                            <button type="button" class="btn btn-blue" ng-click="Netsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-black" ng-click="Netreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- row content -->
+        </div>
+    </div>
+</div>
+
+<!-- <div ng-include="'views/configSmtp.html'" style="margin-top: -70px"></div> -->
+<style>
+    .smtp_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .smtp_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .smtp_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+<script>
+    const smtp_Arrow = document.querySelector(".smtp_arrow-icon");
+    const smtp_ctrlSplit = document.querySelector(".smtp_ctrl-split");
+    const smtp_titleline = document.querySelector(".smtp-line");
+    const smtp_boxGuide = document.querySelector(".smtpbox_guide");
+    const smtp_img1Path = "./images/arrow1_icon.png";
+    const smtp_img2Path = "./images/arrow2_icon.png";
+
+    let smtpVisible = false;
+
+    smtp_Arrow.addEventListener("click", function () {
+        if (smtpVisible) {
+            smtp_Arrow.src = smtp_img2Path;
+
+            smtp_ctrlSplit.style.display = "none";
+            smtp_titleline.style.borderBottom = "none";
+            smtp_boxGuide.style.minHeight = "100px";
+            smtp_boxGuide.style.paddingBottom = "20px";
+
+            smtpVisible = false;
+        } else {
+            smtp_Arrow.src = smtp_img1Path;
+
+            smtp_ctrlSplit.style.display = "flex";
+            smtp_titleline.style.borderBottom = "2px solid #0b4daf";
+            smtp_boxGuide.style.minHeight = "400px";
+            smtp_boxGuide.style.paddingBottom = "50px";
+
+            smtpVisible = true;
+        }
+    });
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()" style="margin-top: -70px">
+    <div class="content">
+        <div class="box_wrap box_guide smtpbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line smtp-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.SMTP_SERVER_SETTING" | translate }}</h4>
+                    <div class="smtp_arrow_line">
+                        <div class="con-subtit">{{ "CONFIGURATION.SMTP_SERVER_SETTING_DESCRIPTION" | translate }}</div>
+                        <img src="./images/arrow2_icon.png" class="smtp_arrow-icon">
+                    </div>
+                    <div class="smtp_ctrl-split">
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "CONFIGURATION.MANAGE_SMTP_SETTING_BMC" | translate }}</div>
+
+                            <table class="table-data">
+                                <colgroup>
+                                    <col width="200px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.SENDER_EMAIL" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="senderAddress" class="form-control input-sm"
+                                                style="width:200px;">
+                                        </td>
+                                    </tr>
+                                    <tr class="down">
+                                        <th>{{ "CONFIGURATION.MACHINE_NAME" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="machineName" class="form-control input-sm"
+                                                style="width:200px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "CONFIGURATION.PRIMARY_SMTP_SERVER" | translate }}</div>
+                            <form class="form-inline">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.EMAIL_SERVER" | translate }}</th>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="text" ng-model="primaryServerAddress"
+                                                        class="form-control input-sm" style="width:200px;"> &nbsp;
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.USER_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="primaryUserName"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.PASSWORD" | translate }}</th>
+                                            <td>
+                                                <input type="password" ng-model="primaryUserPassword"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "CONFIGURATION.SECONDARY_SMTP_SERVER" | translate }}</div>
+                            <form class="form-inline">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.EMAIL_SERVER" | translate }}</th>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="text" ng-model="secondaryServerAddress"
+                                                        class="form-control input-sm" style="width:200px;"> &nbsp;
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.USER_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="secondaryUserName"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.PASSWORD" | translate }}</th>
+                                            <td>
+                                                <input type="password" ng-model="secondaryUserPassword"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div class="btn-style">
+                            <button type="button" class="btn btn-blue" ng-click="Smtsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-black" ng-click="Smtreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- row content -->
+        </div>
+    </div>
+</div>
+
+
+<!-- <div ng-include="'views/configGenerateSsl.html'" style="margin-top: -70px"></div> -->
+<style>
+    .generate_ssl_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .generate_ssl_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .generate_ssl_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+<script>
+    const generate_ssl_Arrow = document.querySelector(".generate_ssl_arrow-icon");
+    const generate_ssl_ctrlSplit = document.querySelector(".generate_ssl_ctrl-split");
+    const generate_ssl_titleline = document.querySelector(".generate_ssl-line");
+    const generate_ssl_boxGuide = document.querySelector(".generate_sslbox_guide");
+    const generate_ssl_img1Path = "./images/arrow1_icon.png";
+    const generate_ssl_img2Path = "./images/arrow2_icon.png";
+
+    let generate_sslVisible = false;
+
+    generate_ssl_Arrow.addEventListener("click", function () {
+        if (generate_sslVisible) {
+            generate_ssl_Arrow.src = generate_ssl_img2Path;
+
+            generate_ssl_ctrlSplit.style.display = "none";
+            generate_ssl_titleline.style.borderBottom = "none";
+            generate_ssl_boxGuide.style.minHeight = "100px";
+            generate_ssl_boxGuide.style.paddingBottom = "20px";
+
+            generate_sslVisible = false;
+        } else {
+            generate_ssl_Arrow.src = generate_ssl_img1Path;
+
+            generate_ssl_ctrlSplit.style.display = "flex";
+            generate_ssl_titleline.style.borderBottom = "2px solid #0b4daf";
+            generate_ssl_boxGuide.style.minHeight = "400px";
+            generate_ssl_boxGuide.style.paddingBottom = "50px";
+
+            generate_sslVisible = true;
+        }
+    });
+
+
+    document.querySelector('.menu-tab li:nth-child(1)').classList.add('active');
+
+    function handleGenViewClick() {
+        document.querySelector('.Gen_box').style.display = 'block';
+        document.querySelector('.View_box').style.display = 'none';
+        document.querySelector('.menu-tab li:nth-child(1)').classList.add('active');
+        document.querySelector('.menu-tab li:nth-child(2)').classList.remove('active');
+    }
+
+    function handleViewGenClick() {
+        document.querySelector('.Gen_box').style.display = 'none';
+        document.querySelector('.View_box').style.display = 'block';
+        document.querySelector('.menu-tab li:nth-child(1)').classList.remove('active');
+        document.querySelector('.menu-tab li:nth-child(2)').classList.add('active');
+    }
+
+    const genViewElement = document.getElementById('view_Gen');
+    genViewElement.addEventListener('click', handleGenViewClick);
+
+    const viewGenElement = document.getElementById('Gen_view');
+    viewGenElement.addEventListener('click', handleViewGenClick);
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()" style="margin-top: -70px">
+    <div class="content">
+        <div class="box_wrap box_guide generate_sslbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line generate_ssl-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.SSL_CERTIFICATION_CONFIGURATION" | translate }}</h4>
+                    <div class="generate_ssl_arrow_line">
+                        <div class="con-subtit">{{ "CONFIGURATION.SSL_CERTIFICATION_CONFIGURATION_DESCRIPTION" |
+                            translate }}</div>
+                        <img src="./images/arrow2_icon.png" class="generate_ssl_arrow-icon">
+                    </div>
+                    <div class="generate_ssl_ctrl-split">
+                        <div class="menu-tab">
+                            <ul class="nav nav-tabs" class="active">
+                                <li>
+                                    <a id="view_Gen">{{ "CONFIGURATION.GENERATE_SSL" | translate }}</a>
+                                </li>
+                                <li>
+                                    <a id="Gen_view">{{ "CONFIGURATION.VIEW_SSL" | translate }}</a>
+                                    <!-- <a ng-include="'views/configViewSsl.html'">{{ "CONFIGURATION.VIEW_SSL" | translate }}</a> -->
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="Gen_box" style="display: block;">
+                            <div class="con-info">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.COMMON_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="commonName" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="organization" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_UNIT_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="organizationUnit"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.CITY_OR_LOCALITY" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="cityOrLocality"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.STATE_OR_PROVINCE" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="stateOrProvince"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.COUNTRY_NAME" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="country" maxlength="2"
+                                                    class="form-control input-sm" style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.EMAIL_ADDRESS" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="emailAddress" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <!-- [수정3] 입력 시에는 valid for / from 의 개념이 아닌 유효일수의 의미인 days로 하게끔 
+                            lang을 사용해서 en_US.json의 VALID_DAYS 값을 'Valid days' 로 추가함 
+                            ko_KR.json 에 VALID DAYS '유효 일수' 추가함 -->
+                                            <!-- <th>{{ "CONFIGURATION.VALID_FOR" | translate }}</th> -->
+                                            <th>{{ "CONFIGURATION.VALID_DAYS" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="validFor" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.KEY_LENGTH" | translate }}</th>
+                                            <td>
+                                                <select class="form-control input-sm" ng-model="keyLength"
+                                                    style="width:200px;">
+                                                    <option>Default</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <div class="View_box" style="display: none;">
+                            <div class="con-info">
+                                <div class="info-data">{{ "BASIC_INFORMATION" | translate }}</div>
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.VERSION" | translate }}</th>
+                                            <td>{{ version || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.SERIAL_NUMBER" | translate }}</th>
+                                            <td>{{ serialNumber || '-' }}</td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.DIGITAL_SIGNATURE_ALGORITHM" | translate }}</th>
+                                            <td>{{ signatureAlgorithm || '-' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="con-info">
+                                <div class="info-data">{{ "CONFIGURATION.ISSUED_FROM" | translate }}</div>
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.COMMON_NAME" | translate }}</th>
+                                            <td>{{ commonName || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_NAME" | translate }}</th>
+                                            <td>{{ organization || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_UNIT_NAME" | translate }}</th>
+                                            <td>{{ organizationUnit || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.CITY_OR_LOCALITY" | translate }}</th>
+                                            <td>{{ cityOrLocality || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.STATE_OR_PROVINCE" | translate }}</th>
+                                            <td>{{ stateOrProvince || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.COUNTRY_NAME" | translate }}</th>
+                                            <td>{{ country || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.EMAIL_ADDRESS" | translate }}</th>
+                                            <td>{{ emailAddress || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.VALID_FOR" | translate }}</th>
+                                            <td>{{ validFor || '-' }}</td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.KEY_LENGTH" | translate }}</th>
+                                            <td>{{ keyLength || '-' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="con-info">
+                                <div class="info-data">{{ "CONFIGURATION.VALIDITY_INFORMATION" | translate }}</div>
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.VALID_FROM" | translate }}</th>
+                                            <td>{{ validFrom || '-' }}</td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.VALID_FOR" | translate }}</th>
+                                            <td>{{ validFor || '-' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="con-info">
+                                <div class="info-data">{{ "CONFIGURATION.ISSUED_TO" | translate }}</div>
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.COMMON_NAME" | translate }}</th>
+                                            <td>{{ commonNameIssueedTo || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_NAME" | translate }}</th>
+                                            <td>{{ organizationIssueedTo || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ORGANIZATION_UNIT_NAME" | translate }}</th>
+                                            <td>{{ organizationUnitIssueedTo || '-' }}</td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.CITY_OR_LOCALITY" | translate }}</th>
+                                            <td>{{ cityOrLocalityIssuedTo || '-' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="btn-style">
+                            <button type="button" class="btn btn-blue" ng-click="Sslsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-black" ng-click="Sslreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div ng-include="'views/configActiveDirectory.html'" style="margin-top: -70px"></div> -->
+<style>
+    .active_directory_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .active_directory_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .active_directory_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+<script>
+    const active_directory_Arrow = document.querySelector(".active_directory_arrow-icon");
+    const active_directory_ctrlSplit = document.querySelector(".active_directory_ctrl-split");
+    const active_directory_titleline = document.querySelector(".active_directory-line");
+    const active_directory_boxGuide = document.querySelector(".active_directorybox_guide");
+    const active_directory_img1Path = "./images/arrow1_icon.png";
+    const active_directory_img2Path = "./images/arrow2_icon.png";
+
+    let active_directoryVisible = false;
+
+    active_directory_Arrow.addEventListener("click", function () {
+        if (active_directoryVisible) {
+            active_directory_Arrow.src = active_directory_img2Path;
+
+            active_directory_ctrlSplit.style.display = "none";
+            active_directory_titleline.style.borderBottom = "none";
+            active_directory_boxGuide.style.minHeight = "100px";
+            active_directory_boxGuide.style.paddingBottom = "20px";
+
+            active_directoryVisible = false;
+        } else {
+            active_directory_Arrow.src = active_directory_img1Path;
+
+            active_directory_ctrlSplit.style.display = "flex";
+            active_directory_titleline.style.borderBottom = "2px solid #0b4daf";
+            active_directory_boxGuide.style.minHeight = "400px";
+            active_directory_boxGuide.style.paddingBottom = "50px";
+
+            active_directoryVisible = true;
+        }
+    });
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()" style="margin-top: -70px">
+    <div class="content">
+        <div class="box_wrap box_guide active_directorybox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line active_directory-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.GENERAL_ACTIVE_DIRECTORY_SETTINGS" | translate }}</h4>
+                    <div class="active_directory_arrow_line">
+                        <div class="con-subtit">{{ "CONFIGURATION.GENERAL_ACTIVE_DIRECTORY_SETTINGS_DESCRIPTION" |
+                            translate
+                            }}</div>
+                        <img src="./images/arrow2_icon.png" class="active_directory_arrow-icon">
+                    </div>
+                    <div class="active_directory_ctrl-split">
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "SETTINGS" | translate }}</div>
+                            <form class="form-inline">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="300px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.AUTHENTICATION" | translate }}</th>
+                                            <td>
+                                                <label class="checkbox-inline"><input type="checkbox"
+                                                        ng-model="adEnable">{{
+                                                    "CONFIGURATION.ENABLE_ACTIVE_DIRECTORY_AUTHENTICATION" | translate
+                                                    }}</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.SECRET_USER_NAME" | translate }}</th>
+                                            <td><input type="text" class="form-control input-sm"
+                                                    ng-model="adSecretName">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.SECRET_PASSWORD" | translate }}</th>
+                                            <td><input type="password" class="form-control input-sm"
+                                                    ng-model="adSecretPw">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.DOMAIN_NAME" | translate }}</th>
+                                            <td><input type="text" class="form-control input-sm" ng-model="adDomain">
+                                            </td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.DOMAIN_CONTROLLER_SERVER_ADDRESS_1" | translate }}
+                                            </th>
+                                            <td><input type="text" class="form-control input-sm" ng-model="adIpAddress">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div class="btn-style">
+                            <button type="button" class="btn btn-blue" ng-click="adsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-black" ng-click="adreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div ng-include="'views/configLdap.html'" style="margin-top: -70px"></div> -->
+<style>
+    .ldap_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .ldap_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .ldap_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+<script>
+    const ldap_Arrow = document.querySelector(".ldap_arrow-icon");
+    const ldap_ctrlSplit = document.querySelector(".ldap_ctrl-split");
+    const ldap_titleline = document.querySelector(".ldap-line");
+    const ldap_boxGuide = document.querySelector(".ldapbox_guide");
+    const ldap_img1Path = "./images/arrow1_icon.png";
+    const ldap_img2Path = "./images/arrow2_icon.png";
+
+    let ldapVisible = false;
+
+    ldap_Arrow.addEventListener("click", function () {
+        if (ldapVisible) {
+            ldap_Arrow.src = ldap_img2Path;
+
+            ldap_ctrlSplit.style.display = "none";
+            ldap_titleline.style.borderBottom = "none";
+            ldap_boxGuide.style.minHeight = "100px";
+            ldap_boxGuide.style.paddingBottom = "20px";
+
+            ldapVisible = false;
+        } else {
+            ldap_Arrow.src = ldap_img1Path;
+
+            ldap_ctrlSplit.style.display = "flex";
+            ldap_titleline.style.borderBottom = "2px solid #0b4daf";
+            ldap_boxGuide.style.minHeight = "400px";
+            ldap_boxGuide.style.paddingBottom = "50px";
+
+            ldapVisible = true;
+        }
+    });
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()" style="margin-top: -70px">
+    <div class="content">
+        <div class="box_wrap box_guide ldapbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line ldap-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.GENERAL_LDAP_SETTINGS" | translate }}</h4>
+                    <div class="ldap_arrow_line">
+                        <div class="con-subtit">{{ "CONFIGURATION.GENERAL_LDAP_SETTINGS_DESCRIPTION" | translate }}
+                        </div>
+                        <img src="./images/arrow2_icon.png" class="ldap_arrow-icon">
+                    </div>
+                    <div class="ldap_ctrl-split">
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "SETTINGS" | translate }}</div>
+                            <form class="form-inline">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.AUTHENTICATION" | translate }}</th>
+                                            <td>
+                                                <label class="checkbox-inline"><input type="checkbox"
+                                                        ng-model="ldapEnable">Enable LDAP/E-directory
+                                                    Authentication</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ENCRYPTION_TYPE" | translate }}</th>
+                                            <td>
+                                                <label class="radio-inline"><input type="radio" name="encryption"
+                                                        value="0" ng-model="ldapSsl">No Encryption</label>
+                                                <label class="radio-inline"><input type="radio" name="encryption"
+                                                        value="1" ng-model="ldapSsl">SSL</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.SERVER_ADDRESS" | translate }}</th>
+                                            <td><input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="ldapIpAddress"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "PORT" | translate }}</th>
+                                            <td><input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="ldapPort"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.BIND_DN" | translate }}</th>
+                                            <td><input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="ldapBindDn"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.BIND_PW" | translate }}</th>
+                                            <td><input type="password" class="form-control input-sm"
+                                                    style="width:200px;" ng-model="ldapBindPw"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.BASE_DN" | translate }}</th>
+                                            <td><input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="ldapBaseDn"></td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.TIMEOUT" | translate }}</th>
+                                            <td>
+                                                <select class="form-control input-sm" style="width:200px;"
+                                                    ng-model="ldapTimeout">
+                                                    <option value="10">10</option>
+                                                    <option value="20">20</option>
+                                                    <option value="30">30</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div class="btn-style">
+                            <button type="button" class="btn btn-blue" ng-click="Ldapsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-black" ng-click="Ldapreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div ng-include="'views/configRadius.html'" style="margin-top: -70px"></div> -->
+<style>
+    .radius_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .radius_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .radius_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+<script>
+    const radius_Arrow = document.querySelector(".radius_arrow-icon");
+    const radius_ctrlSplit = document.querySelector(".radius_ctrl-split");
+    const radius_titleline = document.querySelector(".radius-line");
+    const radius_boxGuide = document.querySelector(".radiusbox_guide");
+    const radius_img1Path = "./images/arrow1_icon.png";
+    const radius_img2Path = "./images/arrow2_icon.png";
+
+    let radiusVisible = false;
+
+    radius_Arrow.addEventListener("click", function () {
+        if (radiusVisible) {
+            radius_Arrow.src = radius_img2Path;
+
+            radius_ctrlSplit.style.display = "none";
+            radius_titleline.style.borderBottom = "none";
+            radius_boxGuide.style.minHeight = "100px";
+            radius_boxGuide.style.paddingBottom = "20px";
+
+            radiusVisible = false;
+        } else {
+            radius_Arrow.src = radius_img1Path;
+
+            radius_ctrlSplit.style.display = "flex";
+            radius_titleline.style.borderBottom = "2px solid #0b4daf";
+            radius_boxGuide.style.minHeight = "400px";
+            radius_boxGuide.style.paddingBottom = "50px";
+
+            radiusVisible = true;
+        }
+    });
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()" style="margin-top: -70px">
+    <div class="content">
+        <div class="box_wrap box_guide radiusbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line radius-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.GENERAL_RADIUS_SETTINGS" | translate }}</h4>
+                    <div class="radius_arrow_line">
+                        <div class="con-subtit">{{ "CONFIGURATION.GENERAL_RADIUS_SETTINGS_DESCRIPTION" | translate }}
+                        </div>
+                        <img src="./images/arrow2_icon.png" class="radius_arrow-icon">
+
+                    </div>
+                    <div class="radius_ctrl-split">
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "SETTINGS" | translate }}</div>
+                            <form class="form-inline">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.AUTHENTICATION" | translate }}</th>
+                                            <td>
+                                                <label class="checkbox-inline"><input type="checkbox"
+                                                        ng-model="radiusEnable">{{
+                                                    "CONFIGURATION.ENABLE_RADIUS_AUTHENTICATION" | translate }}</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.SERVER_ADDRESS" | translate }}</th>
+                                            <td>
+                                                <input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="radiusIp">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "PORT" | translate }}</th>
+                                            <td>
+                                                <input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="radiusPort">
+                                            </td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.SECRET" | translate }}</th>
+                                            <td>
+                                                <input type="password" class="form-control input-sm"
+                                                    style="width:200px;" ng-model="radiusSecret">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div class="btn-style">
+                            <button type="button" class="btn btn-blue" ng-click="Radiussave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-black" ng-click="Radiusreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

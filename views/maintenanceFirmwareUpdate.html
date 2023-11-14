@@ -1,0 +1,61 @@
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide">
+            <div class="content-area">
+                <div class="title_line">
+                    <h4>{{ "MAINTENANCE.FIRMWARE_UPDATE" | translate }}</h4>
+                    <div class="con-subtit">{{ "MAINTENANCE.FIRMWARE_UPDATE_DESCRIPTION" | translate }}</div>
+                </div>
+
+                <div class="con-info">
+                    <form class="form-inline" action="javascript:update()" id="fwform" method="post" enctype="multipart/form-data">
+                        <div class="info-data">{{ "MAINTENANCE.FIRMWARE_UPDATE" | translate }}</div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="200px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                            <!-- [수정5] 펌웨어 카테고리 추가(lang에도 추가) -->
+                            <tr>
+                                <th>{{ "MAINTENANCE.CATEGORY" | translate }}</th>
+                                <td>
+                                    <select 
+                                        class="form-control input-sm"
+                                        style="width: 150px;"
+                                        ng-options="category for category in categoryList"
+                                        ng-model="selectedCategory"
+                                        ng-change="onChangeCategory(selectedCategory)">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="down">
+                                <th>{{ "MAINTENANCE.FIRMWARE" | translate }}</th>
+                                <td>
+                                    <div>
+                                        <div class="form-inline">
+                                            <input name="upload" type="file" id="firmwareFile" class="form-control input-sm sr-only" file-model="firmwareFile" />
+                                            <input type="text" class="form-control input-sm" style="width:400px;" ng-model="fileName"> &nbsp;
+                                            <button type="button" class="btn btn-normal btn-sm" ng-click="chooseFile()">{{ "MAINTENANCE.CHOOSE_FILE" | translate }}</button>
+                                        </div>
+                                        <div ng-if="showProgress" class="progress" style="margin-top: 10px; margin-bottom: 0px; height: 20px;">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': percent + '%' }">
+                                                <span>{{ percent }}% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="btn-style">
+                            <!-- <button type="button" class="btn btn-blue" data-ng-click="update()">{{ "MAINTENANCE.UPDATE" | translate }}</button> -->
+                            <button type="button" class="btn btn-blue" data-ng-click="upload()">{{ "MAINTENANCE.UPLOAD" | translate }}</button>
+                            <button type="button" class="btn btn-black" data-ng-click="reset()">{{ "RESET" | translate }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

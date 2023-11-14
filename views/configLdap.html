@@ -1,0 +1,144 @@
+<style>
+    .ldap_arrow_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .ldap_arrow-icon {
+        width: 20px;
+        margin-left: 5px;
+        margin-left: auto;
+    }
+
+    .ldap_ctrl-split {
+        display: none;
+        flex-direction: column;
+    }
+</style>
+
+<script>
+    const ldap_Arrow = document.querySelector(".ldap_arrow-icon");
+    const ldap_ctrlSplit = document.querySelector(".ldap_ctrl-split");
+    const ldap_titleline = document.querySelector(".ldap-line");
+    const ldap_boxGuide = document.querySelector(".ldapbox_guide");
+    const ldap_img1Path = "./images/arrow1_icon.png";
+    const ldap_img2Path = "./images/arrow2_icon.png";
+
+    let ldapVisible = false;
+
+    ldap_Arrow.addEventListener("click", function () {
+        if (ldapVisible) {
+            ldap_Arrow.src = ldap_img2Path;
+
+            ldap_ctrlSplit.style.display = "none";
+            ldap_titleline.style.borderBottom = "none";
+            ldap_boxGuide.style.minHeight = "100px";
+            ldap_boxGuide.style.paddingBottom = "20px";
+
+            ldapVisible = false;
+        } else {
+            ldap_Arrow.src = ldap_img1Path;
+
+            ldap_ctrlSplit.style.display = "flex";
+            ldap_titleline.style.borderBottom = "2px solid #0b4daf";
+            ldap_boxGuide.style.minHeight = "400px";
+            ldap_boxGuide.style.paddingBottom = "50px";
+
+            ldapVisible = true;
+        }
+    });
+</script>
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide ldapbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line ldap-line" style="border-bottom: none;">
+                    <h4>{{ "CONFIGURATION.GENERAL_LDAP_SETTINGS" | translate }}</h4>
+                    <div class="ldap_arrow_line">
+                        <div class="con-subtit">{{ "CONFIGURATION.GENERAL_LDAP_SETTINGS_DESCRIPTION" | translate }}
+                        </div>
+                        <img src="./images/arrow2_icon.png" class="ldap_arrow-icon">
+                    </div>
+                    <div class="ldap_ctrl-split">
+
+                        <div class="con-info">
+                            <div class="info-data">{{ "SETTINGS" | translate }}</div>
+                            <form class="form-inline">
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="200px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.AUTHENTICATION" | translate }}</th>
+                                            <td>
+                                                <label class="checkbox-inline"><input type="checkbox"
+                                                        ng-model="ldapEnable">Enable LDAP/E-directory
+                                                    Authentication</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.ENCRYPTION_TYPE" | translate }}</th>
+                                            <td>
+                                                <label class="radio-inline"><input type="radio" name="encryption"
+                                                        value="0" ng-model="ldapSsl">No Encryption</label>
+                                                <label class="radio-inline"><input type="radio" name="encryption"
+                                                        value="1" ng-model="ldapSsl">SSL</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.SERVER_ADDRESS" | translate }}</th>
+                                            <td><input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="ldapIpAddress"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "PORT" | translate }}</th>
+                                            <td><input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="ldapPort"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.BIND_DN" | translate }}</th>
+                                            <td><input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="ldapBindDn"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.BIND_PW" | translate }}</th>
+                                            <td><input type="password" class="form-control input-sm"
+                                                    style="width:200px;" ng-model="ldapBindPw"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "CONFIGURATION.BASE_DN" | translate }}</th>
+                                            <td><input type="text" class="form-control input-sm" style="width:200px;"
+                                                    ng-model="ldapBaseDn"></td>
+                                        </tr>
+                                        <tr class="down">
+                                            <th>{{ "CONFIGURATION.TIMEOUT" | translate }}</th>
+                                            <td>
+                                                <select class="form-control input-sm" style="width:200px;"
+                                                    ng-model="ldapTimeout">
+                                                    <option value="10">10</option>
+                                                    <option value="20">20</option>
+                                                    <option value="30">30</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div class="btn-style">
+                            <button type="button" class="btn btn-blue" ng-click="Ldapsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-black" ng-click="Ldapreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

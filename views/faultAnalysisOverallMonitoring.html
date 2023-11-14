@@ -1,0 +1,2571 @@
+<style>
+
+  .left40 {
+
+    width: 85%;
+
+    height: auto;
+
+    flex: 1;
+
+    position: relative;
+
+    align-items: center;
+
+    margin-left: 5px;
+
+  }
+
+
+
+  .right60 {
+
+    width: 115%;
+
+    height: auto;
+
+    margin-left: -15%;
+
+    margin-right: 10%;
+
+  }
+
+
+
+  .left50 {
+
+    width: 90%;
+
+    height: auto;
+
+    padding: 10px 10px 0 10px;
+
+    position: absolute;
+
+
+
+  }
+
+
+
+  .right50 {
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 10px;
+
+    position: absolute;
+
+
+
+  }
+
+
+
+  .split50>.left50 {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding-left: 12px;
+
+    position: relative;
+
+    margin: 0 0 0 0;
+
+    display: flex;
+
+    align-items: center;
+
+  }
+
+
+
+  .left30 {
+
+    width: 20%;
+
+    height: auto;
+
+    flex: 1;
+
+    position: absolute;
+
+    display: flex;
+
+    align-items: center;
+
+  }
+
+
+
+  .right70 {
+
+    width: 80%;
+
+    margin-left: 20%;
+
+    margin-right: 5%;
+
+  }
+
+
+
+  .split50 {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+  }
+
+
+
+  .ctrl-left50 {
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 5px;
+
+    position: relative;
+
+  }
+
+
+
+  .ctrl-right50 {
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 5px;
+
+    margin-bottom: 7px;
+
+    position: relative;
+
+  }
+
+
+
+  .Rack_title {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: absolute;
+
+    margin-left: 1rem;
+
+    height: auto;
+
+    width: 100%;
+
+  }
+
+
+
+  .Chassis_btn .button {
+
+    position: relative;
+
+    width: 100%;
+
+    color: #1B2129;
+
+    font-weight: bold;
+
+    font-size: 90%;
+
+    margin: 1rem 0.2rem;
+
+    padding: 0.2rem 1.3rem;
+
+    display: table;
+
+    vertical-align: middle;
+
+    text-align: center;
+
+    background-color: #fff;
+
+    box-shadow: 0px 0px 0px 3px #85B9FF;
+
+    border-radius: 5px;
+    border: none;
+  }
+
+
+
+  .button:hover {
+
+    color: #fff;
+
+    background-color: #85B9FF;
+    border: none;
+  }
+
+
+
+  .button:active {
+
+    color: #fff;
+
+    background-color: #fff;
+
+    box-shadow: 0px 0px 0px 3px #85B9FF;
+
+  }
+
+
+
+  .button-active {
+
+    position: relative;
+
+    width: 100%;
+
+    font-weight: bold;
+
+    font-size: 90%;
+
+    margin: 1rem 0.2rem;
+
+    padding: 0.2rem 1.3rem;
+
+    display: table;
+
+    vertical-align: middle;
+
+    text-align: center;
+
+    border-radius: 5px;
+
+    color: #fff;
+
+    background-color: #0b4daf;
+
+    box-shadow: 0px 0px 0px 3px #0b4daf;
+    border: none;
+  }
+
+
+
+
+
+
+
+  #Chassis {
+
+    width: 90%;
+
+    height: auto;
+
+    display: block;
+
+    object-fit: contain;
+
+    margin-left: 5%;
+
+  }
+
+
+
+  .dot-cm1 {
+
+    position: absolute;
+
+    top: 23%;
+
+    left: 24%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #0b4daf;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+
+
+  .dot-cm2 {
+
+    position: absolute;
+
+    top: 36%;
+
+    left: 34%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #85B9FF;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+
+
+  }
+
+
+
+  .dot-cm3 {
+
+    position: absolute;
+
+    top: 45%;
+
+    left: 34%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #85B9FF;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+
+
+  }
+
+
+
+  .dot-sm {
+
+    position: absolute;
+
+    top: 55%;
+
+    left: 34%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #85B9FF;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+
+
+  }
+
+
+
+  .dot-nm {
+
+    position: absolute;
+
+    top: 67%;
+
+    left: 34%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #85B9FF;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+
+
+  }
+
+
+
+  .dot-cmm {
+
+    position: absolute;
+
+    top: 78%;
+
+    left: 34%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #85B9FF;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+
+
+  }
+
+
+
+  .cmm-summary {
+
+    background: #FFF;
+
+    box-shadow: 0px 0px 0px 2.5px #0b4daf;
+
+    border-radius: 15px;
+
+    margin-top: 15px;
+
+    margin-left: 5%;
+
+    margin-right: 5%;
+
+    margin-bottom: 25px;
+
+    height: 100%;
+
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+  }
+
+
+
+  .cm1-summary {
+
+    display: block;
+
+  }
+
+
+
+  .cm2-summary,
+
+  .cm3-summary,
+
+  .sm-summary,
+
+  .nm-summary,
+
+  .cmm-summary2 {
+
+    display: none;
+
+  }
+
+
+
+  .fan-con-info {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+  }
+
+
+
+  .bottom20 {
+
+    width: auto;
+
+    height: 20%;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    margin-bottom: 10px;
+
+
+
+  }
+
+
+
+  .reg-container {
+
+    width: 70%;
+
+    position: relative;
+
+  }
+
+
+
+  #Regiomal {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    margin-left: 5%;
+
+    padding: 3% 0;
+
+    float: left;
+
+
+
+  }
+
+
+
+  .dot-tmp1 {
+
+    position: absolute;
+
+    top: 15%;
+
+    left: 65%;
+
+    transform: translate(-50%, -50%);
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #ff8a8a;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot-tmp2 {
+
+    position: absolute;
+
+    top: 14%;
+
+    left: 88%;
+
+    transform: translate(-50%, -50%);
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #ffea71;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot-tmp3 {
+
+    position: absolute;
+
+    top: 48%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #339e2d;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot-tmp4 {
+
+    position: absolute;
+
+    top: 41%;
+
+    left: 70%;
+
+    transform: translate(-50%, -50%);
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #66bbfc;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot-tmp5 {
+
+    position: absolute;
+
+    top: 70%;
+
+    left: 92%;
+
+    transform: translate(-50%, -50%);
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #c074ff;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot-tmp1:hover,
+
+  .dot-tmp2:hover,
+
+  .dot-tmp3:hover,
+
+  .dot-tmp4:hover,
+
+  .dot-tmp5:hover {
+
+    width: 12px;
+
+    height: 12px;
+
+  }
+
+
+
+  .cmm-table {
+
+    height: 100%;
+
+    width: 30%;
+
+    display: block;
+
+    margin-top: 5%;
+
+  }
+
+
+
+  .cmm-table-data {
+
+    color: #000;
+
+    font-size: 11px;
+
+    flex-grow: 0;
+
+    flex-shrink: 0;
+
+    width: auto;
+
+    float: center;
+
+    margin-left: 30%;
+
+    font-family: notokrM;
+
+
+
+  }
+
+
+
+  .tmp-dot {
+
+    position: relative;
+
+    box-sizing: border-box;
+
+    width: 10px;
+
+    float: left;
+
+    margin-top: 5%;
+
+    margin-right: 1rem;
+
+  }
+
+
+
+  .cmm-table-data td {
+
+    padding-left: 10%;
+
+    padding: 0.2rem 0 0.4rem 1rem;
+
+  }
+
+
+
+  .tmp-text {
+
+    padding-left: 10px;
+
+    float: left;
+
+  }
+
+
+
+  .dot2-tmp1 {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #ff8a8a;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot2-tmp2 {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #ffea71;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot2-tmp3 {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #339e2d;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot2-tmp4 {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #66bbfc;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot2-tmp5 {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #c074ff;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot2-cputmp {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #003b6f;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .cmm-info-data {
+
+    color: #0b4daf;
+
+    font-size: 12px;
+
+    font-family: notokrM;
+
+    padding-bottom: 2px;
+
+    margin-bottom: 1rem;
+
+    font-weight: bold;
+
+    border-bottom: 1.5px solid #0b4daf;
+
+    display: inline-block;
+
+  }
+
+
+
+  .chassis-info-data {
+
+    color: #000;
+
+    font-size: 15px;
+
+    font-family: notokrM;
+
+    padding-left: 4%;
+
+    display: inline-block;
+
+    margin-bottom: 7px;
+
+  }
+
+
+
+  .ctrl-split50 {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+
+
+  .h-ctrl-split1,
+
+  .h-ctrl-split2,
+
+  .h-ctrl-split3,
+
+  .h-ctrl-split4,
+
+  .h-ctrl-split5,
+
+  .h-ctrl-split6 {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+
+
+  .Fan-control {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 23px;
+
+  }
+
+
+
+  .Quick-box {
+
+    width: 93%;
+
+    height: 100%;
+
+    position: relative;
+
+    background: #FFF;
+
+    border: 1px solid #DDD;
+
+    margin: 20px 10px 20px 18px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    font-family: notokrM;
+
+    box-shadow: 0 0 3px 3px rgba(0 0 0 / 10%);
+
+  }
+
+
+
+  .quick-split50 {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+
+
+  .quick-split {
+
+    margin-top: 20px;
+
+  }
+
+
+
+  .quick_tmep-icon {
+
+    width: 30px;
+
+    height: 30px;
+
+    margin: 5px;
+
+  }
+
+
+
+  .control-box {
+
+    width: 30%;
+
+    height: 100%;
+
+    position: relative;
+
+    background: #FFF;
+
+    border: 1px solid #DDD;
+
+    margin: 5px 10px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    display: inline-block;
+
+    font-family: notokrM;
+
+    box-shadow: 0 0 3px 3px rgba(0 0 0 / 10%);
+
+  }
+
+
+
+  .control-box>.split50 {
+
+    padding: 3px 7px 0 7px;
+
+  }
+
+
+
+  .ctrl-top {
+
+    display: flex;
+
+    align-items: center;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    margin-top: 7px;
+
+  }
+
+
+
+  .al-top {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: 100%;
+
+    margin-left: 5%;
+
+
+
+  }
+
+
+
+  .al-title {
+
+    text-align: center;
+
+    flex-grow: 1;
+
+    margin-top: 10px;
+
+  }
+
+
+
+  .al-left-title {
+
+    text-align: left;
+
+    flex-grow: 1;
+
+    margin-top: 10px;
+
+  }
+
+
+
+  .al-lefttitle {
+
+    text-align: left;
+
+    flex-grow: 1;
+
+  }
+
+
+
+
+
+  .ctrl-middle {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    padding: 15px 5px 0 5px;
+
+  }
+
+
+
+  .ctrl-middle2 {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    padding: 0 5px 5px 5px;
+
+    margin: 0 25px 0 20px;
+
+    font-size: 12px;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+  }
+
+
+
+  .al-middle {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: column;
+
+    width: auto;
+
+    padding: 15px 5px 0 5px;
+
+  }
+
+
+
+
+
+  .al-middle2 {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    margin: 0 22px 0 10px;
+
+    font-size: 10px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #ababab;
+
+    height: 23px;
+
+  }
+
+
+
+  .al-left-middle {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    margin: 0 22px 0 10px;
+
+    font-size: 10px;
+
+    align-items: left;
+
+    justify-content: left;
+
+    color: #ababab;
+
+    height: 23px;
+
+  }
+
+
+
+  .tmep-icon {
+
+    width: 13%;
+
+    height: 13%;
+
+    margin: 5px 5px;
+
+  }
+
+
+
+  .ctrl-name {
+
+    width: 77%;
+
+    height: 80%;
+
+    margin: 0;
+
+    padding: 2px 2px 0px 2px;
+
+    margin-left: 5px;
+
+    font-weight: bold;
+
+    display: flex;
+
+    border-bottom: 1.7px solid #333;
+
+    justify-content: space-between;
+
+    text-align: center;
+
+  }
+
+
+
+  .ctrl-name div {
+
+    font-size: 13px;
+
+    text-align: center;
+
+    flex-grow: 1;
+
+  }
+
+
+
+  .al-name {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    font-size: 12px;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+  }
+
+
+
+  .al-tmpsys {
+
+    width: 100%;
+
+    height: 80%;
+
+    padding: 2px 2px 0px 2px;
+
+    margin-left: 5%;
+
+    margin-right: 5%;
+
+    display: flex;
+
+    border-bottom: 1.7px solid #333;
+
+    justify-content: space-between;
+
+    text-align: center;
+
+  }
+
+
+
+
+
+  .al-tmpsys div {
+
+    font-size: 13px;
+
+    flex-grow: 1;
+
+    text-align: left;
+
+    font-weight: bold;
+
+  }
+
+
+
+  .current {
+
+    width: 50%;
+
+    height: 80%;
+
+    margin: 0;
+
+    padding: 2px 2px 0px 2px;
+
+    justify-content: space-between;
+
+    text-align: center;
+
+    align-self: center;
+
+  }
+
+
+
+  .ctrl-right {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding-top: 7px;
+
+  }
+
+
+
+  .ctrl-btn {
+
+    background-color: transparent;
+
+    border: none;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    width: 24px;
+
+    height: 24px;
+
+    position: relative;
+
+  }
+
+
+
+  .menu-icon {
+
+    display: block;
+
+    width: 24px;
+
+    height: 24px;
+
+    position: relative;
+
+  }
+
+
+
+  .menu-icon span {
+
+    display: block;
+
+    width: 4px;
+
+    height: 4px;
+
+    background-color: #333;
+
+    position: absolute;
+
+    top: 64%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+  }
+
+
+
+  .menu-icon span:nth-child(1) {
+
+    top: 9px;
+
+  }
+
+
+
+  .menu-icon span:nth-child(3) {
+
+    top: 3px;
+
+  }
+
+
+
+  .toggleSwitch1,
+
+  .toggleSwitch2,
+
+  .toggleSwitch3,
+
+  .toggleSwitch4,
+
+  .toggleSwitch5,
+
+  .toggleSwitch6,
+
+  .quick_toggleSwitch {
+
+    display: block;
+
+    width: 38px;
+
+    height: 20px;
+
+    position: relative;
+
+    border-radius: 20px;
+
+    background-color: #c9c8c8;
+
+    margin-top: 8px;
+
+    box-shadow: 0 0 10px 2px rgba(0 0 0 / 10%);
+
+  }
+
+
+
+  .toggleSwitch1 .toggleButton1,
+
+  .toggleSwitch2 .toggleButton2,
+
+  .toggleSwitch3 .toggleButton3,
+
+  .toggleSwitch4 .toggleButton4,
+
+  .toggleSwitch5 .toggleButton5,
+
+  .toggleSwitch6 .toggleButton6,
+
+  .quick_toggleSwitch .quick_toggleButton {
+
+    width: 14px;
+
+    height: 14px;
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 4px;
+
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+
+    background: #333;
+
+  }
+
+
+
+  #toggle1:checked~.toggleSwitch1,
+
+  #toggle2:checked~.toggleSwitch2,
+
+  #toggle3:checked~.toggleSwitch3,
+
+  #toggle4:checked~.toggleSwitch4,
+
+  #toggle5:checked~.toggleSwitch5,
+
+  #toggle6:checked~.toggleSwitch6,
+
+  #quick_toggle:checked~.quick_toggleSwitch {
+
+    background: #333;
+
+  }
+
+
+
+  #toggle1:checked~.toggleSwitch1 .toggleButton1,
+
+  #toggle2:checked~.toggleSwitch2 .toggleButton2,
+
+  #toggle3:checked~.toggleSwitch3 .toggleButton3,
+
+  #toggle4:checked~.toggleSwitch4 .toggleButton4,
+
+  #toggle5:checked~.toggleSwitch5 .toggleButton5,
+
+  #toggle6:checked~.toggleSwitch6 .toggleButton6,
+
+  #quick_toggle:checked~.quick_toggleSwitch .quick_toggleButton {
+
+    left: calc(50%);
+
+    background: #c9c8c8;
+
+  }
+
+
+
+  .toggleSwitch1 .toggleButton1,
+
+  .toggleSwitch2 .toggleButton2,
+
+  .toggleSwitch3 .toggleButton3,
+
+  .toggleSwitch4 .toggleButton4,
+
+  .toggleSwitch5 .toggleButton5,
+
+  .toggleSwitch6 .toggleButton6,
+
+  .quick_toggleSwitch .quick_toggleButton {
+
+    transition: all 0.2s ease-in;
+
+  }
+
+
+
+  .arrow-icon {
+
+    width: 10%;
+
+    height: 10%;
+
+    padding-top: 12px;
+
+    margin-left: 2px;
+
+    margin-right: 2px;
+
+    margin-bottom: 5px;
+
+  }
+
+
+
+  .fan-speed {
+
+    margin-right: auto;
+
+  }
+
+
+
+  .fan-rpm {
+
+    margin-left: 5px;
+
+  }
+
+
+
+
+
+  .current-text {
+
+    width: 100%;
+
+    height: 100%;
+
+    color: #ababab;
+
+    font-size: 4px;
+
+  }
+
+
+
+  .current-num {
+
+    width: 80%;
+
+    height: 80%;
+
+    margin: 0;
+
+    padding: 2px 2px 0px 10px;
+
+    margin-left: 15px;
+
+    border-bottom: 1.7px solid #333;
+
+    justify-content: space-between;
+
+    text-align: center;
+
+  }
+
+
+
+  .ctrl-split50 {
+
+    display: flex;
+
+    justify-content: space-between;
+
+  }
+
+
+
+  .line {
+
+    height: 20px;
+
+    width: 95%;
+
+    margin: 15px 20px 30px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1.7px solid #b1b1b1;
+
+  }
+
+
+
+
+
+
+
+  .ctrl-split {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+
+
+  .al-center {
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 5px;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    text-align: center;
+
+  }
+
+
+
+  .wrapper {
+
+    display: flex;
+
+    align-items: flex-end;
+
+  }
+
+
+
+  .al-wrapper {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    margin-left: 5px;
+
+    margin-right: 5px;
+
+  }
+
+
+
+  .al-current {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+  }
+
+
+
+  .vertical-text {
+
+    width: 5%;
+
+    height: 100%;
+
+    color: #000;
+
+    font-size: 4px;
+
+    writing-mode: vertical-lr;
+
+    height: auto;
+
+    line-height: 50%;
+
+  }
+
+
+
+  .next-text {
+
+    width: 100%;
+
+    height: auto;
+
+    color: #000;
+
+    font-size: 4px;
+
+    text-align: center;
+
+  }
+
+
+
+  #lineChart,
+
+  #lineChart2,
+
+  #lineChart3,
+
+  #lineChart4,
+
+  #lineChart5,
+
+  #lineChart6 {
+
+    margin: 15px;
+
+  }
+
+
+
+
+
+
+
+  @media (max-width:1800px) {
+
+
+
+    .cmm-table {
+
+      height: 100%;
+
+      width: 50%;
+
+      display: block;
+
+      margin-top: 5%;
+
+    }
+
+  }
+
+
+
+  @media (min-width:1400px) {
+
+
+
+
+
+    .cmm-table-data {
+
+      color: #000;
+
+      font-size: 14px;
+
+      flex-grow: 0;
+
+      flex-shrink: 0;
+
+      width: auto;
+
+      margin-left: 15%;
+
+      float: center;
+
+    }
+
+
+
+  }
+
+
+
+  @media screen and (max-width: 800px) {
+
+
+
+    .left40 {
+
+      width: 100%;
+
+      height: auto;
+
+    }
+
+
+
+  }
+
+
+
+
+
+  select {
+
+    font: NotoKrR;
+
+    padding: 0 10px;
+
+    border: 0;
+
+    border-bottom: 2px solid currentcolor;
+
+    border-radius: 0;
+
+    width: 90%;
+
+  }
+
+
+
+  .circle-container {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 50px);
+
+    grid-template-rows: repeat(3, 150px);
+
+    gap: 5px;
+
+    justify-content: space-around;
+
+    margin: 0 5% 0 -5%;
+
+    align-items: center;
+
+  }
+
+
+
+  .circle {
+
+    width: 150%;
+
+    height: 50%;
+
+    background-color: #58d52b;
+
+    border-radius: 50%;
+
+    color: #fff;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+
+
+  .circle-container2 {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 50px);
+
+    grid-template-rows: repeat(2, 110px);
+
+    gap: 5px;
+
+    justify-content: space-around;
+
+    justify-items: center;
+
+    margin: 0 15px 0 5px;
+
+  }
+
+
+
+  .circle2 {
+
+    width: 100px;
+
+    height: 80px;
+
+    background-color: rgb(88, 213, 43);
+
+    color: #fff;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+  }
+
+
+
+  .rpm-text {
+
+    font-size: 18px;
+
+    padding-top: 7px;
+
+    margin-bottom: -10px;
+
+  }
+
+
+
+  .over_line {
+
+    width: 90%;
+
+    border-bottom: 1px solid #003693;
+
+    margin-left: 5%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+  }
+
+
+
+  .over_title {
+
+    padding: 5px;
+
+    font-weight: bold;
+
+  }
+
+
+
+  .over_text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+
+
+  .circle-container3 {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 50px);
+
+    gap: 5px;
+
+    justify-content: space-around;
+
+    justify-items: center;
+
+    margin: 0 15px 0 5px;
+
+  }
+
+
+
+    .fan {
+
+        box-sizing: border-box;
+
+        padding: 20px;
+
+        text-align: center;
+
+    }
+
+
+
+    #Rack_Back {
+
+        height: 500px;
+
+        margin: 38px 0;
+
+    }
+
+
+
+    .tmep-text {
+
+      font-size: 13px;
+
+      padding-left: 20px;
+
+      margin-bottom: 10px;
+
+      color: #8f8f8f;
+
+    }
+
+
+
+</style>
+
+
+
+<div class="contents" data-ng-init="init()">
+
+  <div class="content">
+
+    <div class="box_wrap box_guide2" style="margin-top: 70px;">
+
+      <div class="content-area">
+
+        <div class="title_line">
+
+          <h4>{{ "FAULT_ANALYSIS.FAULT_AND_FAILURE_DASHBOARD" | translate }}</h4>
+
+          <div class="con-subtit">{{ "FAULT_ANALYSIS.OVERALL_MONITORING_DESCRIPTION" | translate }}</div>
+
+        </div>
+
+
+
+        <div class="col-12" >
+
+          <div class="col-sm-6">
+
+            <div class="con-info">
+
+              <div class="box_wrap">
+
+                <div>
+
+                  <h4 class="box_tit">{{ "FAULT_ANALYSIS.CHASSIS" | translate }} </h4>
+
+                  <div class="box_icon"></div>
+
+                </div>
+
+                <div class="summary">
+
+                  <div class="split50">
+
+                    <div class="left50">
+
+                      <div class="left30">
+
+                        <div class="Rack_title">
+
+                           <div class="Chassis_btn">
+                                <button href="#" id="cm1button" class="button cm1" onclick="cm1Image()"
+                                ng-click="onChangeMember(memberList[0])">{{memberList[0].Id || 'Slot1'}}</button>
+                                <line></line>
+                            </div>
+                            <div class="Chassis_btn">
+                                <button href="#" id="cm2button" class="button cm2" onclick="cm2Image()"
+                                 ng-click="onChangeMember(memberList[1])">{{memberList[1].Id || 'Slot2'}}</button>
+                            </div>
+                            <div class="Chassis_btn">
+                                <button href="#" id="cm3button" class="button mc3" onclick="cm3Image()"
+                                ng-click="onChangeMember(memberList[2])">{{memberList[2].Id || 'Slot3'}}</button>
+                            </div>
+                            <div class="Chassis_btn">
+                                <button href="#" id="smbutton" class="button-active sm" onclick="smImage()"
+                                ng-click="onChangeMember(memberList[3])">{{memberList[3].Id || 'Slot4'}}</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                      <div class="right70">
+
+                        <div class="image-container">
+
+                          <img src="./images/Rack_Front.png" id="Chassis">
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="col-sm-6" style="margin-top: 10px; display: flex;">
+
+
+
+            <div class="col-sm-12" style="display: flex; height: 100%;">
+
+              <div class="col-sm-12 box_wrap">
+
+
+
+                <div class="over_line">
+
+                  <div class="over_title"> System Fan </div>
+
+                  <select class="form-control input-sm" style="width:auto;" ng-model="module" ng-disabled="autoSync"
+
+                    ng-options="m as m for m in moduleList">
+
+                    <option value="">Status</option>
+
+                  </select>
+
+                </div>
+
+
+
+                <div class="con-info" >
+
+                  <div class="circle-container" id="fan-readings">
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="col-sm-12" style="display: flex; flex-wrap: wrap;">
+
+              <div class="col-sm-12 box_wrap" style="height: auto;">
+
+
+
+                <div class="over_line">
+
+                  <div class="over_title"> Temperature </div>
+
+                  <select class="form-control input-sm" style="width:auto;" ng-model="module" ng-disabled="autoSync"
+
+                    ng-options="m as m for m in moduleList">
+
+                    <option value="">Status</option>
+
+                  </select>
+
+
+
+                </div>
+
+
+
+                <div class="con-info">
+
+                  <div class="circle-container2">
+
+                    <div class="over_text">
+
+                      <div class="circle2" ng-style="{'background-color': healthSummary.DIMM1_CH_B === 0 ? 'red' : '#58d52b'}">
+
+                        <span id="DIMM1_CH_B" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM1_CH_B >= 255 ? 0 : healthSummary.DIMM1_CH_B }}
+
+                        </span>
+
+                      </div>
+
+                      <div style="font-weight: bold;">DIMM 1</div>  
+
+                    </div>
+
+                    
+
+                    <div class="over_text">
+
+                      <div class="circle2" ng-style="{'background-color': healthSummary.DIMM1_CH_A === 0 ? 'red' : '#58d52b'}">
+
+                        <span id="DIMM1_CH_A" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM1_CH_A >= 255 ? 0 : healthSummary.DIMM1_CH_A }}
+
+                        </div>
+
+                      <div style="font-weight: bold;">DIMM 2</div>  
+
+                    </div>
+
+                    
+
+                    <div class="over_text">
+
+                      <div class="circle2" ng-style="{'background-color': healthSummary.DIMM1_CH_C === 0 ? 'red' : '#58d52b'}">
+
+                        <span id="DIMM1_CH_C" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM1_CH_C >= 255 ? 0 : healthSummary.DIMM1_CH_C }}
+
+                        </div>
+
+                        <div style="font-weight: bold;">DIMM 3</div>
+
+                    </div>
+
+                    <div class="over_text">
+
+                      <div class="circle2" ng-style="{'background-color': healthSummary.DIMM1_CH_D === 0 ? 'red' : '#58d52b'}">
+
+                        <span id="DIMM1_CH_D" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM1_CH_D >= 255 ? 0 : healthSummary.DIMM1_CH_D }}
+
+                        </div>
+
+                        <div style="font-weight: bold;">DIMM 4</div>
+
+                    </div>
+
+                    <div class="over_text">
+
+                      <div class="circle2" ng-style="{'background-color': healthSummary.DIMM2_CH_A === 0 ? 'red' : '#58d52b'}">
+
+                        <span id="DIMM2_CH_A" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM2_CH_A >= 255 ? 0 : healthSummary.DIMM2_CH_A }}
+
+                        </div>
+
+                      <div style="font-weight: bold;">DIMM 5</div>  
+
+                    </div>
+
+                    
+
+                    <div class="over_text">
+
+                      <div class="circle2" ng-style="{'background-color': healthSummary.DIMM2_CH_B === 0 ? 'red' : '#58d52b'}">
+
+                        <span id="DIMM2_CH_B" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM2_CH_B >= 255 ? 0 : healthSummary.DIMM2_CH_B }}
+
+                        </div>
+
+                      <div style="font-weight: bold;">DIMM 6</div>  
+
+                    </div>
+
+                    
+
+                    <div class="over_text">
+
+                      <div class="circle2" ng-style="{'background-color': healthSummary.DIMM2_CH_C === 0 ? 'red' : '#58d52b'}">
+
+                        <span id="DIMM2_CH_C" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM2_CH_C >= 255 ? 0 : healthSummary.DIMM2_CH_C }}
+
+                        </div>
+
+                        <div style="font-weight: bold;">DIMM 7</div>
+
+                    </div>
+
+                    <div class="over_text">
+
+                      <div class="circle2" ng-style="{'background-color': healthSummary.DIMM2_CH_D === 0 ? 'red' : '#58d52b'}">
+
+                        <span id="DIMM2_CH_D" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM2_CH_D >= 255 ? 0 : healthSummary.DIMM2_CH_D }}
+
+                        </div>
+
+                        <div style="font-weight: bold;">DIMM 8</div>
+
+                    </div>
+
+                    <div class="over_text">
+
+                      <div class="circle2" ng-style="{'background-color': systemBoardTemp === 0 ? 'red' : '#58d52b'}">
+
+                        <span class="rpm-text" style="margin: 0;"> {{ systemBoardTemp }}
+
+                        </div>
+
+                      <div style="font-weight: bold;">CPU 1</div>  
+
+                    </div>
+
+                    </div>
+
+                    <div class="over_line" style="margin: 15px 5% 10px 5%;"></div>
+
+                    <div class="tmep-text">
+
+                      {{ "OVER_MONITORING.TMEP_TEXT" | translate }}
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>              
+
+
+
+              <div class="col-sm-12 box_wrap" style="height: auto;">
+
+                <div class="over_line">
+
+                  <div class="over_title"> Smart Storage </div>
+
+                  <select class="form-control input-sm" style="width:auto;" ng-model="module" ng-disabled="autoSync"
+
+                    ng-options="m as m for m in moduleList">
+
+                    <option value="">Health Score</option>
+
+                  </select>
+
+
+
+                </div>
+
+
+
+                <div class="con-info">
+
+                  <div class="circle-container2" ng-show="selectedDiskInfo">
+
+                    <div class="over_text">
+
+                      <div class="circle2" style="flex-direction: column;">
+
+                        <span class="rpm-text" style="margin: 0;">Score</span>{{selectedDiskInfo.STATUS_SCORE}}
+
+                      </div>
+
+                      <div style="font-weight: bold; font-size: 11px;">{{selectedDiskInfo.VENDOR_NAME}}</div>  
+
+                    </div>
+                    <div class="over_text">
+
+                      <div class="circle2" style="flex-direction: column;text-align: center;">
+
+                        <span class="rpm-text" style="margin: 0; "></span>{{selectedDiskInfo.ESTIMATED_DISK_LIFE}}
+
+                      </div>
+
+                      <div style="font-weight: bold; font-size: 11px; text-align: center;">Estimated Disk Life</div>  
+
+                    </div>
+                    <div class="over_text">
+
+                      <div class="circle2" style="flex-direction: column;">
+
+                        <span class="rpm-text" style="margin: 0;"></span>{{selectedDiskInfo.PROBABILITY_OF_ERROR_WITHIN_THE_YEAR}}
+
+                      </div>
+
+                      <div style="font-weight: bold; font-size: 11px; text-align: center;">Probabilit of Error within the Year</div>  
+
+                    </div>
+                    <div class="over_text">
+
+                      <div class="circle2" style="flex-direction: column;">
+
+                        <span class="rpm-text" style="margin: 0;"></span>{{selectedDiskInfo.FATAL_ERROR_COUNT}}
+
+                      </div>
+
+                      <div style="font-weight: bold; font-size: 11px;">Fatal Error Count</div>  
+
+                    </div>
+
+<!--                     
+
+                    <div class="over_text">
+
+                      <div class="circle2" style="flex-direction: column;">
+
+                        <span class="rpm-text" style="margin: 0;">Score</span>{{ score }}
+
+                      </div>
+
+                      <div style="font-weight: bold; font-size: 11px;">Samsung SSD2</div>  
+
+                    </div>
+
+                    
+
+                    <div class="over_text">
+
+                      <div class="circle2" style="flex-direction: column;">
+
+                        <span class="rpm-text" style="margin: 0;">Score</span>{{ score }}
+
+                      </div>
+
+                        <div style="font-weight: bold;">HDD1</div>
+
+                    </div>
+
+                    <div class="over_text">
+
+                      <div class="circle2" style="flex-direction: column;">
+
+                        <span class="rpm-text" style="margin: 0;">Score</span>{{ score }}
+
+                      </div>
+
+                        <div style="font-weight: bold;">HDD2</div>
+
+                    </div> -->
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </div>

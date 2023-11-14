@@ -1,0 +1,65 @@
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide">
+            <div class="content-area">
+                <div class="title_line">
+                    <h4>{{ "MAINTENANCE.AI_DATA_LOAD" | translate }}</h4>
+                    <div class="con-subtit">{{ "MAINTENANCE.AI_DATA_LOAD_DESCRIPTION" | translate }}</div>
+                </div>
+
+                <div class="con-info">
+
+                    
+                    <div class="ai_data" ></div>
+                    <div class="info-data">{{ "MAINTENANCE.AI_DATA_LOAD_SETTINGS" | translate }}</div>
+                    <form class="form-inline">
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="200px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>{{ "MAINTENANCE.AI_DATA_LOAD_CATEGORY" | translate }}</th>
+                                    <td>
+                                        <select 
+                                        class="form-control input-sm"
+                                        style="width: 150px;"
+                                        ng-options="category for category in categoryList"
+                                        ng-model="selectedCategory"
+                                        ng-change="onChangeCategory(selectedCategory)">
+                                    </select>
+                                    </td>
+                                </tr>                            
+                                <tr>
+                                    <th>{{ "MAINTENANCE.AI_DATA_LOAD_DATE" | translate }}</th>
+                                    <td>
+                                        <select class="form-control input-sm" style="width:75px;" ng-model="start_year" ng-disabled="autoSync" ng-options="y as y for y in yearList"></select>
+                                        <select class="form-control input-sm" style="width:175px;" ng-model="start_month" ng-disabled="autoSync" ng-options="m.n as m.s for m in monthList"></select>
+                                        <select class="form-control input-sm" style="width:75px;" ng-model="start_day" ng-disabled="autoSync" ng-options="d as d for d in dayList"></select>
+                                        ~
+                                        <select class="form-control input-sm" style="width:75px;" ng-model="end_year" ng-disabled="autoSync" ng-options="y as y for y in yearList"></select>
+                                        <select class="form-control input-sm" style="width:175px;" ng-model="end_month" ng-disabled="autoSync" ng-options="m.n as m.s for m in monthList"></select>
+                                        <select class="form-control input-sm" style="width:75px;" ng-model="end_day" ng-disabled="autoSync" ng-options="d as d for d in dayList"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{{ "MAINTENANCE.AI_DATA_LOAD_DATA_SIZE" | translate }}</th>
+                                    <td>{{data_size}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="btn-style">
+                    <button type="button" class="btn btn-blue" ng-click="save()">{{ "SEND" | translate }}</button>
+                    <button type="button" class="btn btn-black" ng-click="reset()">{{ "CANCEL" | translate }}</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

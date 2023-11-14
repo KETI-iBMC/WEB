@@ -1,0 +1,280 @@
+<style>
+    .sensorName:hover {
+        color: #0058cd;
+        font-weight: bold;
+    }
+
+</style>
+
+<div class="contents" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide" style="margin-top: 75px;">
+            <div class="content-area">
+                <div class="title_line">
+                    <h4>{{ "FAULT_ANALYSIS.FOFL_SETTING" | translate }}</h4>
+                    <div class="con-subtit">{{ "FAULT_ANALYSIS.FOFL_SETTING_DESCRIPTION" | translate }}</div>
+                </div>
+                <div class="sensor-cont mt20">
+                    <div class="sensor-title">
+                        <table>
+                            <colgroup>
+                                <col width="*">
+                                <col width="150px">
+                            </colgroup>
+                            <tr>
+                                <th class="sensor-title-name">{{ selectedSensor.NAME }} 
+                                </th>
+                                <td class="text-right">
+                                    <div class="sensor-title-sign">{{ selectedSensor.STATE }}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin:20px 0;">
+                        <canvas id="myChart" height="50"></canvas> 
+                    </div>                   
+
+                    <div>
+                        <table>
+                            <tr>
+                                <th>FOFL List</th>
+                            <tr>
+                        </table>
+                    </div>
+                    <table class="table-data">
+                        <colgroup>
+                            <col width="250px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>{{ "FOFL_INFO.GREEN_TEMPERATURE" | translate }}</th>
+                                <td>
+                                    {{ selectedSensor.GREEN }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "FOFL_INFO.YELLOW_TEMPERATURE" | translate }}</th>
+                                <td>
+                                    {{ selectedSensor.YELLOW }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "FOFL_INFO.ORANGE_TEMPERATURE" | translate }}</th>
+                                <td>
+                                    {{ selectedSensor.ORANGE }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "FOFL_INFO.RED_TEMPERATURE" | translate }}</th>
+                                <td>
+                                    {{ selectedSensor.RED }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "FOFL_INFO.ALARM" | translate }}</th>
+                                <td>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="selectedSensor.GREEN_ACTIVATE" ng-true-value="1" ng-false-value="0"  disabled>
+                                    Green
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="selectedSensor.YELLOW_ACTIVATE" ng-true-value="1" ng-false-value="0" disabled>
+                                    Yellow
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="selectedSensor.ORANGE_ACTIVATE" ng-true-value="1" ng-false-value="0" disabled>
+                                    Orange
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-model="selectedSensor.RED_ACTIVATE" ng-true-value="1" ng-false-value="0" disabled>
+                                    Red
+                                </label>
+
+                               </td>
+
+                            </tr>
+                            <tr class="down">
+                                <th>{{ "FOFL_INFO.STATE" | translate }}</th>
+                                <td>
+                                    {{ selectedSensor. STATE}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: 20px;">
+                        <table>
+                            <tr>
+                                <th>FOFL Prediction</th>
+                            <tr>
+                        </table>
+                    </div>
+                    <table class="table-data">
+                        <colgroup>
+                            <col width="250px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>{{ "FOFL_INFO.NEXT_STATE_TIME" | translate }}</th>
+                                <td>
+                                    {{ selectedSensor.NEXT_STATE_TIME }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "FOFL_INFO.FEEDBACK_STATE " | translate }}</th>
+                                <td>
+                                    {{ selectedSensor.FEEDBACK_STATE }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "FOFL_INFO.RED_STATE_CAUSE " | translate }}</th>
+                                <td>
+                                    {{ selectedSensor.RED_STATE_CAUSE }}
+                                </td>
+                            </tr>
+                            <tr class="down">
+                                <th>{{ "FOFL_INFO.SUGGEST_OPTION" | translate }}</th>
+                                <td>
+                                    {{ selectedSensor.SUGGEST_OPTION }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="sensor_icon">
+
+                    <div class="sensor-cont">
+                    <div class="mt20">
+                        <div class="info-data">{{ "FOFL_INFO.FOFL_LIST" | translate }}</div>
+                        <div>
+                            <table class="table-view">
+                                <colgroup>
+                                    <col width="*">
+                                    <col width="15%">
+                                    <col width="20%">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>{{ "FOFL_INFO.SENSOR_NAME" | translate }}</th>
+                                        <th>{{ "FOFL_INFO.STATE" | translate }}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="scroll-table">
+                            <table class="table-view">
+                                <colgroup>
+                                    <col width="*">
+                                    <col width="15%">
+                                    <col width="20%">
+
+                                </colgroup>
+                                <tbody>
+                                    <tr ng-repeat="sensor in sensorInfo.SENSOR" 
+                                        ng-click="didClickSensor(sensor)">
+                                        <td class="sensorName">{{ sensor.NAME || '-'}}</td>
+                                        <td>{{ sensor.STATE || '-'}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-blue" ng-click="editThreshold(sensor)"
+                                                data-toggle="modal"
+                                                data-target="#editThresholdModal">{{ "EDIT" | translate }}
+                                            </button>
+                                        </td>    
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                 <div id="editThresholdModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="color:#000">{{ "FOFL_INFO.CHANGE_FOFL" | translate }}
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="info-data" style="color:#000">{{sensor.SENSOR}}</div>
+                                <table class="table-data">
+                                    <colgroup>
+                                        <col width="300px">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "FOFL_INFO.GREEN_TEMPERATURE" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="sensor.GREEN" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FOFL_INFO.YELLOW_TEMPERATURE" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="sensor.YELLOW" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FOFL_INFO.ORANGE_TEMPERATURE" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="sensor.ORANGE" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FOFL_INFO.RED_TEMPERATURE" | translate }}</th>
+                                            <td>
+                                                <input type="text" ng-model="sensor.RED" class="form-control input-sm"
+                                                    style="width:200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FOFL_INFO.ALARM" | translate }}</th>
+                                                <td>
+                                                    <label class="checkbox-inline">
+                                                            <input type="checkbox" ng-model="sensor.GREEN_ACTIVATE"  ng-true-value="1" ng-false-value="0" >
+                                                            Green                                                  
+                                                    </label>
+
+                                                    <label class="checkbox-inline">
+                                                            <input type="checkbox" ng-model="sensor.YELLOW_ACTIVATE" ng-true-value="1" ng-false-value="0" >
+                                                            Yellow                                                    
+                                                    </label>
+
+                                                
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox"  ng-model="sensor.ORANGE_ACTIVATE" ng-true-value="1" ng-false-value="0" >                                                   
+                                                            Orange
+                                                    </label>
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" ng-model="sensor.RED_ACTIVATE" ng-true-value="1" ng-false-value="0" disabled>
+                                                            Red  
+                                                    </label>
+                                                </td>    
+                                        </tr>                              
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-blue"
+                                    ng-click="saveThreshold()">{{ "SAVE" | translate }}</button>
+                                <button type="button" class="btn btn-black"
+                                    data-dismiss="modal">{{ "CANCEL" | translate }}</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>             
+            </div>
+        </div>
+    </div>
+</div>

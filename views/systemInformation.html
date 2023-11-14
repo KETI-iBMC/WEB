@@ -1,0 +1,86 @@
+<div class="contents" data-ng-init="init()">
+    <!-- row content -->
+    <div class="content">
+        <div class="box_wrap box_guide2">
+            <div class="content-area">
+                <div class="title_line">
+                    <h4>{{ "SYSTEM.SYSTEM_INFORMATION" | translate }}</h4>
+                    <div class="con-subtit">{{ "SYSTEM.SYSTEM_INFORMATION_DESCRIPTION" | translate }}</div>
+                </div>
+
+                <div class="con-info">
+                    <div class="info-data">{{ "BMC_INFORMATION" | translate }}</div>
+                    <table class="table-data">
+                        <colgroup>
+                            <col width="250px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                        <!-- [수정3] 하드코딩되었던 부분 변수사용하도록 변경 -->
+                        <tr>
+                            <th>{{ "SYSTEM.FIRMWARE_REVISION" | translate }}</th>
+                            <td>{{ genericInfo.GENERIC.IPMIFW_VERSION || '-' }}</td>
+                            <!-- <td>v1.0</td> -->
+                        </tr>
+                        <tr>
+                            <th>{{ "FIRMWARE_BUILD_TIME" | translate }}</th>
+                            <td>{{ genericInfo.GENERIC.IPMIFW_BLDTIME || '-' }}</td>
+                            <!-- <td>2021-11-16.15:01:55</td> -->
+                        </tr>
+                        <tr>
+                            <th>{{ "KERNEL_VERSION" | translate }}</th>
+                            <td>{{ genericInfo.KERNEL.VERSION || '-' }}</td>
+                            <!-- <td>v1.0</td> -->
+                        </tr>
+                        <tr>
+                            <th>{{ "SYSTEM.IPMI_FIRMWARE_TAG" | translate }}</th>
+                            <td>{{ genericInfo.GENERIC.IPMIFW_TAG || '-' }}</td>
+                            <!-- <td>IPMI_001</td> -->
+                        </tr>
+                        <tr>
+                            <th>{{ "SYSTEM.SDR_VERSION" | translate }}</th>
+                            <td>{{ genericInfo.GENERIC.SDR_VERSION || '-' }}</td>
+                            <!-- <td>v1.0</td> -->
+                        </tr>
+                        <tr>
+                            <th>{{ "SYSTEM.FRU_VERSION" | translate }}</th>
+                            <td>{{ genericInfo.GENERIC.FRU_VERSION || '-' }}</td>
+                            <!-- <td>v1.0</td> -->
+                        </tr>
+                        <tr class="down">
+                            <th>{{ "SYSTEM.BIOS_VERSION" | translate }}</th>
+                            <td>{{ genericInfo.GENERIC.BIOS_VERSION || '-' }}</td>
+                            <!-- <td>v1.0</td> -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="con-info">
+                    <div class="info-data">{{ "NETWORK_INFORMATION" | translate }}</div>
+                    <table class="table-data">
+                        <colgroup>
+                            <col width="250px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                        <!-- [수정3] 하드코딩되었던 부분 변수사용하도록 변경 -->
+                        <tr>
+                            <th>{{ "SYSTEM.BMC_IP" | translate }}</th>
+                            <td>{{ genericInfo.GENERIC.BMC_IP || '-' }}</td>
+                            <!-- <td>10.0.6.104</td> -->
+                        </tr>
+                        <tr class="down">
+                            <th>{{ "SYSTEM.BMC_MAC" | translate }}</th>
+                            <td>{{ genericInfo.GENERIC.BMC_MAC || '-' }}</td>
+                            <!-- <td>52:a1:e1:83:aa:32</td> -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- row content -->
+</div>
