@@ -1,4 +1,4 @@
-//create app module 
+//create app module hj
 var app = angular.module('app', ['ngRoute', 'ngCookies', 'chartistAngularDirective', 'ui.bootstrap', 'radialIndicator', 'pascalprecht.translate']);
 
 app.config(['$translateProvider', function ($translateProvider) {
