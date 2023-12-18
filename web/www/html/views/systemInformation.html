@@ -1,0 +1,64 @@
+<div class="animation">
+<!--<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>-->
+<div class="bmc bmc-system" data-ng-init="init()" >
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title">{{ "SYSTEM.SYSTEM_INFORMATION" | translate }}</p>
+            <p class="card-header-desc">{{ "SYSTEM.SYSTEM_INFORMATION_DESCRIPTION" | translate }}</p>
+        </div>
+        <div class="card-body">
+            <div class="card-body">
+                <p class="card-title">{{ "BMC_INFORMATION" | translate }}</p>
+                <table class="mb-0 table table-bordered table-fixed table-1">
+                        <tbody style="text-align: left;">
+                    <tr>
+                        <th>{{ "SYSTEM.FIRMWARE_REVISION" | translate }}</th>
+                        <td>{{ genericInfo.GENERIC.IPMIFW_VERSION || '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ "FIRMWARE_BUILD_TIME" | translate }}</th>
+                        <td>{{ genericInfo.GENERIC.IPMIFW_BLDTIME || '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ "KERNEL_VERSION" | translate }}</th>
+                        <td>{{ genericInfo.KERNEL.VERSION || '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ "SYSTEM.IPMI_FIRMWARE_TAG" | translate }}</th>
+                        <td>{{ genericInfo.GENERIC.IPMIFW_TAG || '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ "SYSTEM.SDR_VERSION" | translate }}</th>
+                        <td>{{ genericInfo.GENERIC.SDR_VERSION || '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ "SYSTEM.FRU_VERSION" | translate }}</th>
+                        <td>{{ genericInfo.GENERIC.FRU_VERSION || '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ "SYSTEM.BIOS_VERSION" | translate }}</th>
+                            <td>{{ genericInfo.GENERIC.BIOS_VERSION || '2.24' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-body">
+                <p class="card-title">{{ "NETWORK_INFORMATION" | translate }}</p>
+                <table class="mb-0 table table-bordered table-fixed table-2">
+                        <tbody style="text-align: left;">
+                    <tr>
+                        <th>{{ "SYSTEM.BMC_IP" | translate }}</th>
+                        <td>{{ genericInfo.GENERIC.BMC_IP || '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ "SYSTEM.BMC_MAC" | translate }}</th>
+                        <td>{{ genericInfo.GENERIC.BMC_MAC || '-' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+

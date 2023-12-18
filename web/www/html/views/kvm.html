@@ -1,0 +1,115 @@
+<!--<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>-->
+
+<div class="bmc bmc-kvm" data-ng-init="init()">
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title">KVM</p>
+            <p class="card-header-desc">This page is used to popup a browser to use KVM.</p>
+        </div>
+        <div class="card-body">
+            <!--<button class="btn btn-primary">KVM Launcher</button>-->
+            <button class="btn btn-primary" (click)="openLarge(modal)">KVM Launcher</button>
+
+            <div class="card-body text-center">
+                <img src="/assets/images/bmc/kvm-img.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+            <ng-template #modal let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="font-weight: 500;">KVM Launcher</h4>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="mb-0 table table-bordered table-fixed" style="table-layout: fixed; word-break: break-all; height: auto;">
+                        <tbody>
+                        <tr>
+                            <th style="vertical-align: middle;">Video</th>
+                            <td>
+                                <select name="select" id="" class="form-select">
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: middle;">Options</th>
+                            <td>
+                                <select name="select" id="" class="form-select">
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: middle;">Send Kys</th>
+                            <td>
+                                <select name="select" id="" class="form-select">
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: middle;">Mouse</th>
+                            <td>
+                                <select name="select" id="" class="form-select">
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: middle;">Video Record</th>
+                            <td>
+                                <select name="select" id="" class="form-select">
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: middle;">Power</th>
+                            <td>
+                                <select name="select" id="" class="form-select">
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: middle;">Help</th>
+                            <td>
+                                <select name="select" id="" class="form-select">
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: middle;">Window Size</th>
+                            <td>
+                                <select name="select" id="" class="form-select">
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
+                </div>
+            </ng-template>

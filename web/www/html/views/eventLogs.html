@@ -1,0 +1,55 @@
+<div class="animation">
+<!--<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>-->
+        <div class="contents" data-ng-init="init()" style="padding:0; margin:0;">
+            <div class="bmc bmc-eventlog">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="card-header-title">{{ "SERVER_HEALTH.EVENT_LOGS" | translate }}</p>
+                        <p class="card-header-desc">{{ "SERVER_HEALTH.EVENT_LOGS_DESCRIPTION" | translate }}</p>
+                    </div>
+                    <div class="card-body">
+
+                        <select ng-model="eventType" ng-change="onEventTypeChange()" class="form-select" style="width: 17%;">
+                            <option value="sensor">{{ "SERVER_HEALTH.SENSOR_EVENTS" | translate }}</option>
+                            <option value="bios">{{ "SERVER_HEALTH.BIOS_EVENTS" | translate }}</option>
+                            <option value="sensor">{{ "SERVER_HEALTH.SYSTEM_MANAGEMENT_EVENTS" | translate }}</option>
+                        </select>
+                        <div class="card-body" style="height: 500px;">
+                                <canvas class="chart chart-bar" 
+                                    chart-data="data" 
+                                    chart-labels="labels" 
+                                    chart-series="series" 
+                                    chart-dataset-override="dataset"
+                                    chart-options="options" 
+                                ></canvas>                
+
+
+                                <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+                                <!-- <ng-chartist id='graph_id' class="ct-chart-bar" data="chart.data" options="chart.barOptions" type={{'Bar'}} tooltips="false"></ng-chartist> -->
+                        </div>
+                    <div class="card-body" style="max-height: 500px; overflow-y: auto; overflow-x: hidden">
+                        <table class="mb-0 table table-bordered table-1">
+
+                            <tbody>
+                                <tr>
+                                    <th>{{ "SERVER_HEALTH.TIME_STAMP" | translate }}</th>
+                                    <th>{{ "SERVER_HEALTH.EVENT_ID" | translate }}</th>
+                                    <th>{{ "SERVER_HEALTH.NAME" |  translate }}</th>
+                                    <th>{{ "SERVER_HEALTH.TYPE" | translate }}</th>
+                                    <th>{{ "SERVER_HEALTH.DESCRIPTION" | translate }}</th>
+                                </tr>
+                                <tr ng-repeat="event in eventInfo">
+                                    <td>{{ event.TIME || '-' }}</td>
+                                    <td>{{ event.SENSOR_ID || '-' }}</td>
+                                    <td>{{ event.NAME || '-' }}</td>
+                                    <td>{{ event.TYPE || '-' }}</td>
+                                    <td>{{ event.DESCRIPTION }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

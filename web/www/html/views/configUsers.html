@@ -1,0 +1,117 @@
+<div class="animation">
+
+<div class="contents top-snb-margin" data-ng-init="init()" style="padding:0; margin:0;">
+    <div class="content">
+        <div class="bmc bmc-user">
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title">{{ "CONFIGURATION.USER_MANAGEMENT" | translate }}</p>
+            <p class="card-header-desc">{{ "CONFIGURATION.USER_MANAGEMENT_DESCRIPTION" | translate }}</p>
+        </div>
+        <div class="card-body">
+            <form action="">
+                <p class="card-title">{{ "CONFIGURATION.USER_MANAGEMENT" | translate }}</p>
+                <table class="mb-0 table table-hover">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{ "CONFIGURATION.USER_ID" | translate }}</th>
+                        <th>{{ "CONFIGURATION.USER_NAME" | translate }}</th>
+                        <th>{{ "CONFIGURATION.USER_ACCESS" | translate }}</th>
+                        <th>{{ "CONFIGURATION.PRIVILEGE" | translate }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="user in userInfo.INFO">
+                            <td><input class="form-check-input"  type="checkbox" ng-model="user.SELECTED" ng-click="onCheckUser(user)"></td>
+                            <td>{{ user.INDEX }}</td>
+                            <td>{{ user.NAME }}</td>
+                            <td>{{ convertUserEnable(user.ENABLE_STATUS) }}</td>
+                            <td>{{ convertUserPrivilege(user.PRIVILEGE) }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                    <!--<button class="btn btn-primary">Add</button>-->
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#userAddingModal">{{ "ADD" | translate }}</button>
+                    <button type="button" class="btn btn-secondary" ng-click="delete()">{{ "DELETE" | translate }}</button>
+<style>
+    .modal-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rme;
+    border-bottom: 1px solid #dee2d6;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+    }
+</style>
+        <!-- Modal -->
+        <div id="userAddingModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                        <div class="modal-header" style="background-color: #f8f9fa;">
+                            <h4 class="modal-title" style="color:#000; font-size: 20px;" style="font-weight: 500;">User Management</h4>
+                            <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="font-size: 16px; font-weight: 500; color: #495057; text-align: left;">Add User</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                <tr>
+                                    <th style="vertical-align: middle; text-align: left;">User Name</th>
+                                    <td>
+                                        <input type="text" id="userName" ng-model="addUserName" class="form-control" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle; text-align: left;">Password</th>
+                                    <td>
+                                        <input type="text" id="userPassword" ng-model="addUserPassword" class="form-control" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle; text-align: left;">Confirm Password</th>
+                                    <td>
+                                        <input type="text" id="userPasswordConfirm" ng-model="addUserPasswordConfirm" class="form-control" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle; text-align: left;">Privilege</th>
+                                    <td>
+                                        <!-- <select class="form-control input-sm" style="width:200px;" ng-model="addUserPrivilege">
+                                            <option label="User" value="3"></option>
+                                            <option label="Administrator" value="4"></option>
+                                        </select> -->
+                                        <select 
+                                                name="select"
+                                                class="form-select"
+                                                style="float: left;"
+                                                ng-model="addUserPrivilege">
+                                                <option label="User" value="3"></option>
+                                                <option label="Administrator" value="4"></option>    
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-check" style="margin: 10px 0; font-size: 13px; text-align: left;">
+                                <input class="form-check-input" type="checkbox" id="Checkbox1" value="option1">
+                                <label class="form-check-label" for="Checkbox1" >Enable user</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="background-color: #f8f9fa;">
+                            <button type="button" class="btn btn-primary " ng-click="modalAddButtonClick()">{{ "ADD" | translate }}</button>
+                            <button type="button" class="btn btn-secondary " data-dismiss="modal">{{ "CLOSE" | translate }}</button>
+                        </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    </div>

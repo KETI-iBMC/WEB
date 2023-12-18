@@ -1,0 +1,122 @@
+<div class="animation">
+<!--<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>-->
+        <div class="contents" data-ng-init="init()" style="padding:0; margin:0;">
+            <div class="bmc bmc-fru">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="card-header-title">{{ "FRU.FRU_INFORMATION" | translate }}</p>
+                        <p class="card-header-desc">{{ "FRU.FRU_INFORMATION_DESCRIPTION" | translate }}</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="flex flex-nowrap justify-center items-stretch gap-md" style="grid-gap: 30px; gap: 30px;">
+                            <div class="flex-auto flex flex-col justify-between">
+                                <div class="card-body">
+                                    <p class="card-title">{{ "BASIC_INFORMATION" | translate }}</p>
+                                    <table class="mb-0 table table-bordered table-fixed">
+                        <tbody style="text-align: left;">
+                                        <tr>
+                                            <th>{{ "FRU.FRU_ID" | translate }}</th>
+                                            <td>
+                                                <select name="select" id="" class="form-select">
+                                                    <option ng-repeat="fru in fruInfos" ng-value="fru">{{ fru.ID }}</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.FRU_DEVICE_DESC" | translate }}</th>
+                                            <td>{{ fruInfo.DEVICE || '-' }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title">{{ "FRU.PRODUCT_INFORMATION" | translate }}</p>
+                                    <table class="mb-0 table table-bordered table-fixed">
+                        <tbody style="text-align: left;">
+                                        <tr>
+                                            <th>{{ "FRU.PRODUCT_MANUFACTURE" | translate }}</th>
+                                            <td>{{ fruInfo.PRODUCT.MFG || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.PRODUCT_NAME" | translate }}</th>
+                                            <td>{{ fruInfo.PRODUCT.NAME || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.PRODUCT_PART_NUMBER" | translate }}</th>
+                                            <td>{{ fruInfo.PRODUCT.PART_NUM || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.PRODUCT_VERSION" | translate }}</th>
+                                            <td>{{ fruInfo.PRODUCT.VERSION || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.PRODUCT_SERIAL" | translate }}</th>
+                                            <td>{{ fruInfo.PRODUCT.SERIAL || '-' }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="flex-auto shrink-0">
+                                <img src="./images/fru-img.jpg" >
+                            </div>
+                            <div class="flex-auto flex flex-col justify-between">
+
+                                <div class="card-body">
+
+                                    <p class="card-title">{{ "FRU.CHASSIS_INFORMATION" | translate }}</p>
+                                    <table class="mb-0 table table-bordered table-fixed">
+                        <tbody style="text-align: left;">
+                                        <tr>
+                                            <th>{{ "FRU.CHASSIS_TYPE" | translate }}</th>
+                                            <td>{{ fruInfo.CHASSIS.TYPE || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.CHASSIS_PART_NUMBER" | translate }}</th>
+                                            <td>{{ fruInfo.CHASSIS.PART_NUM || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.CHASSIS_SERIAL" | translate }}</th>
+                                            <td>{{ fruInfo.CHASSIS.SERIAL || '-' }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title">{{ "FRU.BOARD_INFORMATION" | translate }}</p>
+                                    <table class="mb-0 table table-bordered table-fixed">
+                        <tbody style="text-align: left;">
+                                        <tr>
+                                            <th>{{ "FRU.BOARD_MANUFACTURE" | translate }}</th>
+                                            <td>{{ fruInfo.BOARD.MFG || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.BOARD_PRODUCT" | translate }}</th>
+                                            <td>{{ fruInfo.BOARD.PRODUCT || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.BOARD_SERIAL" | translate }}</th>
+                                            <td>{{ fruInfo.BOARD.SERIAL || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.BOARD_PART_NUMBER" | translate }}</th>
+                                            <td>{{ fruInfo.BOARD.PART_NUM || '-' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "FRU.BOARD_MANUFACTURE_DATE" | translate }}</th>
+                                            <td>{{ fruInfo.BOARD.MFG_DATE || '-' }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                            <button class="btn btn-primary" ng-click="goModify()">Modify</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

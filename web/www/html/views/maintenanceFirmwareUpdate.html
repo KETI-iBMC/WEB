@@ -1,0 +1,55 @@
+<div class="animation">
+<!--<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>-->
+        <div class="bmc bmc-fru" data-ng-init="init()">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">{{ "MAINTENANCE.FIRMWARE_UPDATE" | translate }}</p>
+                    <p class="card-header-desc">{{ "MAINTENANCE.FIRMWARE_UPDATE_DESCRIPTION" | translate }}</p>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <p class="card-title" style="font-size: 18px; margin-top: 0;">{{ "MAINTENANCE.FIRMWARE_UPDATE" | translate }}</p>
+                        <table class="mb-0 table table-bordered table-fixed">
+                            <tbody>
+                            <tr>
+                                <th class="align-middle" style="text-align: left;">{{ "MAINTENANCE.CATEGORY" | translate }}</th>
+                                <td>
+                                    <select 
+                                        name="select"
+                                        class="form-select"
+                                        style="width: 100%;"
+                                        ng-options="category for category in categoryList"
+                                        ng-model="selectedCategory"
+                                        ng-change="onChangeCategory(selectedCategory)">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="align-middle" style="text-align: left;">{{ "MAINTENANCE.FIRMWARE" | translate }}</th>
+                                <td>
+                                    <input name="file" id="exampleFile" type="file" class="form-control" style="height: 100%; font-size: 13px;">
+                                    <!-- <div>
+                                        <div class="form-inline">
+                                            <input name="upload" type="file" id="firmwareFile" class="form-control input-sm sr-only" file-model="firmwareFile" />
+                                            <input type="text" class="form-control input-sm" style="width:400px;" ng-model="fileName"> &nbsp;
+                                            <button type="button" class="btn btn-normal btn-sm" ng-click="chooseFile()" style="background-color: rgb(208, 225, 248);">{{ "MAINTENANCE.CHOOSE_FILE" | translate }}</button>
+                                        </div>
+                                        <div ng-if="showProgress" class="progress" style="margin-top: 10px; margin-bottom: 0px; height: 20px;">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': percent + '%' }">
+                                                <span>{{ percent }}% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                        <button class="btn btn-primary"data-ng-click="upload()">{{ "MAINTENANCE.UPLOAD" | translate }}</button>
+                        <button class="btn btn-secondary"data-ng-click="reset()">{{ "RESET" | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,331 @@
+<style>
+    input[id="hamburger"] {
+        display: none;
+    }
+
+    input[id="hamburger"]+label {
+        display: block;
+        margin-left: 25px;
+        margin-top: 4px;
+        width: 24px;
+        height: 14px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    input[id="hamburger"]+label span {
+
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        border-radius: 10px;
+        background: #033c73;
+        transition: all 0.35s;
+    }
+
+    input[id="hamburger"]+label span:nth-child(1) {
+        top: 0;
+    }
+
+    input[id="hamburger"]+label span:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    input[id="hamburger"]+label span:nth-child(3) {
+        bottom: 0;
+    }
+
+    input[id="hamburger"]:checked+label {
+        z-index: 99;
+    }
+
+    input[id="hamburger"]:checked+label span {
+        background: #033c73;
+    }
+
+    input[id="hamburger"]:checked+label span:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+    input[id="hamburger"]:checked+label span:nth-child(2) {
+        opacity: 0;
+    }
+
+    input[id="hamburger"]:checked+label span:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+    }
+
+    input[id="hamburger"]:checked+label+div {
+        left: 0;
+    }
+</style>
+
+<script>
+    document.getElementById('hamburger').addEventListener('change', function () {
+        const sidebar = document.querySelector('.app-sidebar');
+        const hamburgerLabel = document.getElementById('hamburger-label');
+        const appMainOuter = document.querySelector('.app-main__outer');
+
+        if (this.checked) {
+            sidebar.classList.add('sidebar-collapsed');
+            hamburgerLabel.classList.add('label-collapsed');
+            appMainOuter.style.paddingLeft = '80px';
+
+        } else {
+            sidebar.classList.remove('sidebar-collapsed');
+            hamburgerLabel.classList.remove('label-collapsed');
+            appMainOuter.style.paddingLeft = '280px';
+
+        }
+    });
+</script>
+
+<div class="app-header header-shadow">
+    <div class="top-gnb-logo" style="margin-right: 30px;">
+        <div class="app-header__content">
+            <div class="app-header-left">
+                <div class="logo-location">
+                    <div class="search-wrapper" ng-class="{ 'active': isActive }">
+                        <div class="input-holder">
+                            <input type="text" placeholder="Type to search" class="search-input">
+                            <button class="search-icon" ng-click="isActive = true"><span></span></button>
+                        </div>
+                        <button class="btn-close" ng-click="isActive = false" style="font-size: 13px;"></button>
+                    </div>
+
+                    <div class="location" style="padding-left: 30px;">
+                        <div class="fas fa-home" style="font-size: 15px;"></div>
+
+                        <span ng-if="mainName" class="arrow"></span>
+                        <div style="font-size: 13px;">{{mainName}}</div>
+                        <span ng-if="subName" class="arrow"></span>
+                        <div style="font-size: 13px;">{{subName}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-header-right" ng-controller="CommonController" data-ng-init="init()">
+                <div class="user">
+                    <li class="fas fa-user" style="font-size: 13px;" ng-if="isLogin"><span> {{userName + ' ( ' +
+                            userPrivilegeConverted + ')'}} </span></li>
+                </div>
+
+                <div class="login">
+                    <li class="fas fa-sign-in-alt" style="font-size: 13px; color: #000;" ng-if="isLogin">
+                        <a href="#" ng-click="logout()" style="font-size: 13px; color: #000;">{{ "LOGOUT" | translate
+                            }}</a>
+                    </li>
+                </div>
+
+                <div class="lang" style="width: 70px;">
+                    <select class="input-sm" ng-model="language" ng-change="changeLanguage()"
+                        style="font-size: 13px; text-align: center; line-height: 12px; border: none;">
+                        <option value="en_US">{{ 'ENGLISH' | translate }}</option>
+                        <option value="ko_KR">{{ 'KOREAN' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="current" ng-controller="TimerController">
+                    <span class="icon_date" id="formattedDay">{{ clock | date:'yyyy-MM-dd'}}</span>
+                    <span class="icon_time" id="formattedTime">{{ clock | date:'HH:mm:ss'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="app-sidebar sidebar-shadow" id="hamburger-label" style="top: 0px;">
+        <div class="app-header__logo" style="justify-content: space-between;">
+            <a href="{{ isLogin ? activeState === '/home' ? 'javascript:void(0)' : '#!/home' : 'javascript:void(0)' }}">
+                <img class="logo-src" style="display: block;" src="./images/logo-ketibmcweb.png">
+            </a>
+            <div>
+                <input type="checkbox" id="hamburger" />
+                <label for="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+
+            </div>
+
+        </div>
+        <div class="app-sidebar-content">
+            <div class="app-sidebar-scroll">
+                <perfect-scrollbar [autoPropagation]="true">
+                    <div class="v-sidebar-menu vsm-default">
+                        <div class="vsm-list">
+
+
+                            <div class="vsm-header" style="margin-top: 20px;">{{ "SYSTEM.SYSTEM_INFORMATION" | translate
+                                }}</div>
+                            <div class="menu-line" style="margin-top: 33px;"></div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/systemInformation' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="{{ isLogin ? activeState === '/systemInformation' ? 'javascript:void(0)' : '#!/systemInformation' : 'javascript:void(0)' }}">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">{{
+                                        "SYSTEM.SYSTEM_INFORMATION" |
+                                        translate }}</span>
+                                </a>
+                            </div>
+
+
+                            <div class="vsm-header">{{ "FRU.FRU_INFORMATION" | translate }}</div>
+                            <div class="menu-line"></div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/fruInformation' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="{{ isLogin ? activeState === '/fruInformation' ? 'javascript:void(0)' : '#!/fruInformation' : 'javascript:void(0)' }}">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">{{ "FRU.FRU_INFORMATION"|translate }}</span>
+                                </a>
+                            </div>
+
+
+                            <div class="vsm-header">{{ "SERVER_HEALTH.SERVER_HEALTH" | translate }}</div>
+                            <div class="menu-line"></div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/serverHealthSensorReadings' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="#!/serverHealthSensorReadings">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">{{
+                                        "SERVER_HEALTH.SENSOR_READING" | translate
+                                        }}</span>
+                                </a>
+                            </div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/serverHealthEventLogs' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="#!/serverHealthEventLogs">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">{{
+                                        "SERVER_HEALTH.EVENT_LOGS" |
+                                        translate }}</span>
+                                </a>
+                            </div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/serverHealthPowerUsage' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="#!/serverHealthPowerUsage">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">{{
+                                        "SERVER_HEALTH.POWER_USAGE" |
+                                        translate }}</span>
+                                </a>
+                            </div>
+
+
+                            <div class="vsm-header">{{ "CONFIGURATION.CONFIGURATION" | translate }}</div>
+                            <div class="menu-line"></div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/configNtp' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="#!/configNtp">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">NTP</span>
+                                </a>
+                            </div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/configUsers' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="#!/configUsers">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">Users</span>
+                                </a>
+                            </div>
+
+
+                            <div class="vsm-header">{{ "VIRTUAL_MEDIA.VIRTUAL_MEDIA" | translate }}</div>
+                            <div class="menu-line"></div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/virtualMediaUsb' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="{{ isLogin ? activeState === '/virtualMedia' ? 'javascript:void(0)' : '#!/virtualMediaUsb' : 'javascript:void(0)' }}">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">{{
+                                        "VIRTUAL_MEDIA.USB_REDIRECTION" | translate
+                                        }}</span>
+                                </a>
+                            </div>
+
+
+                            <div class="vsm-header">{{ "REMOTE_CONTROL.REMOTE_CONTROL" | translate }}</div>
+                            <div class="menu-line"></div>
+                            <div class="vsm-item"
+                                ng-class="{ active: activeState === '/remoteControlConsoleRedirection' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="#!/remoteControlConsoleRedirection">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">{{"KVM" | translate
+                                        }}</span>
+                                </a>
+                            </div>
+                            <div class="vsm-item"
+                                ng-class="{ active: activeState === '/remoteControlServerPowerControl' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="#!/remoteControlServerPowerControl">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title"
+                                        style="font-size: 1.2rem;">{{"REMOTE_CONTROL.SERVER_POWER_CONTROL" | translate
+                                        }}</span>
+                                </a>
+                            </div>
+
+
+                            <div class="vsm-header">{{ "MAINTENANCE.MAINTENANCE" | translate }}</div>
+                            <div class="menu-line"></div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/maintenanceFirmwareUpdate' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="#!/maintenanceFirmwareUpdate">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">{{
+                                        "MAINTENANCE.FIRMWARE_UPDATE"
+                                        | translate
+                                        }}</span>
+                                </a>
+                            </div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/maintenanceBmcReset' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="#!/maintenanceBmcReset">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">{{
+                                        "MAINTENANCE.BMC_RESET" |
+                                        translate }}</span>
+                                </a>
+                            </div>
+
+                            <div class="vsm-header">{{ "SETTINGS" | translate }}</div>
+                            <div class="menu-line"></div>
+                            <div class="vsm-item" ng-class="{ active: activeState === '/settingsServices' }">
+                                <a routerLinkActive="active-item" class="vsm-link" style="padding: 0 1.5rem 0 20px;"
+                                    href="{{ isLogin ? activeState === '/settings' ? 'javascript:void(0)' : '#!/settingsServices' : 'javascript:void(0)' }}">
+                                    <i class="far fa-window-maximize"
+                                        style="color: #919191; font-size: 18px; margin-right: 10px; vertical-align:middle;"></i>
+                                    <span class="nav-item vsm-title" style="font-size: 1.2rem;">{{
+                                        "MENU_SETTINGS.SERVICES" |
+                                        translate }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </perfect-scrollbar>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <ng-view></ng-view>
+    </div>
+</div>
