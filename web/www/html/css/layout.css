@@ -80,7 +80,7 @@ a {
 }
 
 .form-control {
-    background: #fff;
+    background: #f4f4f4;
     border: 1px solid #DDD;
 }
 
@@ -234,6 +234,8 @@ a:active {
     color: #111;
     font-size: 12px !important;
     border-bottom: none !important;
+    list-style:none;
+
 }
 
 .logfile li a {
@@ -260,7 +262,7 @@ a:active {
     width: 100%;
     /*height: 80px; line-height: 80px;*/
 }
-/* 
+
 .top-gnb-logo {
     text-align: left;
     margin: 20px 0;
@@ -268,7 +270,7 @@ a:active {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-} */
+}
 
 .top-gnb-logo a .top-gnb-logo a:hover {
     background: transparent !important;
@@ -301,7 +303,7 @@ a:active {
 
 .logo-location {
     display: flex;
-    margin: 0 0 0 1rem;
+    margin: 0 0 0 4rem;
     align-items: center;
 }
 
@@ -346,7 +348,7 @@ a:active {
     */
     /*background: #0a458d;*/
     text-align: center;
-    /* height: 120px; */
+    height: 120px;
     /*line-height: 80px;*/
 }
 
@@ -355,7 +357,7 @@ a:active {
 .sidenav-menu .top-gnb-menu a,
 .dropdown-btn,
 .sidenav a {
-    /* color: #fff; */
+    color: #fff;
 }
 
 .menu04 {
@@ -388,11 +390,11 @@ a:active {
 }
 
 /* Add an active class to the active dropdown button */
-/* .active {
+.active {
     font-family: NotoKrM;
     color: #0058cd;
     border-bottom: 3px solid #0058cd;
-} */
+}
 
 .active a {
     color: #0058cd;
@@ -462,7 +464,8 @@ a:active {
 }*/
 
 .sidenav-menu li {
-    /* border-bottom: 1px solid #2d3034; */
+    line-height: 60px;
+    border-bottom: 1px solid #2d3034;
     padding: 0 20px;
     font-size: 14px;
 }
@@ -476,7 +479,8 @@ a:active {
 
 .sidenav li {
     -height: 60px;
-    /* border-bottom: 1px solid #2d3034; */
+    line-height: 60px;
+    border-bottom: 1px solid #2d3034;
     padding: 0 20px;
     font-size: 14px;
 }
@@ -714,65 +718,65 @@ a:active {
 }
 
 .summary div:last-child .temp.p1 {
-    top: 638%;
+    top: 285%;
     left: 11.5%
 }
 
 .summary div:last-child .temp.p2 {
-    top: 678%;
+    top: 314%;
     left: 11.5%
 }
 
 .summary div:last-child .temp.p3 {
-    top: 715%;
+    top: 344%;
     left: 11.5%
 }
 
 .summary div:last-child .temp.p4 {
-    top: 755%;
+    top: 375%;
     left: 11.5%
 }
 
 .summary div:last-child .temp.p5 {
-    top: 1250%;
+    top: 790%;
     left: 23%
 }
 
 .summary div:last-child .temp.p6 {
-    top: 570%;
+    top: 240%;
     left: 17%
 }
 
 .summary div:last-child .temp.p7 {
-    top: 570%;
+    top: 250%;
     left: 64%
 }
 
 .summary div:last-child .temp.p8 {
-    top: 1150%;
+    top: 700%;
     left: 95.5%
 }
 
 .summary div:last-child .temp.p9 {
-    top: 700%;
+    top: 340%;
     left: 91%
 }
 
 .summary div:last-child .temp.p10 {
-    top: 1098%;
+    top: 650%;
     left: 11.5%
 }
 
 .summary div:last-child .temp.p11 {
-    top: 1130%;
+    top: 680%;
     left: 11.5%
 }
 .summary div:last-child .temp.p12 {
-    top: 1170%;
+    top: 710%;
     left: 11.5%
 }
 .summary div:last-child .temp.p13 {
-    top: 1205%;
+    top: 740%;
     left: 11.5%
 }
 
@@ -1119,12 +1123,12 @@ table {
     border-top: 2px solid #0b4daf;
 }
 
-/* .down {
+.down {
     width: 95%;
     font-size: 12px;
     margin: 0 10px;
     border-bottom: 2px solid #0b4daf;
-} */
+}
 
 .table-data th {
     background: #D9E3F0;
@@ -1323,17 +1327,17 @@ h4 {
     height: 200px;
 }
 
-/* .nav-tabs {
+.nav-tabs {
     border-bottom: 1px solid #DDD;
-} */
+}
 
-/* .menu-tab {
+.menu-tab {
     position: relative;
     width: 100%;
     margin-top: 30px;
-} */
+}
 
-/* .menu-tab .nav-tabs>li.active>a,
+.menu-tab .nav-tabs>li.active>a,
 .menu-tab .nav-tabs>li.active>a:focus,
 .menu-tab .nav-tabs>li.active>a:hover {
     color: #333;
@@ -1353,7 +1357,7 @@ h4 {
 
 .menu-tab .nav-tabs>li:first-child>a {
     border-left: 1px solid #DDD;
-} */
+}
 
 
 .ui-depth2 {
@@ -1703,6 +1707,7 @@ h4 {
     /*border-top: 1px solid #FFF;
     border-color:rgba(255, 255, 255, 0.4);*/
     font-size: 11px;
+    margin-top: 20px;
     padding: 10px;
     /*position: absolute;
     bottom: 50px;
@@ -2103,7 +2108,7 @@ h4 {
 
 
 
-/* tab
+/*tab*/
 #css_tabs input:nth-of-type(1),
 #css_tabs input:nth-of-type(1)~div:nth-of-type(1),
 #css_tabs input:nth-of-type(2),
@@ -2154,7 +2159,7 @@ h4 {
     color: #fff;
 }
 
-실제 내용이 담긴 div 요소 스타일 지정
+/* 실제 내용이 담긴 div 요소 스타일 지정 */
 #css_tabs .tab1_content,
 #css_tabs .tab2_content,
 #css_tabs .tab3_content .home_tab_content {
@@ -2162,9 +2167,9 @@ h4 {
     border: 1px solid #ddd;
     width: 100%;
     height: 100%;
-    background: #f4f4f4;
+    /*background: #f4f4f4;*/
     clear: both;
-} */ 
+}
 
 
 .sensor_icon {
@@ -2179,12 +2184,12 @@ h4 {
 }
 
 .sensor-active {
-    background: url(../images/icon_Normal.png);
+    background: url(../images/icon_warn02.png);
 }
 
 .sensor-hidden {
     display: none;
-    background: url(../images/icon_Critical.png);
+    background: url(../images/icon_warn03.png);
 }
 
 
@@ -2195,25 +2200,3 @@ h4 {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-.card-header-desc {
-    text-align: start;
-}
-
-
-
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translate3d(0, 100%, 0);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateZ(0);
-    }
-}
-
-.animation {
-    position: relative;
-    animation: fadeInUp 1s;
-}

@@ -1,43 +1,39 @@
 <style>
     .center {
         display: flex;
-        justify-content: center;
+        justify-content: center; 
         align-items: center;
     }
 </style>
 
-<div class="animation">
-            <div class="contents top-snb-margin" data-ng-init="init()" style="padding:0; margin:0;">
-                <div class="bmc bmc-fru">
-                    <div class="card">
-                        <div class="card-header">
-                            <p class="card-header-title">{{ "KVM" | translate }}</p>
-                            <p class="card-header-desc">{{ "REMOTE_CONTROL.KVM_DESCRIPTION" | translate}}
-                            </p>
-                        </div>
-                        <div class="con-info">
-                            <button type="button" class="btn btn-primary" data-ng-click="onClick()"
-                                style="float: left; margin: 10px 40px 0;">{{
-                                "REMOTE_CONTROL.KVM_LAUNCHER" | translate }}
-                            </button>
-                        </div>
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide">
+            <div class="content-area">
+                <div class="title_line">
+                    <h4>{{ "KVM" | translate }}</h4>
+                    <div class="con-subtit">{{ "REMOTE_CONTROL.KVM_DESCRIPTION" | translate }}</div>
+                </div>
 
-                        <div class="card-body" style="margin-bottom: 50px;">
-                            <div class="kvm-imagebox" style="margin-top: 50px;">
-                                <video controls autoplay id="kvm-img">
-                                    <source src="./images/keti.mp4" type="video/mp4">
-                                </video>
-                            </div>
+                <div class="con-info">
+                    <button type="button" class="btn btn-blue" data-ng-click="onClick()">{{ "REMOTE_CONTROL.KVM_LAUNCHER" | translate }}
+                    </button>
+                </div>
 
-                            <div style="margin-top: 20px; font-weight: bold; font-size: 15px;">
-                                <div class="center"> {{ "REMOTE_CONTROL.KVM_MOVEUPDADTE" | translate }} </div>
-                                <div class="center">
-                                    <div> {{ "REMOTE_CONTROL.LAST_REDORDING" | translate }} </div>
-                                    <div id="lastModified"> {{ "REMOTE_CONTROL.LOADING" | translate }} </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="kvm-imagebox" style="margin-top: 50px;">
+                    <video controls autoplay id="kvm-img">
+                        <source ng-src="/video/keti.mp4" type="video/mp4">
+                    </video>   
+                </div>
+                
+                <div style="margin-top: 20px; font-weight: bold; font-size: 15px;">
+                    <div class="center"> {{ "REMOTE_CONTROL.KVM_MOVEUPDADTE" | translate }} </div>
+                    <div class="center">
+                        <div> {{ "REMOTE_CONTROL.LAST_REDORDING" | translate }} </div>
+                        <div id="lastModified"> {{ "REMOTE_CONTROL.LOADING" | translate }} </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>

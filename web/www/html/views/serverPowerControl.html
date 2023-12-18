@@ -1,72 +1,60 @@
-<div class="animation">
-        <div class="contents top-snb-margin" data-ng-init="init()" style="padding:0; margin:0;">
-            <div class="bmc bmc-fru">
-                <div class="card">
-                    <div class="card-header">
-                        <p class="card-header-title">{{ "REMOTE_CONTROL.SERVER_POWER_CONTROL" | translate }}</p>
-                        <p class="card-header-desc">{{ "REMOTE_CONTROL.SERVER_POWER_CONTROL_DESCRIPTION" | translate}}
-                        </p>
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide serverbox_guide" style="min-height: 100px;">
+            <div class="content-area">
+                <div class="title_line server-line"  style="border-bottom: none;">
+                    <h4>{{ "REMOTE_CONTROL.SERVER_POWER_CONTROL" | translate }}</h4>
+                    <div class="server_arrow_line">
+                        <div class="con-subtit">{{ "REMOTE_CONTROL.SERVER_POWER_CONTROL_DESCRIPTION" | translate }}</div>
                     </div>
-
-                    <div class="card-body">
-                        <div class="card-body">
-                            <p class="card-title">{{ "REMOTE_CONTROL.POWER_CONTROL_AND_STATUS" | translate }}</p>
-                            <table class="mb-0 table table-bordered table-fixed">
-                                <colgroup>
-                                    <col width="200px">
-                                    <col width="*">
-                                </colgroup>
-                                <tbody>
-                                    <tr>
-                                        <th rowspan="5" style="vertical-align:middle">{{ "REMOTE_CONTROL.HOST_CURRENT" | translate: {$1:
-                                            statusName} }}</th>
-                                        <td style="text-align: left;">
-                                            <label class="radio-inline"><input type="radio" name="optradio"
-                                                    ng-model="status" ng-value="1">{{ "REMOTE_CONTROL.RESET_SERVER"
-                                                | translate }}</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left;">
-                                            <label class="radio-inline"><input type="radio" name="optradio"
-                                                    ng-model="status" ng-value="2">{{
-                                                "REMOTE_CONTROL.POWER_OFF_SERVER_IMMEDIATE" | translate }}</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left;">
-                                            <label class="radio-inline"><input type="radio" name="optradio"
-                                                    ng-model="status" ng-value="3">{{
-                                                "REMOTE_CONTROL.POWER_OFF_SERVER_ORDERLY_SHUTDOWN" | translate
-                                                }}</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left;">
-                                            <label class="radio-inline"><input type="radio" name="optradio"
-                                                    ng-model="status" ng-value="4">{{
-                                                "REMOTE_CONTROL.POWER_ON_SERVER" | translate }}</label>
-                                        </td>
-                                    </tr>
-                                    <tr class="down">
-                                        <td style="text-align: left;">
-                                            <label class="radio-inline"><input type="radio" name="optradio"
-                                                    ng-model="status" ng-value="5">{{
-                                                "REMOTE_CONTROL.POWER_CYCLE_SERVER" | translate }}</label>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="btn-style">
-                            <button type="button" class="btn btn-primary" data-ng-click="onClick()">{{
-                                "REMOTE_CONTROL.ACTION" | translate }}</button>
-                            <!-- <button type="button" class="btn btn-secondary">{{ "CANCEL" | translate }}</button> -->
-                        </div>
-                    </div>
-
                 </div>
+
+                <div class="server_ctrl-split">
+                    <div class="con-info">
+                        <div class="info-data">{{ "REMOTE_CONTROL.POWER_CONTROL_AND_STATUS" | translate }}</div>
+                        <table class="table-data">
+                            <colgroup>
+                                <col width="200px">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th rowspan="5">{{ "REMOTE_CONTROL.HOST_CURRENT" | translate: {$1: statusName} }}</th>
+                                <td>
+                                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="status" ng-value="1">{{ "REMOTE_CONTROL.RESET_SERVER" | translate }}</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="status" ng-value="2">{{ "REMOTE_CONTROL.POWER_OFF_SERVER_IMMEDIATE" | translate }}</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="status" ng-value="3">{{ "REMOTE_CONTROL.POWER_OFF_SERVER_ORDERLY_SHUTDOWN" | translate }}</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="status" ng-value="4">{{ "REMOTE_CONTROL.POWER_ON_SERVER" | translate }}</label>
+                                </td>
+                            </tr>
+                            <tr class="down">
+                                <td>
+                                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="status" ng-value="5">{{ "REMOTE_CONTROL.POWER_CYCLE_SERVER" | translate }}</label>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="btn-style">
+                        <button type="button" class="btn btn-blue" data-ng-click="onClick()">{{ "REMOTE_CONTROL.ACTION" | translate }}</button>
+                        <button type="button" class="btn btn-black">{{ "CANCEL" | translate }}</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+</div>

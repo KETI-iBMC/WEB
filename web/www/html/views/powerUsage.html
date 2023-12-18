@@ -1,72 +1,159 @@
-<div class="animation">
-<!--<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>-->
-        <div class="bmc bmc-power"  data-ng-init="init()" >
-            <div class="card">
-                <div class="card-header">
-                    <p class="card-header-title">{{ "SERVER_HEALTH.POWER_USAGE" | translate }}</p>
-                    <p class="card-header-desc">{{ "SERVER_HEALTH.POWER_USAGE_DESCRIPTION" | translate }}</p>
-                </div>
-                <div class="card-body" >
-                    <div class="row flex-nowrap gap-sm">
-                        <div class="row-item">
-                            <div class="card-body" >
-                                <p class="card-title">{{ "SERVER_HEALTH.POWER_TODAY_TOTAL" | translate }}</p>
-                                <div style="position: relative; width: 100%; height: 100%;">
-                                    <canvas class="chart chart-horizontal-bar" 
-                                        chart-data="powerTodayTotalData" 
-                                        chart-labels="powerTodayTotalLabels" 
-                                        chart-dataset-override="powerTodayTotalColors" 
-                                        chart-series="powerTodaySeries"
-                                        chart-options="powerTodayOptions"
-                                        ></canvas>                
-                                </div>
+<div class="contents top-snb-margin" data-ng-init="init()">
+<div class="content">
+    <div class="box_wrap box_guide">
+        <div class="content-area">
+            <div class="title_line">
+                <h4>{{ "SERVER_HEALTH.POWER_USAGE" | translate }}</h4>
+                <!-- [수정5] Power usage description lang에 추가 + 다른 description사용했던 부분 수정 -->
+                <!-- <div class="con-subtit">{{ "SERVER_HEALTH.EVENT_LOGS_DESCRIPTION" | translate }}</div> -->
+                <div class="con-subtit">{{ "SERVER_HEALTH.POWER_USAGE_DESCRIPTION" | translate }}</div>
+            </div> <!-- title line -->
 
-                                <div class="power-status">
-                                    <p>
-                                        <span>{{ "SERVER_HEALTH.POWER_LAST_HOUR" | translate }}</span>
-                                        <strong class="data-1">{{ Total_lastmin || '-' }} W</strong>
-                                    </p>
-                                    <p>
-                                        <span>{{ "SERVER_HEALTH.POWER_LAST_DAY" | translate }}</span>
-                                        <strong class="data-2">{{ Total_lasthour || '-'}} W</strong>
-                                    </p>
-                                </div>
+
+            <div class="sensor-top">
+                <table>
+                    <colgroup>
+                        <col width="200px">
+                        <col width="10px">
+                        <col width="200px">
+                        <col width="*">
+                    </colgroup>
+                    <tr>
+                        <td>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div><!-- sensor-top -->
+            <div class="content">
+
+                <div class="ng-scope">
+                    <div class="col-sm-4 info" style="width:47%; margin-right: 3%;">
+                        <div class="graph-bar">
+                            <h6 style="font-size: 14px;font-weight: bold">{{ "SERVER_HEALTH.POWER_TODAY_TOTAL" | translate }}</h6>
+                            <!-- [수정] 사이즈조정 -->
+                            <!-- <div class="ct-chart" id="graph_today_total" style="height: 150px"> -->
+                            <div class="ct-chart" id="graph_today_total" style="height: 200px"></div>
+                        </div>
+                        <div id="div_table">
+                            <div class="table_row">
+                                <span class="cell_margin col_margin_l" style="width: 24%"></span>
+                                <span class="cell col_span_total">{{ "SERVER_HEALTH.POWER_LAST_HOUR" | translate }}</span>
+                                <span class="cell col_span_2 col_peak_watt">{{ Total_lastmin || '-' }} W</span>
+                                <span class="cell_margin col_margin_r"></span>
+                            </div>
+                            <div class="table_row">
+                                <span class="cell_margin col_margin_l"></span>
+                                <span class="cell col_span_total">{{ "SERVER_HEALTH.POWER_LAST_DAY" | translate }}</span>
+                                <span class="cell col_span_2 col_max_watt">{{ Total_lasthour || '-'}} W</span>
+                                <span class="cell_margin col_margin_r"></span>
                             </div>
                         </div>
-
-                        <div class="row-item">
-                            <div class="card-body">
-                                <p class="card-title">{{ "SERVER_HEALTH.POWER_HIGHEST_LOWEST" | translate }}</p>
-                                <table class="mb-0 table table-bordered table-fixed">
-                                    <tbody>
-                                    <tr style="text-align: left;">
-                                        <th>{{ "SERVER_HEALTH.PEAK_NAME" | translate }}</th>
-                                        <th>{{ "SERVER_HEALTH.SENSOR" | translate }}</th>
-                                        <th>{{ "SERVER_HEALTH.VALUE" | translate }}</th>
-                                        <th>{{ "SERVER_HEALTH.TIME" | translate }}</th>
-                                    </tr>
-                                    <tr style="height: 70px; text-align: left;">
-                                        <td>The Highest Peak (W)</td>
-                                        <td>{{ wattInfo.PEAK_DATA.DAY.HIGHEST_PEAK.SENSOR || '-' }}</td>
-                                        <td>{{ wattInfo.PEAK_DATA.DAY.HIGHEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
-                                        <td>{{ wattInfo.PEAK_DATA.DAY.HIGHEST_PEAK.DATETIME || '-' }}</td>
-                                    </tr>
-                                    <tr  class="down" style="height: 70px; text-align: left;" >
-                                        <td>The Lowest Peak (W)</td>
-                                        <td>{{ wattInfo.PEAK_DATA.DAY.LOWEST_PEAK.SENSOR || '-' }}</td>
-                                        <td>{{ wattInfo.PEAK_DATA.DAY.LOWEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
-                                        <td>{{ wattInfo.PEAK_DATA.DAY.LOWEST_PEAK.DATETIME || '-' }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <p class="card-title">{{ "SERVER_HEALTH.POWER_COMSUMP_GRAPH" | translate }}</p>
-                        <table class="mb-0 table table-bordered">
+                    
+                    <!-- <div class="col-sm-4 info">
+                        <div class="graph-bar">
+                            <h6 style="font-size: 14px; font-weight: bold">{{ "SERVER_HEALTH.POWER_CURRENT_PEAK" | translate }}</h6>
+                            // [수정] 사이즈조정 //
+                            // <div class="ct-chart" id="graph_current_peak" style="height: 150px"></div> //
+                            <div class="ct-chart" id="graph_current_peak" style="height: 200px"></div>
+                            <div style="clear:both"></div>
+
+                            <div id="div_table">
+                                <div class="table_row">
+                                    <span class="cell_margin col_margin_l"></span>
+                                    <span class="cell col_span_1">{{ "SERVER_HEALTH.POWER_CURRENT_PEAK" | translate }}</span>
+                                    <span class="cell col_span_2 col_peak_watt">{{ CurrentPeak || '-' }} W</span>
+                                    <span class="cell_margin col_margin_r"></span>
+                                </div>
+                                <div class="table_row">
+                                    <span class="cell_margin col_margin_l"></span>
+                                    <span class="cell col_span_1">{{ "SERVER_HEALTH.POWER_OBJECT_PEAK" | translate }}</span>
+                                    // [수정2] 목표치 임시 변경 //
+                                    <span class="cell col_span_2 col_max_watt">7000 W</span>
+                                    // <span class="cell col_span_2 col_max_watt">1600 W</span> //
+                                    <span class="cell_margin col_margin_r"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-sm-4 ng-scope" style="width:47%; margin-left: 3%;">
+                        <h6 class="sub_tit">{{ "SERVER_HEALTH.POWER_HIGHEST_LOWEST" | translate }}</h6>
+                        <table class="table-data list">
+                            <colgroup>
+                                <col width="30%">
+                                <col width="20%">
+                                <col width="20%">
+                                <col width="30%">
+                            </colgroup>
                             <tbody>
-                            <tr style="text-align: left;">
+                            <tr>
+                                <th>Peak name</th>
+                                <th>Sensor</th>
+                                <th>Value</th>
+                                <th>Time</th>
+                            </tr>
+                            <tr style="height: 70px;">
+                                <td>The Highest Peak (W)</td>
+                                <td>{{ wattInfo.PEAK_DATA.DAY.HIGHEST_PEAK.SENSOR || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.DAY.HIGHEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.DAY.HIGHEST_PEAK.DATETIME || '-' }}</td>
+                            </tr>
+                            <tr  class="down" style="height: 70px;">
+                                <td>The Lowest Peak (W)</td>
+                                <td>{{ wattInfo.PEAK_DATA.DAY.LOWEST_PEAK.SENSOR || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.DAY.LOWEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.DAY.LOWEST_PEAK.DATETIME || '-' }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- <div class="col-sm-4 ng-scope">
+                        <h6 class="sub_tit">{{ "SERVER_HEALTH.POWER_HIGHEST_LOWEST" | translate }}</h6>
+                        <table class="table-data list">
+                            <colgroup>
+                                <col width="30%">
+                                <col width="*">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>Peak name</th>
+                                <th>Value</th>
+                                <th>Time</th>
+                            </tr>
+                            <tr>
+                                <td>The Highest Peak (W)</td>
+                                <td>{{ wattInfo.HIGHEST_PEAK.VALUE || '-' }}</td>
+                                <td>{{ wattInfo.HIGHEST_PEAK.DATETIME || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <td>The Lowest Peak (W)</td>
+                                <td>{{ wattInfo.LOWEST_PEAK.VALUE || '-' }}</td>
+                                <td>{{ wattInfo.LOWEST_PEAK.DATETIME || '-' }} </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
+                </div>
+
+                <div style="clear:both;margin-bottom:30px"></div>
+
+                <!-- con-info -->
+
+                <!-- en, ko 수정/추가 -->
+                <div class="col-sm-12 ng-scope">
+                    <h6 class="sub_tit">{{ "SERVER_HEALTH.POWER_COMSUMP_GRAPH" | translate }}</h6>
+                    <table class="table-data list">
+                        <colgroup>
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
                                 <th >{{ "SERVER_HEALTH.POWER_STATISTICS" | translate}}</th>
                                 <th >{{ "SERVER_HEALTH.POWER_PAST_MIN" | translate}}</th>
                                 <th >{{ "SERVER_HEALTH.POWER_SENSOR" | translate}}</th>
@@ -78,111 +165,135 @@
                                 <th >{{ "SERVER_HEALTH.POWER_SENSOR" | translate}}</th>
                                 <th >{{ "SERVER_HEALTH.POWER_TIME" | translate}}</th>
                             </tr>
-                            <tr style="text-align: left;">
+                            <tr style="height: 50px; text-align: center;">
                                 <td>Minimum (W)</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.LOWEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.LOWEST_PEAK.SENSOR || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.LOWEST_PEAK.DATETIME || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.LOWEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.LOWEST_PEAK.SENSOR || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.LOWEST_PEAK.DATETIME || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.LOWEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.LOWEST_PEAK.SENSOR || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.LOWEST_PEAK.DATETIME || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.LOWEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.LOWEST_PEAK.SENSOR || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.LOWEST_PEAK.DATETIME || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.LOWEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.LOWEST_PEAK.SENSOR || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.LOWEST_PEAK.DATETIME || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.LOWEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.LOWEST_PEAK.SENSOR || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.LOWEST_PEAK.DATETIME || '-' }}</td>
                             </tr>
-                            <tr style="text-align: left;">
+                            <tr class="down" style="height: 50px; text-align: center;">
                                 <td>Maximum (W)</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.HIGHEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.HIGHEST_PEAK.SENSOR || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.HIGHEST_PEAK.DATETIME || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.HIGHEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.HIGHEST_PEAK.SENSOR || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.HIGHEST_PEAK.DATETIME || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.HIGHEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.HIGHEST_PEAK.SENSOR || '-' }}</td>
-                                    <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.HIGHEST_PEAK.DATETIME || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.HIGHEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.HIGHEST_PEAK.SENSOR || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_MIN.HIGHEST_PEAK.DATETIME || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.HIGHEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.HIGHEST_PEAK.SENSOR || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_1_HOUR.HIGHEST_PEAK.DATETIME || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.HIGHEST_PEAK.VALUE.toFixed(2) || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.HIGHEST_PEAK.SENSOR || '-' }}</td>
+                                <td>{{ wattInfo.PEAK_DATA.LAST_10_HOUR.HIGHEST_PEAK.DATETIME || '-' }}</td>
                             </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="card-body">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item active" ng-class="{ 'active': selectedTab === '3' }">
-                                <a class="nav-link " ng-click="onRefresh('3')">{{ "SERVER_HEALTH.REAL_TIME" | translate }}</a>
-                            </li>
-                            <li class="nav-item " ng-class="{ 'active': selectedTab === '4' }">
-                                <a class="nav-link" ng-click="onRefresh('4')">{{ "SERVER_HEALTH.LAST_HOUR" | translate }}</a>
-                            </li>
-                            <li class="nav-item" ng-class="{ 'active': selectedTab === '5' }">
-                                <a class="nav-link" ng-click="onRefresh('5')">{{ "SERVER_HEALTH.LAST_DAY" | translate }}</a>
-                            </li>
-                        </ul>
-
-                        <div ng-show="selectedTab === '3'" style="height: auto; margin-top: 30px;">
-                            <canvas class="chart chart-line" 
-                                chart-data="realTimeData" 
-                                chart-labels="realTimeLabels" 
-                                chart-dataset-override="Colors" 
-                                chart-series="realTimeSeries"
-                            ></canvas>
-                        </div>
-
-                        <div ng-show="selectedTab === '4'" style="height: auto; margin-top: 30px;">
-                            <canvas class="chart chart-line" 
-                                chart-data="lastHourData" 
-                                chart-labels="lastHourLabels" 
-                                chart-dataset-override="Colors" 
-                                chart-series="lastHourSeries"
-                            ></canvas>
-                        </div>
-
-                        <div ng-show="selectedTab === '5'" style="height: auto; margin-top: 30px;">
-                            <canvas class="chart chart-line" 
-                                chart-data="lastDayData" 
-                                chart-labels="lastDayLabels" 
-                                chart-dataset-override="Colors" 
-                                chart-series="lastDaySeries"
-                            ></canvas>
-                        </div>
-                    </div>
-
-                    <!-- 기존 -->
-                        <!-- <div id="css_tabs">
-                            <div class="panel_head">
-                                <input id="panel-1-ctrl" type="radio" name="tab" checked="checked" ng-click="onRefresh('3')"/>
-                                <input id="panel-2-ctrl" type="radio" name="tab" ng-click="onRefresh('4')"/>
-                                <input id="panel-3-ctrl" type="radio" name="tab" ng-click="onRefresh('5')"/>
-                                <label for="panel-1-ctrl" style="margin-bottom:0">Real Time</label>
-                                <label for="panel-2-ctrl" style="margin-bottom:0">Last Hour</label>
-                                <label for="panel-3-ctrl" style="margin-bottom:0">Last Day</label>
-                                <div class="tab1_content">
-                                    <canvas class="chart chart-line" 
-                                        chart-data="realTimeData" 
-                                        chart-labels="realTimeLabels" 
-                                        chart-dataset-override="Colors" 
-    
-                                    ></canvas>                               
-                                </div>
-                                <div class="tab2_content">
-                                    <canvas class="chart chart-line" 
-                                        chart-data="lastHourData" 
-                                        chart-labels="lastHourLabels" 
-                                        chart-dataset-override="Colors" 
-
-                                    ></canvas>   
-                                </div>
-                                <div class="tab3_content">
-                                    <canvas class="chart chart-line" 
-                                        chart-data="lastDayData" 
-                                        chart-labels="lastDayLabels" 
-                                        chart-dataset-override="Colors" 
-
-                                    ></canvas>                               
-                                </div>
-                            </div>
-                        </div> -->
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>
-    </div>
+
+                <!-- <div class="col-sm-12 ng-scope">
+                    <h6 class="sub_tit">{{ "SERVER_HEALTH.POWER_COMSUMP_GRAPH" | translate }}</h6>
+                    <table class="table-data list">
+                        <colgroup>
+                            <col width="30%">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th >{{ "SERVER_HEALTH.POWER_STATISTICS" | translate}}</th>
+                                <th >{{ "SERVER_HEALTH.POWER_PAST_MIN" | translate}}</th>
+                                <th >{{ "SERVER_HEALTH.POWER_TIME" | translate}}</th>
+                                <th >{{ "SERVER_HEALTH.POWER_PAST_HOUR" | translate}}</th>
+                                <th >{{ "SERVER_HEALTH.POWER_TIME" | translate}}</th>
+                                <th >{{ "SERVER_HEALTH.POWER_PAST_24_HR" | translate}}</th>
+                                <th >{{ "SERVER_HEALTH.POWER_TIME" | translate}}</th>
+                            </tr>
+                            <tr>
+                                <td>Minimum (W)</td>
+                                <td>{{ wattInfo.PAST_MIN.LOWEST.VALUE || '-' }}</td>
+                                <td>{{ wattInfo.PAST_MIN.LOWEST.DATETIME || '-' }}</td>
+                                <td>{{ wattInfo.PAST_HOUR.LOWEST.VALUE || '-' }}</td>
+                                <td>{{ wattInfo.PAST_HOUR.LOWEST.DATETIME || '-' }}</td>
+                                <td>{{ wattInfo.PAST_DAY.LOWEST.VALUE || '-' }}</td>
+                                <td>{{ wattInfo.PAST_DAY.LOWEST.DATETIME || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <td>Maximum (W)</td>
+                                <td>{{ wattInfo.PAST_MIN.HIGHEST.VALUE || '-' }}</td>
+                                <td>{{ wattInfo.PAST_MIN.HIGHEST.DATETIME || '-' }}</td>
+                                <td>{{ wattInfo.PAST_HOUR.HIGHEST.VALUE || '-' }}</td>
+                                <td>{{ wattInfo.PAST_HOUR.HIGHEST.DATETIME || '-' }}</td>
+                                <td>{{ wattInfo.PAST_DAY.HIGHEST.VALUE || '-' }}</td>
+                                <td>{{ wattInfo.PAST_DAY.HIGHEST.DATETIME || '-' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> -->
+            </div> <!-- content -->
+
+            <div class="content" style="padding-top:50px;clear: both">
+
+                    <div id="css_tabs">
+                        <div class="panel_head">
+                            <input id="panel-1-ctrl" type="radio" name="tab" checked="checked" ng-click="onRefresh('3')"/>
+                            <input id="panel-2-ctrl" type="radio" name="tab" ng-click="onRefresh('4')"/>
+                            <input id="panel-3-ctrl" type="radio" name="tab" ng-click="onRefresh('5')"/>
+                            <label for="panel-1-ctrl" style="margin-bottom:0">Real Time</label>
+                            <label for="panel-2-ctrl" style="margin-bottom:0">Last Hour</label>
+                            <label for="panel-3-ctrl" style="margin-bottom:0">Last Day</label>
+                            <div class="tab1_content">
+                                <div class="ct-chart" id="graph_min"></div>
+                            </div>
+                            <div class="tab2_content">
+                                <div class="ct-chart" id="graph_hour"></div>
+                            </div>
+                            <div class="tab3_content">
+                                <div class="ct-chart" id="graph_day"></div>
+                            </div>
+                        </div>
+
+                        <div id="div_table" style="padding: 10px 0">
+                            <div class="table_row">
+                                <div class=" col_index_margin_l">
+                                    <!-- <img src="./images/icon_psu_blue.png" align="right"/> -->
+                                    <img src="./images/icon_psu_red.png" align="right"/>
+                                </div>
+                                <div class=" col_data">PSU 1</div>
+                                <div class=" col_img">
+                                    <!-- <img src="./images/icon_psu_red.png" align="right"/> -->
+                                    <img src="./images/icon_psu_blue.png" align="right"/>
+                                </div>
+                                <div class=" col_data">PSU 2</div>
+                                <div class=" col_index_margin_r"></div>
+                                <div style="clear: both"></div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div> <!-- content -->
+        </div> <!-- content-area -->
+    </div> <!-- box-wrap -->
+</div> <!-- content -->
+</div><!-- contents -->
+
+<script>
+
+$(function () {
+
+$(".tab_content").hide();
+$(".tab_content:first").show();
+
+$("ul.tabs li").click(function () {
+    $("ul.tabs li").removeClass("active").css("color", "#333");
+    //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+    $(this).addClass("active").css("color", "darkred");
+    $(".tab_content").hide()
+    var activeTab = $(this).attr("rel");
+    $("#" + activeTab).fadeIn()
+});
+});
+
+</script>
+

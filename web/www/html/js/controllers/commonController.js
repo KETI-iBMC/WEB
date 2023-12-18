@@ -41,7 +41,7 @@ app.controller('CommonController', [
                 } else if (path === '/serverHealthEventLogs') {
                     $rootScope.subName = 'Event Logs';
                 } else if (path === '/serverHealthPowerUsage') {
-                    $rootScope.subName = 'Power Consumption';
+                    $rootScope.subName = 'Power Usage';
                 } else {
                     $rootScope.subName = '';
                 }
@@ -92,10 +92,36 @@ app.controller('CommonController', [
                     $rootScope.subName = 'Firmware Update';
                 } else if (path === '/maintenanceBmcReset') {
                     $rootScope.subName = 'BMC Reset';
-                } else {
+                } else if (path === '/maintenanceAiDataLoad'){
+		    $rootScope.subName = 'AI Data Load';
+		} else {
                     $rootScope.subName = '';
                 }
-            } else if (path.indexOf('/settings') === 0) {
+            } else if (path.indexOf('/faultAnalysis') === 0){
+	        $rootScope.mainName = 'Fault Analysis';
+		if (path === '/faultAnalysisOverallMonitoring'){
+		    $rootScope.subName = 'Overall Monitoring';
+		} else if (path === '/faultAnalysisFoflPolicy'){
+		    $rootScope.subName = 'FOFL Policy';
+		} else if (path === '/faultAnalysisDiskReport'){	
+		    $rootScope.subName = 'Disk Report';
+		} else if (path === '/faultAnalysisLogMonitoring'){
+		    $rootScope.subName = 'Log Monitoring';
+		} else if (path === '/faultAnalysisHardwareReport'){
+		    $rootScope.subName = 'Hardware Report';
+		} else {
+		    $rootScope.subName = '';
+		}
+            } else if (path.indexOf('/energySaving') === 0){
+		$rootScope.mainName = 'Energy Saving';
+		if (path === '/energySavingSmartFanControl'){
+		    $rootScope.subName = 'Smart Fan Control';
+		} else if (path === '/energySavingCpuPowerCapping'){
+		    $rootScope.subName = 'CPU Power Capping';
+		} else {
+		    $rootScope.subName = '';
+		}
+    	    } else if (path.indexOf('/settings') === 0) {
                 $rootScope.mainName = 'Settings';
                 if (path === '/settingsServices') {
                     $rootScope.subName = 'Services';
@@ -108,8 +134,8 @@ app.controller('CommonController', [
                 $rootScope.subName = '';
             }
         }
-
-
+        
+        
         function convertUserPrivilege(privilege) {
             if (privilege === "4") {
                 return 'Administrator';

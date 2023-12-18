@@ -38,34 +38,29 @@ app.controller('MaintenanceFirmwareUpdateController', [
             $scope.showProgress = true;
             var file = $scope.firmwareFile;
 
-            // [수정4] 파일 업로드 binary로 변경
             let config = {
                 TransformRequest: angular.identity,
-                headers: {'Content-Type': undefined},
-                uploadEventHandlers:{
+                headers: { 'Content-Type': undefined },
+                uploadEventHandlers: {
                     progress: progress
                 }
             };
 
-            // url을 /upload 사용 --> /upload/category로 분류
             var categoryUrl;
-            if($scope.selectedCategory === 'All')
+            if ($scope.selectedCategory === 'All')
                 categoryUrl = 'all';
-            //else if($scope.selectedCategory === 'OS')
-            //    categoryUrl = 'os';
-            else if($scope.selectedCategory === 'Firmware')
+
+            else if ($scope.selectedCategory === 'Firmware')
                 categoryUrl = 'firmware';
-            else if($scope.selectedCategory === 'Software')
+            else if ($scope.selectedCategory === 'Software')
                 categoryUrl = 'sw';
-            //else if($scope.selectedCategory === 'etc')
-              //  categoryUrl = 'etc';
+
 
             var uploadUrl = CONST_RESTFUL_API.MAINTENANCE.FIRMWARE_UPLOAD + '/' + categoryUrl;
 
-            // dataFactory.uploadBinaryToUrl(CONST_RESTFUL_API.MAINTENANCE.FIRMWARE_UPLOAD, file, config).then(
             dataFactory.uploadBinaryToUrl(uploadUrl, file, config).then(
-                function(response) {
-                    if(response.data.CODE === CONST_CODE.REST_SUCCESS_CODE) {
+                function (response) {
+                    if (response.data.CODE === CONST_CODE.REST_SUCCESS_CODE) {
                         logger.logSuccess(CONST_MESSAGE.MAINTENANCE.FIRMWARE_UPLOAD.S001);
                     } else {
                         logger.logError(CONST_MESSAGE.MAINTENANCE.FIRMWARE_UPLOAD.E001);
@@ -74,7 +69,7 @@ app.controller('MaintenanceFirmwareUpdateController', [
                     $scope.showProgress = false;
                     $scope.percent = 0;
                     $scope.reset();
-                    
+
                 },
                 function (error) {
                     console.log(error);
@@ -86,30 +81,7 @@ app.controller('MaintenanceFirmwareUpdateController', [
                 }
             );
 
-            
 
-            // Origin
-            // dataFactory.uploadFileToUrl(CONST_RESTFUL_API.MAINTENANCE.FIRMWARE_UPLOAD, file, progress).then(
-            //     function (response) {
-            //         if (response.data.CODE === CONST_CODE.REST_SUCCESS_CODE) {
-            //             logger.logSuccess(CONST_MESSAGE.MAINTENANCE.FIRMWARE_UPLOAD.S001);
-            //         } else {
-            //             logger.logError(CONST_MESSAGE.MAINTENANCE.FIRMWARE_UPLOAD.E001);
-            //         }
-
-            //         $scope.showProgress = false;
-            //         $scope.percent = 0;
-            //         $scope.reset();
-            //     },
-            //     function (error) {
-            //         console.log(error);
-            //         logger.logError(CONST_MESSAGE.MAINTENANCE.FIRMWARE_UPLOAD.E002);
-
-            //         $scope.showProgress = false;
-            //         $scope.percent = 0;
-            //         $scope.reset();
-            //     }
-            // );
         }
 
         function progress(e) {
@@ -118,7 +90,7 @@ app.controller('MaintenanceFirmwareUpdateController', [
         }
 
         function fileChange(newValue, oldValue) {
-            if(newValue) {
+            if (newValue) {
                 $scope.fileName = newValue.name;
             }
         }
@@ -129,7 +101,7 @@ app.controller('MaintenanceFirmwareUpdateController', [
          *
          ***************************************************************************************************************/
         $scope.init = function () {
-            if(!$rootScope.isLogin) {
+            if (!$rootScope.isLogin) {
                 $location.url('/login');
                 return;
             }
@@ -137,8 +109,7 @@ app.controller('MaintenanceFirmwareUpdateController', [
             $scope.showProgress = false;
             $scope.percent = 0;
             $scope.fileName = undefined;
-            // [수정5] categoryList랑 선택 category추가
-            //$scope.categoryList = ['All', 'OS', 'Firmware', 'Software', 'etc'];
+
             $scope.categoryList = ['All', 'Firmware', 'Software'];
             $scope.selectedCategory = "";
         };
@@ -162,17 +133,16 @@ app.controller('MaintenanceFirmwareUpdateController', [
             $scope.fileName = undefined;
         };
 
-        $scope.chooseFile = function() {
+        $scope.chooseFile = function () {
             document.getElementById('firmwareFile').click();
         };
 
         $scope.$watch('firmwareFile', fileChange);
 
-        // [수정5] select firmware category
         $scope.onChangeCategory = function (category) {
             $scope.selectedCategory = category;
         };
 
-        
+
     }
 ]);

@@ -60,35 +60,27 @@ app.controller('LoginController', [
              };
             
 function performLogin() {
-    // 로그인 버튼을 누를 때만 로딩 스피너를 활성화
-    if (!$rootScope.showSpinner) {
-        $rootScope.showSpinner = false;
-    }
+        $rootScope.showSpinner = true;
+        dataFactory.httpRequest(CONST_RESTFUL_API.LOGIN.LOGIN, "POST", undefined, params).then(
+            function (response) {
+                if (parseInt(response.data.PRIVILEGE) <= 0) {
+                    logger.logError(CONST_MESSAGE.USER.E001);
+                    return;
+                }
 
-    dataFactory.httpRequest(CONST_RESTFUL_API.LOGIN.LOGIN, "POST", undefined, params).then(
-        function (response) {
-            if (parseInt(response.data.PRIVILEGE) <= 0) {
-                logger.logError(CONST_MESSAGE.USER.E001);
-                return;
+                setLoginCookie($scope.userName, response.data.PRIVILEGE);
+                $rootScope.$broadcast('login');
+                $location.url('/home');
             }
-
-            setLoginCookie($scope.userName, response.data.PRIVILEGE);
-            $rootScope.$broadcast('login');
-            $location.url('/home');
-        }
-    ).catch(function () {
-        // 로그인 실패 시에도 로딩 스피너를 비활성화하지 않음
-        showLoading();
-        setTimeout(function () {
-            performLogin();
-        }, 1000);
-    }).finally(function () {
-        // 로그인 시에만 로딩 스피너를 비활성화
-        if ($rootScope.showSpinner) {
-            $rootScope.showSpinner = true;
-        }
-    });
-}
+        ).catch(function () {
+            showLoading();
+            setTimeout(function () {
+                performLogin();
+            }, 1000);
+        }).finally(function () {
+            $rootScope.showSpinner = false;
+        });
+    }
 
     performLogin();
         };

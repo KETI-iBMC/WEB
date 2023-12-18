@@ -7,29 +7,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>KETI BMC WEB</title>
-<!-- 
+    <title>KETI iBMC WEB</title>
+
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/layout.css" rel="stylesheet">
     <link href="./css/toastr.min.css" rel="stylesheet">
     <link href="./css/chartist.css" rel="stylesheet">
-    <link href="./css/home.css" rel="stylesheet"> -->
-
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/home.css" rel="stylesheet">
-    <link href="./css/styles.css" rel="stylesheet">
-    <link href="./css/layout.css" rel="stylesheet">
-    <link href="./css/toastr.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-
+    <script src="./js/third-parties/chart.js"></script>
+    <script src="./js/third-parties/chartjs-plugin-dragdata"></script>
+    <script src="./js/third-parties/apexcharts"></script>
     <script src="./js/third-parties/jquery.min-1.11.2.js"></script>
     <script src="./js/third-parties/bootstrap.min.js"></script>
-    <script src="./js/third-parties/chartist.min.js"></script>
+    <script src="./js/third-parties/chartist.min.js"></script> 
+    <script src="./js/third-parties/chartist-plugin-axistitle.js"></script>
     <script src="./js/third-parties/crypto-js.min.js"></script>
-
-
 
     <script src="./js/third-parties/angular.min-1.6.4.js"></script>
     <script src="./js/third-parties/angular-route.min-1.6.4.js"></script>
@@ -45,9 +38,6 @@
     <script src="./js/third-parties/angular.radialIndicator.js"></script>
     <script src="./js/export.js"></script>
     <script src="./js/app.js"></script>
-    <script src="./js/third-parties/Chart.min.js"></script>
-    <script src="./js/third-parties/angular-chart.min.js"></script>
-
 
     <script src="./js/services/commonServices.js"></script>
     <script src="./js/controllers/commonController.js"></script>
@@ -71,6 +61,19 @@
     <script src="./js/controllers/configSslController.js"></script>
     <script src="./js/controllers/maintenanceFirmwareUpdateController.js"></script>
     <script src="./js/controllers/maintenanceBmcResetController.js"></script>
+    <script src="./js/controllers/maintenanceAiDataLoadController.js"></script>
+    <script src="./js/controllers/faultAnalysisDiskReportController.js"></script>
+    <script src="./js/controllers/faultAnalysisLogMonitoringController.js"></script>
+    <script src="./js/controllers/energySavingCpuPowerCappingController.js"></script>
+    <script src="./js/controllers/faultAnalysisHardwareReportController.js"></script>
+
+
+    <!--<script src="./js/controllers/faultAnalysisOverallMonitoringController.js"></script>
+    <script src="./js/controllers/faultAnalysisFoflPolicy.js"></script>
+    <script src="./js/controllers/energySavingSmartFanControl.js"></script>-->
+    <script src="./js/controllers/faultAnalysisOverallMonitoringController.js"></script>
+    <script src="./js/controllers/faultAnalysisFoflPolicyController.js"></script>
+    <script src="./js/controllers/energySavingSmartFanController.js"></script>
     <script src="./js/controllers/consoleRedirectionController.js"></script>
     <script src="./js/controllers/serverPowerControlController.js"></script>
     <script src="./js/controllers/solController.js"></script>
@@ -78,7 +81,6 @@
     <!-- [수정] Settings화면 -->
     <!-- <script src="./js/controllers/SettingsServicesController.js"></script> -->
     <script src="./js/controllers/settingsServicesController.js"></script>
-
 </head>
 
 <body>
@@ -118,16 +120,16 @@
         </div>
     </div>
 </div>-->
-
-<div class="container-fluid" ng-style="activeState.indexOf('/login') === 0 ? {'background': '#ebeef3'} : {'background': 'none'}">
+<div class="container-fluid"
+    ng-style="activeState.indexOf('/login') === 0 ? {'background': '#ebeef3'} : {'background': 'none'}">
     <div class="row content">
-        <div ng-class="activeState.indexOf('/home') === 0 ? 'sidenav-menu' : 'sidenav'" ng-style="activeState.indexOf('/login') === 0 ? {display: 'none'} : {display: 'block'}">
+        <div ng-class="activeState.indexOf('/home') === 0 ? 'sidenav-menu' : 'sidenav'"
+            ng-style="activeState.indexOf('/login') === 0 ? {display: 'none'} : {display: 'block'}">
             <div ng-include="'views/includes/leftNav.html'"></div>
         </div>
-	<ng-view ng-if="activeState.indexOf('/login') === 0"></ng-view>
+        <ng-view></ng-view>
     </div>
 </div>
-
 <!--<div class="spinner-overlay" ng-show="showSpinner">
     <div class="sk-folding-cube">
         <div class="sk-cube1 sk-cube"></div>

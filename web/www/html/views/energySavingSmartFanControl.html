@@ -1,0 +1,1045 @@
+<style>
+  .Quick-box {
+
+    width: 93%;
+
+    height: 100%;
+
+    position: relative;
+
+    background: #FFF;
+
+    border: 1px solid #DDD;
+
+    margin: 20px 10px 20px 18px;
+
+    padding: 20px 10px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    font-family: notokrM;
+
+    box-shadow: 0 0 3px 3px rgba(0 0 0 / 10%);
+
+    align-items: center;
+
+    flex-direction: column;
+
+    justify-content: space-around
+  }
+
+
+
+  .quick-split50 {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+
+
+  .ctrl-top {
+
+    display: flex;
+
+    align-items: center;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    margin-top: 20px;
+    justify-content: space-evenly;
+
+  }
+
+
+
+  .quick_tmep-icon {
+
+    width: 30px;
+
+    height: 30px;
+
+    margin: 5px;
+
+  }
+
+
+
+  .ctrl-name {
+
+    width: 77%;
+
+    height: 80%;
+
+    margin: 0;
+
+    padding: 2px 2px 0px 2px;
+
+    margin-left: 5px;
+
+    font-weight: bold;
+
+    display: flex;
+
+    border-bottom: 1.7px solid #333;
+
+    justify-content: space-between;
+
+    text-align: center;
+
+  }
+
+
+
+  .ctrl-name div {
+
+    font-size: 13px;
+
+    text-align: center;
+
+    flex-grow: 1;
+
+  }
+
+
+
+  .ctrl-right {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding-top: 7px;
+
+  }
+
+
+
+  .ctrl-btn {
+
+    background-color: transparent;
+
+    border: none;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    width: 24px;
+
+    height: 24px;
+
+    position: relative;
+
+  }
+
+
+
+  .menu-icon {
+
+    display: block;
+
+    width: 24px;
+
+    height: 24px;
+
+    position: relative;
+
+  }
+
+
+
+  .menu-icon span {
+
+    display: block;
+
+    width: 4px;
+
+    height: 4px;
+
+    background-color: #333;
+
+    position: absolute;
+
+    top: 64%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+  }
+
+
+
+  .menu-icon span:nth-child(1) {
+
+    top: 9px;
+
+  }
+
+
+
+  .menu-icon span:nth-child(3) {
+
+    top: 3px;
+
+  }
+
+
+
+  .quick-split {
+
+    margin-top: 20px;
+
+  }
+
+
+
+  .wrapper {
+
+    display: flex;
+
+    align-items: flex-end;
+
+  }
+
+
+
+  .current-text {
+
+    width: 100%;
+
+    height: 100%;
+
+    color: #ababab;
+
+  }
+
+
+
+  .ctrl-right50 {
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 5px;
+
+    margin-bottom: 7px;
+
+    position: relative;
+
+  }
+
+
+
+  .ctrl-middle {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    padding: 2px 5px 0 5px;
+
+  }
+
+
+
+  .tmep-icon {
+
+    width: 13%;
+
+    height: 13%;
+
+    margin: 5px 5px;
+
+  }
+
+
+
+  .al-center {
+
+    width: 100%;
+
+    height: 100%;
+
+    padding: 5px;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    text-align: center;
+
+  }
+
+
+
+  .al-wrapper {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    margin-left: 5px;
+
+    margin-right: 5px;
+
+  }
+
+
+
+  .al-current {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+  }
+
+
+
+  .vertical-text {
+
+    width: 5%;
+
+    height: 100%;
+
+    color: #000;
+
+    writing-mode: vertical-lr;
+
+    height: auto;
+
+    line-height: 50%;
+
+  }
+
+
+
+  .next-text {
+
+    width: 100%;
+
+    height: auto;
+
+    color: #000;
+
+    text-align: center;
+
+  }
+
+
+
+  select {
+
+    font: NotoKrR;
+
+    padding: 0 10px;
+
+    border: 0;
+
+    border-bottom: 2px solid currentcolor;
+
+    border-radius: 0;
+
+    width: 90%;
+
+    text-align: center;
+    margin: 0 5%;
+
+  }
+
+
+
+  .smartfan_line {
+
+    font: NotoKrR;
+
+    padding: 0 10px;
+
+    border: 0;
+
+    border-bottom: 2px solid currentcolor;
+
+    border-radius: 0;
+
+    width: 90%;
+    margin: 10px 5%;
+
+  }
+
+
+
+  .control-box {
+
+    width: 100%;
+
+    height: 100%;
+
+    position: relative;
+
+    background: #FFF;
+
+    border: 1px solid #DDD;
+
+    margin: 20px 10px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: notokrM;
+
+    box-shadow: 0 0 3px 3px rgba(0 0 0 / 10%);
+
+  }
+
+
+
+  .center {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+
+
+  .fan_data {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 105px;
+
+    transform: translateX(-50%);
+  }
+
+  .fan_data .RPM {
+
+    display: block;
+
+    font-family: 'Roboto';
+
+    font-size: 11px;
+
+    margin: 0;
+
+    padding: 0;
+
+  }
+
+
+  .fan {
+    /* box-sizing: border-box;
+    padding: 20px;
+    text-align: center; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    float: left;
+  }
+
+  #Rack_Back {
+    height: 500px;
+    display: block;
+    object-fit: contain;
+    margin: 30px 0;
+  }
+
+  #lineChart {
+    text-align: center;
+    width: 180%;
+    height: 180%;
+    /* height: 210px; */
+  }
+
+
+  .circle-container {
+    display: grid;
+    grid-template-columns: repeat(3, 75px);
+    grid-template-rows: repeat(3, 83px);
+    gap: 57px;
+    justify-content: space-around;
+    margin: 0 5% 0 -5%;
+    align-items: center;
+  }
+
+  .circle {
+    width: 100%;
+    height: 90%;
+    background-color: rgb(88, 213, 43);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fan_read {
+    position: absolute;
+    top: 55px;
+    left: 16%;
+    z-index: 1;
+  }
+
+  .toggleSwitch {
+    width: 56px;
+    height: 26px;
+    display: block;
+    position: relative;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+    cursor: pointer;
+    margin-top: 5px;
+  }
+
+  .toggleSwitch .toggleButton {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #78b8e2;
+  }
+
+  #toggle:checked~.toggleSwitch {
+    background: #78b8e2;
+  }
+
+  #toggle:checked~.toggleSwitch .toggleButton {
+    left: calc(100% - 22px);
+    background: #fff;
+  }
+
+  .toggleSwitch,
+  .toggleButton {
+    transition: all 0.2s ease-in;
+  }
+</style>
+
+
+<div class="contents" data-ng-init="init()">
+
+  <div class="content">
+
+    <div class="box_wrap box_guide2" style="margin-top: 70px;">
+
+      <div class="content-area">
+
+        <div class="title_line">
+
+          <h4>Smart Fan Control</h4>
+
+          <div class="con-subtit">This page can control fans for saving energy.
+
+          </div>
+
+        </div>
+
+        <div class="fan_control_box"
+          style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 0.5fr 0.5fr;">
+
+
+
+          <div class="Quick-box" style="padding-top: 10px;">
+
+            <div style="display:flex; width: 100%;">
+
+              <div class="quick-split50" style="width: 50%; margin: 0 10px;">
+
+                <div class="ctrl-top" style="margin-bottom: 5px;">
+
+                  <img src="./images/temperature_icon.png" class="quick_tmep-icon">
+
+                  <div class="ctrl-name">
+
+                    <!-- <div>{{ "POWER_AND_THERMAL.ENTIRE_FAN" | translate}}</div> -->
+
+                    <div>Entire Fan</div>
+
+                  </div>
+
+                  <div class="ctrl-right">
+
+                    <button class="ctrl-btn">
+
+                      <div class="menu-icon">
+
+                        <span></span>
+
+                        <span></span>
+
+                        <span></span>
+
+                      </div>
+
+                    </button>
+
+                  </div>
+
+                </div>
+
+                <div class="quick-split">
+
+                  <div class="ctrl-left50">
+
+                    <div class="wrapper">
+
+                      <div class="current" style="width: 100%; padding-top: 5px;">
+
+                        <div class="current-text center">{{ "POWER_AND_THERMAL.TEMPERATURE_SOURCE" | translate}}</div>
+
+                        <div class="smartfan_line center">
+
+                          <div>{{tempSource || '-'}}</div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="ctrl-left50">
+
+                    <div class="wrapper">
+
+                      <div class="current" style="width: 100%; padding-top: 5px;">
+
+                        <div class="current-text center">{{ "POWER_AND_THERMAL.TEMPERATURE" | translate}}</div>
+
+                        <div>
+
+                          <div class="smartfan_line center">
+
+                            <div>{{temperature || '-'}}°C</div>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="ctrl-left50">
+                    <div class="wrapper">
+                      <div class="current" style="width: 100%; padding-top: 5px;">
+                        <div class="current-text center">{{ "POWER_AND_THERMAL.TARGET_TEMPERATURE" | translate}}</div>
+                        <div  style="margin: 10px 0;">
+                          <select ng-model="selectedTargetTemperature" ng-options="x for x in targetTemperatureList"
+                            ng-change="onChangeTargetTemperature()">
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+
+              <div class="ctrl-split" style="width: 50%; margin-right: 10px">
+
+                <div class="ctrl-right50">
+
+                  <div class="wrapper" style="display: inline;">
+
+                    <div class="current-text center" style="padding-right: 12%;">Fan Speed</div>
+
+
+
+                    <div class="ctrl-middle">
+
+                      <div style="display: flex; width: 100%; margin-bottom: 10px; justify-content: space-evenly;">
+
+                        <div class="ctrl-name" style="height: 30px;">
+
+                          <div>{{fanSpeed || '-'}}%</div>
+
+                        </div>
+
+                        <div>
+
+                          <img src="./images/status.png" class="tmep-icon"
+                            style="width: 20px; height: 20px; margin: 5px 0px 0px 10px;">
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="quick-split">
+
+                  <div class="ctrl-left50">
+
+                    <div class="wrapper">
+
+                      <div class="current" style="width: 100%;">
+
+                        <div class="current-text center">{{ "POWER_AND_THERMAL.COOLING_ALGORITHM" | translate}}</div>
+
+                        <div style="margin: 10px 0;">
+
+                          <select ng-model="selectedCoolingAlgo" ng-options="x for x in coolingAlgoList"
+                            ng-change="onChangeCoolingAlgo()">
+                          </select>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="ctrl-left50" style="margin-top: 7px;">
+
+                    <div class="wrapper">
+
+                      <div class="current" style="width: 100%; padding:0">
+
+                        <div class="current-text center">{{ "POWER_AND_THERMAL.CRITERIA" | translate}}</div>
+
+                        <div class="smartfan_line center">
+
+                          <div>{{criteria || '-'}}</div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="btn-style" style="display: flex;">
+
+              <button type="button" class="btn btn-blue" ng-click="onClickFanSave()">{{ "SAVE" | translate}}</button>
+
+            </div>
+
+
+
+          </div>
+
+
+
+
+
+          <div>
+
+            <div class="control-box" style="display: flex;">
+
+              <div class="ctrl-split">
+
+                <div class="al-center">
+
+                  <div class="al-wrapper">
+
+                    <div class="al-current">
+
+                      <div class="vertical-text">Fan RPM (%)</div>
+
+                      <canvas id="lineChart"></canvas>
+
+                    </div>
+
+                    <div class="next-text">Temperature (°C)</div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-around;">
+
+            <div class="box-wrap">
+              <div class="con-info" style="position: relative;">
+                <div class="fan">
+                  <img src="./images/Rack_Back.png" height="500" id="Rack_Back">
+                  <div class="circle-container fan_read" id="fan-readings"> </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+
+          <div>
+
+            <div class="content" style="padding-top:50px;clear: both">
+
+              <div class="title_line"
+                style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: flex-start;">
+
+                <h5 style="color: #0b4daf; font-size: 18px; margin: 0; font-weight: bold;">Energy Consumption Monitoring
+                  & Comparison </h5>
+
+              </div>
+
+              <div style="margin: 0 0 20px 20px; display: flex;">
+                <div style="display: flex; align-items: center;">
+                  <div style="margin-right: 20px;  width: 200px;"> Refresh Interval (second) </div>
+                  <select class="form-control input-sm" style="width:auto;" ng-model="selectedRefreshInterval"
+                  ng-disabled="autoSync" ng-options="n as n for n in refreshIntrevalList"
+                  ng-change="onChangeRefreshInterval()"></select>
+                </div>
+                <div style="display: flex; align-items: center; margin-left: 30px;">
+                  <div style="margin-right: 20px;"> Prediction Toggle </div>
+                  <input type="checkbox" id="toggle" hidden>
+
+                  <label for="toggle" class="toggleSwitch">
+                    <span class="toggleButton"></span>
+                  </label>
+
+                </div>
+              </div>
+
+
+            </div>
+
+            <div id="css_tabs">
+
+              <div class="panel_head">
+
+                <input id="panel-1-ctrl" type="radio" name="tab" checked="checked" ng-click="onRefresh('3')" />
+
+                <input id="panel-2-ctrl" type="radio" name="tab" ng-click="onRefresh('4')" />
+
+                <input id="panel-3-ctrl" type="radio" name="tab" ng-click="onRefresh('5')" />
+
+                <label for="panel-1-ctrl" style="margin-bottom:0; padding: 5px 10px;">Real Time</label>
+
+                <label for="panel-2-ctrl" style="margin-bottom:0; padding: 5px 10px;">Last Hour</label>
+
+                <label for="panel-3-ctrl" style="margin-bottom:0; padding: 5px 10px;">Last Day</label>
+
+                <div class="tab1_content">
+
+                  <div class="ct-chart" id="graph_min"></div>
+                  <div class="ct-chart" id="graph_min_pre" style="display: none;"></div>
+
+                </div>
+
+                <div class="tab2_content">
+
+                  <div class="ct-chart" id="graph_hour"></div>
+
+                </div>
+
+                <div class="tab3_content">
+
+                  <div class="ct-chart" id="graph_day"></div>
+
+                </div>
+
+              </div>
+
+
+
+              <div id="div_table" style="margin-top: 10px; padding: 10px 0">
+
+                <div class="table_row">
+
+                  <div id="toggle_off">
+                    <div class=" col_index_margin_l" style="width: 10%;">
+                      <img src="./images/icon_psu_red.png" align="right" />
+                    </div>
+                    <div class=" col_data" style="font-size: 13px; width: 30%;">PSU 1</div>
+                    
+                    <div class=" col_img">
+                      <img src="./images/icon_psu_blue.png" align="right" />
+                    </div>
+                    <div class=" col_data" style="font-size: 13px; width: 30%;"> PSU 2 </div>
+                  </div>
+
+                  <div id="toggle_on" style="display: none;">
+                    <div class=" col_index_margin_l" style="width: 10%;">
+                      <img src="./images/icon_psu_red.png" align="right" />
+                    </div>
+                    <div class=" col_data" style="font-size: 13px; width: 50px;">PSU 1</div>
+                  
+                    <div class=" col_img">
+                      <img src="./images/icon_psu_blue.png" align="right" />
+                    </div>
+                    <div class=" col_data" style="font-size: 13px; width: 50px;"> PSU 2 </div>
+                  
+                    <div class=" col_img">
+                      <img src="./images/icon_psu_brown.png" align="right" />
+                    </div>
+                    <div class=" col_data" style="font-size: 13px; width: 130px;"> PSU 1 Prediction </div>
+                  
+                    <div class=" col_img">
+                      <img src="./images/icon_psu_yellow.png" align="right" />
+                    </div>
+                    <div class=" col_data" style="font-size: 13px; width: 130px;"> PSU 2 Prediction</div>
+                  
+                  </div>
+                  
+                  <div class=" col_index_margin_r"></div>
+
+                  <div style="clear: both"></div>
+                </div>
+
+                <div class="btn-style" style="display: flex; flex-direction: row-reverse; margin-right: 20px;">
+                  <button type="button" class="btn btn-blue" ng-click="openTotalGraph()" data-toggle="modal"
+                    data-target="#TotalGraph"> Total Graph </button>
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div> <!-- content -->
+
+        </div>
+
+      </div>
+    </div>
+
+    <style>
+      #total_tabs label {
+        float: left;
+        display: inline-block;
+        width: 20%;
+        font-size: 1.3rem;
+        padding: 5px 50px;
+        text-align: center;
+        line-height: 1.8em;
+        font-weight: 600;
+        border-radius: 3px 3px 0 0;
+        background: #eee;
+        color: #777;
+        border: 1px solid #ccc;
+        border-width: 1px 1px 0;
+        margin-right: 2px;
+      }
+
+      #total_tabs>label:hover {
+        cursor: pointer
+      }
+    </style>
+
+
+    <div id="TotalGraph" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" style="color:#000"> Energy Consumption Comparison
+            </h4>
+          </div>
+          <div class="modal-body">
+            <!-- <div class="tab1_content">
+              <div class="ct-chart" id="graph_test"></div> -->
+            <div id="total_tabs">
+              <div class="panel_head">
+                <div class="tab1_content">
+                  <div class="ct-chart" id="graph_test"></div>
+                </div>
+              </div>
+
+              <div id="div_table" style="padding: 10px 0">
+                <div class="table_row">
+                  <div class=" col_index_margin_l" style="width: 30%">
+                    <img src="./images/icon_psu_blue.png" align="right" />
+                  </div>
+                  <div class=" col_data">BFC</div>
+
+                  <div class=" col_img">
+                    <img src="./images/icon_psu_red.png" align="right" />
+                  </div>
+                  <div class=" col_data" style="width: 10%">Default</div>
+
+                  <div class=" col_img">
+                    <img src="./images/icon_psu_yellow.png" align="right" />
+                  </div>
+                  <div class=" col_data">LFC</div>
+
+                  <div class=" col_index_margin_r"></div>
+                  <div style="clear: both"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-black" data-dismiss="modal">{{ "CANCEL" | translate }}</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

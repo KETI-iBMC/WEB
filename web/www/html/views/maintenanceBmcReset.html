@@ -1,17 +1,17 @@
-<div class="animation">
-<!--<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>-->
-        <div class="bmc bmc-fru"  data-ng-init="init()">
-            <div class="card">
-                <div class="card-header">
-                    <p class="card-header-title">{{ "MAINTENANCE.BMC_RESET" | translate }}</p>
-                    <p class="card-header-desc">{{ "MAINTENANCE.BMC_RESET_DESCRIPTION" | translate }}</p>
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide">
+            <div class="content-area">
+                <div class="title_line">
+                    <h4>{{ "MAINTENANCE.BMC_RESET" | translate }}</h4>
+                    <div class="con-subtit">{{ "MAINTENANCE.BMC_RESET_DESCRIPTION" | translate }}</div>
                 </div>
-                <div class="card-body">
-                    <div class="btn-wrap flex items-center gap-2">
-                        <button class="btn btn-primary"ng-click="reset()">{{ "RESET" | translate }}</button>
-                        <button class="btn btn-secondary"ng-click="warm_reset()"> {{ "WARM_RESET" | translate }} </button>
-                    </div>
+
+                <div class="con-info">
+                    <button type="button" class="btn btn-blue" ng-click="reset()">{{ "RESET" | translate }}</button>
+		            <button type="button" class="btn btn-blue" ng-click="warm_reset()"> {{ "WARM_RESET" | translate }} </button>
                 </div>
             </div>
         </div>
     </div>
+</div>

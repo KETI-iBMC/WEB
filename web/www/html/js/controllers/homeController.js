@@ -246,55 +246,25 @@ app.controller('HomeController', [
                 var wattValue_2 = parseInt(wattUsage_2.WATT);
                 var wattDate = wattUsage_1.DATETIME;
                 dateData.push(Date.parse(wattDate));
-                labeldata.push("");
                 seriesdata[0].push(wattValue_1);
                 seriesdata[1].push(wattValue_2);
 
             }
-            $scope.powerConsumptionData = seriesdata;
-            $scope.powerConsumptionLabels = labeldata;
-            $scope.powerConsumptionSeries = ['PSU 1', 'PSU 2'];
-            $scope.powerConsumptionOptions = {
-                legend: {
-                    display: true
+
+            new Chartist.Line('#home_graph_min', {
+                labels: labeldata,
+                series: seriesdata
+            }, {
+                height: '195px',
+                low: 0,
+                showArea: true,
+                axisX: {
+                    showGrid: true
                 },
-                scales: {
-
-                    yAxes: [{
-                        ticks: {
-                            stepSize: 3000, // 원하는 간격으로 조절
-                            beginAtZero: true,
-                            max: 15000
-                        }
-                    }]
+                axisY: {
+                    showGrid: true
                 }
-            };
-            // $scope.powerConsumptionColors = [
-            //     {
-            //         backgroundColor: 'rgba(148, 159, 177, 0.2)',
-            //         borderColor: 'rgba(148, 159, 177, 1)'
-
-            //     },
-            //     {
-            //         backgroundColor: 'rgba(24, 255, 109, 0.7)',
-            //         borderColor: 'rgba(24, 255, 109, 1)'
-
-            //     }
-            // ]
-            // new Chartist.Line('#home_graph_min', {
-            //     labels: labeldata,
-            //     series: seriesdata
-            // }, {
-            //     height: '195px',
-            //     low: 0,
-            //     showArea: true,
-            //     axisX: {
-            //         showGrid: true
-            //     },
-            //     axisY: {
-            //         showGrid: true
-            //     }
-            // });
+            });
         }
 
         function setMainInfo(response, index) {
@@ -611,9 +581,7 @@ app.controller('HomeController', [
                 var tempValue_4 = parseInt(tempUsage_4.WATT);
 
                 var wattDate = tempUsage_0.DATETIME;
-
                 dateData.push(Date.parse(wattDate));
-                labeldata.push("");
                 seriesdata[0].push(tempValue_0);
                 seriesdata[1].push(tempValue_1);
                 seriesdata[2].push(tempValue_2);
@@ -621,40 +589,20 @@ app.controller('HomeController', [
                 seriesdata[4].push(tempValue_4);
             }
 
-
-            $scope.temperatureData = seriesdata;
-            $scope.temperatureLabels = labeldata;
-            $scope.temperatureOptions = {
-                legend: {
-                    display: true
-
+            new Chartist.Line('#temperatureChart', {
+                labels: labeldata,
+                series: seriesdata
+            }, {
+                height: '195px',
+                low: 0,
+                showArea: true,
+                axisX: {
+                    showGrid: true
                 },
-                scales: {
-
-                    yAxes: [{
-                        ticks: {
-                            stepSize: 15, // 원하는 간격으로 조절
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }]
+                axisY: {
+                    showGrid: true
                 }
-            };
-            $scope.temperatureSeries = ['Temp1', 'Temp2', 'Temp3', 'Temp4', 'Temp5'];
-            // new Chartist.Line('#temperatureChart', {
-            //     labels: labeldata,
-            //     series: seriesdata
-            // }, {
-            //     height: '195px',
-            //     low: 0,
-            //     showArea: true,
-            //     axisX: {
-            //         showGrid: true
-            //     },
-            //     axisY: {
-            //         showGrid: true
-            //     }
-            // });
+            });
         }
 
 

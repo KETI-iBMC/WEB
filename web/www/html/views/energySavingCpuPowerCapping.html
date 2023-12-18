@@ -1,0 +1,180 @@
+<style>
+    .toggleSwitch {
+        width: 56px;
+        height: 26px;
+        display: block;
+        position: relative;
+        border-radius: 30px;
+        background-color: #fff;
+        box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+        cursor: pointer;
+        margin-top: 5px;
+    }
+
+    .toggleSwitch .toggleButton {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 50%;
+        left: 3px;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        background: #78b8e2;
+    }
+
+    #toggle:checked~.toggleSwitch {
+        background: #78b8e2;
+    }
+
+    #toggle:checked~.toggleSwitch .toggleButton {
+        left: calc(100% - 22px);
+        background: #fff;
+    }
+
+    .toggleSwitch,
+    .toggleButton {
+        transition: all 0.2s ease-in;
+    }
+</style>
+
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide">
+            <div class="content-area">
+                <div class="title_line">
+                    <h4>{{ "ENERGY_SAVING.CPU_POWER_CAPPING" | translate }}</h4>
+                    <div class="con-subtit">{{ "ENERGY_SAVING.CPU_POWER_CAPPING_DESCRIPTION" | translate }}</div>
+                </div>
+
+                <div class="con-info">
+                    <div class="info-data">{{ "ENERGY_SAVING.CPU_VALUES_MONITORING" | translate }}</div>
+                    <table class="table-data">
+                        <colgroup>
+                            <col width="250px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>1 Minute Cpu Utilization Average [core / total core]</th>
+                                <td>{{ cpuInfo["1MinCpuUtil"] || '-'}}</td>
+                            </tr>
+                            <tr>
+                                <th>5 Minute Cpu Utilization Average [core / total core]</th>
+                                <td>{{ cpuInfo["5MinCpuUtil"] || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>15 Minute Cpu Utilization Average [core / total core]</th>
+                                <td>{{ cpuInfo["15MinCpuUtil"] || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>User Process Percentage</th>
+                                <td>{{ cpuInfo["UserProcess"] || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>System Process Percentage</th>
+                                <td>{{ cpuInfo["SystemProcess"] || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Idle Percentage</th>
+                                <td>{{ cpuInfo["Idle"] || '-' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="con-info">
+                    <div class="info-data">{{ "ENERGY_SAVING.CPU_POWER_CAPPING" | translate }}</div>
+                    <div class="Cpu-control">
+                        <form class="form-inline">
+                            <table class="table-data">
+                                <colgroup>
+                                    <col width="200px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "ENERGY_SAVING.CORE_COUNT" | translate }}</th>
+                                        <td>
+                                            <select class="form-control input-sm" style="width:75px;"
+                                                ng-model="selectedCorecount" ng-disabled="autoSync"
+                                                ng-options="n as n for n in coreCountList"></select>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "ENERGY_SAVING.CPU_POWER_CAPPING_CONTROL" | translate }}</th>
+                                        <td>
+                                            <select class="form-control input-sm" style="width:75px;"
+                                                ng-model="selectedCorecapping" ng-disabled="autoSync"
+                                                ng-options="n as n for n in coreCappingList"></select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                        <div class="flex-row" style="text-align: center;">
+                            <button class="btn-blue tmp-button" style="width:100px; height:35px; margin-top: 5px;"
+                                ng-click="onClickModifyCpuSpeed()">
+                                Modify
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="con-info">
+                    <div class="info-data">{{ "ENERGY_SAVING.ENERGY_CONSUMPTION_MONITORING" | translate }}</div>
+
+                    <div style="margin: 10px 0 0 20px; display: flex;">
+                        <div style=" margin-left: 30px; margin-top: 5px; display: flex; align-items: center;">
+                            <div style="margin-right: 20px;"> Refresh Interval (second) </div>
+                            <select class="form-control input-sm" style="width:auto;" ng-model="selectedRefreshInterval"
+                                ng-disabled="autoSync" ng-options="n as n for n in refreshIntrevalList"
+                                ng-change="onChangeRefreshInterval()"></select>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-left: 30px;">
+                            <div style="margin-right: 20px;"> Prediction Toggle </div>
+                            <input type="checkbox" id="toggle" hidden>
+
+                            <label for="toggle" class="toggleSwitch">
+                                <span class="toggleButton"></span>
+                            </label>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="content" style="padding-top:20px;clear: both">
+
+                        <div id="css_tabs">
+                            <div class="panel_head">
+                                <input id="panel-1-ctrl" type="radio" name="tab" checked="checked"
+                                    ng-click="onRefresh('3')" />
+                                <label for="panel-1-ctrl" style="margin-bottom:0">Real Time</label>
+                                <div class="tab1_content">
+                                    <div class="ct-chart" id="graph_cpu"></div>
+                                </div>
+                            </div>
+
+                            <div id="div_table" style="padding: 10px 0">
+                                <div class="table_row">
+                                    <div class=" col_index_margin_l">
+                                        <img src="./images/icon_psu_blue.png" align="right" />
+                                    </div>
+                                    <div class=" col_data">CPU</div>
+                                    <div class=" col_index_margin_r"></div>
+                                    <div style="clear: both"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

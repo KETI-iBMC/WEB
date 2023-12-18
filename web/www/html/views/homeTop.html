@@ -1,0 +1,149 @@
+<div class="col-sm-5 info">
+    <div class="box_wrap">
+        <div class="box_line">
+            <h4 class="box_tit">{{ "BMC_INFORMATION" | translate }}</h4>
+        </div>
+        <div class="bmc-wrap">
+            <div>
+                <div class="info-data">{{ "HOME.FIRMWARE_INFORMATION" | translate }}</div>
+                <table class="table-data">
+                    <tbody>
+                        <!-- [수정] BMC Information 부분 읽어온 값 할당 -->
+                    <tr>
+                        <th>{{ "HOME.FIRMWARE_VERSION" | translate }}</th>
+                       <td>{{ systemInfo.MC.IPMIFW_VERSION }}</td>
+                        <!-- <td>v1.0</td> -->
+                    </tr>
+                    <tr>
+                        <th>{{ "FIRMWARE_BUILD_TIME" | translate }}</th>
+                       <td>{{ systemInfo.MC.IPMIFW_BLDTIME }}</td>
+                        <!-- <td>2021-11-16.15:01:55</td> -->
+                    </tr>
+                    <tr class="down">
+                        <th>{{ "KERNEL_VERSION" | translate }}</th>
+                       <td>{{ systemInfo.MC.KERNAL_VERSION }}</td>
+                        <!-- <td>v1.0</td> -->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="margin-top: 30px;">
+                <div class="info-data">{{ "NETWORK_INFORMATION" | translate }}</div>
+                <table class="table-data">
+                    <tbody>
+                        <!-- [수정] BMC Information 부분 읽어온 값 할당 -->
+                    <tr>
+                        <th>{{ "MAC_ADDRESS" | translate }}</th>
+                       <td>{{ systemInfo.LAN.MAC_ADDRESS }}</td>
+                        <!-- <td>52:a1:e1:83:aa:32</td> -->
+                    </tr>
+                    <tr>
+                        <th>{{ "HOME.V4_NETWORK_MODE" | translate }}</th>
+                       <td>{{ systemInfo.LAN.IPV4_NETWORK_MODE }}</td>
+                        <!-- <td>static</td> -->
+                    </tr>
+                    <tr>
+                        <th>{{ "HOME.IP_V4_ADDRESS" | translate }}</th>
+                       <td>{{ systemInfo.LAN.IPV4_ADDRESS }}</td>
+                        <!-- <td>10.0.6.104</td> -->
+                    </tr>
+                    <tr>
+                        <th>{{ "HOME.V6_NETWORK_MODE" | translate }}</th>
+                       <td>{{ systemInfo.LAN.IPV6_NETWORK_MODE }}</td>
+                        <!-- <td>DHCPv6</td> -->
+                    </tr>
+                    <tr class="down">
+                        <th>{{ "HOME.IP_V6_ADDRESS" | translate }}</th>
+                       <td>{{ systemInfo.LAN.IPV6_ADDRESS }}</td>
+                        <!-- <td>fe80::50a1:e1ff:fe83:aa32</td> -->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-7 hardware">
+    <div class="box_wrap">
+        <div class="box_line">
+            <h4 class="box_tit">{{ "HOME.HARDWARE_STATUS" | translate }}</h4>
+            <div class="box_icon">
+                <a href="" ng-click="onRefresh('8')"><img src="./images/icon_refresh.png"></a>
+            </div>
+        </div>
+        <div class="summary">
+            <div>
+                <!-- [수정] status값에 따라 다른 icon출력을 위한 수정 -->
+                <span class="temp p1"><i id="hwstatus-p1" class="tmp"></i><label class="blind">DIMM1 CH B</label></span>
+                <span class="temp p2"><i id="hwstatus-p2" class="tmp"></i><label class="blind">DIMM2 CH B</label></span>
+                <span class="temp p3"><i id="hwstatus-p3" class="tmp"></i><label class="blind">DIMM1 CH A</label></span>
+                <span class="temp p4"><i id="hwstatus-p4" class="tmp"></i><label class="blind">DIMM2 CH A</label></span>
+                <span class="temp p5"><i id="hwstatus-p5" class="tmp"></i><label class="blind">Temperature1</label></span>
+                <span class="temp p6"><i id="hwstatus-p6" class="tmp"></i><label class="blind">Temperature2</label></span>
+                <span class="temp p7"><i id="hwstatus-p7" class="tmp"></i><label class="blind">Temperature3</label></span>
+                <span class="temp p8"><i id="hwstatus-p8" class="tmp"></i><label class="blind">Temperature4</label></span>
+                <span class="temp p9"><i id="hwstatus-p9" class="tmp"></i><label class="blind">Temperature5</label></span>
+
+                <!-- 원본 -->
+                <!-- <span class="temp p1"><i class="normal"></i><label class="blind">DIMM1 CH B</label></span>
+                <span class="temp p2"><i class="critical"></i><label class="blind">DIMM2 CH B</label></span>
+                <span class="temp p3"><i class="normal"></i><label class="blind">DIMM1 CH A</label></span>
+                <span class="temp p4"><i class="normal"></i><label class="blind">DIMM2 CH A</label></span>
+                <span class="temp p5"><i class="normal"></i><label class="blind">Temperature1</label></span>
+                <span class="temp p6"><i class="normal"></i><label class="blind">Temperature2</label></span>
+                <span class="temp p7"><i class="normal"></i><label class="blind">Temperature3</label></span>
+                <span class="temp p8"><i class="normal"></i><label class="blind">Temperature4</label></span>
+                <span class="temp p9"><i class="normal"></i><label class="blind">Temperature5</label></span> -->
+            </div>
+            <!-- fan, power
+            <div>
+                <span>Fan</span>
+                <ul>
+                    <li><span class="fan on"></span><label class="blind">fan1</label></li>
+                    <li><span class="fan on"></span><label class="blind">fan2</label></li>
+                    <li><span class="fan off"></span><label class="blind">fan3</label></li>
+                    <li><span class="fan on"></span><label class="blind">fan4</label></li>
+                    <li><span class="fan on"></span><label class="blind">fan5</label></li>
+                    <li><span class="fan off"></span><label class="blind">fan6</label></li>
+                    <li><span class="fan on"></span><label class="blind">fan7</label></li>
+                    <li><span class="fan on"></span><label class="blind">fan8</label></li>
+                </ul>
+                <span>Power Supply</span>
+                <ul>
+                    <li><span class="power on"></span><label class="blind">power1</label></li>
+                    <li><span class="power off"></span><label class="blind">power2</label></li>
+                </ul>
+            </div>
+            fan, power -->
+
+            <!-- temperature, cpu, ram
+            <div>
+                <span class="temp p1"><i class="normal"></i><label class="blind">Temperature1</label></span>
+                <span class="temp p2"><i class="critical"></i><label class="blind">Temperature2</label></span>
+                <span class="temp p3"><i class="normal"></i></i><label class="blind">Temperature3</label></span>
+                <span class="temp p4"><i class="normal"></i><label class="blind">Temperature4</label></span>
+                <span class="temp p5"><i class="normal"></i><label class="blind">Temperature5</label></span>
+                <span class="temp p6"><i class="normal"></i><label class="blind">Temperature6</label></span>
+                <span class="temp p7"><i class="normal"></i><label class="blind">Temperature7</label></span>
+                <span class="temp p8"><i class="critical"></i><label class="blind">Temperature8</label></span>
+
+                <span class="ram p1"><i class="on"></i><label class="blind">RAM1</label></span>
+                <span class="ram p2"><i class="on"></i><label class="blind">RAM2</label></span>
+                <span class="ram p3"><i class="off"></i><label class="blind">RAM3</label></span>
+                <span class="ram p4"><i class="on"></i><label class="blind">RAM4</label></span>
+                <span class="ram p5"><i class="on"></i><label class="blind">RAM5</label></span>
+                <span class="ram p6"><i class="on"></i><label class="blind">RAM6</label></span>
+                <span class="ram p7"><i class="on"></i><label class="blind">RAM7</label></span>
+                <span class="ram p8"><i class="on"></i><label class="blind">RAM8</label></span>
+                <span class="ram p9"><i class="on"></i><label class="blind">RAM9</label></span>
+                <span class="ram p10"><i class="off"></i><label class="blind">RAM10</label></span>
+                <span class="ram p11"><i class="on"></i><label class="blind">RAM11</label></span>
+                <span class="ram p12"><i class="on"></i><label class="blind">RAM12</label></span>
+
+                <span class="cpu p1"><i class="on"></i><label class="blind">CPU1</label></span>
+                <span class="cpu p2"><i class="on"></i><label class="blind">CPU2</label></span>
+            </div>
+            temperature, cpu, ram -->
+        </div>
+    </div>
+</div>
