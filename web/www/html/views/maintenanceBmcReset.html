@@ -1,0 +1,17 @@
+<div class="animation">
+<!--<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>-->
+        <div class="bmc bmc-fru"  data-ng-init="init()">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">{{ "MAINTENANCE.BMC_RESET" | translate }}</p>
+                    <p class="card-header-desc">{{ "MAINTENANCE.BMC_RESET_DESCRIPTION" | translate }}</p>
+                </div>
+                <div class="card-body">
+                    <div class="btn-wrap flex items-center gap-2">
+                        <button class="btn btn-primary"ng-click="reset()">{{ "RESET" | translate }}</button>
+                        <button class="btn btn-secondary"ng-click="warm_reset()"> {{ "WARM_RESET" | translate }} </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

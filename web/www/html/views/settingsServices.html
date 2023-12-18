@@ -1,0 +1,811 @@
+<div class="animation">
+<!--<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>-->
+        <div class="bmc bmc-service" data-ng-init="init()" style="text-align: left;">
+            <!-- Services -->
+            <div class="card card-1">
+                <div class="card-header">
+                    <p class="card-header-title">{{ "MENU_SETTINGS.SERVICES" | translate }}</p>
+                    <p class="card-header-desc">{{ "MENU_SETTINGS.SERVICES" | translate }}</p>
+                </div>
+                <div class="card-body ">
+                    <form action="">
+                        <div class="mb-4">
+                            <p class="card-title">{{ "MENU_SETTINGS.WEB_SERVER" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "PORT" | translate }}</th>
+                                        <td>
+                                            <input type="text" ng-model="services.WEB_PORT"
+                                                class="form-control input-sm" style="width:200px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-4">
+                            <p class="card-title">{{ "MENU_SETTINGS.ALERT" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "MENU_SETTINGS.ALERT_SETTINGS" | translate }}</th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    ng-model="services.ALERT_PORT">
+                                                <label class="form-check-label" for="Checkbox1">{{ "ENABLE" | translate
+                                                    }}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "MENU_SETTINGS.ALERT_PORT" | translate }}</th>
+                                        <td>
+                                            <input name="" id="" type="text" class="form-control"
+                                                ng-model="services.ALERT_PORT" ng-disabled="!services.ALERT_ENABLES">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-4">
+                            <p class="card-title">{{ "MENU_SETTINGS.SSH" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "MENU_SETTINGS.SSH_SETTINGS" | translate }}</th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    ng-model="services.SSH_ENABLES">
+                                                <label class="form-check-label" for="Checkbox1">{{ "ENABLE" | translate
+                                                    }}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "PORT" | translate }}</th>
+                                        <td>
+                                            <input ng-model="services.SSH_PORT" type="text" class="form-control"
+                                                ng-disabled="!services.SSH_ENABLES">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                            <button class="btn btn-primary" ng-click="save()">{{ "SAVE" | translate }}</button>
+                            <button class="btn btn-secondary" ng-click="reset()">{{ "RESET" | translate}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- DNS Setting -->
+            <div class="card card-2">
+                <div class="card-header">
+                    <p class="card-header-title">{{ "CONFIGURATION.DNS_SETTING" | translate }}</p>
+                    <p class="card-header-desc">{{ "CONFIGURATION.DNS_SETTING_DESCRIPTION" |
+                        translate }}</p>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.HOST_CONFIGURATION" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.HOST_NAME" | translate }}</th>
+                                        <td>
+                                            <input ng-model="hostName" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.REGISTER_BMC" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th rowspan="2">{{ "CONFIGURATION.ETH_0" | translate }}</th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" ng-model="registerBmc">
+                                                <label class="form-check-label" for="Checkbox2">{{
+                                                    "CONFIGURATION.REGISTER_BMC" | translate }}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flex gap-3">
+                                                <div class="form-check">
+                                                    <input type="radio" ng-model="registerBmcMethod" name="customRadio"
+                                                        class="form-check-input">
+                                                    <label for="exampleCustomRadio"
+                                                        class="form-label form-check-label">Direct Dynamic DNS</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" ng-model="registerBmcMethod" name="customRadio"
+                                                        class="form-check-input">
+                                                    <label for="exampleCustomRadio2"
+                                                        class="form-label form-check-label">DHCP Client FQDN</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.DOMAIN_NAME_CONFIGURATION" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.DOMAIN_NAME" | translate }}</th>
+                                        <td>
+                                            <input ng-model="domainName" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.IP_V4_DOMAIN_NAME_SERVER_CONFIGURATION" | translate
+                                }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.PREFERRED_DNS_SERVER" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ipv4PreferredDnsServer" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.ALTERNATE_DNS_SERVER" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ipv4AlternateDnsServer" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.IP_V6_DOMAIN_NAME_SERVER_CONFIGURATION" | translate
+                                }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.PREFERRED_DNS_SERVER" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ipv6PreferredDnsServer" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.ALTERNATE_DNS_SERVER" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ipv6PreferredDnsServer" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                            <button class="btn btn-primary" ng-click="Dnssave()">{{ "SAVE" | translate }}</button>
+                            <button class="btn btn-secondary" ng-click="Dnsreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Network Setting -->
+            <div class="card card-3">
+                <div class="card-header">
+                    <p class="card-header-title">{{ "CONFIGURATION.NETWORK_SETTING" | translate }}</p>
+                    <p class="card-header-desc">{{ "CONFIGURATION.NETWORK_SETTING_DESCRIPTION" | translate }}</p>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.NETWORK_INTERFACE_CONFIGURATION" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.PRIORITY" | translate }}</th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input type="radio" ng-model="priority" class="form-check-input">
+                                                <label for="exampleCustomRadio3"
+                                                    class="form-label form-check-label">eth1-Shared</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.INTERFACE_NAME" | translate }}</th>
+                                        <td>
+                                            <select name="select" ng-model="networkInfo"
+                                                ng-change="onChangeNetwork(networkInfo)" class="form-select">
+                                                <option ng-repeat="network in networkInfos" ng-value="network">{{
+                                                    network.LAN_INTERFACE }}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.ENABLE_DISABLE" | translate }}</th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    ng-model="lanSettingEnable">
+                                                <label class="form-check-label" for="Checkbox2">{{"ENABLE" | translate
+                                                    }}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "MAC_ADDRESS" | translate }}</th>
+                                        <td>
+                                            <input name="" ng-model="macAddress" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.IP_V4_CONFIGURATION" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.OBTAIN_AN_IP_ADDRESS_AUTOMATICALLY" | translate }}</th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    ng-model="ipv4DhcpEnable" ng-change="ipv4UseDhcpChange()">
+                                                <label class="form-check-label"
+                                                    for="Checkbox3">{{"CONFIGURATION.USE_DHCP" | translate}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.IP_V4_ADDRESS" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ipv4Address" type="text" class="form-control"
+                                                ng-readonly="ipv4DhcpEnable">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.SUBNET_MASK" | translate }}</th>
+                                        <td>
+                                            <input name="" ng-model="ipv4Netmask" type="text" class="form-control"
+                                                ng-readonly="ipv4DhcpEnable">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.DEFAULT_GATEWAY" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ipv4Gateway" type="text" class="form-control"
+                                                ng-readonly="ipv4DhcpEnable">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.IP_V6_CONFIGURATION" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed table-8">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.IP_V6_SETTINGS" | translate }}</th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="Checkbox4" value="">
+                                                <label class="form-check-label" for="Checkbox4">{{
+                                                    "ENABLE" | translate }}/label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.OBTAIN_AN_IP_ADDRESS_AUTOMATICALLY" | translate }}</th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    ng-model="ipv6DhcpEnable">
+                                                <label class="form-check-label"
+                                                    for="Checkbox5">{{"CONFIGURATION.USE_DHCP" | translate}}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.IP_V6_ADDRESS" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ipv6Address" type="text" class="form-control"
+                                                ng-readonly="ipv6DhcpEnable">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.SUBNET_PREFIX_LENGTH" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ipv6SubnetPrefixLength" type="text" class="form-control"
+                                                ng-readonly="ipv6DhcpEnable">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.DEFAULT_GATEWAY" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ipv6Gateway" type="text" class="form-control"
+                                                ng-readonly="ipv6DhcpEnable">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                            <button class="btn btn-primary" ng-click="Netsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button class="btn btn-secondary" ng-click="Netreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- SMTP Server Setting -->
+            <div class="card card-4">
+                <div class="card-header">
+                    <p class="card-header-title">{{ "CONFIGURATION.SMTP_SERVER_SETTING" | translate }}</p>
+                    <p class="card-header-desc">{{ "CONFIGURATION.SMTP_SERVER_SETTING_DESCRIPTION" | translate }}</p>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.MANAGE_SMTP_SETTING_BMC" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.SENDER_EMAIL" | translate }}</th>
+                                        <td>
+                                            <input ng-model="senderAddress" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.MACHINE_NAME" | translate }}</th>
+                                        <td>
+                                            <input ng-model="machineName" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.PRIMARY_SMTP_SERVER" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.EMAIL_SERVER" | translate }}</th>
+                                        <td>
+                                            <input ng-model="primaryServerAddress" type="text" class="form-control">
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.USER_NAME" | translate }}</th>
+                                        <td>
+                                            <input ng-model="primaryUserName" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.PASSWORD" | translate }}</th>
+                                        <td>
+                                            <input ng-model="primaryUserPassword" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-4">
+                            <p class="card-title">{{ "CONFIGURATION.SECONDARY_SMTP_SERVER" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed table-8">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.EMAIL_SERVER" | translate }}</th>
+                                        <td>
+                                            <input ng-model="secondaryServerAddress" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.USER_NAME" | translate }}</th>
+                                        <td>
+                                            <input ng-model="secondaryUserName" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.PASSWORD" | translate }}</th>
+                                        <td>
+                                            <input ng-model="secondaryUserPassword" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                            <button class="btn btn-primary" ng-click="Smtsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button class="btn btn-secondary" ng-click="Smtreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- SSL Certification Configuration -->
+            <div class="card card-5">
+                <div class="card-header">
+                    <p class="card-header-title">{{ "CONFIGURATION.SSL_CERTIFICATION_CONFIGURATION" | translate }}</p>
+                    <p class="card-header-desc">{{ "CONFIGURATION.SSL_CERTIFICATION_CONFIGURATION_DESCRIPTION" |
+                        translate }}</p>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item " ng-class="{ 'active': selectedTab === '1' }">
+                            <a id="view_Gen" ng-click="selectTab('1')">{{ "CONFIGURATION.GENERATE_SSL" | translate
+                                }}</a>
+                        </li>
+                        <li class="nav-item" ng-class="{ 'active': selectedTab === '2' }">
+                            <a id="Gen_view" ng-click="selectTab('2')">{{ "CONFIGURATION.VIEW_SSL" | translate }}</a>
+                            <!-- <a ng-include="'views/configViewSsl.html'">{{ "CONFIGURATION.VIEW_SSL" | translate }}</a> -->
+                        </li>
+                    </ul>
+                    <table class="mb-0 table table-bordered table-fixed mt-3" ng-show="selectedTab === '1'">
+                        <tbody>
+                            <tr>
+                                <th>{{ "CONFIGURATION.COMMON_NAME" | translate }}</th>
+                                <td>
+                                    <input ng-model="commonName" type="text" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.ORGANIZATION_NAME" | translate }}</th>
+                                <td>
+                                    <input ng-model="organization" type="text" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.ORGANIZATION_UNIT_NAME" | translate }}</th>
+                                <td>
+                                    <input ng-model="organizationUnit" type="text" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.CITY_OR_LOCALITY" | translate }}</th>
+                                <td>
+                                    <input ng-model="cityOrLocality" type="text" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.STATE_OR_PROVINCE" | translate }}</th>
+                                <td>
+                                    <input ng-model="stateOrProvince" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.COUNTRY_NAME" | translate }}</th>
+                                <td>
+                                    <input ng-model="country" type="text" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.EMAIL_ADDRESS" | translate }}</th>
+                                <td>
+                                    <input ng-model="emailAddress" type="text" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.VALID_DAYS" | translate }}</th>
+                                <td>
+                                    <input ng-model="validFor" type="text" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.KEY_LENGTH" | translate }}</th>
+                                <td>
+                                    <select name="select" ng-model="keyLength" class="form-select">
+                                        <option>Default</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="mb-0 table table-bordered table-fixed mt-3" ng-show="selectedTab === '2'">
+                        <tbody>
+                            <tr>
+                                <th>{{ "CONFIGURATION.VERSION" | translate }}</th>
+                                <td>{{ version || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.SERIAL_NUMBER" | translate }}</th>
+                                <td>{{ serialNumber || '-' }}</td>
+                            </tr>
+                            <tr class="down">
+                                <th>{{ "CONFIGURATION.DIGITAL_SIGNATURE_ALGORITHM" | translate }}</th>
+                                <td>{{ signatureAlgorithm || '-' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="mb-0 table table-bordered table-fixed mt-3" ng-show="selectedTab === '2'">
+                        <tbody>
+                            <tr>
+                                <th>{{ "CONFIGURATION.COMMON_NAME" | translate }}</th>
+                                <td>{{ commonName || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.ORGANIZATION_NAME" | translate }}</th>
+                                <td>{{ organization || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.ORGANIZATION_UNIT_NAME" | translate }}</th>
+                                <td>{{ organizationUnit || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.CITY_OR_LOCALITY" | translate }}</th>
+                                <td>{{ cityOrLocality || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.STATE_OR_PROVINCE" | translate }}</th>
+                                <td>{{ stateOrProvince || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.COUNTRY_NAME" | translate }}</th>
+                                <td>{{ country || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.EMAIL_ADDRESS" | translate }}</th>
+                                <td>{{ emailAddress || '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "CONFIGURATION.VALID_FOR" | translate }}</th>
+                                <td>{{ validFor || '-' }}</td>
+                            </tr>
+                            <tr class="down">
+                                <th>{{ "CONFIGURATION.KEY_LENGTH" | translate }}</th>
+                                <td>{{ keyLength || '-' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="mb-0 table table-bordered table-fixed mt-3" ng-show="selectedTab === '2'">
+                        <tbody>
+                            <tr>
+                                <th>{{ "CONFIGURATION.VALID_FROM" | translate }}</th>
+                                <td>{{ validFrom || '-' }}</td>
+                            </tr>
+                            <tr class="down">
+                                <th>{{ "CONFIGURATION.VALID_FOR" | translate }}</th>
+                                <td>{{ validFor || '-' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                        <button class="btn btn-primary" ng-click="Sslsave()">{{ "SAVE" | translate
+                            }}</button>
+                        <button class="btn btn-secondary" ng-click="Sslreset()">{{ "RESET" | translate
+                            }}</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- General Active Directory Settings -->
+            <div class="card card-6">
+                <div class="card-header">
+                    <p class="card-header-title">{{ "CONFIGURATION.GENERAL_ACTIVE_DIRECTORY_SETTINGS" | translate }}</p>
+                    <p class="card-header-desc">{{ "CONFIGURATION.GENERAL_ACTIVE_DIRECTORY_SETTINGS_DESCRIPTION" |
+                        translate
+                        }}</p>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="mb-4">
+                            <p class="card-title">{{ "SETTINGS" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.AUTHENTICATION" | translate }}</th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" ng-model="adEnable">
+                                                <label class="form-check-label" for="Checkbox6">{{
+                                                    "CONFIGURATION.ENABLE_ACTIVE_DIRECTORY_AUTHENTICATION" | translate
+                                                    }}</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.SECRET_USER_NAME" | translate }}</th>
+                                        <td>
+                                            <input ng-model="adSecretName" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.SECRET_PASSWORD" | translate }}</th>
+                                        <td>
+                                            <input ng-model="adSecretPw" type="password" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.DOMAIN_NAME" | translate }}</th>
+                                        <td>
+                                            <input ng-model="adDomain" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.DOMAIN_CONTROLLER_SERVER_ADDRESS_1" | translate }}</th>
+                                        <td>
+                                            <input ng-model="adIpAddress" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                            <button class="btn btn-primary" ng-click="adsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button class="btn btn-secondary" ng-click="adreset()">{{ "RESET" | translate
+                                }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- General LDAP Settings -->
+            <div class="card card-7">
+                <div class="card-header">
+                    <p class="card-header-title">{{ "CONFIGURATION.GENERAL_LDAP_SETTINGS" | translate }}</p>
+                    <p class="card-header-desc">{{ "CONFIGURATION.GENERAL_LDAP_SETTINGS_DESCRIPTION" | translate }}</p>
+                </div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="mb-4">
+                            <p class="card-title">{{ "SETTINGS" | translate }}</p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.AUTHENTICATION" | translate }}</th>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" ng-model="ldapEnable">
+                                                <label class="form-check-label" for="Checkbox7">Enable LDAP/E-directory
+                                                    Authentication</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.ENCRYPTION_TYPE" | translate }}</th>
+                                        <td>
+                                            <div class="flex gap-3">
+                                                <div class="form-check">
+                                                    <input type="radio" ng-model="ldapSsl" class="form-check-input">
+                                                    <label for="exampleCustomRadio4"
+                                                        class="form-label form-check-label">No Encryption</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="exampleCustomRadio5" name="customRadio3"
+                                                        class="form-check-input">
+                                                    <label for="exampleCustomRadio5"
+                                                        class="form-label form-check-label">SSL</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.SERVER_ADDRESS" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ldapIpAddress" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "PORT" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ldapPort" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.BIND_DN" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ldapBindDn" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.BIND_PW" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ldapBindPw" type="password" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.BASE_DN" | translate }}</th>
+                                        <td>
+                                            <input ng-model="ldapBaseDn" type="text" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "CONFIGURATION.TIMEOUT" | translate }}</th>
+                                        <td>
+                                            <select name="select" ng-model="ldapTimeout" class="form-select">
+                                                <option value="10">10</option>
+                                                <option value="20">20</option>
+                                                <option value="30">30</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                            <button class="btn btn-primary" ng-click="Ldapsave()">{{ "SAVE" | translate
+                                }}</button>
+                            <button class="btn btn-secondary" ng-click="Ldapreset()">{{ "RESET" | translate
+                                }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- General Radius Settings -->
+        <div class="card card-8">
+            <div class="card-header">
+                <p class="card-header-title">{{ "CONFIGURATION.GENERAL_RADIUS_SETTINGS" | translate }}</p>
+                <p class="card-header-desc">{{ "CONFIGURATION.GENERAL_RADIUS_SETTINGS_DESCRIPTION" | translate }}
+                </p>
+            </div>
+            <div class="card-body">
+                <form action="">
+                    <div class="mb-4">
+                        <p class="card-title">{{ "SETTINGS" | translate }}</p>
+                        <table class="mb-0 table table-bordered table-fixed">
+                            <tbody>
+                                <tr>
+                                    <th>{{ "CONFIGURATION.AUTHENTICATION" | translate }}</th>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" ng-model="radiusEnable">
+                                            <label class="form-check-label" for="Checkbox8">{{
+                                                "CONFIGURATION.ENABLE_RADIUS_AUTHENTICATION" | translate }}</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{{ "CONFIGURATION.SERVER_ADDRESS" | translate }}</th>
+                                    <td>
+                                        <input ng-model="radiusIp" type="text" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{{ "PORT" | translate }}</th>
+                                    <td>
+                                        <input ng-model="radiusPort" type="text" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{{ "CONFIGURATION.SECRET" | translate }}</th>
+                                    <td>
+                                        <input ng-model="radiusSecret" type="password" class="form-control">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
+                        <button class="btn btn-primary" ng-click="Radiussave()">{{ "SAVE" | translate
+                            }}</button>
+                        <button class="btn btn-secondary" ng-click="Radiusreset()">{{ "RESET" | translate
+                            }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>

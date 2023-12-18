@@ -1,0 +1,70 @@
+<style>
+    #loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* 검정색 불투명도 30% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* 화면 위에 나타나도록 레이어 설정 */
+}
+
+.loading-spinner {
+    position: fixed;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    display: flex;
+    top: 47.5%;
+    left: 47.5%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+</style>
+
+<div class="log-bg">
+    <!-- <div id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div> -->
+    <div class="container-log" data-ng-init="init()">
+
+        
+        <select class="form-control input-sm" ng-model="language" ng-change="changeLanguage()"> <!--ng-model="language" ng-change="changeLanguage()"-->
+            <option value="en_US">{{ 'ENGLISH' | translate }}</option>
+            <option value="ko_KR">{{ 'KOREAN' | translate }}</option>
+        </select>
+        <div class="log-wrap">
+            <div class="log-logo">
+                <h5><img src="./images/logo.png"><!--{{ "LOGIN.LOGIN" | translate }}--></h5>
+                <p>{{ "LOGIN.LOGIN_DESC" | translate }}</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="id" class="form-control log-input" id="id" ng-model="userName" placeholder="{{ 'LOGIN.ID' | translate }}">
+                </div>
+                <div class="form-group" ng-keypress="($event.keyCode === 13) ? login() : 0">
+                    <input type="password" class="form-control log-input" style="margin: 20px 0;"
+                     id="pw" ng-model="userPassword" placeholder="{{ 'LOGIN.PASSWORD' | translate }}">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-darkblue btn-block btn-log" ng-click="login()">{{ "LOGIN.LOGIN" | translate }}</button>
+                </div>
+            </form>
+            <div class="log-footer" style="margin: 20px 0;">KETI. All rights reserved.</div>
+            <div class="browser">{{ "LOGIN.OPTIMIZED_BROWSER" | translate }}</div>
+            <div class="log-logo2">
+                <img src="./images/login_logo2.png">
+            </div>
+        </div>
+    </div>
+</div>

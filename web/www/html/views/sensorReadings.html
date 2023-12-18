@@ -1,0 +1,398 @@
+<style>
+    .sensorName:hover {
+        color: #0058cd;
+        font-weight: bold;
+    }
+</style>
+
+<div class="animation">
+        <div class="contents top-snb-margin" data-ng-init="init()" style="padding:0; margin:0;">
+            <div class="bmc bmc-sensor">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="card-header-title">{{ "SERVER_HEALTH.SENSOR_READING" | translate }}</p>
+                        <p class="card-header-desc" style="text-align: start;">{{
+                            "SERVER_HEALTH.SENSOR_READING_DESCRIPTION" | translate }}</p>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="sensor-count">{{ "SERVER_HEALTH.SENSOR_COUNT" | translate }} :
+                            {{ sensorInfo.SENSOR.length }} sensors</div>
+                        <div class="sensor-name">
+                            <table>
+                                <colgroup>
+                                    <col width="*">
+                                    <col width="150px">
+                                </colgroup>
+                                <tr style="text-align: left;">
+                                    <th class="sensor-title-name" style="color: #fff; text-align: start;">{{
+                                        selectedSensor.NAME }} :
+                                        {{ selectedSensor.READING }}
+                                        {{ selectedSensor.UNIT }}</th>
+                                    <td class="text-right">
+                                        <div class="sensor-title-sign">{{ selectedSensor.THRESHOLD }}</div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="card-body">
+                            <div class="sensor-sub">
+                                <table>
+                                    <tr style="text-align: left;">
+                                        <th style="text-align: start;">{{ "SERVER_HEALTH.THRESHOLDS_FOR_THIS_SENSOR" |
+                                            translate }}</th>
+                                    <tr>
+                                </table>
+                            </div>
+                            <table class="mb-0 table table-bordered table-fixed table-1" style="margin-top: 0;">
+
+                                <tbody style="text-align: left;">
+                                    <tr>
+                                        <th>{{ "SERVER_HEALTH.LOWER_NON_RECOVERABLE" | translate }}</th>
+                                        <td>
+                                            {{ selectedSensor.LNR }}
+                                            {{ selectedSensor.UNIT }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "SERVER_HEALTH.UPPER_NON_RECOVERABLE" | translate }}</th>
+                                        <td>
+                                            {{ selectedSensor.UNR }}
+                                            {{ selectedSensor.UNIT }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "SERVER_HEALTH.LOWER_CRITICAL" | translate }}</th>
+                                        <td>
+                                            {{ selectedSensor.LC }}
+                                            {{ selectedSensor.UNIT }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "SERVER_HEALTH.UPPER_CRITICAL" | translate }}</th>
+                                        <td>
+                                            {{ selectedSensor.UC }}
+                                            {{ selectedSensor.UNIT }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ "SERVER_HEALTH.LOWER_NON_CRITICAL" | translate }}</th>
+                                        <td>
+                                            {{ selectedSensor.LNC }}
+                                            {{ selectedSensor.UNIT }}
+                                        </td>
+                                    </tr>
+                                    <tr class="down">
+                                        <th>{{ "SERVER_HEALTH.UPPER_NON_CRITICAL" | translate }}</th>
+                                        <td>
+                                            {{ selectedSensor.UNC }}
+                                            {{ selectedSensor.UNIT }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="sensor_icon">
+                        <div style="display: flex; justify-content: center; margin:20px 0;">
+                            <img src="./images/new_board.png" style="width: 50%;">
+
+                            <span style="top: 7%; left: 39%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'CPU0_DIMM1_TEMP', 'sensor-hidden': selectedSensorName !== 'CPU0_DIMM1_TEMP'}">
+                                <div class="sensor_text" style="width: 720%;">CPU0_DIMM1_TEMP</div>
+                            </span>
+                            <span style="top: 12%; left: 39%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'CPU0_DIMM2_TEMP', 'sensor-hidden': selectedSensorName !== 'CPU0_DIMM2_TEMP'}">
+                                <div class="sensor_text" style="width: 720%;">CPU0_DIMM2_TEMP</div>
+                            </span>
+                            <span style="top: 18%; left: 39%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'CPU0_DIMM3_TEMP', 'sensor-hidden': selectedSensorName !== 'CPU0_DIMM3_TEMP'}">
+                                <div class="sensor_text" style="width: 720%;">CPU0_DIMM3_TEMP</div>
+                            </span>
+                            <span style="top: 24%; left: 39%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'CPU0_DIMM4_TEMP', 'sensor-hidden': selectedSensorName !== 'CPU0_DIMM4_TEMP'}">
+                                <div class="sensor_text" style="width: 720%;">CPU0_DIMM4_TEMP</div>
+                            </span>
+                            <span style="top: 39%; left: 28%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'SYSTEM_FAN1', 'sensor-hidden': selectedSensorName !== 'SYSTEM_FAN1'}">
+                                <div class="sensor_text" style="width: 500%;">SYSTEM_FAN1</div>
+                            </span>
+                            <span style="top: 45%; left: 28%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'SYSTEM_FAN2', 'sensor-hidden': selectedSensorName !== 'SYSTEM_FAN2'}">
+                                <div class="sensor_text" style="width: 500%;">SYSTEM_FAN2</div>
+                            </span>
+                            <span style="top: 52%; left: 28%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'SYSTEM_FAN3', 'sensor-hidden': selectedSensorName !== 'SYSTEM_FAN3'}">
+                                <div class="sensor_text" style="width: 500%;">SYSTEM_FAN3</div>
+                            </span>
+                            <span style="top: 58%; left: 28%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'SYSTEM_FAN4', 'sensor-hidden': selectedSensorName !== 'SYSTEM_FAN4'}">
+                                <div class="sensor_text" style="width: 500%;">SYSTEM_FAN4</div>
+                            </span>
+                            <span style="top: 39%; left: 37%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'CPU0_TEMP', 'sensor-hidden': selectedSensorName !== 'CPU0_TEMP'}">
+                                <div class="sensor_text" style="width: 450%;">CPU0_TEMP</div>
+                            </span>
+                            <span style="top: 48%; left: 37%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'CPU1_TEMP', 'sensor-hidden': selectedSensorName !== 'CPU1_TEMP'}">
+                                <div class="sensor_text" style="width: 450%;">CPU1_TEMP</div>
+                            </span>
+                            <span style="top: 35%; left: 42%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'PVNN_PCH_CPU0', 'sensor-hidden': selectedSensorName !== 'PVNN_PCH_CPU0'}">
+                                <div class="sensor_text" style="width: 650%;">PVNN_PCH_CPU0</div>
+                            </span>
+                            <span style="top: 54%; left: 39%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'LM75_TEMP0', 'sensor-hidden': selectedSensorName !== 'LM75_TEMP0'}">
+                                <div class="sensor_text" style="width: 500%;">LM75_TEMP0</div>
+                            </span>
+                            <span style="top: 67%; left: 42%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'SYSTEM_FAN0', 'sensor-hidden': selectedSensorName !== 'SYSTEM_FAN0'}">
+                                <div class="sensor_text" style="width: 500%;">SYSTEM_FAN0</div>
+                            </span>
+                            <span style="top: 92%; left: 27%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'P12V_PSU1', 'sensor-hidden': selectedSensorName !== 'P12V_PSU1'}">
+                                <div class="sensor_text" style="width: 420%;">P12V_PSU1</div>
+                            </span>
+                            <span style="top: 92%; left: 35%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'P12V_PSU2', 'sensor-hidden': selectedSensorName !== 'P12V_PSU2'}">
+                                <div class="sensor_text" style="width: 420%;">P12V_PSU2</div>
+                            </span>
+                            <span style="top: 44%; left: 54%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'LM75_TEMP1', 'sensor-hidden': selectedSensorName !== 'LM75_TEMP1'}">
+                                <div class="sensor_text" style="width: 500%;">LM75_TEMP1</div>
+                            </span>
+                            <span style="top: 20%; left: 54%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'LM75_TEMP2', 'sensor-hidden': selectedSensorName !== 'LM75_TEMP2'}">
+                                <div class="sensor_text" style="width: 500%;">LM75_TEMP2</div>
+                            </span>
+                            <span style="top: 14%; left: 65%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'LM75_TEMP3', 'sensor-hidden': selectedSensorName !== 'LM75_TEMP3'}">
+                                <div class="sensor_text" style="width: 500%;">LM75_TEMP3</div>
+                            </span>
+                            <span style="top: 90%; left: 66%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'LM75_TEMP4', 'sensor-hidden': selectedSensorName !== 'LM75_TEMP4'}">
+                                <div class="sensor_text" style="width: 500%;">LM75_TEMP4</div>
+                            </span>
+                            <span style="top: 33%; left: 53%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'P1V8_NACDELAY', 'sensor-hidden': selectedSensorName !== 'P1V8_NACDELAY'}">
+                                <div class="sensor_text" style="width: 600%;">P1V8_NACDELAY</div>
+                            </span>
+                            <span style="top: 5%; left: 71%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'P5V', 'sensor-hidden': selectedSensorName !== 'P5V'}">
+                                <div class="sensor_text" style="width: 200%;">P5V</div>
+                            </span>Í
+                            <span style="top: 33%; left: 70%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'P1V05_NAC', 'sensor-hidden': selectedSensorName !== 'P1V05_NAC'}">
+                                <div class="sensor_text" style="width: 400%;">P1V05_NAC</div>
+                            </span>
+                            <span style="top: 50%; left: 71%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'P3V3', 'sensor-hidden': selectedSensorName !== 'P3V3'}">
+                                <div class="sensor_text" style="width: 200%;">P3V3</div>
+                            </span>
+                            <span style="top: 65%; left: 28%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'SYSTEM_FAN5', 'sensor-hidden': selectedSensorName !== 'SYSTEM_FAN5'}">
+                                <div class="sensor_text" style="width: 500%;">SYSTEM_FAN5</div>
+                            </span>
+                            <span style="top:5%; left: 29%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'PVNN_PCH', 'sensor-hidden': selectedSensorName !== 'PVNN_PCH'}">
+                                <div class="sensor_text" style="width: 400%;">PVNN_PCH</div>
+                            </span>
+
+                            <span style="top: 4%; left: 55%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'P1V05_PCH', 'sensor-hidden': selectedSensorName !== 'P1V05_PCH'}">
+                                <div class="sensor_text" style="width: 420%;">P1V05_PCH</div>
+                            </span>
+                            <span style="top: 70%; left: 70%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'P1V8', 'sensor-hidden': selectedSensorName !== 'P1V8'}">
+                                <div class="sensor_text" style="width: 200%;">P1V8</div>
+                            </span>
+                            <span style="top: 43%; left: 69%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'BAT', 'sensor-hidden': selectedSensorName !== 'BAT'}">
+                                <div class="sensor_text" style="width: 200%;">BAT</div>
+                            </span>
+                            <span style="top: 83%; left: 31%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'PVCCIN_IN', 'sensor-hidden': selectedSensorName !== 'PVCCIN_IN'}">
+                                <div class="sensor_text" style="width: 400%;">PVCCIN_IN</div>
+                            </span>
+                            <span style="top: 72%; left: 30%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'P1V2_VDDP', 'sensor-hidden': selectedSensorName !== 'P1V2_VDDP'}">
+                                <div class="sensor_text" style="width: 420%;">P1V2_VDDP</div>
+                            </span>
+                            <span style="top: 86%; left: 51%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'PVPP_NAC', 'sensor-hidden': selectedSensorName !== 'PVPP_NAC'}">
+                                <div class="sensor_text" style="width: 400%;">PVPP_NAC</div>
+                            </span>
+                            <span style="top: 74%; left: 45%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'PVPP', 'sensor-hidden': selectedSensorName !== 'PVPP'}">
+                                <div class="sensor_text" style="width: 200%;">PVPP</div>
+                            </span>
+                            <span style="top: 11%; left: 56%;"
+                                ng-class="{'sensor-active': selectedSensorName === 'PVTT', 'sensor-hidden': selectedSensorName !== 'PVTT'}">
+                                <div class="sensor_text" style="width: 200%;">PVTT</div>
+                            </span>
+
+                        </div>
+                    </div>
+
+                    <div class="sensor-cont">
+                        <div class="card-body">
+                            <div class="card-title">{{ "SERVER_HEALTH.NORMAL" | translate }}</div>
+                            <div style="max-height: 350px; overflow-y: auto; padding-right:10px;">
+                                <table class="mb-0 table table-bordered table-fixed table-2">
+                                    <colgroup>
+                                        <col width="*">
+                                        <col width="15%">
+                                        <col width="20%">
+                                        <col width="25%">
+                                    </colgroup>
+                                    <tbody class="scroll-table">
+                                        <tr>
+                                            <th>{{ "SERVER_HEALTH.SENSOR_NAME" | translate }}</th>
+                                            <th>{{ "SERVER_HEALTH.STATUS" | translate }}</th>
+                                            <th>{{ "SERVER_HEALTH.CURRENT_READING" | translate }}</th>
+                                            <th>{{ "SERVER_HEALTH.CHANGE_THRESHOLDS" | translate }}</th>
+                                        </tr>
+                                        <tr ng-repeat="sensor in sensorInfo.SENSOR | filter: {STATUS : 'Normal'}"
+                                            ng-click="didClickSensor(sensor)">
+                                            <td class="sensorName">{{ sensor.NAME }}</td>
+                                            <td>{{ sensor.STATUS }}</td>
+                                            <td>{{ sensor.READING }} {{ sensor.UNIT }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary"
+                                                    ng-click="editThreshold(sensor)" data-toggle="modal"
+                                                    data-target="#editThresholdModal" style="width:60px"
+                                                    >{{ "EDIT" | translate }}</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="card-title">{{ "SERVER_HEALTH.CRITICAL" | translate }}</div>
+                            <div style="max-height: 350px; overflow-y: auto; padding-right:10px;">
+                                <table class="mb-0 table table-bordered table-fixed table-3">
+                                    <colgroup>
+                                        <col width="*">
+                                        <col width="15%">
+                                        <col width="20%">
+                                        <col width="25%">
+                                    </colgroup>
+                                    <tbody class="scroll-table">
+                                        <tr>
+                                            <th>{{ "SERVER_HEALTH.SENSOR_NAME" | translate }}</th>
+                                            <th>{{ "SERVER_HEALTH.STATUS" | translate }}</th>
+                                            <th>{{ "SERVER_HEALTH.CURRENT_READING" | translate }}</th>
+                                            <th>{{ "SERVER_HEALTH.CHANGE_THRESHOLDS" | translate }}</th>
+                                        </tr>
+                                        <tr ng-repeat="sensor in sensorInfo.SENSOR | filter: {STATUS : 'Critical'}"
+                                            ng-click="didClickSensor(sensor)">
+                                            <td class="sensorName">{{ sensor.NAME }}</td>
+                                            <td>{{ sensor.STATUS }}</td>
+                                            <td>{{ sensor.READING }} {{ sensor.UNIT }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary"
+                                                    ng-click="editThreshold(sensor)" data-toggle="modal"
+                                                    data-target="#editThresholdModal" style="width:60px"
+                                                    >{{ "EDIT" | translate }}</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="editThresholdModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+<style>
+    .modal-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rme;
+    border-bottom: 1px solid #dee2d6;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+    }
+</style>
+
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: #f8f9fa;">
+                            <h4 class="modal-title" style="color:#000; font-size: 20px;">{{ "SERVER_HEALTH.CHANGE_THRESHOLDS" | translate
+                                }} </h4>
+                                <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
+                            </div>
+                                                     
+                        <div class="modal-body">
+                            <p style="font-size: 16px; color: #495057; margin-bottom: 0.5em; text-align: left;"> {{ ethName }} </p>
+                            <table class="mb-0 table table-bordered table-fixed">
+                                <colgroup>
+                                    <col width="300px">
+                                    <col width="*">
+                                </colgroup>
+                                <tbody style="text-align: left;">
+                                    <tr>
+                                        <th style="vertical-align: middle;">{{ "SERVER_HEALTH.LOWER_NON_RECOVERABLE" | translate }}</th>
+                                        <td> 
+                                            <input type="text" id="ethLNR" ng-model="ethLNR"
+                                                class="form-control input-sm" style="width:200px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="vertical-align: middle;">{{ "SERVER_HEALTH.UPPER_NON_RECOVERABLE" | translate }}</th>
+                                        <td>
+                                            <input type="text" id="ethUNR" ng-model="ethUNR"
+                                                class="form-control input-sm" style="width:200px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="vertical-align: middle;">{{ "SERVER_HEALTH.LOWER_CRITICAL" | translate }}</th>
+                                        <td>
+                                            <input type="text" id="ethLC" ng-model="ethLC" class="form-control input-sm"
+                                                style="width:200px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="vertical-align: middle;">{{ "SERVER_HEALTH.UPPER_CRITICAL" | translate }}</th>
+                                        <td>
+                                            <input type="text" id="ethUC" ng-model="ethUC" class="form-control input-sm"
+                                                style="width:200px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="vertical-align: middle;">{{ "SERVER_HEALTH.LOWER_NON_CRITICAL" | translate }}</th>
+                                        <td>
+                                            <input type="text" id="ethLNC" ng-model="ethLNC"
+                                                class="form-control input-sm" style="width:200px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="vertical-align: middle;">{{ "SERVER_HEALTH.UPPER_NON_CRITICAL" | translate }}</th>
+                                        <td>
+                                            <input type="text" id="ethUNC" ng-model="ethUNC"
+                                                class="form-control input-sm" style="width:200px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="modal-footer" style="background-color: #f8f9fa;">
+                            <button type="button" class="btn btn-primary" ng-click="saveThreshold()">{{ "SAVE" | translate
+                                }}</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ "CANCEL" | translate
+                                }}</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
