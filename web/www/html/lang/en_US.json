@@ -23,6 +23,7 @@
     "SETTINGS": "Settings",
     "KVM": "KVM",
     "PORT": "Port",
+    "SEND": "Send",
     "LOGIN" : {
         "ID": "ID",
         "PASSWORD": "PASSWORD",
@@ -52,28 +53,7 @@
         "REAR": "Rear",
         "FAN": "Fan",
         "CPU_MEMORY": "CPU / Memory",
-        "POWER_SUPPLY": "Power Supply",
-        "POWER_CONSUMPTION": "Power Consumption",
-        "KVM_OVER_IP" : "KVM Over IP",
-        "QUICK_COMMAND":"Quick Command",
-        "SOL_ENABLE": "SOL Enable", 
-        "USB_UNMOUNT":"USB unmount",
-        "ALERT_DISABLE": "Alert disable",
-        "SOL_DISABLE":"SOL Disable",
-        "LOG_CLEAR":"LOG clear",
-        "ALERT_ENABLE":"Alert Enable",
-        "CONSOLE":"Console",
-        "STATUS_UPDATE":"Status Update",
-        "BMC_STATUS":"BMC Status",
-        "NORMAL":"Normal",
-        "CRITICAL":"Critical : ",
-        "SERVER_NAME": "Server Name",
-        "KETI_BMC": "KETI BMC ",
-        "NETWORK" : "Network",
-        "BMC_UPTIME" : "BMC Uptime",
-        "VIRTUAL_USB" : "Virtual USB",
-        "ADD" : "Add USB"
-
+        "POWER_SUPPLY": "Power Supply"
     },
     "SYSTEM": {
         "SYSTEM_INFORMATION": "System Information",
@@ -152,16 +132,7 @@
         "POWER_CURRENT_PEAK":"Present Peak",
         "POWER_OBJECT_PEAK": "Object Peak",
         "POWER_LAST_DAY" : "Power per Day",
-        "POWER_LAST_HOUR" : "Power per Hour",
-        "PEAK_NAME":"Peak name",
-        "SENSOR":"Sensor",
-        "VALUE":"Value",
-        "TIME": "Time",
-        "REAL_TIME" :"Real Time",
-        "LAST_HOUR":"Last Hour",
-        "LAST_DAY": "Last Day"
-
-
+        "POWER_LAST_HOUR" : "Power per Hour"
     },
     "CONFIGURATION": {
         "CONFIGURATION": "Configuration",
@@ -317,10 +288,8 @@
         "POWER_ON_SERVER": "Power On Server",
         "POWER_CYCLE_SERVER": "Power Cycle Server",
         "ACTION": "Action",
-        "KVM_MOVEUPDADTE":"The host computer experienced a failure 10 seconds ago.",
-        "LAST_REDORDING":"Last recording time : ",
-        "LOADING":"Loading..."
-
+        "KVM_MOVEUPDADTE": "10 seconds before the host computer failure",
+        "LAST_REDORDING": "Last recording time :"
     },
     "MAINTENANCE": {
         "MAINTENANCE": "Maintenance",
@@ -385,5 +354,101 @@
         "CTRL_ALT_DEL": "Ctrl Alt Del",
         "CONTEXT_MENU_KEY": "Context Menu Key",
         "PRINT_SCREEN_KEY": "Print Screen Key"
+    },
+    "FAULT_ANALYSIS":{
+        "FAULT_ANALYSIS": "Fault Analysis",
+        "OVERALL_MONITORING" : "Overall Monitoring",
+        "FAULT_AND_FAILURE_DASHBOARD" : "Fault And Failure Dashboard",
+        "OVERALL_MONITORING_DESCRIPTION" : "This page is a dashboard for conducting fault and failure management.",
+        "FOFL_POLICY" : "FOFL Policy",
+        "DISK_REPORT" : "Disk Report",
+        "LOG_MONITORING" : "Log Monitoring",
+        "HARDWARE_REPORT" : "Hardware Report",
+        "HARDWARE_REPORT_COMMENT" : "This page displays the status of hardware modules, indicating whether they are functioning correctly or not.",
+        "DISK_REPORT_DESCRIPTION" : "This page describes the overall disk status.",
+        "DISK_SPEC" : "Disk Spec",
+        "MODEL_NAME" : "Model Name",
+        "SERIAL_NUM" : "Serial Number",
+        "VENDOR_NAME" : "Vendor Name",
+        "USAGE_AND_TOTAL_CAPACITY" : "Usage And Total Capacity",
+        "DISK_HEALTH" : "Disk Health",
+        "STATUS_SCORE" : "Status Score ",
+        "ESTIMATED_DISK_LIFE" : "Estimated Disk Life",
+        "PROBABILITY_OF_ERROR_WITHIN_THE_YEAR" : "Probability Of Error Within The Year",
+        "DISK_SELF_TEST" : "Disk Self-Test",
+        "DISK_ANALYSIS" : "Disk Analysis",
+        "FATAL_ERROR_COUNT" : "Fatal Error Count",
+        "DISK_TEMPERATURE" : "Disk Temperature",
+        "AMOUNT_OF_BLOCK_AVAILABLE" : "Amount Of Block Available",
+        "DISK_USAGE" : "Disk Usage",
+        "READ_AND_WRITE_DATA_SIZE" : "Read / Write Data Size",
+        "USAGE_AND_OPERATION_TIME" : "Usage / Operation Time",
+        "NUMBER_OF_ABNORMAL_TERMINATIONS" : "Number Of Abnormal Terminations",
+        "DATA_INTEGRITY_ERROR" : "Date Integrity Error",
+        "FEEDBACK_LOGS" : "Feedback Logs",
+        "FEEDBACK_LOGS_DESCRIPTION" : "This page checks the feedback log.",
+        "NO" : "No",
+        "TIME" : "Time",
+        "MODULE_NAME" : "Moduel Name",
+        "MODULE_NO" : "Module No",
+        "CAUSE" : "Cause",
+        "PROGRESS" : "Progress",
+        "LIST" : "LIST",
+        "RECENT" : "RECENT",
+        "LOG_GRAPH" : "Log Graph",
+        "FOFL_SETTING" : "FOFL Setting",
+        "FOFL_SETTING_DESCRIPTION" : "Setting User's FOFL Policy of Computing Modules.",
+        "ACTIVATION" : "Activation",
+        "CHASSIS" : "Chassis",
+        "GRAPH_MODUL_TEXT" : "1. Computing Module Based Log Graph",
+        "GRAPH_CAUSE_TEXT" : "2. Cause of Occurrence Based Log Graph",
+        "GRAPH_FEEDBACK_PROGRESS_TEXT" : "3. Handling Status Based Log Graph"
+
+    },
+    "ENERGY_SAVING":{
+        "ENERGY_SAVING": "Energy Saving",
+        "SMART_FAN_CONTROL" : "Smart Fan Control",
+        "CPU_POWER_CAPPING" : "CPU Power Capping",
+        "CPU_POWER_CAPPING_DESCRIPTION" : "This page can control CPU utilization for saving energy.",
+        "CPU_VALUES_MONITORING" : "CPU Values Monitoring",
+        "CPU_VOLTAGE" : "CPU Voltage",
+        "CPU_CURRENT" : "CPU Current",
+        "CPU_POWER" : "CPU Power",
+        "CPU_UTILIZATION_CONTROL" : "CPU Utilization Control",
+        "ENERGY_CONSUMPTION_MONITORING" : "Energy Consumption Monitoring",
+        "CORE_COUNT" : "Core Count",
+        "CPU_POWER_CAPPING_CONTROL" : "CPU Power Capping Control"
+        
+    },
+    "POWER_AND_THERMAL":{
+        "TEMPERATURE": "Temperature",
+        "TEMPERATURE_SOURCE":"Temperature Source",
+        "ENTIRE_FAN":"Entire Fan",
+        "COOLING_ALGORITHM":"Cooling Algorithm",
+        "CRITERIA":"Criteria",
+        "APPLY":"Apply",
+        "TARGET_TEMPERATURE":"Target Temperature"
+    },
+    "FOFL_INFO":{
+        "GREEN_TEMPERATURE":"Green Temperature",
+        "YELLOW_TEMPERATURE":"Yellow Temperature",
+        "ORANGE_TEMPERATURE":"Orange Temperature",
+        "RED_TEMPERATURE":"Red Temperature",
+        "ALARM":"Alarm",
+        "STATE":"State",
+        "FOFL_LIST":"FOFL List",
+        "SENSOR_NAME":"Sensor Name",
+        "CHANGE_FOFL" : "SET FOFL",
+        "NEXT_STATE_TIME" : "Next State Time",
+        "FEEDBACK_STATE" : "Feedback State",
+        "RED_STATE_CAUSE" : "Red State Cause",
+        "SUGGEST_OPTION" : "Suggest Option"
+    },
+    "OVER_MONITORING": {
+        "CHASSIS_TEXT":"This section indicates the opsitions of modules inside the chassis.",
+        "SYSTEM_FAN_TEXT":"This section displays the speed of each fan module in the chassis in RPM.",
+        "TMEP_TEXT": "This section displays the temperature of the memory and CPU.",
+        "STROAGE_TEXT": "This section shows the status of the disk through S.M.A.R.T analysis."
     }
+
 }

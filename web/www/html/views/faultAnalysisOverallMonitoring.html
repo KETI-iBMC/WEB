@@ -1,0 +1,2681 @@
+<style>
+  .left40 {
+
+    width: 85%;
+
+    height: auto;
+
+    flex: 1;
+
+    position: relative;
+
+    align-items: center;
+
+    margin-left: 5px;
+
+  }
+
+
+
+  .right60 {
+
+    width: 115%;
+
+    height: auto;
+
+    margin-left: -15%;
+
+    margin-right: 10%;
+
+  }
+
+
+
+  .left50 {
+
+    width: 90%;
+
+    height: auto;
+
+    padding: 10px 10px 0 10px;
+
+    position: absolute;
+
+
+
+  }
+
+
+
+  .right50 {
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 10px;
+
+    position: absolute;
+
+
+
+  }
+
+
+
+  .split50>.left50 {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding-left: 12px;
+
+    position: relative;
+
+    margin: 0 0 0 0;
+
+    display: flex;
+
+    align-items: center;
+
+  }
+
+
+
+  .left30 {
+
+    width: 20%;
+
+    height: auto;
+
+    flex: 1;
+
+    position: absolute;
+
+    display: flex;
+
+    align-items: center;
+
+  }
+
+
+
+  .right70 {
+
+    width: 80%;
+
+    margin-left: 20%;
+
+    margin-right: 5%;
+
+  }
+
+
+
+  .split50 {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+  }
+
+
+
+  .ctrl-left50 {
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 5px;
+
+    position: relative;
+
+  }
+
+
+
+  .ctrl-right50 {
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 5px;
+
+    margin-bottom: 7px;
+
+    position: relative;
+
+  }
+
+
+
+  .Rack_title {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: absolute;
+
+    margin-left: 1rem;
+
+    height: auto;
+
+    width: 100%;
+
+
+  }
+
+
+
+  .Chassis_btn .button {
+
+    position: relative;
+
+    width: 120%;
+
+    color: #1B2129;
+
+    font-weight: bold;
+
+    font-size: 120%;
+
+    margin: 1rem 0.2rem;
+
+    padding: 0.2rem 1.3rem;
+
+    display: table;
+
+    vertical-align: middle;
+
+    text-align: center;
+
+    background-color: #fff;
+
+    box-shadow: 0px 0px 0px 3px #85B9FF;
+
+    border-radius: 5px;
+    border: none;
+  }
+
+
+
+  .button:hover {
+
+    color: #fff;
+
+    background-color: #85B9FF;
+    border: none;
+  }
+
+
+
+  .button:active {
+
+    color: #fff;
+
+    background-color: #fff;
+
+    box-shadow: 0px 0px 0px 3px #85B9FF;
+
+  }
+
+
+
+  .button-active {
+
+    position: relative;
+
+    width: 120%;
+
+    font-weight: bold;
+
+    font-size: 120%;
+
+    margin: 1rem 0.2rem;
+
+    padding: 0.2rem 1.3rem;
+
+    display: table;
+
+    vertical-align: middle;
+
+    text-align: center;
+
+    border-radius: 5px;
+
+    color: #fff;
+
+    background-color: #0b4daf;
+
+    box-shadow: 0px 0px 0px 3px #0b4daf;
+    border: none;
+  }
+
+
+
+
+
+
+
+  #Chassis {
+
+    width: 120%;
+
+    height: auto;
+
+    display: block;
+
+    object-fit: contain;
+
+    margin-right: 5%;
+
+  }
+
+
+
+  .dot-cm1 {
+
+    position: absolute;
+
+    top: 23%;
+
+    left: 24%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #0b4daf;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+
+
+  .dot-cm2 {
+
+    position: absolute;
+
+    top: 36%;
+
+    left: 34%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #85B9FF;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+
+
+  }
+
+
+
+  .dot-cm3 {
+
+    position: absolute;
+
+    top: 45%;
+
+    left: 34%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #85B9FF;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+
+
+  }
+
+
+
+  .dot-sm {
+
+    position: absolute;
+
+    top: 55%;
+
+    left: 34%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #85B9FF;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+
+
+  }
+
+
+
+  .dot-nm {
+
+    position: absolute;
+
+    top: 67%;
+
+    left: 34%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #85B9FF;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+
+
+  }
+
+
+
+  .dot-cmm {
+
+    position: absolute;
+
+    top: 78%;
+
+    left: 34%;
+
+    transform: translate(-50%, -50%);
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background-color: #85B9FF;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+
+
+  }
+
+
+
+  .cmm-summary {
+
+    background: #FFF;
+
+    box-shadow: 0px 0px 0px 2.5px #0b4daf;
+
+    border-radius: 15px;
+
+    margin-top: 15px;
+
+    margin-left: 5%;
+
+    margin-right: 5%;
+
+    margin-bottom: 25px;
+
+    height: 100%;
+
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+  }
+
+
+
+  .cm1-summary {
+
+    display: block;
+
+  }
+
+
+
+  .cm2-summary,
+
+  .cm3-summary,
+
+  .sm-summary,
+
+  .nm-summary,
+
+  .cmm-summary2 {
+
+    display: none;
+
+  }
+
+
+
+  .fan-con-info {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+  }
+
+
+
+  .bottom20 {
+
+    width: auto;
+
+    height: 20%;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    margin-bottom: 10px;
+
+
+
+  }
+
+
+
+  .reg-container {
+
+    width: 70%;
+
+    position: relative;
+
+  }
+
+
+
+  #Regiomal {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    margin-left: 5%;
+
+    padding: 3% 0;
+
+    float: left;
+
+
+
+  }
+
+
+
+  .dot-tmp1 {
+
+    position: absolute;
+
+    top: 15%;
+
+    left: 65%;
+
+    transform: translate(-50%, -50%);
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #ff8a8a;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot-tmp2 {
+
+    position: absolute;
+
+    top: 14%;
+
+    left: 88%;
+
+    transform: translate(-50%, -50%);
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #ffea71;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot-tmp3 {
+
+    position: absolute;
+
+    top: 48%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #339e2d;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot-tmp4 {
+
+    position: absolute;
+
+    top: 41%;
+
+    left: 70%;
+
+    transform: translate(-50%, -50%);
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #66bbfc;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot-tmp5 {
+
+    position: absolute;
+
+    top: 70%;
+
+    left: 92%;
+
+    transform: translate(-50%, -50%);
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #c074ff;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot-tmp1:hover,
+
+  .dot-tmp2:hover,
+
+  .dot-tmp3:hover,
+
+  .dot-tmp4:hover,
+
+  .dot-tmp5:hover {
+
+    width: 12px;
+
+    height: 12px;
+
+  }
+
+
+
+  .cmm-table {
+
+    height: 100%;
+
+    width: 30%;
+
+    display: block;
+
+    margin-top: 5%;
+
+  }
+
+
+
+  .cmm-table-data {
+
+    color: #000;
+
+    font-size: 11px;
+
+    flex-grow: 0;
+
+    flex-shrink: 0;
+
+    width: auto;
+
+    float: center;
+
+    margin-left: 30%;
+
+    font-family: notokrM;
+
+
+
+  }
+
+
+
+  .tmp-dot {
+
+    position: relative;
+
+    box-sizing: border-box;
+
+    width: 10px;
+
+    float: left;
+
+    margin-top: 5%;
+
+    margin-right: 1rem;
+
+  }
+
+
+
+  .cmm-table-data td {
+
+    padding-left: 10%;
+
+    padding: 0.2rem 0 0.4rem 1rem;
+
+  }
+
+
+
+  .tmp-text {
+
+    padding-left: 10px;
+
+    float: left;
+
+  }
+
+
+
+  .dot2-tmp1 {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #ff8a8a;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot2-tmp2 {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #ffea71;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot2-tmp3 {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #339e2d;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot2-tmp4 {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #66bbfc;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot2-tmp5 {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #c074ff;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .dot2-cputmp {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 100%;
+
+    transform: translate(-50%, -50%);
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background-color: #003b6f;
+
+    transition: background-color 0.3s ease, left 0.3s ease, top 0.3s ease;
+
+  }
+
+
+
+  .cmm-info-data {
+
+    color: #0b4daf;
+
+    font-size: 12px;
+
+    font-family: notokrM;
+
+    padding-bottom: 2px;
+
+    margin-bottom: 1rem;
+
+    font-weight: bold;
+
+    border-bottom: 1.5px solid #0b4daf;
+
+    display: inline-block;
+
+  }
+
+
+
+  .chassis-info-data {
+
+    color: #000;
+
+    font-size: 15px;
+
+    font-family: notokrM;
+
+    padding-left: 4%;
+
+    display: inline-block;
+
+    margin-bottom: 7px;
+
+  }
+
+
+
+  .ctrl-split50 {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+
+
+  .h-ctrl-split1,
+
+  .h-ctrl-split2,
+
+  .h-ctrl-split3,
+
+  .h-ctrl-split4,
+
+  .h-ctrl-split5,
+
+  .h-ctrl-split6 {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+
+
+  .Fan-control {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 23px;
+
+  }
+
+
+
+  .Quick-box {
+
+    width: 93%;
+
+    height: 100%;
+
+    position: relative;
+
+    background: #FFF;
+
+    border: 1px solid #DDD;
+
+    margin: 20px 10px 20px 18px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    font-family: notokrM;
+
+    box-shadow: 0 0 3px 3px rgba(0 0 0 / 10%);
+
+  }
+
+
+
+  .quick-split50 {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+
+
+  .quick-split {
+
+    margin-top: 20px;
+
+  }
+
+
+
+  .quick_tmep-icon {
+
+    width: 30px;
+
+    height: 30px;
+
+    margin: 5px;
+
+  }
+
+
+
+  .control-box {
+
+    width: 30%;
+
+    height: 100%;
+
+    position: relative;
+
+    background: #FFF;
+
+    border: 1px solid #DDD;
+
+    margin: 5px 10px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    display: inline-block;
+
+    font-family: notokrM;
+
+    box-shadow: 0 0 3px 3px rgba(0 0 0 / 10%);
+
+  }
+
+
+
+  .control-box>.split50 {
+
+    padding: 3px 7px 0 7px;
+
+  }
+
+
+
+  .ctrl-top {
+
+    display: flex;
+
+    align-items: center;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    margin-top: 7px;
+
+  }
+
+
+
+  .al-top {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: 100%;
+
+    margin-left: 5%;
+
+
+
+  }
+
+
+
+  .al-title {
+
+    text-align: center;
+
+    flex-grow: 1;
+
+    margin-top: 10px;
+
+  }
+
+
+
+  .al-left-title {
+
+    text-align: left;
+
+    flex-grow: 1;
+
+    margin-top: 10px;
+
+  }
+
+
+
+  .al-lefttitle {
+
+    text-align: left;
+
+    flex-grow: 1;
+
+  }
+
+
+
+
+
+  .ctrl-middle {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    padding: 15px 5px 0 5px;
+
+  }
+
+
+
+  .ctrl-middle2 {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    padding: 0 5px 5px 5px;
+
+    margin: 0 25px 0 20px;
+
+    font-size: 12px;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+  }
+
+
+
+  .al-middle {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: column;
+
+    width: auto;
+
+    padding: 15px 5px 0 5px;
+
+  }
+
+
+
+
+
+  .al-middle2 {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    margin: 0 22px 0 10px;
+
+    font-size: 10px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #ababab;
+
+    height: 23px;
+
+  }
+
+
+
+  .al-left-middle {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    margin: 0 22px 0 10px;
+
+    font-size: 10px;
+
+    align-items: left;
+
+    justify-content: left;
+
+    color: #ababab;
+
+    height: 23px;
+
+  }
+
+
+
+  .tmep-icon {
+
+    width: 13%;
+
+    height: 13%;
+
+    margin: 5px 5px;
+
+  }
+
+
+
+  .ctrl-name {
+
+    width: 77%;
+
+    height: 80%;
+
+    margin: 0;
+
+    padding: 2px 2px 0px 2px;
+
+    margin-left: 5px;
+
+    font-weight: bold;
+
+    display: flex;
+
+    border-bottom: 1.7px solid #333;
+
+    justify-content: space-between;
+
+    text-align: center;
+
+  }
+
+
+
+  .ctrl-name div {
+
+    font-size: 13px;
+
+    text-align: center;
+
+    flex-grow: 1;
+
+  }
+
+
+
+  .al-name {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    width: auto;
+
+    font-size: 12px;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+  }
+
+
+
+  .al-tmpsys {
+
+    width: 100%;
+
+    height: 80%;
+
+    padding: 2px 2px 0px 2px;
+
+    margin-left: 5%;
+
+    margin-right: 5%;
+
+    display: flex;
+
+    border-bottom: 1.7px solid #333;
+
+    justify-content: space-between;
+
+    text-align: center;
+
+  }
+
+
+
+
+
+  .al-tmpsys div {
+
+    font-size: 13px;
+
+    flex-grow: 1;
+
+    text-align: left;
+
+    font-weight: bold;
+
+  }
+
+
+
+  .current {
+
+    width: 50%;
+
+    height: 80%;
+
+    margin: 0;
+
+    padding: 2px 2px 0px 2px;
+
+    justify-content: space-between;
+
+    text-align: center;
+
+    align-self: center;
+
+  }
+
+
+
+  .ctrl-right {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding-top: 7px;
+
+  }
+
+
+
+  .ctrl-btn {
+
+    background-color: transparent;
+
+    border: none;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    width: 24px;
+
+    height: 24px;
+
+    position: relative;
+
+  }
+
+
+
+  .menu-icon {
+
+    display: block;
+
+    width: 24px;
+
+    height: 24px;
+
+    position: relative;
+
+  }
+
+
+
+  .menu-icon span {
+
+    display: block;
+
+    width: 4px;
+
+    height: 4px;
+
+    background-color: #333;
+
+    position: absolute;
+
+    top: 64%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+  }
+
+
+
+  .menu-icon span:nth-child(1) {
+
+    top: 9px;
+
+  }
+
+
+
+  .menu-icon span:nth-child(3) {
+
+    top: 3px;
+
+  }
+
+
+
+  .toggleSwitch1,
+
+  .toggleSwitch2,
+
+  .toggleSwitch3,
+
+  .toggleSwitch4,
+
+  .toggleSwitch5,
+
+  .toggleSwitch6,
+
+  .quick_toggleSwitch {
+
+    display: block;
+
+    width: 38px;
+
+    height: 20px;
+
+    position: relative;
+
+    border-radius: 20px;
+
+    background-color: #c9c8c8;
+
+    margin-top: 8px;
+
+    box-shadow: 0 0 10px 2px rgba(0 0 0 / 10%);
+
+  }
+
+
+
+  .toggleSwitch1 .toggleButton1,
+
+  .toggleSwitch2 .toggleButton2,
+
+  .toggleSwitch3 .toggleButton3,
+
+  .toggleSwitch4 .toggleButton4,
+
+  .toggleSwitch5 .toggleButton5,
+
+  .toggleSwitch6 .toggleButton6,
+
+  .quick_toggleSwitch .quick_toggleButton {
+
+    width: 14px;
+
+    height: 14px;
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 4px;
+
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+
+    background: #333;
+
+  }
+
+
+
+  #toggle1:checked~.toggleSwitch1,
+
+  #toggle2:checked~.toggleSwitch2,
+
+  #toggle3:checked~.toggleSwitch3,
+
+  #toggle4:checked~.toggleSwitch4,
+
+  #toggle5:checked~.toggleSwitch5,
+
+  #toggle6:checked~.toggleSwitch6,
+
+  #quick_toggle:checked~.quick_toggleSwitch {
+
+    background: #333;
+
+  }
+
+
+
+  #toggle1:checked~.toggleSwitch1 .toggleButton1,
+
+  #toggle2:checked~.toggleSwitch2 .toggleButton2,
+
+  #toggle3:checked~.toggleSwitch3 .toggleButton3,
+
+  #toggle4:checked~.toggleSwitch4 .toggleButton4,
+
+  #toggle5:checked~.toggleSwitch5 .toggleButton5,
+
+  #toggle6:checked~.toggleSwitch6 .toggleButton6,
+
+  #quick_toggle:checked~.quick_toggleSwitch .quick_toggleButton {
+
+    left: calc(50%);
+
+    background: #c9c8c8;
+
+  }
+
+
+
+  .toggleSwitch1 .toggleButton1,
+
+  .toggleSwitch2 .toggleButton2,
+
+  .toggleSwitch3 .toggleButton3,
+
+  .toggleSwitch4 .toggleButton4,
+
+  .toggleSwitch5 .toggleButton5,
+
+  .toggleSwitch6 .toggleButton6,
+
+  .quick_toggleSwitch .quick_toggleButton {
+
+    transition: all 0.2s ease-in;
+
+  }
+
+
+
+  .arrow-icon {
+
+    width: 10%;
+
+    height: 10%;
+
+    padding-top: 12px;
+
+    margin-left: 2px;
+
+    margin-right: 2px;
+
+    margin-bottom: 5px;
+
+  }
+
+
+
+  .fan-speed {
+
+    margin-right: auto;
+
+  }
+
+
+
+  .fan-rpm {
+
+    margin-left: 5px;
+
+  }
+
+
+
+
+
+  .current-text {
+
+    width: 100%;
+
+    height: 100%;
+
+    color: #ababab;
+
+    font-size: 4px;
+
+  }
+
+
+
+  .current-num {
+
+    width: 80%;
+
+    height: 80%;
+
+    margin: 0;
+
+    padding: 2px 2px 0px 10px;
+
+    margin-left: 15px;
+
+    border-bottom: 1.7px solid #333;
+
+    justify-content: space-between;
+
+    text-align: center;
+
+  }
+
+
+
+  .ctrl-split50 {
+
+    display: flex;
+
+    justify-content: space-between;
+
+  }
+
+
+
+  .line {
+
+    height: 20px;
+
+    width: 95%;
+
+    margin: 15px 20px 30px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1.7px solid #b1b1b1;
+
+  }
+
+
+
+
+
+
+
+  .ctrl-split {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+
+
+  .al-center {
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 5px;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    text-align: center;
+
+  }
+
+
+
+  .wrapper {
+
+    display: flex;
+
+    align-items: flex-end;
+
+  }
+
+
+
+  .al-wrapper {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    margin-left: 5px;
+
+    margin-right: 5px;
+
+  }
+
+
+
+  .al-current {
+
+    display: flex;
+
+    font: NotoKrR;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+  }
+
+
+
+  .vertical-text {
+
+    width: 5%;
+
+    height: 100%;
+
+    color: #000;
+
+    font-size: 4px;
+
+    writing-mode: vertical-lr;
+
+    height: auto;
+
+    line-height: 50%;
+
+  }
+
+
+
+  .next-text {
+
+    width: 100%;
+
+    height: auto;
+
+    color: #000;
+
+    font-size: 4px;
+
+    text-align: center;
+
+  }
+
+
+
+  #lineChart,
+
+  #lineChart2,
+
+  #lineChart3,
+
+  #lineChart4,
+
+  #lineChart5,
+
+  #lineChart6 {
+
+    margin: 15px;
+
+  }
+
+
+
+
+
+
+
+  @media (max-width:1800px) {
+
+
+
+    .cmm-table {
+
+      height: 100%;
+
+      width: 50%;
+
+      display: block;
+
+      margin-top: 5%;
+
+    }
+
+  }
+
+
+
+  @media (min-width:1400px) {
+
+
+
+
+
+    .cmm-table-data {
+
+      color: #000;
+
+      font-size: 14px;
+
+      flex-grow: 0;
+
+      flex-shrink: 0;
+
+      width: auto;
+
+      margin-left: 15%;
+
+      float: center;
+
+    }
+
+
+
+  }
+
+
+
+  @media screen and (max-width: 800px) {
+
+
+
+    .left40 {
+
+      width: 100%;
+
+      height: auto;
+
+    }
+
+
+
+  }
+
+
+
+
+
+  select {
+
+    font: NotoKrR;
+
+    padding: 0 10px;
+
+    border: 0;
+
+    border-bottom: 2px solid currentcolor;
+
+    border-radius: 0;
+
+    width: 90%;
+
+  }
+
+
+
+  .circle-container {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 130px);
+
+    grid-template-rows: repeat(3, 130px);
+
+    gap: 5px;
+
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 73%;
+  }
+
+
+
+  .circle {
+
+    width: 65%;
+
+    height: 65%;
+
+    background-color: #58d52b;
+
+    border-radius: 50%;
+
+    color: #fff;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+
+
+  .circle-container2 {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 50px);
+
+    grid-template-rows: repeat(3, 110px);
+
+    gap: 5px;
+
+    justify-content: space-around;
+
+    justify-items: center;
+
+    margin: 0 15px 0 5px;
+
+  }
+
+
+
+  .circle2 {
+
+    width: 100px;
+
+    height: 80px;
+
+    background-color: rgb(75, 191, 152);
+
+    color: #fff;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+  }
+
+  .storage-shape {
+
+    width: 150px;
+
+    height: 110px;
+
+    background-color: rgb(75, 191, 152);
+
+    color: #fff;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+  }
+
+  .rpm-text {
+
+    font-size: 18px;
+
+    padding-top: 7px;
+
+    margin-bottom: -10px;
+
+  }
+
+
+
+  .over_line {
+
+    width: 90%;
+
+    border-bottom: 1px solid #003693;
+
+    margin-left: 5%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+  }
+
+
+
+  .over_title {
+
+    padding: 5px;
+
+    font-weight: bold;
+    font-size: 15px;
+
+  }
+
+
+
+  .over_text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+
+
+  .circle-container3 {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 50px);
+
+    gap: 5px;
+
+    justify-content: space-around;
+
+    justify-items: center;
+
+    margin: 0 15px 0 5px;
+
+  }
+
+
+
+  .fan {
+
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: center;
+
+  }
+
+  .fan_read {
+    position: absolute;
+    top: 35px;
+    left: 16%;
+    z-index: 1;
+  }
+
+
+  #Rack_Back {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    margin: 30px 0;
+  }
+
+  /* #Rack_Back {
+
+        height: 500px;
+
+        margin: 38px 0;
+
+    } */
+
+
+
+  .tmep-text {
+
+    font-size: 14px;
+
+    padding-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    color: #8f8f8f;
+
+  }
+
+  .temp-layout {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 30px;
+
+  }
+</style>
+
+
+
+<div class="contents" data-ng-init="init()">
+
+  <div class="content">
+
+    <div class="box_wrap box_guide2" style="margin-top: 70px;">
+
+      <div class="content-area">
+
+        <div class="title_line">
+
+          <h4>{{ "FAULT_ANALYSIS.FAULT_AND_FAILURE_DASHBOARD" | translate }}</h4>
+
+          <div class="con-subtit">{{ "FAULT_ANALYSIS.OVERALL_MONITORING_DESCRIPTION" | translate }}</div>
+
+        </div>
+
+
+
+        <div class="col-12" style="display: flex;">
+
+          <div class="col-sm-6">
+
+            <div class="box_wrap" style="height: 100%;">
+              <div class="over_line" style=" margin-top: 5px;">
+
+                <div class="over_title"> {{ "FAULT_ANALYSIS.CHASSIS" | translate }} </div>
+
+                <div class="box_icon"></div>
+              </div>
+              <div class="tmep-text">
+
+                {{ "OVER_MONITORING.CHASSIS_TEXT" | translate }}
+
+              </div>
+              <div class="summary">
+
+                <div class="split50" style="margin-top: 50px">
+
+                  <div class="left50" style="margin-top: 15%; margin-right: 100px;">
+
+                    <div class="left30">
+
+                      <div class="Rack_title">
+
+                        <div class="Chassis_btn" style="margin-top: 15px; margin-bottom: 50px; margin-right: 100px">
+                          <button href="#" id="cm1button" class="button cm1" onclick="cm1Image()"
+                            ng-click="onChangeMember(memberList[0])">{{memberList[0].Id || 'Slot1'}}</button>
+                          <line></line>
+                        </div>
+                        <div class="Chassis_btn" style="margin-top: 15px; margin-bottom: 50px; margin-right: 100px">
+                          <button href="#" id="cm2button" class="button cm2" onclick="cm2Image()"
+                            ng-click="onChangeMember(memberList[1])">{{memberList[1].Id || 'Slot2'}}</button>
+                        </div>
+                        <div class="Chassis_btn" style="margin-top: 15px; margin-bottom: 50px; margin-right: 100px">
+                          <button href="#" id="cm3button" class="button mc3" onclick="cm3Image()"
+                            ng-click="onChangeMember(memberList[2])">{{memberList[2].Id || 'Slot3'}}</button>
+                        </div>
+                        <div class="Chassis_btn" style="margin-top: 25px;  margin-right: 100px">
+                          <button href="#" id="cm4button" class="button sm" onclick="smImage()"
+                            ng-click="onChangeMember(memberList[3])">{{memberList[3].Id || 'Slot4'}}</button>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="right70">
+
+                      <div class="image-container">
+
+                        <img src="./images/Rack_Front.png" id="Chassis">
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-sm-6">
+
+
+            <div class="box_wrap">
+
+              <div class="over_line" style="margin-top: 5px;">
+
+                <div class="over_title"> System Fan </div>
+
+                <select class="form-control input-sm" style="width:auto;" ng-model="module" ng-disabled="autoSync"
+                  ng-options="m as m for m in moduleList">
+
+                  <option value="">Status</option>
+
+                </select>
+
+              </div>
+              <div class="tmep-text">
+
+                {{ "OVER_MONITORING.SYSTEM_FAN_TEXT" | translate }}
+
+              </div>
+
+              <div class="con-info">
+                <div style="display: flex; flex-direction: column;">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="./images/fan-label.png" style="width: 40%;">
+                  </div>
+                  <div class="fan" style="position:relative; padding-top: 0;">
+                    <img src="./images/Rack_Back.png" height="500" id="Rack_Back" style="z-index: 0;">
+                    <div class="circle-container fan_read" id="fan-readings"> </div>
+                    <div>
+                    </div>
+
+                  </div>
+                </div> <!-- <div class="circle-container" id="fan-readings" style= "gap: 20px;"> -->
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+      </div>
+      <div class="col-12" style="display: flex; ">
+        <div class="col-sm-6">
+
+          <div class="box_wrap" style="height: 100%;">
+
+            <div class="over_line" style=" margin-top: 5px;">
+
+              <div class="over_title"> Temperature </div>
+
+              <select class="form-control input-sm" style="width:auto;" ng-model="module" ng-disabled="autoSync"
+                ng-options="m as m for m in moduleList">
+
+                <option value="">Status</option>
+
+              </select>
+
+
+
+            </div>
+
+            <div class="con-info" style="display: flex; flex-direction: column; margin: 0 0 20px;">
+
+              <div class="tmep-text">
+
+                {{ "OVER_MONITORING.TMEP_TEXT" | translate }}
+
+              </div>
+              <div id="div_table" style="margin-top: 10px; padding: 10px 0">
+
+                <div style="display: flex; align-items: center; justify-content: flex-end;">
+
+                  <div class=" col_index_margin_l" style="width: 10%;">
+
+                    <!-- <img src="./images/icon_psu_blue.png" align="right"/> -->
+
+                    <img src="./images/icon_signal.png" align="right" />
+
+                  </div>
+                  <div class=" col_data" style="font-size: 13px; margin-top:5px;">Signal</div>
+                  <div class=" col_img">
+
+                    <!-- <img src="./images/icon_psu_red.png" align="right"/> -->
+
+                    <img src="./images/icon_no_signal.png" align="right" />
+
+                  </div>
+                  <div class=" col_data" style="font-size: 13px; width: auto; margin-top:5px;"> No Signal </div>
+                  <div class=" col_index_margin_r"></div>
+
+                  <div style="clear: both"></div>
+                </div>
+
+
+              </div>
+              <div class="temp-layout">
+                <div class="homebmc-wrap" style="display: flex; flex-direction: column; align-items: center;">
+                  <div class="summary-wrapper" style="width: 480px;" >
+                    <div class="summary" style="padding: 10px;" >
+                      <div style="z-index:1">
+                        <div>
+                          <span class="temp p1" style="top: 310%;"><i id="hwstatus-p2" class="tmp"></i></span>
+                          <span class="temp p2" style="top: 370%;"><i id="hwstatus-p1" class="tmp"></i></span>
+                          <span class="temp p3" style="top: 430%;"><i id="hwstatus-p3" class="tmp"></i></span>
+                          <span class="temp p4" style="top: 490%;"><i id="hwstatus-p4" class="tmp"></i></span>
+                          <span class="temp p10" style="top: 1030%;"><i id="hwstatus-p10" class="tmp"></i></span>
+                          <span class="temp p11" style="top: 1095%;"><i id="hwstatus-p11" class="tmp"></i></span>
+                          <span class="temp p12" style="top: 1155%;"><i id="hwstatus-p12" class="tmp"></i></span>
+                          <span class="temp p13" style="top: 1215%;"><i id="hwstatus-p13" class="tmp"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tmp-container"
+                    style="display: flex; flex-direction: column; align-items: center; padding: 0; position: relative;">
+                    <img src="./images/new_board.png" id="statuspower"
+                      style="max-height: 280px; padding: 10px 0 10px 0px; width: auto;">
+                        <div class="image-text" style="position: absolute; top: 16%; left: 6%; transform: translate(-50%, -50%); text-align: center; font-weight: bold; font-size: 13px; color: #333333;">
+                          DIMM 1
+                        </div>
+                        <div class="image-text" style="position: absolute; top: 20%; left: 6%; transform: translate(-50%, -50%); text-align: center; font-weight: bold; font-size: 13px; color: #333333;">
+                          DIMM 2
+                        </div>
+                        <div class="image-text" style="position: absolute; top: 25%; left: 6%; transform: translate(-50%, -50%); text-align: center; font-weight: bold; font-size: 13px; color: #333333;">
+                          DIMM 3
+                        </div>
+                        <div class="image-text" style="position: absolute; top: 29.5%; left: 6%; transform: translate(-50%, -50%); text-align: center; font-weight: bold; font-size: 13px; color: #333333;">
+                          DIMM 4
+                        </div>
+                        <div class="image-text" style="position: absolute; top: 68%; left: 6%; transform: translate(-50%, -50%); text-align: center; font-weight: bold; font-size: 13px; color: #333333;">
+                          DIMM 5
+                        </div>
+                        <div class="image-text" style="position: absolute; top: 72.5%; left: 6%; transform: translate(-50%, -50%); text-align: center; font-weight: bold; font-size: 13px; color: #333333;">
+                          DIMM 6
+                        </div>
+                        <div class="image-text" style="position: absolute; top: 77%; left: 6%; transform: translate(-50%, -50%); text-align: center; font-weight: bold; font-size: 13px; color: #333333;">
+                          DIMM 7
+                        </div>
+                        <div class="image-text" style="position: absolute; top: 81%; left: 6%; transform: translate(-50%, -50%); text-align: center; font-weight: bold; font-size: 13px; color: #333333;">
+                          DIMM 8
+                        </div>
+                      
+                  </div>
+                </div>
+              </div>
+
+              <div class="circle-container2" style="grid-template-columns: repeat(4, 50px); margin-top: 30px;">
+
+                <div class="over_text">
+
+                  <div class="circle2"
+                    ng-style="{'background-color': healthSummary.DIMM1_CH_B === 0 ? '#C9CBCF' : '#4BC0C0'}">
+
+                    <span id="DIMM1_CH_B" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM1_CH_B >= 255 ? 0 :
+                      healthSummary.DIMM1_CH_B }}
+
+                    </span>
+
+                  </div>
+
+                  <div style="font-weight: bold;">DIMM 1</div>
+
+                </div>
+
+
+
+                <div class="over_text">
+
+                  <div class="circle2"
+                    ng-style="{'background-color': healthSummary.DIMM1_CH_A === 0 ? '#C9CBCF' : '#4BC0C0'}">
+
+                    <span id="DIMM1_CH_A" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM1_CH_A >= 255 ? 0 :
+                      healthSummary.DIMM1_CH_A }}
+
+                  </div>
+
+                  <div style="font-weight: bold;">DIMM 2</div>
+
+                </div>
+
+
+
+                <div class="over_text">
+
+                  <div class="circle2"
+                    ng-style="{'background-color': healthSummary.DIMM1_CH_C === 0 ? '#C9CBCF' : '#4BC0C0'}">
+
+                    <span id="DIMM1_CH_C" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM1_CH_C >= 255 ? 0 :
+                      healthSummary.DIMM1_CH_C }}
+
+                  </div>
+
+                  <div style="font-weight: bold;">DIMM 3</div>
+
+                </div>
+
+                <div class="over_text">
+
+                  <div class="circle2"
+                    ng-style="{'background-color': healthSummary.DIMM1_CH_D === 0 ? '#C9CBCF' : '#4BC0C0'}">
+
+                    <span id="DIMM1_CH_D" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM1_CH_D >= 255 ? 0 :
+                      healthSummary.DIMM1_CH_D }}
+
+                  </div>
+
+                  <div style="font-weight: bold;">DIMM 4</div>
+
+                </div>
+
+                <div class="over_text">
+
+                  <div class="circle2"
+                    ng-style="{'background-color': healthSummary.DIMM2_CH_A === 0 ? '#C9CBCF' : '#4BC0C0'}">
+
+                    <span id="DIMM2_CH_A" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM2_CH_A >= 255 ? 0 :
+                      healthSummary.DIMM2_CH_A }}
+
+                  </div>
+
+                  <div style="font-weight: bold;">DIMM 5</div>
+
+                </div>
+
+                <div class="over_text">
+
+                  <div class="circle2"
+                    ng-style="{'background-color': healthSummary.DIMM2_CH_B === 0 ? '#C9CBCF' : '#4BC0C0'}">
+
+                    <span id="DIMM2_CH_B" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM2_CH_B >= 255 ? 0 :
+                      healthSummary.DIMM2_CH_B }}
+
+                  </div>
+
+                  <div style="font-weight: bold;">DIMM 6</div>
+
+                </div>
+
+
+                <div class="over_text">
+
+                  <div class="circle2"
+                    ng-style="{'background-color': healthSummary.DIMM2_CH_C === 0 ? '#C9CBCF' : '#4BC0C0'}">
+
+                    <span id="DIMM2_CH_C" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM2_CH_C >= 255 ? 0 :
+                      healthSummary.DIMM2_CH_C }}
+
+                  </div>
+
+                  <div style="font-weight: bold;">DIMM 7</div>
+
+                </div>
+
+                <div class="over_text">
+
+                  <div class="circle2"
+                    ng-style="{'background-color': healthSummary.DIMM2_CH_D === 0 ? '#C9CBCF' : '#4BC0C0'}">
+
+                    <span id="DIMM2_CH_D" class="rpm-text" style="margin: 0;"> {{ healthSummary.DIMM2_CH_D >= 255 ? 0 :
+                      healthSummary.DIMM2_CH_D }}
+
+                  </div>
+
+                  <div style="font-weight: bold;">DIMM 8</div>
+
+                </div>
+
+                <div class="over_text">
+
+                  <div class="circle2" ng-style="{'background-color': systemBoardTemp === 0 ? '#C9CBCF' : '#4BC0C0'}">
+
+                    <span class="rpm-text" style="margin: 0;"> {{ systemBoardTemp }}
+
+                  </div>
+
+                  <div style="font-weight: bold;">CPU 1</div>
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-sm-6">
+          <div class="box_wrap" style="height: 100%; ">
+
+            <div class="over_line" style=" margin-top: 5px;">
+
+              <div class="over_title"> Smart Storage </div>
+                <select class="form-control input-sm" style="width:auto;" >
+                    <option value="NVME0">NVME 0</option>
+                    <option value="NVME1" disabled>NVME 1</option>
+                </select>
+
+
+
+            </div>
+            <div class="tmep-text">
+
+              {{ "OVER_MONITORING.STROAGE_TEXT" | translate }}
+
+            </div>
+            <div class="con-info">
+              <div style="margin-top: 40px;"></div>
+
+
+              <div class="circle-container2" ng-show="selectedDiskInfo" style="grid-template-rows: repeat(2, 140px);">
+
+                <div class="over_text" style="margin-bottom: 20px; ">
+
+                  <div class="storage-shape" style="flex-direction: column;">
+
+                    <span class="rpm-text"
+                      style="margin: 0; font-size: 16px;">Score</span>{{selectedDiskInfo.STATUS_SCORE}}
+
+                  </div>
+
+                  <div style="font-weight: bold; font-size: 12px;">{{selectedDiskInfo.VENDOR_NAME}}</div>
+
+                </div>
+                <div class="over_text" style="margin-bottom: 20px; ">
+
+                  <div class="storage-shape" style="flex-direction: column;text-align: center;">
+
+                    <span class="rpm-text"
+                      style="margin: 0; font-size: 16px;"></span>{{selectedDiskInfo.ESTIMATED_DISK_LIFE}}
+
+                  </div>
+
+                  <div style="font-weight: bold; font-size: 12px; text-align: center;">Estimated Disk Life</div>
+
+                </div>
+
+                <div class="over_text" style="margin-bottom: 20px; ">
+
+                  <div class="storage-shape" style="flex-direction: column;">
+
+                    <span class="rpm-text"
+                      style="margin: 0; font-size: 16px;"></span>{{selectedDiskInfo.PROBABILITY_OF_ERROR_WITHIN_THE_YEAR}}
+
+                  </div>
+
+                  <div style="font-weight: bold; font-size: 12px; text-align: center;">Error Probability (Yearly)</div>
+
+                </div>
+                <div class="over_text" style="margin-bottom: 20px; ">
+
+                  <div class="storage-shape" style="flex-direction: column;">
+
+                    <span class="rpm-text"
+                      style="margin: 0; font-size: 16px;"></span>{{selectedDiskInfo.FATAL_ERROR_COUNT}}
+
+                  </div>
+
+                  <div style="font-weight: bold; font-size: 12px;">Fatal Error Count</div>
+
+                </div>
+                <div class="over_text" style="margin-bottom: 20px; ">
+
+                  <div class="storage-shape" style="flex-direction: column;">
+
+                    <span class="rpm-text"
+                      style="margin: 0; font-size: 16px;"></span>{{selectedDiskInfo.DISK_TEMPERATURE}}
+
+                  </div>
+
+                  <div style="font-weight: bold; font-size: 12px;">Disk Temperature</div>
+
+                </div>
+                <div class="over_text" style="margin-bottom: 20px; ">
+
+                  <div class="storage-shape" style="flex-direction: column;">
+
+                    <span class="rpm-text"
+                      style="margin: 0; font-size: 16px;"></span>{{selectedDiskInfo.DISK_SELF_TEST}}
+
+                  </div>
+
+                  <div style="font-weight: bold; font-size: 12px;">Disk Self Test</div>
+
+                </div>
+
+              </div>
+              <div
+                style="display: grid; grid-template-columns: repeat(2, 100px); gap: 5px; justify-content: space-around; justify-items: center">
+                <div style="display: flex; flex-direction: column; align-items: center; margin-top: 70px; ">
+                  <canvas id="readLineChart" width="400" height="300"></canvas>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; margin-top: 70px; ">
+                  <canvas id="writeLineChart" width="400" height="300"></canvas>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 .bmc-contents {
     display: inline-block;
     width: 98%;
-    /* margin-top: 20px; */
+    margin-top: 20px;
     font:NotoKrR;
 }
 
@@ -11,10 +11,6 @@
 
 .home-content {
     overflow: hidden;
-}
-
-.gap-md {
-    gap: 30px;
 }
 
 .bmc_box_wrap {
@@ -72,7 +68,7 @@
 }
 
 .bmc-home {
-    height: 1200px;
+    height: 800px;
     display: flex;
     flex-direction: row;
     margin: 0;
@@ -93,7 +89,7 @@
 .top70 {
     height: 65%;
     float: top;
-    margin-bottom: 23px;
+    margin-bottom: 15px;
     flex-direction: column;
 }
 
@@ -190,6 +186,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5%;
 }
 
 .status-left {
@@ -405,25 +402,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    line-height: 13px;
+    border: none;
 }
 
 .bmc-row {
     justify-content: center;
     flex-direction: column;
-    margin: 20px;
+    margin: 5px;
 }
 
 .col {
     width: 60px;
-    height: 50px;
-    margin-bottom: 30px;
+    height: 37px;
+    margin-bottom: 10px;
 
 }
 
 .col2 {
     width: 60px;
-    height: 112px;
-    margin-bottom: 47px;
+    height: 84px;
+    margin-bottom: 10px;
 }
 
 .quick-btn {
@@ -431,24 +430,27 @@
     font-size: 12px;
     font-family: notokrM;
     font-weight: bold;
-    width: 140%;
-    height: 130%;
+    width: 100%;
+    height: 100%;
     margin: 5px;
     border-radius: 5px;
     background: #FFF;
-    border: 2px solid #0b4daf;
+    box-shadow: 0px 0px 0px 2.5px #0b4daf;
+    border: none;
 }
 
 .quick-btn:hover {
     color: #458fff;
     background-color: #daeaff;
-    border: 2px solid #458fff;
+    box-shadow: 0px 0px 0px 2.5px #458fff;
+    border: none;
 }
 
 .quick-btn:active {
     color: #458fff;
     background-color: #ffffff;
-    border: 2px solid #458fff;
+    box-shadow: 0px 0px 0px 2.5px #458fff;
+    border: none;
 }
 
 .Virtual-table {
@@ -486,19 +488,22 @@
     margin: 7px 10%;
     border-radius: 5px;
     background: #cfcfcf;
-    border: 2px solid #4b4b4b;
+    box-shadow: 0px 0px 0px 2.5px #4b4b4b;
+    border: none;
 }
 
 .usb-on:hover {
     color: #0a7900;
     background-color: #d6edd5;
-    border: 2px solid #249c1993;
+    box-shadow: 0px 0px 0px 2.5px #249c1993;
+    border: none;
 }
 
 .usb-on:active {
     color: #0a7900;
     background-color: #d6edd5;
-    border: 2px solid #0a7900;
+    box-shadow: 0px 0px 0px 0px #0a7900;
+    border: none;
 }
 
 .usb-on-active {
@@ -511,13 +516,15 @@
     margin: 7px 10%;
     border-radius: 5px;
     background: #c0e4bf;
-    border: 2px solid #0a7900;
+    box-shadow: 0px 0px 0px 2.5px #0a7900;
+    border: none;
 }
 
 .usb-on-active:hover {
     color: #249c1993;
     background-color: #cbe8cb;
-    border: 2px solid #249c1993;
+    box-shadow: 0px 0px 0px 2.5px #249c1993;
+    border: none;
 }
 
 .usb-off {
@@ -530,19 +537,22 @@
     margin: 7px 10%;
     border-radius: 5px;
     background: #cfcfcf;
-    border: 2px solid #4b4b4b;
+    box-shadow: 0px 0px 0px 2.5px #4b4b4b;
+    border: none;
 }
 
 .usb-off:hover {
     color: #ca0e0e;
     background-color: #fde4e4;
-    border: 2px solid #dc101075;
+    box-shadow: 0px 0px 0px 2.5px #dc101075;
+    border: none;
 }
 
 .usb-off:active {
     color: #ca0e0e;
     background-color: #fde4e4;
-    border: 2px solid #ca0e0e;
+    box-shadow: 0px 0px 0px 0px #ca0e0e;
+    border: none;
 }
 
 .usb-off-active {
@@ -555,13 +565,15 @@
     margin: 7px 10%;
     border-radius: 5px;
     background: #eccaca;
-    border: 2px solid #ca0e0e;
+    box-shadow: 0px 0px 0px 2.5px #ca0e0e;
+    border: none;
 }
 
 .usb-off-active:hover {
     color: #dc101075;
     background-color: #f3d5d5;
-    border: 2px solid #dc101075;
+    box-shadow: 0px 0px 0px 2.5px #dc101075;
+    border: none;
 }
 
 .usb-add {
@@ -570,23 +582,26 @@
     font-family: notokrM;
     font-weight: bold;
     width: 80%;
-    height: 30px;
+    height: 100%;
     margin: 7px 10%;
     border-radius: 5px;
     background: #fff;
-    border: 2px solid #0b4daf;
+    box-shadow: 0px 0px 0px 2.5px #0b4daf;
+    border: none;
 }
 
 .usb-add:hover {
     color: #0b4daf;
     background-color: #daeaff;
-    border: 2px solid #0b4daf;
+    box-shadow: 0px 0px 0px 2.5px #0b4daf;
+    border: none;
 }
 
 .usb-add:active {
     color: #0b4daf;
     background-color: #daeaff;
-    border: 2px solid #458fff;
+    box-shadow: 0px 0px 0px 0px #458fff;
+    border: none;
 }
 
 .status-img-l img {
@@ -801,7 +816,7 @@ td {
 .home_table-view td {
     border-bottom: 1px solid #DDD;
     text-align: center;
-    font-size: 10px;
+    font-size: 8px;
     height: 39px;
 }
 

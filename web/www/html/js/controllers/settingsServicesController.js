@@ -123,11 +123,11 @@ app.controller('SettingsServicesController', [
                     $scope.priority = response.data.NETWORK_PRIORITY;
                     var networkDataList = response.data.NETWORK_INFO;
 
-                    if (!networkDataList) {
+                    if(!networkDataList) {
                         throw "error";
                     }
 
-                    $scope.networkInfos = networkDataList.map(function (v, i) {
+                    $scope.networkInfos = networkDataList.map(function(v, i) {
                         v.index = i;
                         return v;
                     });
@@ -209,7 +209,7 @@ app.controller('SettingsServicesController', [
             });
 
         }
-
+        
 
         // Add Smtp data
         function getSmtpInfo() {
@@ -513,8 +513,8 @@ app.controller('SettingsServicesController', [
                 logger.logError(CONST_MESSAGE.CONFIGURATION.RADIUS.E003);
             });
         }
-
-
+        
+        
 
         /***************************************************************************************************************
          *
@@ -541,49 +541,45 @@ app.controller('SettingsServicesController', [
 
             getAdInfo();
             getAdLdapInfo();
-
+            
             getLdapInfo();
             getLdapAdInfo();
 
             getRadiusInfo();
-            $scope.selectedTab = '1'; // 초기 선택 탭 설정
-
         };
 
-        $scope.onChangeNetwork = function (network) {
+        $scope.onChangeNetwork = function(network) {
             $scope.selectedIndex = network.index;
             setInfo(network);
         };
-        $scope.selectTab = function (tab) {
-            $scope.selectedTab = tab;
-        };
+        
         $scope.save = function () {
             setServicesInfo();
         };
 
         $scope.Dnssave = function () {
-            setDnsInfo();
+            setDnsInfo();  
         }
         $scope.Dnsreset = function () {
             getDnsInfo();
         }
 
         $scope.Netsave = function () {
-            setNetworkInfo();
+            setNetworkInfo();  
         }
         $scope.Netreset = function () {
             getNetworkInfo($scope.selectedIndex);
         }
 
         $scope.Smtsave = function () {
-            setSmtpInfo();
+            setSmtpInfo();  
         }
         $scope.Smtreset = function () {
             getSmtpInfo();
         }
 
         $scope.Sslsave = function () {
-            generateSsl();
+            generateSsl();  
         }
         $scope.Sslreset = function () {
             $scope.commonName = "";
@@ -594,7 +590,7 @@ app.controller('SettingsServicesController', [
             $scope.country = "";
             $scope.emailAddress = "";
             $scope.validFor = "";
-            $scope.keyLength = "";
+            $scope.keyLength = ""; 
         }
 
         $scope.adsave = function () {
@@ -654,6 +650,6 @@ app.controller('SettingsServicesController', [
                 $scope.ipv6Gateway = $scope.networkInfo.IPV6.IPV6_GATEWAY;
             }
         };
-
+        
     }
 ]);

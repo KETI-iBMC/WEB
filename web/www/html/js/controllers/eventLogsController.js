@@ -19,9 +19,8 @@ app.controller('EventLogsController', [
         CONST_MESSAGE,
         $rootScope,
         $translate,
-        $location,
+        $location
     ) {
-
         /***************************************************************************************************************
          *
          * functions
@@ -39,9 +38,9 @@ app.controller('EventLogsController', [
                     } else {
                         $scope.eventInfo = response.data.EVENT_INFO.SM;
                     }
-                    initChartOption();
-                    setChartjsData($scope.eventInfo);
 
+                    initChartOption();
+                    setChartData($scope.eventInfo);
                     return $q.resolve(response);
 
                 },
@@ -61,80 +60,118 @@ app.controller('EventLogsController', [
         }
 
         function initChartOption() {
-            $scope.labels = []; // 날짜 배열 초기화
-            $scope.series = []; // 시리즈 이름 초기화
-            $scope.data = [[]];
-
+            $scope.chart = {};
+            $scope.chart.data = {};
+            $scope.chart.data.labels = [];
+            $scope.chart.data.series = [[]];
+            $scope.chart.barOptions = {
+                // [수정3] 현재 샘플값이라 500은 너무 많고
+                // 70으로 해놔서 bar 영역 사이즈 업
+                high: 70,
+                // high: 500,
+                low: 0,
+                seriesBarDistance: 15,
+                axisY: {
+                    showGrid: true,
+                    onlyInteger: true,
+                },
+                axisX: {
+                    showGrid: false,
+                    labelOffset: {
+                        y: 10
+                    }
+                }
+            };
         }
 
-
-        function setChartjsData(eventInfo) {
-            if (!eventInfo) {
+        function setChartData(eventInfo) {
+            if(!eventInfo) {
                 return;
             }
 
-            $scope.dataset = [
-                {
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        formatter: function (value, context) {
-                            return value; // 이 부분에서 값 포매팅을 정의할 수 있습니다.
-                        }
-                    },
-                    backgroundColor: 'rgba(255,99,132, 0.7)', // 빨간색 배경색
-                    borderColor: 'rgba(255,99,132, 1)',
-
-                }
-            ];
-
             var data = [];
-            var recentDate = null;
+            var recentYear = null, recentMonth = null;
 
-            var sortedEventInfo = eventInfo.sort(function (a, b) {
-                if (a.TIME > b.TIME) return 1;
-                else if (a.TIME < b.TIME) return -1;
+            // [수정3] 로직 오류 고침
+            // eventInfo를 우선 Time Stamp순 정렬
+            var sortedEventInfo = eventInfo.sort(function(a, b) {
+                if(a.TIME > b.TIME) return 1;
+                else if(a.TIME < b.TIME) return -1;
 
                 return 0;
             });
 
-            for (var i = 0; i < sortedEventInfo.length; i++) {
+            
+            // for(var i = 0; i < eventInfo.length; i++) {
+            //     var event = eventInfo[i];
+            for(var i = 0; i < sortedEventInfo.length; i++) {
                 var event = sortedEventInfo[i];
-                var date = event.TIME.substr(0, 10);
+                var year = event.TIME.substr(0, 4);
+                var month = event.TIME.substr(5, 2);
 
-                if (recentDate !== date) {
+                // [수정3] 덮어씌우는 오류발견 로직 변경
+                // count 도 안맞음
+                if(recentYear !== year)
+                {
                     var item = {};
-                    item.date = date;
+                    item.year = year;
+                    item.month = month;
                     item.count = 1;
                     data.push(item);
-                    recentDate = date;
-                } else {
-                    var item = data[data.length - 1];
-                    item.count++;
+                    recentYear = year;
+                    recentMonth = month;
                 }
+                else
+                {
+                    if(recentMonth !== month)
+                    {
+                        var item = {};
+                        item.year = year;
+                        item.month = month;
+                        item.count = 1;
+                        data.push(item);
+                        recentYear = year;
+                        recentMonth = month;
+                    }
+                    else
+                    {
+                        var item = data[data.length - 1];
+                        item.count++;
+                    }
+                }
+
+                // if(recentYear !== year) {
+                //     var item = {};
+                //     item.year = year;
+                //     item.count = 0;
+                //     data.push(item);
+                //     recentYear = year;
+                //     recentMonth = null;
+                // }
+
+                // if(recentMonth !== month) {
+                //     var item = data[data.length -1];
+                //     item.month = month;
+                //     item.count = 0;
+                //     recentMonth = month;
+                // } else {
+                //     var item = data[data.length -1];
+                //     item.count++;
+                // }
             }
 
-            $scope.labels = [];
-            $scope.series = ['Count'];
-            $scope.data = [[]];
-            $scope.options = {
-                maintainAspectRatio: false,
-                aspectRatio: 50, // 원하는 비율로 설정 (height / width)
-                scales: {
+            // bar 그래프 역순출력(origin)
+            // for(i = data.length - 1; i >= 0; i--) {
+            //     var label = $scope.monthList[Number(data[i].month) - 1] + " " + data[i].year;
+            //     $scope.chart.data.labels.push(label);
+            //     $scope.chart.data.series[0].push(data[i].count);
+            // }
 
-                    yAxes: [{
-                        ticks: {
-                            stepSize: 32,
-                            beginAtZero: true,
-                            max: 256
-                        }
-                    }]
-                }
-
-            };
-            for (i = 0; i < data.length; i++) {
-                $scope.labels.push(data[i].date);
-                $scope.data[0].push(data[i].count);
+            // [수정3] bar 그래프 정순출력(updated)
+            for(i = 0; i < data.length; i++) {
+                var label = $scope.monthList[Number(data[i].month) - 1] + " " + data[i].year;
+                $scope.chart.data.labels.push(label);
+                $scope.chart.data.series[0].push(data[i].count);
             }
         }
 
@@ -144,7 +181,7 @@ app.controller('EventLogsController', [
          *
          ***************************************************************************************************************/
         $scope.init = function () {
-            if (!$rootScope.isLogin) {
+            if(!$rootScope.isLogin) {
                 $location.url('/login');
                 return;
             }
@@ -153,7 +190,6 @@ app.controller('EventLogsController', [
             $scope.timer = null;
             $scope.interval = 10000;
             initChartOption();
-
             $scope.monthList = [
                 $translate.instant('CONFIGURATION.JANUARY'),
                 $translate.instant('CONFIGURATION.FEBRUARY'),
@@ -178,7 +214,6 @@ app.controller('EventLogsController', [
                     $timeout.cancel($scope.timer);
                 }
             );
-
         };
 
         $scope.onEventTypeChange = function () {
@@ -189,8 +224,5 @@ app.controller('EventLogsController', [
             console.log('EventLogsController  $destroy !!!!');
             $timeout.cancel($scope.timer);
         });
-
-
-
     }
 ]);

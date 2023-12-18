@@ -39,12 +39,12 @@ app.controller('VirtualMediaUsbController', [
                     tmpList = response.data.VM;
 
                     $scope.fileList = [];
-                    $scope.fileList = tmpList.sort(function(a,b) {
+                    $scope.fileList = tmpList.sort(function (a, b) {
                         var sub_a = a.ID.substring(3);
                         var sub_b = b.ID.substring(3);
-                        if(sub_a < sub_b)
+                        if (sub_a < sub_b)
                             return -1;
-                        else if(sub_a > sub_b)
+                        else if (sub_a > sub_b)
                             return 1;
 
                         return 0;
@@ -56,7 +56,7 @@ app.controller('VirtualMediaUsbController', [
                 $rootScope.showSpinner = false;
             });
         }
-        
+
         function updateUSB() {
             dataFactory.httpRequest(CONST_RESTFUL_API.VIRTUAL_MEDIA.USB_UPLOAD).then(
                 function (response) {
@@ -73,57 +73,56 @@ app.controller('VirtualMediaUsbController', [
             $scope.showProgress = true;
             var file = $scope.usbFile;
 
-            // var maxSizeInBytes = 100 * 1024 * 1024; // 70MB
-            // if (file.size > maxSizeInBytes) {
-            //     // 파일 크기가 70MB를 초과하는 경우
-            //     logger.logError('File size cannot exceed 70MB');
-            //     $scope.showProgress = false;
-            // } else {
-                // [수정4] 파일 업로드 binary로 변경
-                let config = {
-                    TransformRequest: angular.identity,
-                    headers: {
-                        'Content-Type': undefined
-                    },
-                    uploadEventHandlers: {
-                        progress: progress
-                    }
-                };
+            // [수정4] 파일 업로드 binary로 변경
+            let config = {
+                TransformRequest: angular.identity,
+                headers: {
+                    'Content-Type': undefined
+                },
+                uploadEventHandlers: {
+                    progress: progress
+                }
+            };
 
-                var uploadUrl = CONST_RESTFUL_API.VIRTUAL_MEDIA.USB_UPLOAD;
+            var uploadUrl = CONST_RESTFUL_API.VIRTUAL_MEDIA.USB_UPLOAD;
 
-                // dataFactory.uploadBinaryToUrl(CONST_RESTFUL_API.VIRTUAL_MEDIA.USB_UPLOAD, file, config).then(
-                dataFactory.uploadBinaryToUrl(uploadUrl, file, config).then(
-                    function (response) {
-                        if (response.status === CONST_CODE.REST_SUCCESS_CODE) {
-                            logger.logSuccess(CONST_MESSAGE.VIRTUAL_MEDIA.USB_UPLOAD.S001);
-                            getUsbRedirectionInfo();
-
-                        } else {
-                            logger.logError(CONST_MESSAGE.VIRTUAL_MEDIA.USB_UPLOAD.E001);
-                            getUsbRedirectionInfo();
-                        }
-                    },
-                    function (error) {
-                        console.log(error);
-                        logger.logError(CONST_MESSAGE.VIRTUAL_MEDIA.USB_UPLOAD.E002);
+            // dataFactory.uploadBinaryToUrl(CONST_RESTFUL_API.VIRTUAL_MEDIA.USB_UPLOAD, file, config).then(
+            dataFactory.uploadBinaryToUrl(uploadUrl, file, config).then(
+                function (response) {
+                    if (response.data.CODE === CONST_CODE.REST_SUCCESS_CODE) {
+                        logger.logSuccess(CONST_MESSAGE.VIRTUAL_MEDIA.USB_UPLOAD.S001);
                         getUsbRedirectionInfo();
 
-                        $scope.showProgress = false;
-                        $scope.percent = 0;
-                        $scope.reset();
+                    } else {
+                        logger.logError(CONST_MESSAGE.VIRTUAL_MEDIA.USB_UPLOAD.E001);
+                        getUsbRedirectionInfo();
                     }
-                );
-            //}
+                },
+                function (error) {
+                    console.log(error);
+                    logger.logError(CONST_MESSAGE.VIRTUAL_MEDIA.USB_UPLOAD.E002);
+                    getUsbRedirectionInfo();
 
+                    $scope.showProgress = false;
+                    $scope.percent = 0;
+                    $scope.reset();
+                }
+            );
         }
+
         function progress(e) {
             $scope.percent = parseInt(e.loaded * 100 / e.total);
             console.log($scope.percent);
+
+            if ($scope.percent === 100) {
+                setTimeout(function () {
+                    location.reload(true);
+                }, 1000);
+            }
         }
 
         function fileChange(newValue, oldValue) {
-            if(newValue) {
+            if (newValue) {
                 $scope.fileName = newValue.name;
             }
         }
@@ -135,7 +134,7 @@ app.controller('VirtualMediaUsbController', [
          *
          ***************************************************************************************************************/
         $scope.init = function () {
-            if(!$rootScope.isLogin) {
+            if (!$rootScope.isLogin) {
                 $location.url('/login');
                 return;
             }
@@ -152,13 +151,13 @@ app.controller('VirtualMediaUsbController', [
         $scope.refresh = function () {
             $scope.fileList = [];
             getUsbRedirectionInfo();
-            
+
         };
 
         $scope.fileBrowse = function () {
             // [수정3] VM 리소스 생성 및 ISO Images refresh 로 변경
             // /usb PUT 사용
-            if(!$scope.path || !$scope.ipAddress) {
+            if (!$scope.path || !$scope.ipAddress) {
                 logger.logError(CONST_MESSAGE.VIRTUAL_MEDIA.USB_REDIRECTION.E004);
                 return;
             }
@@ -192,12 +191,11 @@ app.controller('VirtualMediaUsbController', [
         };
 
         $scope.mount = function () {
-            if(!$scope.selectedItem)
-            {
+            if (!$scope.selectedItem) {
                 logger.logError("Select Virtual Media Error");
-                return ;
+                return;
             }
-            
+
             var params = {
                 ID: $scope.selectedItem.ID
             };
@@ -224,10 +222,9 @@ app.controller('VirtualMediaUsbController', [
 
         $scope.unmount = function () {
             // New
-            if(!$scope.selectedItem)
-            {
+            if (!$scope.selectedItem) {
                 logger.logError("Select Virtual Media Error");
-                return ;
+                return;
             }
 
             var params = {
@@ -274,10 +271,8 @@ app.controller('VirtualMediaUsbController', [
                 return;
             }
 
+
             usb_uploadFile();
-    setTimeout(function () {
-        location.reload(true);
-    }, 1000);
         };
 
         $scope.update = function () {
@@ -290,7 +285,7 @@ app.controller('VirtualMediaUsbController', [
             $scope.fileName = undefined;
         };
 
-        $scope.chooseFile = function() {
+        $scope.chooseFile = function () {
             document.getElementById('usbFile').click();
         };
 
@@ -300,6 +295,6 @@ app.controller('VirtualMediaUsbController', [
         $scope.onChangeCategory = function (category) {
             $scope.selectedCategory = category;
         };
-       
+
     }
 ]);

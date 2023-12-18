@@ -1,102 +1,120 @@
-<div class="animation">
-    <!--<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>-->
-    <div class="bmc bmc-usb" data-ng-init="init()">
-        <div class="card">
-            <div class="card-header flex items-end gap-2">
-                <img src="./images/usb_image.jpg" style="width:10%; margin-right: 20px;">
-                <div style="margin-top: 120px;">
-                    <p class="card-header-title">{{ "VIRTUAL_MEDIA.USB_REDIRECTION" | translate }}</p>
-                    <p class="card-header-desc">{{ "VIRTUAL_MEDIA.USB_REDIRECTION_DESCRIPTION" | translate }}</p>
-                </div>
-            </div>
-            <div class="card-body">
-                <form action="">
-                    <p class="card-title">{{ "VIRTUAL_MEDIA.MASS_USB_PATH" | translate }}</p>
-                    <table class="mb-0 table table-bordered table-fixed table-1">
-                        <tbody>
-                            <tr>
-                                <th style="padding-top:15px; text-align: left;">{{ "VIRTUAL_MEDIA.USB_IMAGE_FILE" |
-                                    translate }}</th>
-                                <td>
-                                    <div class="form-inline" style="display: flex;  gap: 10px;">
-                                        <!-- <input name="upload" type="file" id="usbFile" class="form-control input-sm sr-only" file-model="usbFile" /> -->
-                                        <!-- <input type="text" class="form-control input-sm" style="width:400px;" ng-model="fileName"> &nbsp;
-                                            <button type="button" class="btn btn-normal btn-sm" style="background-color: rgb(208, 225, 248);" ng-click="chooseFile()">
-                                                {{ "VIRTUAL_MEDIA.CHOOSE_FILE" | translate }}
-                                            </button> -->
+<div class="contents top-snb-margin" data-ng-init="init()">
+    <div class="content">
+        <div class="box_wrap box_guide" style="min-height: 500px;">
+            <div class="content-area">
 
-                                        <input name="file" file-model="usbFile" type="file" id="usbFile"
-                                            class="form-control" style="height: 100%; font-size: 13px; width: 100%;">
-                                    </div>
-
-                                    <div ng-if="showProgress" class="progress"
-                                        style="margin-top: 10px; margin-bottom: 0px; height: 20px;">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ percent }}"
-                                            aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width': percent + '%' }">
-                                            <span>{{ percent }}% Complete</span>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="btn-wrap flex justify-center items-center gap-2 mt-5">
-                        <button class="btn btn-secondary" ng-click="upload()">{{
-                            "VIRTUAL_MEDIA.ISO_UPLOAD" | translate }}</button>
-                        <button class="btn btn-primary" ng-click="mount()">{{
-                            "VIRTUAL_MEDIA.MOUNT" | translate }}</button>
-                        <button class="btn btn-primary" ng-click="unmount()">{{
-                            "VIRTUAL_MEDIA.UNMOUNT" | translate }}</button>
+                <div class="title_line title-image" style="display: flex;">
+                    <img src="./images/usb_image.jpg" style="width:10%; margin-right: 20px;">
+                    <div style="margin-top: 6%;">
+                        <h4>{{ "VIRTUAL_MEDIA.USB_REDIRECTION" | translate }}</h4>
+                        <div class="con-subtit">{{ "VIRTUAL_MEDIA.USB_REDIRECTION_DESCRIPTION" | translate }}</div>
                     </div>
-                </form>
-            </div>
-            <div class="card-body" style="padding-bottom: 0;">
-                <p class="card-title">{{ "VIRTUAL_MEDIA.ISO_IMAGES" | translate }}</p>
-                <table class="mb-0 table table-fixed table-hover table-2" style="margin: 20px 0;">
-                    <colgroup>
-                        <col width="10%">
-                        <col width="15%">
-                        <col width="15%">
-                        <col width="40%">
-                        <col width="*">
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>{{ "VIRTUAL_MEDIA.NUMBER" | translate }}</th>
-                            <!-- <th>{{ "VIRTUAL_MEDIA.SIZE" | translate }}</th> -->
-                            <th>{{ "VIRTUAL_MEDIA.CREATE_TIME" | translate }}</th>
-                            <th>{{ "VIRTUAL_MEDIA.NAME" | translate }}</th>
-                            <th>{{ "VIRTUAL_MEDIA.INSERTED" | translate }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                </div>
 
-                    </tbody>
-                </table>
-            </div>
-            <div class="scroll-table" style="margin: 0 20px 30px;">
-                <table class="table-view table-hover">
-                    <colgroup>
-                        <col width="10%">
-                        <col width="15%">
-                        <col width="15%">
-                        <col width="40%">
-                        <col width="*">
-                    </colgroup>
-                    <tbody>
-                        <tr ng-repeat="item in fileList">
-                            <td>
-                                <input type="radio" name="file" ng-click="changeItem(item)">
-                            </td>
-                            <td>{{ item.ID }}</td>
-                            <!-- <td>{{ item.SIZE }}</td> -->
-                            <td>{{ item.CREATE_TIME }}</td>
-                            <td>{{ item.NAME }}</td>
-                            <td>{{ item.INSERTED }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+
+                <div class="usbbox"
+                    style="display:flex; justify-tracks: space-between; align-items: center; flex-wrap:wrap;">
+                    <!-- [효정] usb박스 2개->1개로 변경 마운트 버튼 지우고 밑에 2개 추가-->
+                    <div class="usbbox1" style="width: 100%; height:100%; flex-direction:column; padding-right: 10px;">
+                        <div class="con-info">
+                            <div class="info-data">{{ "VIRTUAL_MEDIA.MASS_USB_PATH" | translate }}</div>
+                            <table class="table-data">
+                                <tbody>
+                                    <tr class="down">
+                                        <th>{{ "VIRTUAL_MEDIA.USB_IMAGE_FILE" | translate }}</th>
+                                        <td>
+                                            <div class="form-inline">
+                                                <input name="upload" type="file" id="usbFile"
+                                                    class="form-control input-sm sr-only" file-model="usbFile" />
+                                                <input type="text" class="form-control input-sm" style="width:400px;"
+                                                    ng-model="fileName"> &nbsp;
+                                                <button type="button" class="btn btn-normal btn-sm"
+                                                    ng-click="chooseFile()" style="margin:5px 0;">{{
+                                                    "VIRTUAL_MEDIA.CHOOSE_FILE" | translate }}</button>
+                                            </div>
+                                            <div ng-if="showProgress" class="progress"
+                                                style="margin-top: 10px; margin-bottom: 0px; height: 20px;">
+                                                <div class="progress-bar" role="progressbar"
+                                                    aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100"
+                                                    ng-style="{ 'width': percent + '%' }">
+                                                    <span>{{ percent }}% Complete</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- [효정] 마운트 버튼 삭제 -->
+                            <div class="btn-style">
+                                <button type="button" class="btn btn-black" ng-click="upload()">{{
+                                    "VIRTUAL_MEDIA.ISO_UPLOAD" | translate }}</button>
+                                <button type="button" class="btn btn-blue" ng-click="mount()">{{
+                                    "VIRTUAL_MEDIA.MOUNT" | translate }}</button>
+                                <button type="button" class="btn btn-blue" ng-click="unmount()">{{
+                                "VIRTUAL_MEDIA.UNMOUNT" | translate }}</button>
+                                </div>
+                        </div>
+
+                        <div class="mt20">
+                            <div class="info-data">{{ "VIRTUAL_MEDIA.ISO_IMAGES" | translate }}</div>
+                            <div>
+                                <table class="table-view table-hover">
+                                    <colgroup>
+                                        <col width="10%">
+                                        <!-- <col width="5%"> -->
+                                        <col width="15%">
+                                        <col width="15%">
+                                        <!-- [수정3] table에 inserted 마운트여부 column추가 lang도-->
+                                        <col width="40%">
+                                        <col width="*">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <!-- [수정3] lang에서 NUMBER를 ID로 변경 -->
+                                            <th>{{ "VIRTUAL_MEDIA.NUMBER" | translate }}</th>
+                                            <!-- <th>{{ "VIRTUAL_MEDIA.SIZE" | translate }}</th> -->
+                                            <th>{{ "VIRTUAL_MEDIA.CREATE_TIME" | translate }}</th>
+                                            <th>{{ "VIRTUAL_MEDIA.NAME" | translate }}</th>
+                                            <!-- [수정3] table에 inserted 마운트여부 column추가 lang도-->
+                                            <th>{{ "VIRTUAL_MEDIA.INSERTED" | translate }}</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="scroll-table">
+                                <table class="table-view table-hover">
+                                    <colgroup>
+                                        <col width="10%">
+                                        <!-- <col width="5%"> -->
+                                        <col width="15%">
+                                        <col width="15%">
+                                        <!-- [수정3] table에 inserted 마운트여부 column추가 lang도-->
+                                        <col width="40%">
+                                        <col width="*">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr ng-repeat="item in fileList">
+                                            <td>
+                                                <input type="radio" name="file" ng-click="changeItem(item)">
+                                            </td>
+                                            <!-- [수정3] INDEX->ID 로 변경 -->
+                                            <!-- <td>{{ item.INDEX }}</td> -->
+                                            <td>{{ item.ID }}</td>
+                                            <!-- <td>{{ item.SIZE }}</td> -->
+                                            <td>{{ item.CREATE_TIME }}</td>
+                                            <td>{{ item.NAME }}</td>
+                                            <!-- [수정3] table에 inserted 마운트여부 column추가 lang도-->
+                                            <td>{{ item.INSERTED }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- [효정] mount버튼 2개 추가 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

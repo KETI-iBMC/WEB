@@ -30,9 +30,9 @@ app.controller('ConfigUsersController', [
                         // [수정3] user id로 정렬
                         // $scope.userInfo = response.data.USER;
                         var tmpInfo = response.data.USER.INFO;
-                        var sortedInfo = tmpInfo.sort(function (a, b) {
-                            if (a.INDEX < b.INDEX) return -1;
-                            if (a.INDEX > b.INDEX) return 1;
+                        var sortedInfo = tmpInfo.sort(function(a,b){
+                            if(a.INDEX < b.INDEX) return -1;
+                            if(a.INDEX > b.INDEX) return 1;
                             return 0;
                         });
 
@@ -115,7 +115,7 @@ app.controller('ConfigUsersController', [
             $scope.addUserName = '';
             $scope.addUserPassword = '';
             $scope.addUserPasswordConfirm = '';
-            $scope.addUserPrivilege = '3';
+            $scope.addUserPrivilege = '0';
             $scope.addUserEnableStatus = false;
         }
 
@@ -125,7 +125,7 @@ app.controller('ConfigUsersController', [
          *
          ***************************************************************************************************************/
         $scope.init = function () {
-            if (!$rootScope.isLogin) {
+            if(!$rootScope.isLogin) {
                 $location.url('/login');
                 return;
             }

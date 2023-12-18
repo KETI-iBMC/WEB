@@ -1,474 +1,446 @@
-<div class="animation">
-        <div class="home bmc" style="font:NotoKrR;" data-ng-init="init()">
-            <div class="home-content bmc-home gap-sm">
-                <div class="left45">
-                    <div class="top70">
+<div class="bmc-contents home" data-ng-init="init()">
+    <div class="home-content bmc-home">
+        <div class="left45">
+            <div class="top70">
 
-                        <div class="bmc-main gap-sm" style="display: flex;">
+                <div class="bmc-main">
 
-                            <div class="top-left40 ">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <p class="card-header-title">{{ "SERVER_HEALTH.SENSOR_READING" | translate }}
-                                        </p>
-                                    </div>
-                                    <div class="card-body h-full" style="padding-top:0; width:100%;">
-                                        <div class="scroll-table" style="height: 90%; margin-bottom: 35px;">
-                                            <table class="home_table-view">
-                                                <tbody>
-                                                    <tr ng-repeat="sensor in sensorInfo.SENSOR | filter: {STATUS}"
-                                                        ng-click="didClickSensor(sensor)">
-                                                        <td><img ng-src="images/icon_{{sensor.STATUS}}.png"
-                                                                alt="warning" style="width: 30px;"></td>
-                                                        <td>{{ sensor.NAME }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-                                </div>
+                    <div class="top-left40">
+                        <div class="bmc_box_wrap">
+                            <div class="box_line">
+                                <h4 class="box_tit">{{ "SERVER_HEALTH.SENSOR_READING" | translate }}</h4>
                             </div>
-
-
-                            <div class="top-right60">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <p class="card-header-title bmc-contentsle">
-                                            {{ "HOME.BMC_SYSTEM_INFORMATION" | translate }}</p>
-                                    </div>
-                                    <div class="homebmc-wrap table">
-                                        <div>
-                                            <p class="card-title">{{ "HOME.FIRMWARE_INFORMATION" | translate }}</p>
-                                            <table class="mb-0 table table-bordered table-fixed"
-                                                style=" width: 90%; padding-right: 20px;">
-                                                <tbody>
-                                                    <tr style="text-align: left;">
-                                                        <th>{{ "HOME.FIRMWARE_VERSION" | translate }}</th>
-                                                        <td>
-                                                            <div class="version"> {{ systemInfo.MC.IPMIFW_VERSION || '-'
-                                                                }}
-                                                            </div>
-                                                            <div class="bmc_box_icon">
-                                                                <a href="" ng-click="onRefresh('8')">
-                                                                    <img src="./images/icon_refresh.png">
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr style="text-align: left;">
-                                                        <th>{{ "FIRMWARE_BUILD_TIME" | translate }}</th>
-                                                        <td ng-controller="TimerController">{{
-                                                            systemInfo.MC.IPMIFW_BLDTIME}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="down" style="text-align: left;">
-                                                        <th>{{ "KERNEL_VERSION" | translate }}</th>
-                                                        <td>{{ systemInfo.MC.KERNAL_VERSION || '-' }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <div style="margin-top: 30px;">
-                                            <p class="card-title">{{ "NETWORK_INFORMATION" | translate }}</p>
-                                            <table class="mb-0 table table-bordered table-fixed"
-                                                style=" width: 90%; padding-right: 20px;">
-                                                <tbody>
-                                                    <tr style="text-align: left;">
-                                                        <th>{{ "MAC_ADDRESS" | translate }}</th>
-                                                        <td>{{ systemInfo.LAN.MAC_ADDRESS || '-' }}</td>
-                                                    </tr>
-                                                    <tr style="text-align: left;">
-                                                        <th>{{ "HOME.V4_NETWORK_MODE" | translate }}</th>
-                                                        <td>{{ systemInfo.LAN.IPV4_NETWORK_MODE || '-' }}</td>
-                                                    </tr>
-                                                    <tr style="text-align: left;">
-                                                        <th>{{ "HOME.IP_V4_ADDRESS" | translate }}</th>
-                                                        <td>{{ systemInfo.LAN.IPV4_ADDRESS || '-' }}</td>
-                                                    </tr>
-                                                    <tr style="text-align: left;">
-                                                        <th>{{ "HOME.V6_NETWORK_MODE" | translate }}</th>
-                                                        <td>{{ systemInfo.LAN.IPV6_NETWORK_MODE || '-' }}</td>
-                                                    </tr>
-                                                    <tr class="down" style="text-align: left;">
-                                                        <th>{{ "HOME.IP_V6_ADDRESS" | translate }}</th>
-                                                        <td>{{ systemInfo.LAN.IPV6_ADDRESS || '-' }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                            <div class="bmc_box_wrap5" style="padding-top:0; width:100%;">
+                                <div class="scroll-table" style="height: 450px; margin-bottom: 35px;">
+                                    <table class="home_table-view">
+                                        <tbody>
+                                            <tr ng-repeat="sensor in sensorInfo.SENSOR | filter: {STATUS}"
+                                                ng-click="didClickSensor(sensor)">
+                                                <td><img ng-src="images/icon_{{sensor.STATUS}}.png" alt="warning"></td>
+                                                <td>{{ sensor.NAME }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </div>
-                        </div>
 
-                    </div>
-
-
-                    <div class="bmc-main">
-                        <div class="bottom30">
-                            <div class="card" style="height: 93.5%; flex-direction: row; justify-content: space-around;">
-                                <div class="row gap-sm" style="width: 46%;">
-                                    <div class="row-item">
-                                        <div class="cord-body">
-                                            <div class="card-header">
-                                                <p class="card-header-title">{{"HOME.POWER_CONSUMPTION" | translate}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="bmc_box_wrap5" style="width:115%; height:195px; top:-20px;"> -->
-                                        <!-- <div class="graph-container" style="height:100%;"> -->
-                                            <!-- <div class="home_tab_content"> -->
-                                                <!-- <div class="graph"> -->
-                                                    <!-- <canvas class="ct-chart" id="home_graph_min"></canvas> -->
-                                                    <!-- <div class="ct-chart" id="home_graph_min"></div> -->
-                                                    <canvas class="chart chart-line" 
-                                                        chart-data="powerConsumptionData" 
-                                                        chart-labels="powerConsumptionLabels" 
-                                                        chart-dataset-override="powerConsumptionColors" 
-                                                        chart-options="powerConsumptionOptions"
-                                                        chart-series="powerConsumptionSeries"
-                                                     style="height:100%;"></canvas>
-                                                <!-- </div> -->
-                                            <!-- </div> -->
-                                        <!-- </div> -->
-                                    <!-- </div> -->
-                                </div>
-                                <div class="row gap-sm" style="width: 46%;">
-                                    <div class="row-item">
-                                        <div class="card-header">
-                                            <p class="card-header-title">{{"HOME.TEMPERATURE" | translate}}</p>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="bmc_box_wrap5" style="width:115%; height:195px;">
-                                        <div class="graph-container" style="height:100%;">
-                                            <div class="home_tab_content">
-                                                <div class="graph"> -->
-                                                    <!-- <canvas class="ct-chart" id="temperatureChart"></canvas> -->
-                                                    <canvas class="chart chart-line" 
-                                                        chart-data="temperatureData" 
-                                                        chart-labels="temperatureLabels" 
-                                                        chart-dataset-override="temperatureColors" 
-                                                        chart-options="temperatureOptions"
-                                                        chart-series="temperatureSeries"
-                                                     style="height:100%;"></canvas>
-                                                    <!-- <div class="ct-chart" id="temperatureChart"></div> -->
-
-                                                <!-- </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="right55">
-                    <div class="bmc-main">
-                        <div class="card">
 
-                            <div class="right-top">
-                                <div class="card-header">
-                                    <p class="card-header-title">{{ "HOME.HARDWARE_STATUS" | translate }}</p>
-                                    <div class="box_icon">
-                                        <a href="" ng-click="onRefresh('8')"><img src="./images/icon_refresh.png"></a>
-                                    </div>
-                                </div>
-
-                                <div class="right-left">
-                                    <div class="homebmc-wrap">
-                                        <div class="summary-wrapper">
-                                            <div class="summary" >
-                                                <div>
-                                                    <span class="temp p1"><i id="hwstatus-p1" class="tmp" ></i></span>
-                                                    <span class="temp p2"><i id="hwstatus-p2" class="tmp"></i></span>
-                                                    <span class="temp p3"><i id="hwstatus-p3" class="tmp"></i></span>
-                                                    <span class="temp p4"><i id="hwstatus-p4" class="tmp"></i></span>
-                                                    <span class="temp p5"><i id="hwstatus-p5" class="tmp"></i></span>
-                                                    <span class="temp p6"><i id="hwstatus-p6" class="tmp"></i></span>
-                                                    <span class="temp p7"><i id="hwstatus-p7" class="tmp"></i></span>
-                                                    <span class="temp p8"><i id="hwstatus-p8" class="tmp"></i></span>
-                                                    <span class="temp p9"><i id="hwstatus-p9" class="tmp"></i></span>
-                                                    <span class="temp p10"><i id="hwstatus-p10" class="tmp"></i></span>
-                                                    <span class="temp p11"><i id="hwstatus-p11" class="tmp"></i></span>
-                                                    <span class="temp p12"><i id="hwstatus-p12" class="tmp"></i></span>
-                                                    <span class="temp p13"><i id="hwstatus-p13" class="tmp"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tmp-container" style="margin-top: 20%;">
-                                            <img src="./images/new_board.png" id="statuspower"
-                                                style="max-height: 350px; padding: 10px 0 10px 15px; margin-top: 5%;">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="right-right">
-                                    <div class="h-50vh overflow-y-auto mb-4 p-3"
-                                    style="border: 1px solid #e9ecef; margin: 20px 0; height: 90%; overflow-x: hidden;">
-
-                                            <table class="mb-0 table table-borderless">
-                                                <tbody>
-                                                    <tr class="DIMM1_CH_A">
-                                                        <th class="tmp-text" style="border: none;">DIMM1CH A :</th>
-                                                        <td id="DIMM1_CH_A"  style="border: none;">
-                                                            {{ healthSummary.DIMM1_CH_A >= 255 ? 0 :
-                                                            healthSummary.DIMM1_CH_A }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="DIMM1_CH_B">
-                                                        <th class="tmp-text" style="border: none;">DIMM1CH B :</th>
-                                                        <td id="DIMM1_CH_B"  style="border: none;">
-                                                            {{ healthSummary.DIMM1_CH_B >= 255 ? 0 :
-                                                            healthSummary.DIMM1_CH_B }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="DIMM1_CH_C">
-                                                        <th class="tmp-text" style="border: none;">DIMM1CH C :</th>
-                                                        <td id="DIMM1_CH_C" style="border: none;">
-                                                            {{ healthSummary.DIMM1_CH_C >= 255 ? 0 :
-                                                            healthSummary.DIMM1_CH_C || '0' }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="DIMM1_CH_D">
-                                                        <th class="tmp-text" style="border: none;">DIMM1CH D :</th>
-                                                        <td id="DIMM1_CH_D" style="border: none;">
-                                                            {{ healthSummary.DIMM1_CH_D >= 255 ? 0 :
-                                                            healthSummary.DIMM1_CH_D || '0' }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="DIMM2_CH_A">
-                                                        <th class="tmp-text" style="border: none;">DIMM2CH A :</th>
-                                                        <td id="DIMM2_CH_A" style="border: none;">
-                                                            {{ healthSummary.DIMM2_CH_A >= 255 ? 0 :
-                                                            healthSummary.DIMM2_CH_A }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="DIMM2_CH_B">
-                                                        <th class="tmp-text" style="border: none;">DIMM2CH B :</th>
-                                                        <td id="DIMM2_CH_B" style="border: none;">
-                                                            {{ healthSummary.DIMM2_CH_B >= 255 ? 0 :
-                                                            healthSummary.DIMM2_CH_B }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="DIMM2_CH_C">
-                                                        <th class="tmp-text" style="border: none;">DIMM2CH C :</th>
-                                                        <td id="DIMM2_CH_C" style="border: none;">
-                                                            {{ healthSummary.DIMM2_CH_C >= 255 ? 0 :
-                                                            healthSummary.DIMM2_CH_C || '0' }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="DIMM2_CH_D">
-                                                        <th class="tmp-text" style="border: none;">DIMM2CH D :</th>
-                                                        <td id="DIMM2_CH_D" style="border: none;">
-                                                            {{ healthSummary.DIMM2_CH_D >= 255 ? 0 :
-                                                            healthSummary.DIMM2_CH_D || '0' }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="tmp1">
-                                                        <th class="tmp-text" style="border: none;">Temperature 1 :</th>
-                                                        <td id="tmp1" style="border: none;">{{ healthSummary.Temperature[0] }}</td>
-                                                    </tr>
-                                                    <tr class="tmp2">
-                                                        <th class="tmp-text" style="border: none;">Temperature 2 :</th>
-                                                        <td id="tmp2" style="border: none;">{{ healthSummary.Temperature[1] }}</td>
-                                                    </tr>
-                                                    <tr class="tmp3">
-                                                        <th class="tmp-text" style="border: none;">Temperature 3 :</th>
-                                                        <td id="tmp3" style="border: none;">{{ healthSummary.Temperature[2] }}</td>
-                                                    </tr>
-                                                    <tr class="tmp4">
-                                                        <th class="tmp-text" style="border: none;">Temperature 4 :</th>
-                                                        <td id="tmp4" style="border: none;">{{ healthSummary.Temperature[3] }}</td>
-                                                    </tr>
-                                                    <tr class="tmp5">
-                                                        <th class="tmp-text" style="border: none;">Temperature 5 :</th>
-                                                        <td id="tmp5" style="border: none;">{{ healthSummary.Temperature[4] }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                    </div>
-                                </div>
-
+                    <div class="top-right60">
+                        <div class="bmc_box_wrap">
+                            <div class="box_line">
+                                <h4 class="box_tit">{{ "HOME.BMC_SYSTEM_INFORMATION" | translate }}</h4>
                             </div>
-
-                            <div class="right-bottom">
-
-                                <div class="bottom-left65">
-                                    <div class="left-top50">
-
-                                        <div class="kvmoverip">
-                                            <div class="bmc_box_wrap4">
-                                                <div class="card-title">
-                                                   {{ "HOME.KVM_OVER_IP" | translate }} 
-                                                </div>
-                                                <div class="kvm-imagebox">
-                                                    <img src="./images/keti.jpeg" id="kvm-img">
-                                                    <div></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="quickcommand">
-                                            <div class="bmc_box_wrap4">
-                                                <div class="card-title">
-                                                   {{ "HOME.QUICK_COMMAND" | translate }} 
-                                                </div>
-
-                                                <div class="quick-com-btn">
-                                                    <div class="bmc-row">
-                                                        <div class="col">
-                                                            <button class="quick-btn" data-ng-click="onClick_com1()">
-                                                               {{ "HOME.SOL_ENABLE" | translate }} 
-                                                            </button>
-                                                        </div>
-                                                        <div class="col">
-                                                            <button class="quick-btn" data-ng-click="onClick_com4()">
-                                                                {{ "HOME.USB_UNMOUNT" | translate }}</button>
-                                                        </div>
-                                                        <div class="col">
-                                                            <button class="quick-btn"
-                                                                data-ng-click="onClick_com6()">
-                                                                {{ "HOME.ALERT_DISABLE" | translate }}</button>
-                                                        </div>
+                            <div class="homebmc-wrap table">
+                                <div>
+                                    <div class="info-data">{{ "HOME.FIRMWARE_INFORMATION" | translate }}</div>
+                                    <table class="table-data">
+                                        <tbody>
+                                            <tr>
+                                                <th>{{ "HOME.FIRMWARE_VERSION" | translate }}</th>
+                                                <td>
+                                                    <div class="version"> {{ systemInfo.MC.IPMIFW_VERSION || '-' }}
                                                     </div>
-                                                    <div class="bmc-row">
-                                                        <div class="col">
-                                                            <button class="quick-btn" data-ng-click="onClick_com2()">
-                                                                {{ "HOME.SOL_DISABLE" | translate }}
-                                                                </button>
-                                                        </div>
-                                                        <div class="col">
-                                                            <button class="quick-btn" data-ng-click="onClick_com5()">
-                                                                {{ "HOME.LOG_CLEAR" | translate }}</button>
-                                                        </div>
-                                                        <div class="col">
-                                                            <button class="quick-btn"
-                                                                data-ng-click="onClick_com7()">
-                                                                {{ "HOME.ALERT_ENABLE" | translate }}</button>
-                                                        </div>
+                                                    <div class="bmc_box_icon">
+                                                        <a href="" ng-click="onRefresh('8')">
+                                                            <img src="./images/icon_refresh.png">
+                                                        </a>
                                                     </div>
-                                                    <div class="bmc-row">
-                                                        <div class="col">
-                                                            <button class="quick-btn" data-ng-click="onClick_com3()">
-                                                                {{ "HOME.CONSOLE" | translate }}
-                                                            </button>
-                                                        </div>
-                                                        <div class="col2">
-                                                            <button class="quick-btn" ng-click="onRefresh('8')">
-                                                                {{ "HOME.STATUS_UPDATE" | translate }}</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="left-bottom50">
-                                            <div class="bmc_box_wrap">
-                                                <div class="card-body" >
-                                                    <p class="card-title" style="margin: 0;">{{ "HOME.BMC_STATUS" | translate }}</p>
-                                                    <div class="status"style="margin-top: 8%;">
-
-                                                        <div class="status-left">
-                                                            <div class="bmc_box_wrap5">
-                                                                <div class="status-img-l">
-                                                                    <img src="./images/status.png" id="status-img" style="margin-right: 30px;">
-                                                                </div>
-                                                                <div class="status-img-r">
-                                                                    <table class="status-img-table">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <th class="img-title">{{ "HOME.NORMAL" | translate }}</th>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th class="img-text">{{ "HOME.CRITICAL" | translate }}<span
-                                                                                        id="critical-count">0</span>
-                                                                                </th>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="status-right">
-                                                            <div class="bmc_box_wrap5">
-                                                                <table class="status-table">
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th class="status-text1">{{ "HOME.SERVER_NAME" | translate }}</th>
-                                                                            <td class="status-text2"> {{ "HOME.KETI_BMC" | translate }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="status-text1">{{ "HOME.NETWORK" | translate }}</th>
-                                                                            <td class="status-text2">
-                                                                                {{ systemInfo.LAN.IPV4_NETWORK_MODE ||
-                                                                                '-' }}
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="status-text1">{{ "HOME.BMC_UPTIME" | translate }}</th>
-                                                                            <td class="status-text2">
-                                                                                {{
-                                                                                extractDate(systemInfo.MC.IPMIFW_BLDTIME)
-                                                                                || '-' }}
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>{{ "FIRMWARE_BUILD_TIME" | translate }}</th>
+                                                <td ng-controller="TimerController">{{ systemInfo.MC.IPMIFW_BLDTIME}}
+                                                </td>
+                                            </tr>
+                                            <tr class="down">
+                                                <th>{{ "KERNEL_VERSION" | translate }}</th>
+                                                <td>{{ systemInfo.MC.KERNAL_VERSION || '-' }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-
-                                <div class="bottom-right35" >
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <p class="card-title" style="margin: 0;">{{ "HOME.VIRTUAL_USB" | translate }}</p>
-
-                                            <table class="Virtual-table"
-                                                style="display: flex; justify-content: center;">
-                                                <tbody>
-                                                    <tr ng-repeat="item in homefileList">
-                                                        <th class="usb-text">{{ item.ID }}</th>
-                                                        <td>
-                                                            <button ng-class="{'usb-on': item.INSERTED === 'O',
-                                                    'usb-off': item.INSERTED === 'X',
-                                                    'usb-off-acvi': item.INSERTED === 'X',
-                                                    'usb-on-active': item.INSERTED === 'O'}"
-                                                                ng-click="toggleInserted(item)">ON
-                                                            </button>
-                                                            <button ng-class=" {'usb-on': item.INSERTED==='X',
-                                                        'usb-off' : item.INSERTED==='O',
-                                                        'usb-off-active' : item.INSERTED==='X' }"
-                                                                ng-click="toggleInserted(item)">OFF
-                                                            </button>
-                                                        </td>
-                                                        <button class="usb-add">
-                                                            <a href="#!/virtualMediaUsb" style="color:#0b4daf">{{ "HOME.ADD" | translate }}</a>
-                                                        </button>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                        </div>
-                                    </div>
+                                <div style="margin-top: 30px;">
+                                    <div class="info-data">{{ "NETWORK_INFORMATION" | translate }}</div>
+                                    <table class="table-data">
+                                        <tbody>
+                                            <tr>
+                                                <th>{{ "MAC_ADDRESS" | translate }}</th>
+                                                <td>{{ systemInfo.LAN.MAC_ADDRESS || '-' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>{{ "HOME.V4_NETWORK_MODE" | translate }}</th>
+                                                <td>{{ systemInfo.LAN.IPV4_NETWORK_MODE || '-' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>{{ "HOME.IP_V4_ADDRESS" | translate }}</th>
+                                                <td>{{ systemInfo.LAN.IPV4_ADDRESS || '-' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>{{ "HOME.V6_NETWORK_MODE" | translate }}</th>
+                                                <td>{{ systemInfo.LAN.IPV6_NETWORK_MODE || '-' }}</td>
+                                            </tr>
+                                            <tr class="down">
+                                                <th>{{ "HOME.IP_V6_ADDRESS" | translate }}</th>
+                                                <td>{{ systemInfo.LAN.IPV6_ADDRESS || '-' }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
 
             </div>
+
+
+            <div class="bmc-main">
+                <div class="bottom30">
+                    <div class="bmc_box_wrap bmc-bottom" style="height: 93.5%;">
+                        <div class="box_line"></div>
+                        <div class="power-consumption">
+                            <div class="bmc_box_wrap3">
+                                <div class="info-data">Power Consumption</div>
+                            </div>
+                            <div class="bmc_box_wrap5" style="width:115%; height:195px;">
+                                <div class="graph-container" style="height:100%;">
+                                    <div style="font-size: 10px; display: flex; position: absolute; top: -15%; right: 10%;">(min)</div>
+                                    <div class="home_tab_content">
+                                        <div class="graph">
+                                            <div class="ct-chart" id="home_graph_min"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tmperature">
+                            <div class="bmc_box_wrap3">
+                                <div class="info-data">Temperature</div>
+                            </div>
+
+                            <div class="bmc_box_wrap5" style="width:115%; height:195px;">
+                                <div class="graph-container" style="height:100%;">
+                                    <div class="home_tab_content">
+                                        <div class="graph">
+                                            <div class="ct-chart" id="temperatureChart"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
+
+        <div class="right55">
+            <div class="bmc-main">
+                <div class="bmc_box_wrap" style="height:99%;">
+
+                    <div class="right-top">
+                        <div class="box_line">
+                            <h4 class="box_tit">{{ "HOME.HARDWARE_STATUS" | translate }}</h4>
+                            <div class="box_icon">
+                                <a href="" ng-click="onRefresh('8')"><img src="./images/icon_refresh.png"></a>
+                            </div>
+                        </div>
+
+                        <div class="right-left">
+                            <div class="homebmc-wrap">
+                                <div class="summary-wrapper">
+                                    <div class="summary">
+                                        <div>
+                                            <span class="temp p1"><i id="hwstatus-p1" class="tmp"></i></span>
+                                            <span class="temp p2"><i id="hwstatus-p2" class="tmp"></i></span>
+                                            <span class="temp p3"><i id="hwstatus-p3" class="tmp"></i></span>
+                                            <span class="temp p4"><i id="hwstatus-p4" class="tmp"></i></span>
+                                            <span class="temp p5"><i id="hwstatus-p5" class="tmp"></i></span>
+                                            <span class="temp p6"><i id="hwstatus-p6" class="tmp"></i></span>
+                                            <span class="temp p7"><i id="hwstatus-p7" class="tmp"></i></span>
+                                            <span class="temp p8"><i id="hwstatus-p8" class="tmp"></i></span>
+                                            <span class="temp p9"><i id="hwstatus-p9" class="tmp"></i></span>
+                                            <span class="temp p10"><i id="hwstatus-p10" class="tmp"></i></span>
+                                            <span class="temp p11"><i id="hwstatus-p11" class="tmp"></i></span>
+                                            <span class="temp p12"><i id="hwstatus-p12" class="tmp"></i></span>
+                                            <span class="temp p13"><i id="hwstatus-p13" class="tmp"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tmp-container">
+                                    <img src="./images/new_board.png" id="statuspower"
+                                        style="max-height: 280px; padding: 10px 0 10px 15px; margin-top: 5%;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="right-right">
+                            <div class="tmppower-shadow">
+                                <div class="bmc_tmppower">
+
+                                    <table class="cmm-table-data">
+                                        <tbody>
+                                            <tr class="DIMM1_CH_A">
+                                                <th class="tmp-text">DIMM1CH A</th>
+                                                <th class="tmp-text2"> : </th>
+                                                <td id="DIMM1_CH_A">
+                                                    {{ healthSummary.DIMM1_CH_A >= 255 ? 0 : healthSummary.DIMM1_CH_A }}
+                                                </td>
+                                            </tr>
+                                            <tr class="DIMM1_CH_B">
+                                                <th class="tmp-text">DIMM1CH B</th>
+                                                <th class="tmp-text2"> : </th>
+                                                <td id="DIMM1_CH_B">
+                                                    {{ healthSummary.DIMM1_CH_B >= 255 ? 0 : healthSummary.DIMM1_CH_B }}
+                                                </td>
+                                            </tr>
+                                            <tr class="DIMM1_CH_C">
+                                                <th class="tmp-text">DIMM1CH C</th>
+                                                <th class="tmp-text2"> : </th>
+                                                <td id="DIMM1_CH_C">
+                                                    {{ healthSummary.DIMM1_CH_C >= 255 ? 0 : healthSummary.DIMM1_CH_C || '0' }}
+                                                </td>
+                                            </tr>
+                                            <tr class="DIMM1_CH_D">
+                                                <th class="tmp-text">DIMM1CH D</th>
+                                                <th class="tmp-text2"> : </th>
+                                                <td id="DIMM1_CH_D">
+                                                    {{ healthSummary.DIMM1_CH_D >= 255 ? 0 : healthSummary.DIMM1_CH_D || '0' }}
+                                                </td>
+                                            </tr>
+                                            <tr class="DIMM2_CH_A">
+                                                <th class="tmp-text">DIMM2CH A</th>
+                                                <th class="tmp-text2"> : </th>
+                                                <td id="DIMM2_CH_A">
+                                                    {{ healthSummary.DIMM2_CH_A >= 255 ? 0 : healthSummary.DIMM2_CH_A  }}
+                                                </td>
+                                            </tr>
+                                            <tr class="DIMM2_CH_B">
+                                                <th class="tmp-text">DIMM2CH B</th>
+                                                <th class="tmp-text2"> : </th>
+                                                <td id="DIMM2_CH_B">
+                                                    {{ healthSummary.DIMM2_CH_B >= 255 ? 0 : healthSummary.DIMM2_CH_B  }}
+                                                </td>
+                                            </tr>
+                                            <tr class="DIMM2_CH_C">
+                                                <th class="tmp-text">DIMM2CH C</th>
+                                                <th class="tmp-text2"> : </th>
+                                                <td id="DIMM2_CH_C">
+                                                    {{ healthSummary.DIMM2_CH_C >= 255 ? 0 : healthSummary.DIMM2_CH_C || '0'  }}
+                                                </td>
+                                            </tr>
+                                            <tr class="DIMM2_CH_D">
+                                                <th class="tmp-text">DIMM2CH D</th>
+                                                <th class="tmp-text2"> : </th>
+                                                <td id="DIMM2_CH_D">
+                                                    {{ healthSummary.DIMM2_CH_D >= 255 ? 0 : healthSummary.DIMM2_CH_D || '0'  }}
+                                                </td>
+                                            </tr>
+                                            <tr class="tmp1">
+                                                <th class="tmp-text">Temperature 1 </th>
+                                                <th class="tmp-text3"> : </th>
+                                                <td id="tmp1">{{ healthSummary.Temperature[0] }}</td>
+                                            </tr>
+                                            <tr class="tmp2">
+                                                <th class="tmp-text">Temperature 2</th>
+                                                <th class="tmp-text3"> : </th>
+                                                <td id="tmp2">{{ healthSummary.Temperature[1] }}</td>
+                                            </tr>
+                                            <tr class="tmp3">
+                                                <th class="tmp-text">Temperature 3</th>
+                                                <th class="tmp-text3"> : </th>
+                                                <td id="tmp3">{{ healthSummary.Temperature[2] }}</td>
+                                            </tr>
+                                            <tr class="tmp4">
+                                                <th class="tmp-text">Temperature 4</th>
+                                                <th class="tmp-text3"> : </th>
+                                                <td id="tmp4">{{ healthSummary.Temperature[3] }}</td>
+                                            </tr>
+                                            <tr class="tmp5">
+                                                <th class="tmp-text">Temperature 5</th>
+                                                <th class="tmp-text3"> : </th>
+                                                <td id="tmp5">{{ healthSummary.Temperature[4] }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="right-bottom">
+
+                        <div class="bottom-left65">
+                            <div class="left-top50">
+
+                                <div class="kvmoverip">
+                                    <div class="bmc_box_wrap4">
+                                        <div class="quick-com-text">
+                                            KVM over IP
+                                        </div>
+                                        <div class="kvm-imagebox">
+                                            <img src="./images/keti.jpeg" id="kvm-img">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="quickcommand">
+                                    <div class="bmc_box_wrap4">
+                                        <div class="quick-com-text">
+                                            Quick Command
+                                        </div>
+
+                                        <div class="quick-com-btn">
+                                            <div class="bmc-row">
+                                                <div class="col">
+                                                    <button class="quick-btn" data-ng-click="onClick_com1()"> Sol Enable
+                                                    </button>
+                                                </div>
+                                                <div class="col">
+                                                    <button class="quick-btn" data-ng-click="onClick_com4()">USB
+                                                        unmount</button>
+                                                </div>
+                                                <div class="col">
+                                                    <button class="quick-btn" data-ng-click="onClick_com6()">Alert
+                                                        disable</button>
+                                                </div>
+                                            </div>
+                                            <div class="bmc-row">
+                                                <div class="col">
+                                                    <button class="quick-btn" data-ng-click="onClick_com2()"> Sol
+                                                        Disable </button>
+                                                </div>
+                                                <div class="col">
+                                                    <button class="quick-btn" data-ng-click="onClick_com5()">LOG
+                                                        clear</button>
+                                                </div>
+                                                <div class="col">
+                                                    <button class="quick-btn" data-ng-click="onClick_com7()">Alert
+                                                        Enable</button>
+                                                </div>
+                                            </div>
+                                            <div class="bmc-row">
+                                                <div class="col">
+                                                    <button class="quick-btn" data-ng-click="onClick_com3()"> Console
+                                                    </button>
+                                                </div>
+                                                <div class="col2">
+                                                    <button class="quick-btn" ng-click="onRefresh('8')">status
+                                                        update</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="left-bottom50">
+                                    <div class="bmc_box_wrap">
+                                        <div class="box_line"></div>
+                                        <div class="homebmc-wrap">
+                                            <div class="info-data">BMC Status</div>
+                                            <div class="status">
+
+                                                <div class="status-left">
+                                                    <div class="bmc_box_wrap5">
+                                                        <div class="status-img-l">
+                                                            <img src="./images/status.png" id="status-img">
+                                                        </div>
+                                                        <div class="status-img-r">
+                                                            <table class="status-img-table">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th class="img-title">Normal</th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th class="img-text">Critical : <span id="critical-count">0</span></th>                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="status-right">
+                                                    <div class="bmc_box_wrap5">
+                                                        <table class="status-table">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th class="status-text1">Server Name</th>
+                                                                    <td class="status-text2"> KETI BMC </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th class="status-text1">Network</th>
+                                                                    <td class="status-text2">
+                                                                        {{ systemInfo.LAN.IPV4_NETWORK_MODE || '-' }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th class="status-text1">BMC Uptime</th>
+                                                                    <td class="status-text2">
+                                                                        {{ extractDate(systemInfo.MC.IPMIFW_BLDTIME) || '-' }}
+									 </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="bottom-right35">
+                            <div class="bmc_box_wrap">
+                                <div class="box_line"></div>
+                                <div class="homebmc-wrap">
+                                    <div class="info-data">Virtual USB</div>
+
+                                    <table class="Virtual-table" style="display: flex; justify-content: center;">
+                                        <tbody>
+                                            <tr ng-repeat="item in homefileList">
+                                                <th class="usb-text" style="padding-left:0; width:80px;">{{ item.ID }}</th>
+                                                <td>
+                                                    <button ng-class="{'usb-on': item.INSERTED === 'O',
+                                                    'usb-off': item.INSERTED === 'X',
+                                                    'usb-off-acvi': item.INSERTED === 'X',
+                                                    'usb-on-active': item.INSERTED === 'O'}"
+                                                        ng-click="toggleInserted(item)" 
+		                                                        style=" width:100px ">ON
+                                                    </button>
+                                                    <button ng-class=" {'usb-on': item.INSERTED==='X',
+                                                        'usb-off' : item.INSERTED==='O',
+                                                        'usb-off-active' : item.INSERTED==='X' }"
+                                                        ng-click="toggleInserted(item)"
+                                                        style=" width:100px ">OFF
+                                                    </button>
+                                                </td>
+                                                <button class="usb-add">
+                                                    <a href="#!/virtualMediaUsb" style="color:#0b4daf">Add USB</a>
+                                                </button>                                                
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

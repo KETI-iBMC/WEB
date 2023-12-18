@@ -8,6 +8,7 @@
     "NETWORK_INFORMATION": "네트워크 정보",
     "BASIC_INFORMATION": "기본 정보",
     "MAC_ADDRESS": "MAC 주소",
+    "SEND": "전송",
     "SAVE": "저장",
     "CANCEL": "취소",
     "EDIT": "편집",
@@ -52,29 +53,7 @@
         "REAR": "후면",
         "FAN": "쿨링팬",
         "CPU_MEMORY": "CPU / 메모리",
-        "POWER_SUPPLY": "전원 장치",
-        "POWER_CONSUMPTION": "전력 사용량",
-        "KVM_OVER_IP" : "원격",
-        "QUICK_COMMAND":"간편 조작" ,
-        "SOL_ENABLE": "SOL 활성화", 
-        "USB_UNMOUNT":"USB 마운트 해제",
-        "ALERT_DISABLE": "알림 비활성화",
-        "SOL_DISABLE":"SOL 비활성화",
-        "LOG_CLEAR":"로그 초기화",
-        "ALERT_ENABLE":"알림 활성화",
-        "CONSOLE":"콘솔",
-        "STATUS_UPDATE":"상태 업데이트",
-        "BMC_STATUS":"BMC 상태",
-        "NORMAL":"정상",
-        "CRITICAL":"위험 : ",
-        "SERVER_NAME": "서버 명",
-        "KETI_BMC": "KETI BMC ",
-        "NETWORK" : "네트워크",
-        "BMC_UPTIME" : "BMC 부팅 시간",
-        "VIRTUAL_USB" : "가상 USB",
-        "ADD" : "USB 추가"
-
-
+        "POWER_SUPPLY": "전원 장치"
     },
     "SYSTEM": {
         "SYSTEM_INFORMATION": "시스템 정보",
@@ -154,16 +133,7 @@
         "POWER_CURRENT_PEAK":"현재 Peak",
         "POWER_OBJECT_PEAK": "목표 Peak",
         "POWER_LAST_MIN": "분당 전력량",
-        "POWER_LAST_HOUR": "시간당 전력량",
-        "POWER_LAST_DAY": "하루 전력량",
-        "PEAK_NAME":"최소/최대",
-        "SENSOR":"센서",
-        "VALUE":"전력 사용량",
-        "TIME": "시간",
-        "REAL_TIME" :"실시간",
-        "LAST_HOUR":"한 시간 전",
-        "LAST_DAY": "하루 전"
-
+        "POWER_LAST_HOUR": "시간당 전력량"
     },
     "CONFIGURATION": {
         "CONFIGURATION": "구성",
@@ -296,7 +266,7 @@
         "MOUNT": "마운트",
         "UNMOUNT": "언마운트",
         "ISO_IMAGES": "IOS 이미지",
-        "MASS_USB_PATH": "USB 경로 설정",
+        "MASS_USB_PATH": "MASS USB PATH",
         "USB_IMAGE_FILE": "USB 이미지 파일",
         "ISO_UPLOAD": "ISO 업로드",
         "CHOOSE_FILE": "파일선택"
@@ -319,9 +289,8 @@
         "POWER_ON_SERVER": "서버 전원 : 켜기",
         "POWER_CYCLE_SERVER": "서버 전원 : 순환",
         "ACTION": "동작",
-        "KVM_MOVEUPDADTE":"호스트 컴퓨터 장애발생 10초 전 녹화 영상",
-        "LAST_REDORDING":"마지막 녹화 시간 : ",
-        "LOADING":"로딩중..."
+        "KVM_MOVEUPDADTE": "호스트 컴퓨터 장애발생 10초 전 녹화 영상",
+        "LAST_REDORDING": "마지막 녹화 시간 :
     },
     "MAINTENANCE": {
         "MAINTENANCE": "유지",
@@ -334,7 +303,13 @@
         "CHOOSE_FILE": "파일선택",
         "BMC_RESET": "BMC 초기화",
         "BMC_RESET_DESCRIPTION": "본 페이지는 BMC를 초기화하는 데 사용됩니다.",
-        "BMC_WARM_RESET": "BMC Warm 초기화"
+        "BMC_WARM_RESET": "BMC Warm 초기화",
+        "AI_DATA_LOAD": "AI 데이터 로드",
+        "AI_DATA_LOAD_DESCRIPTION": "추론 및 예측 AI 플랫폼에 필요한 데이터를 제공합니다.",
+        "AI_DATA_LOAD_SETTINGS": "AI 데이터 설정",
+        "AI_DATA_LOAD_CATEGORY": "데이터 유형",
+        "AI_DATA_LOAD_DATE": "날짜",
+        "AI_DATA_LOAD_DATA_SIZE": "데이터 크기"        
     },
     "MENU_SETTINGS": {
         "SERVICES": "서비스",
@@ -370,5 +345,78 @@
         "HELP": "도움말",
         "INFORMATION": "정보",
         "WINDOW_SIZE": "창 크기"
+    },
+    "FAULT_ANALYSIS":{
+        "FAULT_ANALYSIS": "장애 분석",
+        "OVERALL_MONITORING" : "전체 모니터링",
+        "FAULT_AND_FAILURE_DASHBOARD" : "Fault And Failure Dashboard",
+        "OVERALL_MONITORING_DESCRIPTION" : "This page is a dashboard for conducting fault and failure management.",
+        "FOFL_POLICY" : "FOFL 정책",
+        "DISK_REPORT" : "디스크 보고서",
+        "LOG_MONITORING" : "로그 모니터링",
+        "DISK_REPORT_DESCRIPTION" : "전체 디스크 상태를 설명합니다.",
+        "DISK_SPEC" : "디스크 스펙",
+        "MODEL_NAME" : "모델명",
+        "SERIAL_NUM" : "시리얼 번호",
+        "VENDOR_NAME" : "벤더 정보",
+        "USAGE_AND_TOTAL_CAPACITY" : "사용량/전체 용량",
+        "DISK_HEALTH" : "디스크 상태",
+        "STATUS_SCORE" : "상태 점수",
+        "ESTIMATED_DISK_LIFE" : "디스크 예상 수명",
+        "PROBABILITY_OF_ERROR_WITHIN_THE_YEAR" : "연내 오류 발생 확률",
+        "DISK_SELF_TEST" : "Disk 자가 테스트",
+        "DISK_ANALYSIS" : "디스크 분석",
+        "FATAL_ERROR_COUNT" : "치명적 오류 수",
+        "DISK_USAGE" : "디스크 사용 용량",
+        "DISK_TEMPERATURE" : "디스크 온도",
+        "AMOUNT_OF_BLOCK_AVAILABLE" : "사용 가능한 블록 양",
+        "READ_AND_WRITE_DATA_SIZE" : "읽은 / 쓴 데이터 크기",
+        "USAGE_AND_OPERATION_TIME" : "사용 / 가동 Time",
+        "NUMBER_OF_ABNORMAL_TERMINATIONS" : "비정상 종류 횟수",
+        "DATA_INTEGRITY_ERROR" : "데이터 무결성 오류",    
+        "FEEDBACK_LOGS" : "Feedback Logs",
+        "FEEDBACK_LOGS_DESCRIPTION" : "This page checks the feedback log.",
+        "NO" : "No",
+        "TIME" : "Time",
+        "MODULE_NAME" : "Moduel Name",
+        "MODULE_NO" : "Module No",
+        "CAUSE" : "Cause",
+        "PROGRESS" : "Progress",
+        "LIST" : "List",
+        "RECENT" : "RECENT",
+        "LOG_GRAPH" : "Log Graph",
+        "FOFL_SETTING" : "FOFL Setting",
+        "FOFL_SETTING_DESCRIPTION" : "Setting User's FOFL Policy of Computing Modules.",
+        "ACTIVATION" : "Activation",
+        "CHASSIS" : "Chassis",
+        "GRAPH_MODUL_TEXT" : "1. 컴퓨팅 모듈의 로그 비중",
+        "GRAPH_CAUSE_TEXT" : "2. 발생 원인의 로그 비중",
+        "GRAPH_FEEDBACK_PROGRESS_TEXT" : "3. 진행 상황의 로그 비중"            
+    },
+
+    "FOFL_INFO":{
+        "GREEN_TEMPERATURE": "Green Temperature",
+        "YELLOW_TEMPERATURE": "Yellow Temperature",
+        "ORANGE_TEMPERATURE": "Orange Temperature",
+        "RED_TEMPERATURE": "Red Temperature",
+        "ALARM":"Alarm",
+        "STATE":"State",
+        "SENSOR_NAME": "Sensor Name",
+        "SENSOR_LIST" :"Sensor List"
+
+    },    
+    "ENERGY_SAVING":{
+        "ENERGY_SAVING": "에너지 절감",
+        "SMART_FAN_CONTROL" : "스마트 팬 제어",
+        "CPU_POWER_CAPPING" : "CPU 파워 캡핑",
+        "CORE_COUNT" : "Core 수",
+        "CPU_POWER_CAPPING_CONTOL" : "CPU 파워 캡핑 제어"
+
+    },
+    "OVER_MONITORING": {
+        "CHASSIS_TEXT":"이 섹션은 샤시 내부의 모듈 위치를 나타냅니다.",
+        "SYSTEM_FAN_TEXT":" 이 섹션은 샤시 내 각 팬 모듈의 속도를 RPM으로 표시합니다.",
+        "TMEP_TEXT": "이 섹션은 메모리 및 CPU의 온도를 표시합니다.",
+        "STROAGE_TEXT": "이 섹션은 디스크 상태를 S.M.A.R.T 분석을 통해 보여줍니다."
     }
 }

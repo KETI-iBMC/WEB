@@ -1,5 +1,5 @@
 //create app module
-var app = angular.module('app', ['ngRoute', 'ngCookies', 'chartistAngularDirective', 'ui.bootstrap', 'radialIndicator', 'pascalprecht.translate', 'chart.js']);
+var app = angular.module('app', ['ngRoute', 'ngCookies', 'chartistAngularDirective', 'ui.bootstrap', 'radialIndicator', 'pascalprecht.translate']);
 
 app.config(['$translateProvider', function ($translateProvider) {
 
@@ -17,156 +17,6 @@ app.config(['$translateProvider', function ($translateProvider) {
     });
     $translateProvider.use(lang);
 
-}]).config(['ChartJsProvider', function (ChartJsProvider) {
-
-    ChartJsProvider.setOptions({
-
-        responsive: true,
-        legend: {
-            display: true, // 범례를 표시하도록 설정
-            position: 'top', // 범례 위치 (top, bottom, left, right 중 선택)
-            labels: {
-                fontColor: '#666666', // 범례 레이블의 글자 색상 설정
-                fontSize: 12 // 범례 레이블의 글자 크기 설정
-            }
-        },
-
-    });
-    // Configure all line charts
-    ChartJsProvider.setOptions('line', {
-        responsive: true,
-        scales: {
-            xAxes: [{}],
-            yAxes: [
-                {
-                    id: 'y-axis-0',
-                    position: 'left',
-                    ticks: {
-                        beginAtZero: true
-                    }
-                },
-            ]
-        },
-
-
-        elements: {
-            point: {
-                radius: 0.5,
-            },
-        },
-
-        legend: {
-            display: true, // 범례를 표시하도록 설정
-            position: 'top', // 범례 위치 (top, bottom, left, right 중 선택)
-            labels: {
-                fontColor: '#666666', // 범례 레이블의 글자 색상 설정
-                fontSize: 12 // 범례 레이블의 글자 크기 설정
-            }
-        },
-        hover: {
-            animationDuration: 0
-        },
-        animation: {
-            duration: 1,
-            onComplete: function () {
-                var chartInstance = this.chart,
-                    ctx = chartInstance.ctx;
-
-                ctx.font = Chart.helpers.fontString(10, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'bottom';
-                ctx.fillStyle = '#707070';
-                this.data.datasets.forEach(function (dataset, i) {
-                    var meta = chartInstance.controller.getDatasetMeta(i);
-                    meta.data.forEach(function (bar, index) {
-                        var data = dataset.data[index];
-                        ctx.fillText(data, bar._model.x, bar._model.y - 5);
-                    });
-                });
-            }
-        },
-    });
-    ChartJsProvider.setOptions('bar', {
-        responsive: true,
-        scales: {
-            xAxes: [{
-                barPercentage: 0.12, // 전체 카테고리의 12%만큼의 너비
-            }], yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        },
-
-        elements: {
-            rectangle: {
-                borderWidth: 0, // 경계선 두께를 0으로 설정
-
-            }
-        },
-        hover: {
-            animationDuration: 0
-        },
-        animation: {
-            duration: 1,
-            onComplete: function () {
-                var chartInstance = this.chart,
-                    ctx = chartInstance.ctx;
-
-                ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'bottom';
-                ctx.fillStyle = '#707070';
-                this.data.datasets.forEach(function (dataset, i) {
-                    var meta = chartInstance.controller.getDatasetMeta(i);
-                    meta.data.forEach(function (bar, index) {
-                        var data = dataset.data[index];
-                        ctx.fillText(data, bar._model.x, bar._model.y - 5);
-                    });
-                });
-            }
-        },
-        legend: {
-            display: true, // 범례를 표시하도록 설정
-            position: 'top', // 범례 위치 (top, bottom, left, right 중 선택)
-            labels: {
-                fontColor: '#666666', // 범례 레이블의 글자 색상 설정
-                fontSize: 12 // 범례 레이블의 글자 크기 설정
-            }
-        },
-
-
-    });
-    ChartJsProvider.setOptions('horizontal-bar', {
-        responsive: true,
-        scales: {
-            xAxes: [
-                {
-                    id: 'x-axis-0',
-                    position: 'left',
-                    ticks: {
-                        beginAtZero: true
-                    }
-                },
-            ], yAxes: [{}]
-        },
-        plugins: {
-            datalabels: {
-                anchor: 'end',
-                align: 'end',
-            }
-        },
-        legend: {
-            display: true, // 범례를 표시하도록 설정
-            position: 'top', // 범례 위치 (top, bottom, left, right 중 선택),
-            padding: 15,
-            labels: {
-                fontColor: '#666666', // 범례 레이블의 글자 색상 설정
-                fontSize: 12 // 범례 레이블의 글자 크기 설정
-            }
-        },
-
-    });
 }]).config(['$routeProvider', function ($routeProvider) {
     $routeProvider
 
@@ -211,7 +61,7 @@ app.config(['$translateProvider', function ($translateProvider) {
             templateUrl: 'views/powerUsage.html',
             controller: 'PowerUsageController'
         })
-        // // Configuration ///////////////////////////////////////////////////////////////////////////////////////////////////
+        // Configuration ///////////////////////////////////////////////////////////////////////////////////////////////////
 
         .when('/configNtp', {
             templateUrl: 'views/configNtp.html',
@@ -256,7 +106,7 @@ app.config(['$translateProvider', function ($translateProvider) {
         })
         */
 
-        //Virtual Media ///////////////////////////////////////////////////////////////////////////////////////////////////
+        // Virtual Media ///////////////////////////////////////////////////////////////////////////////////////////////////
         .when('/virtualMediaUsb', {
             templateUrl: 'views/virtualMediaUsb.html',
             controller: 'VirtualMediaUsbController'
@@ -289,6 +139,51 @@ app.config(['$translateProvider', function ($translateProvider) {
             templateUrl: 'views/maintenanceBmcReset.html',
             controller: 'MaintenanceBmcResetController'
         })
+        .when('/maintenanceAiDataLoad', {
+            templateUrl: 'views/maintenanceAiDataLoad.html',
+            controller: 'MaintenanceAiDataLoadController'
+        })
+
+        // Fault Analysis /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        .when('/faultAnalysis', {
+            templateUrl: 'views/faultAnalysisOverallMonitoring.html',
+            controller: 'FaultAnalysisOverallMonitoringController'
+        })
+        .when('/faultAnalysisOverallMonitoring', {
+            templateUrl: 'views/faultAnalysisOverallMonitoring.html',
+            controller: 'FaultAnalysisOverallMonitoringController'
+        })
+        .when('/faultAnalysisFoflPolicy', {
+            templateUrl: 'views/faultAnalysisFoflPolicy.html',
+            controller: 'FaultAnalysisFoflPolicyController'
+        })
+        .when('/faultAnalysisDiskReport', {
+            templateUrl: 'views/faultAnalysisDiskReport.html',
+            controller: 'FaultAnalysisDiskReportController'
+        })
+        .when('/faultAnalysisLogMonitoring', {
+            templateUrl: 'views/faultAnalysisLogMonitoring.html',
+            controller: 'FaultAnalysisLogMonitoringController'
+        })
+        .when('/faultAnalysisHardwareReport', {
+            templateUrl: 'views/faultAnalysisHardwareReport.html',
+            controller: 'faultAnalysisHardwareReportController'
+        })
+
+        // Energy Saving /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        .when('/energySaving', {
+            templateUrl: 'views/energySavingSmartFanControl.html',
+            controller: 'energySavingSmartFanController'
+        })
+        .when('/energySavingSmartFanControl', {
+            templateUrl: 'views/energySavingSmartFanControl.html',
+            controller: 'energySavingSmartFanController'
+        })
+        .when('/energySavingCpuPowerCapping', {
+            templateUrl: 'views/energySavingCpuPowerCapping.html',
+            controller: 'EnergySavingCpuPowerCappingController'
+        })
+
 
         // Settings /////////////////////////////////////////////////////////////////////////////////////////////////////////
         .when('/settingsServices', {
@@ -306,6 +201,7 @@ app.config(['$translateProvider', function ($translateProvider) {
     var domain = window.location.protocol + "//" + API_HOST + ':8000';
 
     return {
+        ROOT_DOMAIN: domain,
         LOGIN: {
             USER_INFO: domain + '/user',
             LOGIN: domain + '/login'
@@ -361,7 +257,38 @@ app.config(['$translateProvider', function ($translateProvider) {
         MAINTENANCE: {
             FIRMWARE_UPLOAD: domain + '/upload',
             BMC_RESET: domain + '/bmcReset',
-            BMC_WARM_RESET: domain + '/warmReset'
+            BMC_WARM_RESET: domain + '/warmReset',
+            AI_DATA_LOAD: domain + "/aiDataLoad"
+        },
+        SMART_FAN_CONTROL: {
+            ENERGY: domain + '/energySavingSmartFanControl/option',
+            RPMDATA: domain + '/fans',
+            BFCTEMP: domain + '/temp_include_cpu',
+        },
+        FAULT_ANALYSIS: {
+            OVERALL_MONITORING: domain + '/overallMonitoring',
+            FOFL_POLICY: domain + '/fofl',
+            DISK_REPORT: domain + '/faultAnalysisDiskReport_nvme0',
+            FEEDBACKLOG_LATEST: domain + '/feedbackLog_latest',
+            FEEDBACKLOG_MODULE: domain + '/feedbackLog_module',
+            FEEDBACKLOG_PROCEED: domain + '/feedbackLog_proceed',
+            FEEDBACKLOG_CAUSE: domain + '/feedbackLog_cause',
+        },
+        CPU_MONITORING: {
+            SLOT: domain + '/slot',
+            STORAGE: domain + '/faultAnalysisOverallMonitoring_storage',
+            DISK_GRAPH: domain + '/diskGraph'
+        },
+        CPU_POEWR_CAPPING: {
+            ENERGYGRAPH: domain + '/energygraph',
+            TOTAL_GRAPH: domain + '/compare'
+        },
+        ENERGY_SAVING: {
+            LSTM_GRAPH: domain + '/lstm',
+            CPU_POWER_CAPPING_CPU_VALUES_MONITORING: domain + '/energySavingCpuPowerCapping_cpuValuesMonitoring',
+            CPU_POWER_CAPPING_CPU_CONTROL: domain + '/energySavingCpuPowerCapping_cpuControl',
+            CPU_POWER_CAPPING_CONTROL: domain + '/energySavingCpuPowerCapping',
+            ENERGY_GRAPH: domain + '/energygraph'
         },
         SETTINGS: {
             SERVICES: domain + '/setting'
@@ -545,6 +472,7 @@ app.config(['$translateProvider', function ($translateProvider) {
             EG: domain + '/EG'
         }
     }
+
 
 })()).constant('CONST_MESSAGE', {
     LONIN: {

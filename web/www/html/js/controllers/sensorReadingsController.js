@@ -32,7 +32,7 @@ app.controller('SensorReadingsController', [
                     console.log('Sensor info. getting done');
                     $scope.sensorInfo = response.data.SENSOR_INFO;
 
-                    if (!$scope.selectedSensor) {
+                    if(!$scope.selectedSensor) {
                         $scope.selectedSensor = $scope.sensorInfo.SENSOR[0];
                     }
 
@@ -57,21 +57,24 @@ app.controller('SensorReadingsController', [
 
         function setSensorStatus(sensor) {
 
-            if ((parseFloat(sensor.READING) < parseFloat(sensor.LC))
-                || (parseFloat(sensor.READING) > parseFloat(sensor.UC))) {
+            if((parseFloat(sensor.READING) < parseFloat(sensor.LC))
+            || (parseFloat(sensor.READING) > parseFloat(sensor.UC)))
+            {
                 sensor.STATUS = 'Critical';
                 sensor.THRESHOLD = 'Critical';
             }
-            else {
+            else
+            {
                 sensor.STATUS = 'Normal';
                 sensor.THRESHOLD = 'Normal';
             }
 
-            if (parseFloat(sensor.READING) == 0) {
+            if(parseFloat(sensor.READING) == 0)
+            {
                 sensor.STATUS = 'Normal';
                 sensor.THRESHOLD = 'Normal';
             }
-
+            
         }
 
         function refreshSensorInfo() {
@@ -114,7 +117,7 @@ app.controller('SensorReadingsController', [
          *
          ***************************************************************************************************************/
         $scope.init = function () {
-            if (!$rootScope.isLogin) {
+            if(!$rootScope.isLogin) {
                 $location.url('/login');
                 return;
             }

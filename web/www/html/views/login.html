@@ -33,9 +33,9 @@
 </style>
 
 <div class="log-bg">
-    <!-- <div id="loading-overlay">
+    <div id="loading-overlay">
         <div class="loading-spinner"></div>
-    </div> -->
+    </div>
     <div class="container-log" data-ng-init="init()">
 
         
@@ -53,14 +53,13 @@
                     <input type="id" class="form-control log-input" id="id" ng-model="userName" placeholder="{{ 'LOGIN.ID' | translate }}">
                 </div>
                 <div class="form-group" ng-keypress="($event.keyCode === 13) ? login() : 0">
-                    <input type="password" class="form-control log-input" style="margin: 20px 0;"
-                     id="pw" ng-model="userPassword" placeholder="{{ 'LOGIN.PASSWORD' | translate }}">
+                    <input type="password" class="form-control log-input" id="pw" ng-model="userPassword" placeholder="{{ 'LOGIN.PASSWORD' | translate }}">
                 </div>
                 <div class="form-group">
                     <button type="button" class="btn btn-darkblue btn-block btn-log" ng-click="login()">{{ "LOGIN.LOGIN" | translate }}</button>
                 </div>
             </form>
-            <div class="log-footer" style="margin: 20px 0;">KETI. All rights reserved.</div>
+            <div class="log-footer">KETI. All rights reserved.</div>
             <div class="browser">{{ "LOGIN.OPTIMIZED_BROWSER" | translate }}</div>
             <div class="log-logo2">
                 <img src="./images/login_logo2.png">
